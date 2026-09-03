@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>MiniWorld v6</title>
+<style>
+*{box-sizing:border-box;touch-action:none} html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,sans-serif}
+#game{position:fixed;inset:0;width:100vw;height:100vh;display:block;background:#6ec7ef}
+#hud,#hint{position:fixed;top:12px;z-index:5;background:#24323fe8;color:#fff;border-radius:14px;padding:8px 12px}
+#hud{left:12px;font-size:14px} #hint{right:12px;font-size:11px;text-align:right}
+#controls{position:fixed;left:14px;right:14px;bottom:14px;z-index:10;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none}
+#move,#jumpWrap{display:flex;gap:8px;pointer-events:auto}
+button{width:62px;height:62px;border:0;border-radius:18px;background:#1f2d3bee;color:#fff;font-size:25px;font-weight:bold}
+#jump{width:72px;height:72px;border-radius:50%;font-size:28px}
+#backpack{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:9;display:flex;gap:7px;background:#1c2631e8;padding:8px;border-radius:18px;box-shadow:0 4px 14px #0006}
+.slot{position:relative;width:54px;height:54px;border:2px solid #ffffff33;border-radius:12px;background:#0f151dcc;display:flex;align-items:center;justify-content:center;font-size:27px;color:#fff}
+.slot.selected{border-color:#fff;box-shadow:0 0 0 2px #ffffff33 inset}.count{position:absolute;right:5px;bottom:3px;font-size:12px;font-weight:bold;text-shadow:0 1px 2px #000}
+#rotate{position:fixed;inset:0;background:#111;color:#fff;z-index:50;display:none;align-items:center;justify-content:center;text-align:center;font-size:22px}
+@media (orientation:portrait){#rotate{display:flex}}
+</style>
+</head>
+<body>
+<canvas id="game" width="1000" height="500"></canvas>
+<div id="hud">🪙 <span id="coin">0</span></div>
+<div id="hint">TOUCH block = BREAK<br>TOUCH kosong = PLACE</div>
+<div id="controls"><div id="move"><button id="left">◀</button><button id="right">▶</button></div><div id="jumpWrap"><button id="jump">▲</button></div></div>
+<div id="backpack">
+<div class="slot selected" data-item="dirt">🟫<span class="count" id="cnt-dirt">8</span></div>
+<div class="slot" data-item="grass">🟩<span class="count" id="cnt-grass">4</span></div>
+<div class="slot" data-item="tree">🌳<span class="count" id="cnt-tree">3</span></div>
+<div class="slot" data-item="stone">🪨<span class="count" id="cnt-stone">3</span></div>
+</div>
+<div id="rotate">📱↔️<br><br>Putar HP ke horizontal</div>
+<script>
+(()=>{
+const c=document.getElementById('game'),ctx=c.getContext('2d');
+const CW=1000,CH=500,T=40,WORLD=80,GROUND=335;
+let cam=0,score=0,selected='dirt',blocks=[],coins=[];
+const inventory={dirt:8,grass:4,tree:3,stone:3};
+const p={x:120,y:GROUND-48,w:32,h:48,vx:0,vy:0,on:true,dir:1},k={l:false,r:false,j:false};
+function build(){
+ blocks=[];coins=[];
+ for(let i=0;i<WORLD;i++){blocks.push({x:i*T,y:GROUND,t:'grass'},{x:i*T,y:GROUND+T,t:'dirt'},{x:i*T,y:GROUND+2*T,t:'dirt'},{x:i*T,y:GROUND+3*T,t:'dirt'})}
+ for(let i=8;i<=12;i++)blocks.push({x:i*T,y:GROUND-T,t:'grass'});
+ for(let i=19;i<=23;i++)blocks.push({x:i*T,y:GROUND-2*T,t:'grass'});
+ for(let i=32;i<=35;i++)blocks.push({x:i*T,y:GROUND-T,t:'grass'});
+ blocks.push({x:39*T,y:GROUND-T,t:'stone'},{x:40*T,y:GROUND-T,t:'stone'},{x:44*T,y:GROUND-T,t:'tree'});
+ coins=[{x:10*T,y:GROUND-T-20,got:false},{x:21*T,y:GROUND-2*T-20,got:false},{x:30*T,y:GROUND-20,got:false}]
+}
+function hit(b){return p.x<b.x+T&&p.x+p.w>b.x&&p.y<b.y+T&&p.y+p.h>b.y}
+function update(){
+ p.vx=(k.l?-4:0)+(k.r?4:0);if(p.vx)p.dir=p.vx<0?-1:1;if(k.j&&p.on){p.vy=-11;p.on=false;k.j=false}p.vy+=.55;
+ p.x+=p.vx;for(const b of blocks)if(hit(b)){if(p.vx>0)p.x=b.x-p.w;else if(p.vx<0)p.x=b.x+T}
+ p.y+=p.vy;p.on=false;for(const b of blocks)if(hit(b)){if(p.vy>0){p.y=b.y-p.h;p.vy=0;p.on=true}else if(p.vy<0){p.y=b.y+T;p.vy=0}}
+ p.x=Math.max(0,Math.min(WORLD*T-p.w,p.x));cam=Math.max(0,Math.min(WORLD*T-CW,p.x-300));
+ for(const q of coins)if(!q.got&&Math.abs(p.x+p.w/2-q.x)<28&&Math.abs(p.y+p.h/2-q.y)<34){q.got=true;score++;document.getElementById('coin').textContent=score}
+}
+function drawBlock(b){const sx=b.x-cam,sy=b.y;if(b.t==='grass'){ctx.fillStyle='#8a582c';ctx.fillRect(sx,sy,T,T);ctx.fillStyle='#3db84c';ctx.fillRect(sx,sy,T,10)}else if(b.t==='tree'){ctx.fillStyle='#74431f';ctx.fillRect(sx+13,sy+14,14,26);ctx.fillStyle='#2c9d45';ctx.beginPath();ctx.arc(sx+20,sy+10,19,0,Math.PI*2);ctx.fill()}else if(b.t==='stone'){ctx.fillStyle='#777';ctx.fillRect(sx,sy,T,T);ctx.fillStyle='#999';ctx.fillRect(sx+8,sy+8,7,6);ctx.fillRect(sx+25,sy+23,5,5)}else{ctx.fillStyle='#8a582c';ctx.fillRect(sx,sy,T,T);ctx.fillStyle='#b87842';ctx.fillRect(sx+6,sy+8,6,4);ctx.fillRect(sx+24,sy+23,5,5)}ctx.strokeStyle='#0002';ctx.strokeRect(sx,sy,T,T)}
+function drawPlayer(){const sx=p.x-cam,sy=p.y;ctx.fillStyle='#ffd1a0';ctx.fillRect(sx+6,sy+2,20,18);ctx.fillStyle='#4a2e1d';ctx.fillRect(sx+6,sy+2,20,6);ctx.fillStyle='#111';ctx.fillRect(sx+(p.dir>0?20:10),sy+10,3,3);ctx.fillStyle='#e74943';ctx.fillRect(sx+3,sy+20,26,16);ctx.fillStyle='#315aa8';ctx.fillRect(sx+6,sy+36,8,12);ctx.fillRect(sx+18,sy+36,8,12)}
+function draw(){ctx.clearRect(0,0,CW,CH);const g=ctx.createLinearGradient(0,0,0,CH);g.addColorStop(0,'#69c9f3');g.addColorStop(1,'#d8f5ff');ctx.fillStyle=g;ctx.fillRect(0,0,CW,CH);ctx.fillStyle='#ffffffaa';for(let a=-((cam*.12)%280);a<CW+160;a+=280){ctx.beginPath();ctx.arc(a+40,75,20,0,7);ctx.arc(a+68,67,27,0,7);ctx.arc(a+98,76,18,0,7);ctx.fill()}blocks.forEach(b=>{if(b.x-cam>-T&&b.x-cam<CW+T)drawBlock(b)});coins.forEach(q=>{if(!q.got){ctx.fillStyle='#ffd83d';ctx.beginPath();ctx.arc(q.x-cam,q.y,10,0,7);ctx.fill()}});drawPlayer()}
+function loop(){update();draw();requestAnimationFrame(loop)}
+function bind(id,key){const e=document.getElementById(id);e.addEventListener('pointerdown',a=>{a.preventDefault();k[key]=true});['pointerup','pointercancel','pointerleave'].forEach(ev=>e.addEventListener(ev,a=>{a.preventDefault();k[key]=false}))}
+bind('left','l');bind('right','r');bind('jump','j');
+function updateInventory(){Object.keys(inventory).forEach(name=>{const el=document.getElementById('cnt-'+name);if(el)el.textContent=inventory[name]})}
+function blockAt(tx,ty){return blocks.find(b=>Math.floor(b.x/T)===tx&&Math.floor(b.y/T)===ty)}
+function near(tx,ty){const cx=tx*T+T/2,cy=ty*T+T/2;return Math.hypot((p.x+p.w/2)-cx,(p.y+p.h/2)-cy)<=T*3.2}
+function overlapsPlayer(tx,ty){const bx=tx*T,by=ty*T;return p.x<bx+T&&p.x+p.w>bx&&p.y<by+T&&p.y+p.h>by}
+c.addEventListener('pointerdown',e=>{
+ if(innerWidth<=innerHeight)return;const rect=c.getBoundingClientRect(),sx=(e.clientX-rect.left)/rect.width*CW,sy=(e.clientY-rect.top)/rect.height*CH,wx=sx+cam,tx=Math.floor(wx/T),ty=Math.floor(sy/T);
+ if(!near(tx,ty))return;const existing=blockAt(tx,ty);
+ if(existing){blocks.splice(blocks.indexOf(existing),1);if(inventory[existing.t]!==undefined)inventory[existing.t]++;updateInventory();return}
+ if(inventory[selected]<=0||overlapsPlayer(tx,ty))return;const neighbors=[blockAt(tx+1,ty),blockAt(tx-1,ty),blockAt(tx,ty+1),blockAt(tx,ty-1)].filter(Boolean);
+ if(neighbors.length){blocks.push({x:tx*T,y:ty*T,t:selected});inventory[selected]--;updateInventory()}
+});
+document.querySelectorAll('.slot').forEach(slot=>slot.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();document.querySelectorAll('.slot').forEach(s=>s.classList.remove('selected'));slot.classList.add('selected');selected=slot.dataset.item}));
+build();updateInventory();loop();
+})();
+</script>
+</body></html>

@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>MiniWorld Alpha Update 8</title>
+<style>
+:root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
+*{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,Helvetica,sans-serif;overscroll-behavior:none}
+button,.ctrl,#controls,.controlGroup{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-drag:none!important;caret-color:transparent!important;touch-action:none!important;outline:none}
+#game{position:fixed;inset:0;width:100vw;height:100vh;display:block;background:#70c9ef}
+#hud{position:fixed;left:12px;top:12px;z-index:30;background:var(--ui);color:#fff;padding:8px 12px;border-radius:14px;font-size:14px;box-shadow:0 3px 12px #0004}
+#hint{position:fixed;right:12px;top:12px;z-index:30;background:var(--ui);color:#fff;padding:8px 10px;border-radius:14px;font-size:10px;line-height:1.45;text-align:right;box-shadow:0 3px 12px #0004}
+#controls{position:fixed;left:14px;right:14px;bottom:14px;z-index:40;display:flex;align-items:flex-end;justify-content:space-between;pointer-events:none}
+.controlGroup{display:flex;gap:9px;pointer-events:auto}
+.ctrl{position:relative;width:64px;height:64px;border:none;border-radius:18px;color:#fff;background:#192633e8;font-size:26px;font-weight:800;box-shadow:0 4px 12px #0005,inset 0 0 0 2px #ffffff14;appearance:none;-webkit-appearance:none;overflow:hidden}
+.ctrl:active{transform:scale(.95);background:#26394c}
+.moveArrow::before{content:'';position:absolute;left:50%;top:50%;width:0;height:0;transform:translate(-50%,-50%);border-top:12px solid transparent;border-bottom:12px solid transparent}
+.moveArrow.leftArrow::before{border-right:18px solid #fff;margin-left:-2px}
+.moveArrow.rightArrow::before{border-left:18px solid #fff;margin-left:2px}
+
+#jump{width:74px;height:74px;border-radius:50%;font-size:30px}
+#punchBtn{width:68px;height:68px;border-radius:50%;font-size:28px}
+#hotbar{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:36;display:grid;grid-template-columns:repeat(4,52px);gap:6px;background:var(--ui);padding:8px 10px;border-radius:18px;box-shadow:0 4px 14px #0006;transition:bottom .22s ease}
+#hotbar.drawerOpen{bottom:222px}
+.slot,.drawerSlot{position:relative;border:2px solid var(--line);background:var(--ui2);color:#fff;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:25px}
+.slot{width:52px;height:52px}
+.slot.selected,.drawerSlot.selected{border-color:#fff;box-shadow:0 0 0 2px #ffffff25 inset,0 0 10px #fff3;transform:translateY(-2px)}
+.count{position:absolute;right:4px;bottom:3px;font-size:11px;font-weight:800;text-shadow:0 1px 2px #000}
+#bpHandle{position:fixed;left:50%;transform:translateX(-50%);bottom:70px;z-index:41;width:118px;height:25px;border-radius:12px 12px 0 0;background:var(--ui);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;box-shadow:0 -2px 8px #0004;transition:bottom .22s ease}
+#bpHandle.drawerOpen{bottom:280px}
+#drawer{position:fixed;left:50%;transform:translateX(-50%);bottom:-48vh;z-index:35;width:min(86vw,600px);height:210px;background:#131d27f7;color:#fff;border-radius:20px 20px 0 0;box-shadow:0 -8px 20px #0008;padding:8px 10px 12px;transition:bottom .22s ease}
+#drawer.open{bottom:0}
+#drawerTop{text-align:center;font-weight:800;font-size:12px;margin-bottom:4px;touch-action:none;padding:5px 0;cursor:pointer}
+#drawerScroll{height:calc(100% - 51px);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding:3px}
+#drawerGrid{display:grid;grid-template-columns:repeat(7,minmax(42px,1fr));gap:6px;touch-action:pan-y}
+.drawerSlot{min-height:48px;touch-action:pan-y}
+.drawerName{position:absolute;left:4px;top:3px;font-size:7px;opacity:.76}.equipMark{position:absolute;left:4px;bottom:3px;font-size:8px;font-weight:900;background:#53c76b;color:#102016;border-radius:5px;padding:1px 3px}
+
+/* ===== MiniWorld pixel icons: tanpa emoji/font OS ===== */
+.pixelIcon{position:relative;display:inline-block;width:30px;height:30px;flex:0 0 30px;image-rendering:pixelated;filter:drop-shadow(0 2px 1px #0005)}
+.slot .pixelIcon{width:29px;height:29px}.drawerSlot .pixelIcon{width:30px;height:30px}
+.icon-grass{background:#87542b;border:3px solid #5f351d;box-shadow:inset 0 7px 0 #45b94f}.icon-grass:after{content:'';position:absolute;left:5px;top:4px;width:5px;height:4px;background:#72dc73;box-shadow:12px 1px 0 #72dc73}
+.icon-dirt{background:#9a6134;border:3px solid #63391f}.icon-dirt:after{content:'';position:absolute;left:5px;top:7px;width:5px;height:4px;background:#c5864c;box-shadow:11px 10px 0 #6f4327,5px 16px 0 #c5864c}
+.icon-stone{background:#777f84;border:3px solid #51575b}.icon-stone:after{content:'';position:absolute;left:5px;top:5px;width:7px;height:5px;background:#a4abb0;box-shadow:11px 11px 0 #a4abb0,4px 16px 0 #5d6468}
+.icon-wood{background:#9a602d;border:3px solid #643a20}.icon-wood:after{content:'';position:absolute;left:12px;top:1px;width:4px;height:22px;background:#c07d3a}
+.icon-leaf{background:#319a49;border:3px solid #206d34}.icon-leaf:after{content:'';position:absolute;left:5px;top:5px;width:7px;height:7px;background:#5dce6d;box-shadow:11px 9px 0 #5dce6d,3px 14px 0 #257d3b}
+.icon-grassSeed,.icon-dirtSeed,.icon-stoneSeed,.icon-woodSeed,.icon-leafSeed{border:0;background:transparent}
+.icon-grassSeed:before,.icon-dirtSeed:before,.icon-stoneSeed:before,.icon-woodSeed:before,.icon-leafSeed:before{content:'';position:absolute;left:11px;top:8px;width:9px;height:14px;border-radius:70% 30% 65% 35%;transform:rotate(35deg);border:3px solid #18351d}
+.icon-grassSeed:before{background:#54c95f}.icon-dirtSeed:before{background:#c48a43}.icon-stoneSeed:before{background:#8e969b}.icon-woodSeed:before{background:#9b5c2f}.icon-leafSeed:before{background:#2f9f4c}
+.icon-grassSeed:after,.icon-dirtSeed:after,.icon-stoneSeed:after,.icon-woodSeed:after,.icon-leafSeed:after{content:'';position:absolute;left:7px;top:4px;width:6px;height:8px;background:#49b858;transform:rotate(-35deg)}
+.icon-punch{background:transparent}.icon-punch:before{content:'';position:absolute;left:8px;top:11px;width:16px;height:14px;background:#efbb83;border:3px solid #6e4328;box-shadow:-5px -5px 0 -1px #efbb83,1px -8px 0 -1px #efbb83,7px -7px 0 -1px #efbb83}.icon-punch:after{content:'';position:absolute;left:5px;top:17px;width:8px;height:9px;background:#efbb83;border:3px solid #6e4328}
+.icon-wrench{background:transparent}.icon-wrench:before{content:'';position:absolute;left:13px;top:6px;width:6px;height:21px;background:#b7c0c7;border:2px solid #596168;transform:rotate(42deg);transform-origin:center}.icon-wrench:after{content:'';position:absolute;left:4px;top:2px;width:11px;height:11px;border:4px solid #b7c0c7;border-right-color:transparent;border-radius:50%;transform:rotate(42deg)}
+.icon-redShirt{background:transparent}.icon-redShirt:before{content:'';position:absolute;left:7px;top:8px;width:16px;height:17px;background:#e34e49;border:3px solid #8c2927;box-shadow:-6px 3px 0 -2px #e34e49,6px 3px 0 -2px #e34e49}.icon-redShirt:after{content:'';position:absolute;left:12px;top:8px;width:6px;height:5px;background:#17212c;border-radius:0 0 5px 5px}
+.icon-bluePants{background:transparent}.icon-bluePants:before{content:'';position:absolute;left:7px;top:7px;width:16px;height:9px;background:#365da7;border:3px solid #213b70;box-shadow:0 8px 0 #365da7}.icon-bluePants:after{content:'';position:absolute;left:13px;top:16px;width:4px;height:11px;background:#17212c}
+.icon-blackHair{background:transparent}.icon-blackHair:before{content:'';position:absolute;left:5px;top:7px;width:20px;height:15px;background:#30251e;border:3px solid #17120f;border-radius:9px 9px 3px 3px}.icon-blackHair:after{content:'';position:absolute;left:8px;top:18px;width:5px;height:5px;background:#30251e;box-shadow:9px -2px 0 #30251e}
+.icon-whiteShoes{background:transparent}.icon-whiteShoes:before{content:'';position:absolute;left:3px;top:17px;width:11px;height:7px;background:#eee;border:3px solid #8d979e;box-shadow:13px 0 0 -0px #eee}.icon-whiteShoes:after{content:'';position:absolute;left:5px;top:15px;width:7px;height:3px;background:#c9d0d4;box-shadow:13px 0 0 #c9d0d4}
+#punchBtn .pixelIcon{width:34px;height:34px;transform:scale(1.08)}
+
+#worldMenu{position:fixed;inset:0;z-index:120;background:#0d1722e8;display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}
+#worldMenu.hidden{display:none}
+#worldCard{width:min(92vw,430px);background:#17212cf8;color:#fff;border:2px solid #ffffff24;border-radius:22px;padding:18px;box-shadow:0 14px 38px #0008}
+#worldCard h2{margin:0 0 5px;font-size:22px}#worldCard p{margin:0 0 13px;font-size:12px;opacity:.75;line-height:1.45}
+#worldNameInput{width:100%;height:44px;border:2px solid #ffffff28;border-radius:12px;background:#0f1720;color:#fff;font-size:16px;font-weight:700;padding:0 12px;outline:none;touch-action:manipulation;-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+#worldMenuButtons{display:flex;gap:8px;margin-top:9px}.menuBtn{flex:1;height:42px;border:0;border-radius:12px;background:#2d89e5;color:#fff;font-weight:800;font-size:13px;touch-action:manipulation}.menuBtn.secondary{background:#2a3744}
+#savedTitle{font-size:11px;font-weight:800;margin:16px 0 7px;opacity:.8}.savedWorld{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0f1720;border:1px solid #ffffff1c;border-radius:11px;padding:8px 10px;margin:5px 0}.savedWorld button{border:0;background:#263747;color:#fff;border-radius:8px;padding:6px 10px;font-weight:700}.savedWorld small{opacity:.55}
+#drawerActions{display:flex;justify-content:center;align-items:center;gap:7px;margin:2px 0 5px}.drawerActionBtn{border:0;border-radius:8px;background:#30465a;color:#fff;font-size:9px;font-weight:900;padding:5px 9px;touch-action:manipulation}.drawerActionBtn.active{background:#d48b30}#spliceStatus{font-size:9px;opacity:.75;min-width:100px}
+#toast{position:fixed;left:50%;top:78px;transform:translateX(-50%);z-index:70;background:#101820e8;color:#fff;padding:8px 12px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .15s}
+#toast.show{opacity:1}
+#rotate{position:fixed;inset:0;z-index:100;background:#111;color:#fff;display:none;align-items:center;justify-content:center;text-align:center;font-size:22px;line-height:1.6}
+@media (orientation:portrait){#rotate{display:flex}}
+@media (max-width:780px) and (orientation:landscape){#hotbar{grid-template-columns:repeat(4,46px);gap:5px;padding:7px 8px}.slot{width:46px;height:46px;font-size:22px}#hotbar.drawerOpen{bottom:204px}#bpHandle{bottom:62px}#bpHandle.drawerOpen{bottom:256px}#drawer{height:192px}.ctrl{width:58px;height:58px}#jump{width:68px;height:68px}#punchBtn{width:62px;height:62px}}
+</style>
+</head>
+<body>
+<canvas id="game" width="1000" height="500"></canvas>
+<div id="hud">🌎 <span id="hudWorld">-</span> &nbsp; 🪙 <span id="coin">0</span> &nbsp; 🌱 <span id="seedCount">0</span> &nbsp; 💾 AUTO</div>
+<div id="hint">HOLD block = BREAK<br>PUNCH = lurus 1 tile<br>HOLD/DRAG = PLACE 5×5<br>Pinch / Wheel = ZOOM<br>Seed = PLANT • BP = SPLICE<br>Lava & Door = RESPAWN<br>Mode: <span id="modeName">PUNCH</span><br><span id="pcHint">PC: A/D • Space • F • B • Wheel</span></div>
+<div id="toast"></div>
+
+<div id="worldMenu">
+  <div id="worldCard">
+    <h2>MINIWORLD</h2>
+    <p>Masukkan nama world. World akan auto-save di browser ini dan bisa dilanjutkan lagi nanti.</p>
+    <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
+    <div id="worldMenuButtons"><button class="menuBtn" id="enterWorldBtn">BUAT / MASUK</button><button class="menuBtn secondary" id="randomWorldBtn">NAMA RANDOM</button></div>
+    <div id="savedTitle">WORLD TERSIMPAN</div>
+    <div id="savedWorldList"></div>
+  </div>
+</div>
+
+
+<div id="controls">
+  <div class="controlGroup"><button class="ctrl moveArrow leftArrow" id="left" aria-label="Jalan kiri"></button><button class="ctrl moveArrow rightArrow" id="right" aria-label="Jalan kanan"></button></div>
+  <div class="controlGroup"><button class="ctrl" id="punchBtn" aria-label="Punch"><span class="pixelIcon icon-punch"></span></button><button class="ctrl" id="jump">▲</button></div>
+</div>
+
+<div id="bpHandle">▲ BACKPACK</div>
+<div id="hotbar"></div>
+
+<div id="drawer">
+  <div id="drawerTop">BACKPACK — swipe turun untuk tutup</div>
+  <div id="drawerActions"><button class="drawerActionBtn" id="spliceBtn">SPLICE</button><span id="spliceStatus">pilih 2 seed</span></div>
+  <div id="drawerScroll"><div id="drawerGrid"></div></div>
+</div>
+
+<div id="rotate">📱↔️<br>Putar HP ke horizontal</div>
+
+<script>
+(()=>{
+'use strict';
+
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+const W=1000,H=500,T=40,WORLD_W=100,GROUND_Y=335,INTERACT_RADIUS=2;
+const ui={coin:document.getElementById('coin'),seed:document.getElementById('seedCount'),mode:document.getElementById('modeName'),toast:document.getElementById('toast'),drawer:document.getElementById('drawer'),bpHandle:document.getElementById('bpHandle'),hotbar:document.getElementById('hotbar'),drawerGrid:document.getElementById('drawerGrid'),hudWorld:document.getElementById('hudWorld'),worldMenu:document.getElementById('worldMenu'),worldInput:document.getElementById('worldNameInput'),savedWorldList:document.getElementById('savedWorldList'),spliceBtn:document.getElementById('spliceBtn'),spliceStatus:document.getElementById('spliceStatus')};
+
+let cameraX=0,cameraY=0,cameraTarget=0,zoom=1,coinsCollected=0,selectedType='tool',selectedItem='punch';
+let cloudOffset=0;
+const DEFAULT_INVENTORY={grass:6,dirt:6,stone:2,wood:3,leaf:3,grassSeed:1,dirtSeed:1,stoneSeed:0,woodSeed:0,leafSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0};
+let inventory={...DEFAULT_INVENTORY};
+const equipped={hair:null,shirt:null,pants:null,shoes:null};
+const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes'};
+const seedForBlock={grass:'grassSeed',dirt:'dirtSeed',stone:'stoneSeed',wood:'woodSeed',leaf:'leafSeed'};
+const itemName={
+  grass:'GRASS',dirt:'DIRT',stone:'STONE',wood:'WOOD',leaf:'LEAF',
+  grassSeed:'GRASS SEED',dirtSeed:'DIRT SEED',stoneSeed:'STONE SEED',woodSeed:'TREE SEED',leafSeed:'LEAF SEED',
+  redShirt:'RED SHIRT',bluePants:'BLUE PANTS',blackHair:'BLACK HAIR',whiteShoes:'WHITE SHOES'
+};
+const blockItems=['grass','dirt','stone','wood','leaf'];
+const seedItems=['grassSeed','dirtSeed','stoneSeed','woodSeed','leafSeed'];
+const wearableItems=['redShirt','bluePants','blackHair','whiteShoes'];
+const dropRate={grass:{block:.42,seed:.30},dirt:{block:.38,seed:.20},stone:{block:.32,seed:.08},wood:{block:.45,seed:.24},leaf:{block:.24,seed:.42}};
+const WEARABLE_DROP=.015;
+const BREAK_MS=420;
+const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d',leaf:'#3aaa50'};
+
+const player={x:120,y:GROUND_Y-38,w:30,h:38,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-38,punchAnim:0,walkTime:0};
+const input={left:false,right:false,jump:false};
+let blocks=[],drops=[],particles=[],coins=[],plants=[],door=null;
+let gameReady=false,currentWorldName='',lastAutoSave=0;
+const SAVE_PREFIX='miniworld_save_v7_';
+const AUTOSAVE_MS=3500;
+let spliceMode=false,splicePicks=[];
+const plantBlockForSeed={grassSeed:'grass',dirtSeed:'dirt',stoneSeed:'stone',woodSeed:'wood',leafSeed:'leaf'};
+const PLANT_GROW_MS=12000;
+const spliceRecipes={
+  'dirtSeed+grassSeed':'woodSeed',
+  'grassSeed+stoneSeed':'leafSeed',
+  'dirtSeed+stoneSeed':'grassSeed',
+  'leafSeed+woodSeed':'grassSeed',
+  'stoneSeed+woodSeed':'dirtSeed'
+};
+let breakState=null;
+let touchBreakActive=false,touchStartX=0,touchStartY=0;
+let punchHeld=false;
+let nextPunchAt=0;
+let placeHeld=false,placePointerId=null,lastPlaceTile=null;
+const placeVisited=new Set();
+const activePointers=new Map();
+let pinchActive=false,pinchStartDist=0,pinchStartZoom=1;
+let hoverTile=null;
+let mouseX=0,mouseY=0;
+
+function toast(msg){ui.toast.textContent=msg;ui.toast.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>ui.toast.classList.remove('show'),850)}
+function addBlock(tx,ty,type){if(tx<0||ty<0||blockAt(tx,ty))return;blocks.push({x:tx*T,y:ty*T,t:type})}
+function blockAt(tx,ty){return blocks.find(b=>Math.floor(b.x/T)===tx&&Math.floor(b.y/T)===ty)}
+function isSolidBlock(b){return b.t!=='wood'&&b.t!=='leaf'&&b.t!=='lava'}
+
+function setSpawnFromDoor(){
+  if(!door)return;
+  player.spawnX=door.x+7;
+  player.spawnY=GROUND_Y-player.h;
+  player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;
+  const viewWidth=W/zoom;
+  cameraX=Math.max(0,Math.min(WORLD_W*T-viewWidth,player.x-viewWidth*.30));
+  cameraTarget=cameraX;cameraY=GROUND_Y-GROUND_Y/zoom;
+}
+function randomizeDoor(){
+  const safeDoorTiles=[];
+  for(let x=5;x<WORLD_W-6;x++){
+    const blocked=(x>=7&&x<=13)||(x>=19&&x<=25)||(x>=30&&x<=35)||(x>=38&&x<=41)||(x>=44&&x<=50)||(x>=56&&x<=60);
+    if(!blocked)safeDoorTiles.push(x);
+  }
+  const doorTile=safeDoorTiles[Math.floor(Math.random()*safeDoorTiles.length)];
+  door={x:doorTile*T,y:GROUND_Y-72,w:44,h:72};
+  setSpawnFromDoor();
+}
+
+function buildWorld(){
+  blocks=[];drops=[];particles=[];coins=[];plants=[];
+  inventory={...DEFAULT_INVENTORY};
+  Object.keys(equipped).forEach(k=>equipped[k]=null);
+  coinsCollected=0;ui.coin.textContent='0';
+  for(let x=0;x<WORLD_W;x++){
+    addBlock(x,Math.floor(GROUND_Y/T),'grass');
+    addBlock(x,Math.floor(GROUND_Y/T)+1,'dirt');
+    addBlock(x,Math.floor(GROUND_Y/T)+2,'dirt');
+    addBlock(x,Math.floor(GROUND_Y/T)+3,'dirt');
+    addBlock(x,Math.floor(GROUND_Y/T)+4,'dirt');
+  }
+  for(let x=8;x<=12;x++)addBlock(x,Math.floor(GROUND_Y/T)-1,'grass');
+  for(let x=20;x<=24;x++)addBlock(x,Math.floor(GROUND_Y/T)-2,'grass');
+  for(let x=31;x<=34;x++)addBlock(x,Math.floor(GROUND_Y/T)-1,'grass');
+  addBlock(39,Math.floor(GROUND_Y/T)-1,'stone');addBlock(40,Math.floor(GROUND_Y/T)-1,'stone');
+  const treeX=47,gy=Math.floor(GROUND_Y/T);
+  addBlock(treeX,gy-1,'wood');addBlock(treeX,gy-2,'wood');
+  addBlock(treeX-1,gy-3,'leaf');addBlock(treeX,gy-3,'leaf');addBlock(treeX+1,gy-3,'leaf');
+  addBlock(treeX-1,gy-4,'leaf');addBlock(treeX,gy-4,'leaf');addBlock(treeX+1,gy-4,'leaf');
+
+  // Lava pool: non-solid hazard. Dirt di bawah tetap ada agar world tidak bolong.
+  for(let x=57;x<=59;x++){
+    const old=blockAt(x,gy);if(old)blocks.splice(blocks.indexOf(old),1);
+    addBlock(x,gy,'lava');
+  }
+
+  randomizeDoor();
+  coins=[{x:11*T,y:GROUND_Y-75,got:false},{x:22*T,y:GROUND_Y-120,got:false},{x:33*T,y:GROUND_Y-75,got:false}];
+}
+
+
+function cleanWorldName(name){return String(name||'').trim().toUpperCase().replace(/[^A-Z0-9 _-]/g,'').slice(0,18)}
+function saveKey(name){return SAVE_PREFIX+name}
+function saveWorld(silent=true){
+  if(!gameReady||!currentWorldName)return;
+  try{
+    const data={version:8,name:currentWorldName,blocks,inventory,equipped,coins,coinsCollected,plants,door,playerSpawn:{x:player.spawnX,y:player.spawnY},savedAt:Date.now()};
+    localStorage.setItem(saveKey(currentWorldName),JSON.stringify(data));
+    if(!silent)toast('World tersimpan ✓');
+    refreshSavedWorldList();
+  }catch(err){if(!silent)toast('Save gagal di browser ini')}
+}
+function loadSavedWorld(name){
+  const raw=localStorage.getItem(saveKey(name));
+  if(!raw)return false;
+  try{
+    const d=JSON.parse(raw);
+    blocks=Array.isArray(d.blocks)?d.blocks:[];
+    inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};
+    Object.keys(equipped).forEach(k=>equipped[k]=(d.equipped||{})[k]||null);
+    coins=Array.isArray(d.coins)?d.coins:[];
+    coinsCollected=Number(d.coinsCollected||0);ui.coin.textContent=coinsCollected;
+    plants=Array.isArray(d.plants)?d.plants:[];
+    drops=[];particles=[];
+    if(d.door&&typeof d.door.x==='number')door=d.door; else randomizeDoor();
+    if(d.playerSpawn&&typeof d.playerSpawn.x==='number'){player.spawnX=d.playerSpawn.x;player.spawnY=d.playerSpawn.y;}
+    else if(door){player.spawnX=door.x+7;player.spawnY=GROUND_Y-player.h;}
+    player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;
+    const viewWidth=W/zoom;
+    cameraX=Math.max(0,Math.min(WORLD_W*T-viewWidth,player.x-viewWidth*.30));
+    cameraTarget=cameraX;cameraY=GROUND_Y-GROUND_Y/zoom;
+    return true;
+  }catch(err){return false}
+}
+function refreshSavedWorldList(){
+  if(!ui.savedWorldList)return;
+  const worlds=[];
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);if(!k||!k.startsWith(SAVE_PREFIX))continue;
+    try{const d=JSON.parse(localStorage.getItem(k));worlds.push({name:d.name||k.slice(SAVE_PREFIX.length),savedAt:d.savedAt||0})}catch(_){ }
+  }
+  worlds.sort((a,b)=>b.savedAt-a.savedAt);
+  ui.savedWorldList.innerHTML=worlds.length?worlds.slice(0,8).map(w=>`<div class="savedWorld"><span><b>${w.name}</b><br><small>${w.savedAt?new Date(w.savedAt).toLocaleString():''}</small></span><button data-load-world="${w.name}">MASUK</button></div>`).join(''):'<small style="opacity:.5">Belum ada world tersimpan.</small>';
+}
+function enterWorld(name){
+  name=cleanWorldName(name);if(!name){toast('Masukkan nama world');return}
+  currentWorldName=name;
+  const loaded=loadSavedWorld(name);
+  if(!loaded)buildWorld();
+  gameReady=true;ui.hudWorld.textContent=name;ui.worldMenu.classList.add('hidden');
+  updateInventory();setSelected('tool','punch');setZoom(1);saveWorld(true);
+  toast(loaded?'World '+name+' dilanjutkan':'World '+name+' dibuat');
+}
+
+function rectHit(ax,ay,aw,ah,bx,by,bw,bh){return ax<bx+bw&&ax+aw>bx&&ay<by+bh&&ay+ah>by}
+function playerHitsBlock(b){return rectHit(player.x,player.y,player.w,player.h,b.x,b.y,T,T)}
+function respawn(){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;const viewWidth=W/zoom;cameraTarget=Math.max(0,Math.min(WORLD_W*T-viewWidth,player.x-viewWidth*.30));toast('Respawn di World Start Door')}
+
+function updatePlayer(){
+  const accel=.62,maxSpeed=4.5,friction=.80;
+  if(input.left)player.vx-=accel;
+  if(input.right)player.vx+=accel;
+  if(!input.left&&!input.right)player.vx*=friction;
+  player.vx=Math.max(-maxSpeed,Math.min(maxSpeed,player.vx));
+  if(Math.abs(player.vx)<.05)player.vx=0;
+  if(player.vx!==0){player.facing=player.vx<0?-1:1;player.walkTime+=Math.abs(player.vx)*.035}
+  if(input.jump&&player.onGround){player.vy=-10.8;player.onGround=false;input.jump=false}
+  player.vy+=.52;player.vy=Math.min(player.vy,13);
+
+  // Collision X dan Y dipisah dengan inset kecil agar menyentuh plafon
+  // tidak ikut mengunci gerakan kiri/kanan.
+  player.x+=player.vx;
+  for(const b of blocks){
+    if(!isSolidBlock(b))continue;
+    const verticalOverlap=(player.y+10)<(b.y+T) && (player.y+player.h-4)>b.y;
+    const horizontalHit=(player.x<b.x+T && player.x+player.w>b.x);
+    if(verticalOverlap&&horizontalHit){
+      if(player.vx>0)player.x=b.x-player.w;
+      else if(player.vx<0)player.x=b.x+T;
+      player.vx=0;
+    }
+  }
+
+  player.y+=player.vy;
+  player.onGround=false;
+  for(const b of blocks){
+    if(!isSolidBlock(b))continue;
+    const horizontalOverlap=(player.x+3)<(b.x+T) && (player.x+player.w-3)>b.x;
+    const verticalHit=(player.y<b.y+T && player.y+player.h>b.y);
+    if(horizontalOverlap&&verticalHit){
+      if(player.vy>0){player.y=b.y-player.h;player.vy=0;player.onGround=true}
+      else if(player.vy<0){player.y=b.y+T;player.vy=0}
+    }
+  }
+
+  // Lava menyentuh karakter = respawn.
+  for(const b of blocks){if(b.t==='lava'&&rectHit(player.x+4,player.y+3,player.w-8,player.h-3,b.x,b.y,T,T)){respawn();return}}
+
+  if(player.y>H+180)respawn();
+  player.x=Math.max(0,Math.min(WORLD_W*T-player.w,player.x));
+  const viewWidth=W/zoom;
+  cameraTarget=Math.max(0,Math.min(WORLD_W*T-viewWidth,player.x-viewWidth*.30));
+  cameraX+=(cameraTarget-cameraX)*.085;
+  cameraY=GROUND_Y-GROUND_Y/zoom;
+  if(player.punchAnim>0)player.punchAnim-=.11;
+}
+function updateDrops(){
+  for(const d of drops){
+    d.vy+=.35;d.y+=d.vy;d.x+=d.vx;d.vx*=.96;
+    const tx=Math.floor(d.x/T),ty=Math.floor((d.y+16)/T),below=blockAt(tx,ty);
+    if(below&&isSolidBlock(below)&&d.y+16>below.y){d.y=below.y-16;d.vy=0;d.vx*=.9}
+    if(rectHit(player.x,player.y,player.w,player.h,d.x-10,d.y-10,20,20)){
+      d.pick=true;
+      inventory[d.item]=(inventory[d.item]||0)+1;
+      updateInventory();saveWorld(true);
+      if(wearableItems.includes(d.item))toast('Dapat '+itemName[d.item]+'! Double tap di backpack untuk pakai');
+    }
+  }
+  drops=drops.filter(d=>!d.pick);
+}
+
+function updateParticles(){
+  for(const p of particles){p.vy+=.22;p.x+=p.vx;p.y+=p.vy;p.vx*=.97;p.life-=.035}
+  particles=particles.filter(p=>p.life>0);
+}
+
+function updateCoins(){for(const c of coins)if(!c.got&&Math.hypot((player.x+player.w/2)-c.x,(player.y+player.h/2)-c.y)<32){c.got=true;coinsCollected++;ui.coin.textContent=coinsCollected;saveWorld(true)}}
+
+function updateBreak(){
+  if(!breakState)return;
+  if(!blocks.includes(breakState.block)){breakState=null;return}
+  const elapsed=performance.now()-breakState.start;
+  breakState.progress=Math.min(1,elapsed/breakState.duration);
+  if(breakState.progress>=1){
+    const b=breakState.block;
+    breakState=null;
+    breakBlock(b);
+    nextPunchAt=performance.now()+115;
+    player.punchAnim=1;
+  }
+}
+
+function update(){
+  if(!gameReady){cloudOffset=(cloudOffset+.16)%300;return}
+  updatePlayer();
+  updateDrops();
+  updateParticles();
+  updateCoins();
+  updateBreak();
+
+  // Awan bergerak perlahan dan terus loop.
+  cloudOffset=(cloudOffset+.16)%300;
+
+  // Auto-save berkala.
+  if(gameReady&&performance.now()-lastAutoSave>AUTOSAVE_MS){saveWorld(true);lastAutoSave=performance.now()}
+
+  // Setiap block baru selalu memulai progress break dari 0.
+  // Ada jeda pendek antar-block supaya hold Punch konsisten.
+  if(punchHeld && !breakState && performance.now()>=nextPunchAt)tryPunchButton();
+}
+
+function drawSky(){
+  const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,'#69c9f2');g.addColorStop(1,'#d8f6ff');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#ffffffbb';
+  const drift=(cloudOffset-(cameraX*.12))%300;
+  for(let a=drift-180;a<W+180;a+=300){
+    ctx.beginPath();
+    ctx.arc(a+50,76,18,0,Math.PI*2);ctx.arc(a+78,67,28,0,Math.PI*2);ctx.arc(a+108,77,20,0,Math.PI*2);ctx.fill();
+  }
+}
+
+function drawBlock(b){
+  const x=b.x,y=b.y;
+  if(b.t==='grass'){
+    ctx.fillStyle='#8b5a2d';ctx.fillRect(x,y,T,T);ctx.fillStyle='#43b84e';ctx.fillRect(x,y,T,10);ctx.fillStyle='#65d36d';ctx.fillRect(x+4,y+2,6,5);ctx.fillRect(x+24,y+4,8,4);
+  }else if(b.t==='dirt'){
+    ctx.fillStyle='#8b5a2d';ctx.fillRect(x,y,T,T);ctx.fillStyle='#b97942';ctx.fillRect(x+6,y+7,6,4);ctx.fillRect(x+25,y+22,5,5);ctx.fillRect(x+14,y+31,4,3);
+  }else if(b.t==='stone'){
+    ctx.fillStyle='#6f767b';ctx.fillRect(x,y,T,T);ctx.fillStyle='#969da1';ctx.fillRect(x+6,y+7,8,6);ctx.fillRect(x+24,y+23,7,6);
+  }else if(b.t==='wood'){
+    ctx.fillStyle='#875326';ctx.fillRect(x,y,T,T);ctx.fillStyle='#b77837';ctx.fillRect(x+6,y+3,T-12,T-6);ctx.fillStyle='#8f5727';ctx.fillRect(x+18,y+3,4,T-6);
+  }else if(b.t==='leaf'){
+    ctx.fillStyle='#2f9b49';ctx.fillRect(x,y,T,T);ctx.fillStyle='#57c969';ctx.fillRect(x+5,y+6,9,8);ctx.fillRect(x+23,y+20,8,7);
+  }else if(b.t==='lava'){
+    const wave=(performance.now()/180+b.x/T)%6;
+    ctx.fillStyle='#d94b20';ctx.fillRect(x,y,T,T);ctx.fillStyle='#ff8a24';ctx.fillRect(x,y+4+Math.sin(wave)*2,T,8);ctx.fillStyle='#ffd34a';ctx.fillRect(x+5,y+8,8,5);ctx.fillRect(x+25,y+18,7,5);
+  }
+  ctx.strokeStyle='#0002';ctx.strokeRect(x+.5,y+.5,T-1,T-1);
+}
+
+function drawDoor(){
+  const x=door.x,y=door.y;
+  ctx.fillStyle='#68401f';ctx.fillRect(x,y,door.w,door.h);
+  ctx.fillStyle='#9c6130';ctx.fillRect(x+6,y+6,door.w-12,door.h-6);
+  ctx.fillStyle='#392616';ctx.fillRect(x+11,y+14,door.w-22,door.h-20);
+  ctx.fillStyle='#e7bf4f';ctx.fillRect(x+31,y+39,5,5);
+  ctx.fillStyle='#ffffffdd';ctx.font='bold 10px Arial';ctx.fillText('WORLD START',x-11,y-7);
+}
+
+function drawPlayer(){
+  const x=Math.round(player.x),y=Math.round(player.y-12);
+  const bob=player.onGround&&Math.abs(player.vx)>.15?Math.round(Math.sin(player.walkTime*5)*1.5):0;
+
+  ctx.fillStyle='#0003';ctx.beginPath();ctx.ellipse(x+15,player.y+player.h+3,18,5,0,0,Math.PI*2);ctx.fill();
+
+  // Base character MiniWorld: kotak, botak, dua mata, tanpa baju.
+  const skin='#efbd87',skinDark='#d79d68',outline='#7b5236';
+  ctx.fillStyle=outline;ctx.fillRect(x+3,y+4+bob,24,23);                 // outline kepala
+  ctx.fillStyle=skin;ctx.fillRect(x+5,y+6+bob,20,19);                  // kepala
+  ctx.fillStyle=skinDark;ctx.fillRect(x+5,y+21+bob,20,4);              // bawah wajah
+
+  // Dua mata pixel selalu terlihat; pupil bergeser sesuai arah hadap.
+  const pupilShift=player.facing>0?2:0;
+  ctx.fillStyle='#fff';
+  ctx.fillRect(x+8,y+11+bob,6,7);ctx.fillRect(x+17,y+11+bob,6,7);
+  ctx.fillStyle='#202020';
+  ctx.fillRect(x+9+pupilShift,y+13+bob,2,4);ctx.fillRect(x+18+pupilShift,y+13+bob,2,4);
+  ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+20+bob,5,2);              // mulut kecil
+
+  // Torso polos tanpa baju.
+  ctx.fillStyle=outline;ctx.fillRect(x+3,y+26+bob,24,15);
+  ctx.fillStyle=skin;ctx.fillRect(x+5,y+27+bob,20,13);
+
+  // Shorts dasar netral.
+  ctx.fillStyle='#343b45';ctx.fillRect(x+4,y+40+bob,22,7);
+  ctx.fillStyle='#29313a';ctx.fillRect(x+6,y+46+bob,7,5);ctx.fillRect(x+17,y+46+bob,7,5);
+
+  // Wearables.
+  if(equipped.hair==='blackHair'){
+    ctx.fillStyle='#30251e';ctx.fillRect(x+4,y+3+bob,22,7);ctx.fillRect(x+3,y+7+bob,5,7);ctx.fillRect(x+21,y+5+bob,5,5);
+  }
+  if(equipped.shirt==='redShirt'){
+    ctx.fillStyle='#e34e49';ctx.fillRect(x+2,y+26+bob,26,15);
+    ctx.fillStyle='#b23532';ctx.fillRect(x+2,y+26+bob,5,8);ctx.fillRect(x+23,y+26+bob,5,8);
+  }
+  if(equipped.pants==='bluePants'){
+    ctx.fillStyle='#365da7';ctx.fillRect(x+4,y+40+bob,22,7);ctx.fillRect(x+6,y+46+bob,7,5);ctx.fillRect(x+17,y+46+bob,7,5);
+  }
+  if(equipped.shoes==='whiteShoes'){
+    ctx.fillStyle='#eceff1';ctx.fillRect(x+4,y+48+bob,10,4);ctx.fillRect(x+16,y+48+bob,10,4);
+    ctx.fillStyle='#aab1b6';ctx.fillRect(x+4,y+51+bob,10,2);ctx.fillRect(x+16,y+51+bob,10,2);
+  }
+
+  const armPunch=player.punchAnim>0?Math.sin((1-player.punchAnim)*Math.PI)*14:0;
+  ctx.fillStyle=skin;
+  if(player.facing>0){ctx.fillRect(x+27,y+28+bob,5+armPunch,7);ctx.fillRect(x-2,y+28+bob,5,12)}
+  else{ctx.fillRect(x-2-armPunch,y+28+bob,5+armPunch,7);ctx.fillRect(x+27,y+28+bob,5,12)}
+}
+function drawMiniItemIcon(item,x,y,size=18){
+  ctx.save();
+  ctx.translate(x-size/2,y-size/2);
+  const s=size;
+  if(item==='grass'||item==='dirt'||item==='stone'||item==='wood'||item==='leaf'){
+    const base={grass:'#8b5a2d',dirt:'#9a6134',stone:'#777f84',wood:'#9a602d',leaf:'#319a49'}[item];
+    ctx.fillStyle=base;ctx.fillRect(0,0,s,s);
+    if(item==='grass'){ctx.fillStyle='#45b94f';ctx.fillRect(0,0,s,Math.max(4,s*.28))}
+    if(item==='stone'){ctx.fillStyle='#a4abb0';ctx.fillRect(s*.18,s*.18,s*.25,s*.2);ctx.fillRect(s*.62,s*.58,s*.2,s*.2)}
+    if(item==='wood'){ctx.fillStyle='#c07d3a';ctx.fillRect(s*.43,1,s*.15,s-2)}
+    if(item==='leaf'){ctx.fillStyle='#5dce6d';ctx.fillRect(s*.18,s*.2,s*.28,s*.25);ctx.fillRect(s*.58,s*.55,s*.25,s*.22)}
+  }else if(seedItems.includes(item)){
+    const col={grassSeed:'#54c95f',dirtSeed:'#c48a43',stoneSeed:'#8e969b',woodSeed:'#9b5c2f',leafSeed:'#2f9f4c'}[item];
+    ctx.fillStyle=col;ctx.beginPath();ctx.ellipse(s*.52,s*.58,s*.23,s*.34,.55,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#49b858';ctx.fillRect(s*.28,s*.12,s*.16,s*.28);
+  }else if(item==='redShirt'){
+    ctx.fillStyle='#e34e49';ctx.fillRect(s*.25,s*.25,s*.5,s*.6);ctx.fillRect(s*.08,s*.33,s*.22,s*.22);ctx.fillRect(s*.70,s*.33,s*.22,s*.22);
+  }else if(item==='bluePants'){
+    ctx.fillStyle='#365da7';ctx.fillRect(s*.25,s*.2,s*.5,s*.35);ctx.fillRect(s*.25,s*.5,s*.2,s*.4);ctx.fillRect(s*.55,s*.5,s*.2,s*.4);
+  }else if(item==='blackHair'){
+    ctx.fillStyle='#30251e';ctx.fillRect(s*.18,s*.25,s*.64,s*.42);ctx.fillRect(s*.12,s*.48,s*.18,s*.25);ctx.fillRect(s*.7,s*.48,s*.18,s*.2);
+  }else if(item==='whiteShoes'){
+    ctx.fillStyle='#eceff1';ctx.fillRect(s*.08,s*.58,s*.36,s*.22);ctx.fillRect(s*.56,s*.58,s*.36,s*.22);
+  }
+  ctx.restore();
+}
+
+
+function plantAt(tx,ty){return plants.find(p=>p.tx===tx&&p.ty===ty)}
+function plantMature(p){return Date.now()-p.plantedAt>=p.growMs}
+function drawPlants(){
+  for(const p of plants){
+    const x=p.tx*T,y=p.ty*T;
+    const mature=plantMature(p);
+    ctx.fillStyle='#5f3c22';ctx.fillRect(x+18,y+25,4,15);
+    ctx.fillStyle=mature?'#43b954':'#69ce70';
+    ctx.fillRect(x+9,y+(mature?9:17),11,7);ctx.fillRect(x+21,y+(mature?6:15),11,7);
+    if(mature){ctx.fillRect(x+15,y+3,11,8);ctx.fillStyle='#fff9';ctx.fillRect(x+18,y+5,3,3)}
+  }
+}
+function tryPlant(tx,ty){
+  if(selectedType!=='seed'||!inInteraction5x5(tx,ty))return false;
+  if((inventory[selectedItem]||0)<=0||blockAt(tx,ty)||plantAt(tx,ty)||overlapsPlayer(tx,ty)||overlapsDoor(tx,ty))return false;
+  const below=blockAt(tx,ty+1);if(!below||!isSolidBlock(below))return false;
+  plants.push({tx,ty,seed:selectedItem,plantedAt:Date.now(),growMs:PLANT_GROW_MS});
+  inventory[selectedItem]--;updateInventory();saveWorld(true);toast('Seed ditanam 🌱');return true;
+}
+function harvestPlant(p){
+  if(!plantMature(p)){const sec=Math.max(1,Math.ceil((p.growMs-(Date.now()-p.plantedAt))/1000));toast('Belum tumbuh • '+sec+' dtk');return}
+  plants.splice(plants.indexOf(p),1);
+  const block=plantBlockForSeed[p.seed]||'grass';
+  spawnDrop(p.tx*T+T/2,p.ty*T+T/2,block);
+  if(Math.random()<.38)spawnDrop(p.tx*T+T/2,p.ty*T+T/2,p.seed);
+  saveWorld(true);
+}
+
+function drawDrops(){
+  for(const d of drops)drawMiniItemIcon(d.item,d.x,d.y,19);
+}
+
+function drawParticles(){
+  for(const p of particles){
+    ctx.globalAlpha=Math.max(0,p.life);
+    ctx.fillStyle=p.color;
+    ctx.fillRect(p.x,p.y,p.size,p.size);
+  }
+  ctx.globalAlpha=1;
+}
+
+function drawCoins(){for(const q of coins){if(q.got)continue;const x=q.x;ctx.fillStyle='#ffd83d';ctx.beginPath();ctx.arc(x,q.y,10,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#967000';ctx.stroke()}}
+
+function drawBreakCracks(){
+  if(!breakState||!blocks.includes(breakState.block))return;
+  const b=breakState.block,p=breakState.progress||0;
+  const x=b.x,y=b.y,cx=x+T/2,cy=y+T/2;
+  ctx.save();
+  ctx.strokeStyle='rgba(25,25,25,'+(0.45+0.5*p)+')';
+  ctx.lineWidth=2;
+  const rays=[[-15,-14],[-4,-19],[11,-16],[17,-4],[15,12],[3,18],[-12,16],[-18,4]];
+  const visible=Math.max(1,Math.ceil(p*rays.length));
+  for(let i=0;i<visible;i++){
+    const [rx,ry]=rays[i];
+    const ex=cx+rx*p,ey=cy+ry*p;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(ex,ey);ctx.stroke();
+    if(p>.45){ctx.beginPath();ctx.moveTo(ex,ey);ctx.lineTo(ex+ry*.22,ey-rx*.18);ctx.stroke()}
+  }
+  if(p>.75){ctx.strokeStyle='rgba(255,255,255,.22)';ctx.strokeRect(x+2,y+2,T-4,T-4)}
+  ctx.restore();
+}
+
+
+function validPlacement(tx,ty,itemType,item){
+  if(!gameReady)return false;
+  if(!inInteraction5x5(tx,ty))return false;
+  if(itemType==='block')return !blockAt(tx,ty)&&(inventory[item]||0)>0&&!overlapsPlayer(tx,ty)&&!overlapsDoor(tx,ty);
+  if(itemType==='seed'){
+    if((inventory[item]||0)<=0||blockAt(tx,ty)||plantAt(tx,ty)||overlapsPlayer(tx,ty)||overlapsDoor(tx,ty))return false;
+    const below=blockAt(tx,ty+1);
+    return !!(below&&isSolidBlock(below));
+  }
+  return false;
+}
+function drawPlacementPreview(){
+  if(!hoverTile||!gameReady)return;
+  if(selectedType!=='block'&&selectedType!=='seed')return;
+  const {tx,ty}=hoverTile;
+  if(!inInteraction5x5(tx,ty))return;
+  const x=tx*T,y=ty*T;
+  const ok=validPlacement(tx,ty,selectedType,selectedItem);
+  ctx.save();
+  ctx.globalAlpha=.45;
+  if(selectedType==='block'){
+    const ghost={x,y,t:selectedItem};
+    drawBlock(ghost);
+  }else if(selectedType==='seed'){
+    ctx.fillStyle='#69ce70';ctx.fillRect(x+15,y+8,10,18);ctx.fillRect(x+8,y+16,10,7);ctx.fillRect(x+22,y+13,10,7);
+  }
+  ctx.globalAlpha=1;
+  ctx.lineWidth=3;
+  ctx.strokeStyle=ok?'rgba(95,255,140,.95)':'rgba(255,105,105,.95)';
+  ctx.setLineDash([6,4]);
+  ctx.strokeRect(x+2,y+2,T-4,T-4);
+  ctx.setLineDash([]);
+  ctx.restore();
+}
+
+function draw(){
+  // Sky/UI tetap screen-space; world di-render dengan zoom camera.
+  ctx.setTransform(1,0,0,1,0,0);
+  drawSky();
+  if(!gameReady)return;
+
+  ctx.save();
+  ctx.setTransform(zoom,0,0,zoom,-cameraX*zoom,-cameraY*zoom);
+  const viewWidth=W/zoom;
+  for(const b of blocks){if(b.x>cameraX-T&&b.x<cameraX+viewWidth+T)drawBlock(b)}
+  drawDoor();drawCoins();drawPlants();drawPlacementPreview();drawDrops();drawParticles();drawPlayer();drawBreakCracks();
+  ctx.restore();
+  ctx.setTransform(1,0,0,1,0,0);
+}
+
+function loop(){update();draw();requestAnimationFrame(loop)}
+
+function totalSeeds(){return seedItems.reduce((sum,n)=>sum+(inventory[n]||0),0)}
+
+function slotHTML(type,item,drawer=false){
+  const name=type==='tool'?(item==='punch'?'PUNCH':'WRENCH'):(itemName[item]||item.toUpperCase());
+  const count=type==='tool'?'':`<span class="count">${inventory[item]||0}</span>`;
+  const label=drawer?`<span class="drawerName">${name}</span>`:'';
+  const klass=drawer?'drawerSlot':'slot';
+  const icon=`<span class="pixelIcon icon-${item}"></span>`;
+  const equipMark=(drawer&&type==='wearable'&&equipped[wearableSlot[item]]===item)?'<span class="equipMark">E</span>':'';
+  return `<div class="${klass}" data-type="${type}" data-item="${item}">${label}${icon}${count}${equipMark}</div>`;
+}
+
+function renderInventory(){
+  // Punch & Wrench selalu tersedia. Item jumlah 0 baru muncul setelah didapat.
+  const ownedWorld=[...blockItems,...seedItems].filter(n=>(inventory[n]||0)>0);
+  const ownedWearables=wearableItems.filter(n=>(inventory[n]||0)>0);
+
+  const worldEntries=ownedWorld.map(item=>({type:seedItems.includes(item)?'seed':'block',item}));
+  const drawerEntries=[
+    {type:'tool',item:'punch'},{type:'tool',item:'wrench'},
+    ...worldEntries,
+    ...ownedWearables.map(item=>({type:'wearable',item}))
+  ];
+
+  // Hotbar quick-access dipadatkan jadi 4 slot. Clothes tetap ada di backpack.
+  const hotbarEntries=[{type:'tool',item:'punch'},{type:'tool',item:'wrench'},...worldEntries].slice(0,4);
+  ui.hotbar.innerHTML=hotbarEntries.map(e=>slotHTML(e.type,e.item,false)).join('');
+  for(let i=hotbarEntries.length;i<4;i++)ui.hotbar.insertAdjacentHTML('beforeend','<div class="slot"></div>');
+  ui.drawerGrid.innerHTML=drawerEntries.map(e=>slotHTML(e.type,e.item,true)).join('');
+
+  const missing=Math.max(0,7-drawerEntries.length);
+  for(let i=0;i<missing;i++)ui.drawerGrid.insertAdjacentHTML('beforeend','<div class="drawerSlot"><span class="drawerName">EMPTY</span>＋</div>');
+
+  if(selectedType!=='tool'&&(inventory[selectedItem]||0)<=0){selectedType='tool';selectedItem='punch'}
+  applySelectionHighlight();
+  ui.seed.textContent=totalSeeds();
+}
+
+function updateInventory(){renderInventory()}
+
+function applySelectionHighlight(){
+  document.querySelectorAll('.slot,.drawerSlot').forEach(el=>el.classList.toggle('selected',el.dataset.type===selectedType&&el.dataset.item===selectedItem));
+}
+
+function setSelected(type,item){
+  selectedType=type;selectedItem=item;
+  applySelectionHighlight();
+  ui.mode.textContent=item==='punch'?'PUNCH':item==='wrench'?'WRENCH':(itemName[item]||item.replace('Seed',' SEED').toUpperCase());
+}
+
+function spliceKey(a,b){return [a,b].sort().join('+')}
+function finishSplicePick(seed){
+  if(!spliceMode)return;
+  if(!seedItems.includes(seed))return;
+  splicePicks.push(seed);
+  ui.spliceStatus.textContent=splicePicks.length===1?(itemName[seed]+' + ?'):'memproses...';
+  if(splicePicks.length<2)return;
+  const [a,b]=splicePicks;const result=spliceRecipes[spliceKey(a,b)];
+  const needA=a===b?2:1;
+  if((inventory[a]||0)<needA||(inventory[b]||0)<1){toast('Seed tidak cukup');splicePicks=[];ui.spliceStatus.textContent='pilih 2 seed';return}
+  if(!result){toast('Belum ada recipe untuk kombinasi itu');splicePicks=[];ui.spliceStatus.textContent='pilih 2 seed';return}
+  inventory[a]-=1;inventory[b]-=1;inventory[result]=(inventory[result]||0)+1;
+  splicePicks=[];spliceMode=false;ui.spliceBtn.classList.remove('active');ui.spliceStatus.textContent='hasil: '+itemName[result];
+  updateInventory();saveWorld(true);toast('Splice berhasil → '+itemName[result]);
+}
+function chooseInventoryItem(el){
+  if(!el||!el.dataset.item)return;
+  setSelected(el.dataset.type,el.dataset.item);
+  if(el.dataset.type==='seed'){
+    if(spliceMode)finishSplicePick(el.dataset.item);
+    else toast('Seed dipilih • tap tanah kosong untuk plant');
+  }
+}
+
+function equipWearable(item){
+  const slot=wearableSlot[item];
+  if(!slot||(inventory[item]||0)<=0)return;
+  // Double tap item yang sama saat sudah dipakai = lepas.
+  equipped[slot]=equipped[slot]===item?null:item;
+  toast(equipped[slot]?('Equip '+itemName[item]):('Lepas '+itemName[item]));
+  renderInventory();saveWorld(true);
+}
+
+ui.hotbar.addEventListener('pointerdown',e=>{
+  const el=e.target.closest('[data-item]');
+  if(!el)return;e.preventDefault();e.stopPropagation();chooseInventoryItem(el);
+},{passive:false});
+
+let lastWearTapItem=null,lastWearTapAt=0;
+ui.drawerGrid.addEventListener('pointerup',e=>{
+  const el=e.target.closest('[data-item]');
+  if(!el)return;
+  e.preventDefault();e.stopPropagation();
+  chooseInventoryItem(el);
+  if(el.dataset.type==='wearable'){
+    const now=performance.now();
+    if(lastWearTapItem===el.dataset.item && now-lastWearTapAt<360){
+      equipWearable(el.dataset.item);
+      lastWearTapItem=null;lastWearTapAt=0;
+    }else{
+      lastWearTapItem=el.dataset.item;lastWearTapAt=now;
+      toast(itemName[el.dataset.item]+' — double tap untuk equip');
+    }
+  }
+},{passive:false});
+
+function bindHold(id,key){
+  const el=document.getElementById(id);
+  const down=e=>{e.preventDefault();e.stopPropagation();input[key]=true;try{el.setPointerCapture(e.pointerId)}catch(_){}};
+  const up=e=>{e.preventDefault();e.stopPropagation();input[key]=false};
+  el.addEventListener('pointerdown',down,{passive:false});
+  el.addEventListener('pointerup',up,{passive:false});
+  el.addEventListener('pointercancel',up,{passive:false});
+  el.addEventListener('contextmenu',e=>e.preventDefault(),{passive:false});
+  el.addEventListener('dragstart',e=>e.preventDefault(),{passive:false});
+  el.addEventListener('selectstart',e=>e.preventDefault(),{passive:false});
+  // Android/iOS: cegah gesture long-press browser sebelum dianggap selection/copy.
+  el.addEventListener('touchstart',e=>e.preventDefault(),{passive:false});
+  el.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+}
+bindHold('left','left');bindHold('right','right');
+
+const jump=document.getElementById('jump');
+jump.addEventListener('pointerdown',e=>{e.preventDefault();input.jump=true},{passive:false});
+jump.addEventListener('pointerup',e=>{e.preventDefault();input.jump=false},{passive:false});
+jump.addEventListener('contextmenu',e=>e.preventDefault());
+
+function playerGrid(){
+  return {
+    tx:Math.floor((player.x+player.w/2)/T),
+    ty:Math.floor((player.y+player.h*.50)/T)
+  };
+}
+function inInteraction5x5(tx,ty){
+  const g=playerGrid();
+  return Math.abs(tx-g.tx)<=INTERACT_RADIUS && Math.abs(ty-g.ty)<=INTERACT_RADIUS;
+}
+
+function nearestPunchBlock(){
+  // Punch button hanya SATU tile lurus di depan karakter.
+  // Tidak mencari target atas/bawah dan selalu berada dalam batas 3x3.
+  const g=playerGrid();
+  const tx=g.tx+player.facing,ty=g.ty;
+  if(!inInteraction5x5(tx,ty))return null;
+  return blockAt(tx,ty)||null;
+}
+
+function startBreak(b,duration=BREAK_MS,source='touch'){
+  if(!b)return;
+  if(b.t==='lava'){toast('Lava tidak bisa dihancurkan');return}
+  // Selalu object baru: progress block sebelumnya tidak pernah diwariskan.
+  breakState=null;
+  breakState={block:b,start:performance.now(),duration,progress:0,source};
+}
+function cancelBreak(source){
+  if(!breakState)return;
+  if(!source||breakState.source===source)breakState=null;
+}
+
+const punchBtn=document.getElementById('punchBtn');
+
+function tryPunchButton(){
+  setSelected('tool','punch');
+  player.punchAnim=1;
+  if(breakState||performance.now()<nextPunchAt)return;
+  const target=nearestPunchBlock();
+  if(target){startBreak(target,BREAK_MS,'button');return}
+  const g=playerGrid();const plant=plantAt(g.tx+player.facing,g.ty);
+  if(plant)harvestPlant(plant);
+}
+
+punchBtn.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  punchHeld=true;
+  try{punchBtn.setPointerCapture(e.pointerId)}catch(_){}
+  tryPunchButton();
+},{passive:false});
+
+punchBtn.addEventListener('pointerup',e=>{
+  e.preventDefault();
+  punchHeld=false;
+},{passive:false});
+
+punchBtn.addEventListener('pointercancel',e=>{
+  e.preventDefault();
+  punchHeld=false;
+},{passive:false});
+
+punchBtn.addEventListener('contextmenu',e=>e.preventDefault());
+
+function overlapsPlayer(tx,ty){return rectHit(player.x,player.y,player.w,player.h,tx*T,ty*T,T,T)}
+function overlapsDoor(tx,ty){return door&&rectHit(tx*T,ty*T,T,T,door.x,door.y,door.w,door.h)}
+function canvasPoint(e){const r=canvas.getBoundingClientRect(),sx=(e.clientX-r.left)/r.width*W,sy=(e.clientY-r.top)/r.height*H;const wx=cameraX+sx/zoom,wy=cameraY+sy/zoom;return{sx,sy,wx,wy,tx:Math.floor(wx/T),ty:Math.floor(wy/T)}}
+
+
+function updateHoverFromClient(clientX,clientY){
+  const r=canvas.getBoundingClientRect();
+  const sx=(clientX-r.left)/r.width*W,sy=(clientY-r.top)/r.height*H;
+  const wx=cameraX+sx/zoom,wy=cameraY+sy/zoom;
+  hoverTile={tx:Math.floor(wx/T),ty:Math.floor(wy/T)};
+  mouseX=clientX;mouseY=clientY;
+}
+function clearHover(){hoverTile=null}
+function pinchDistance(){
+  const pts=[...activePointers.values()];
+  if(pts.length<2)return 0;
+  return Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
+}
+function beginPinch(){
+  if(activePointers.size<2)return;
+  pinchActive=true;
+  pinchStartDist=pinchDistance()||1;
+  pinchStartZoom=zoom;
+  touchBreakActive=false;cancelBreak('touch');stopPlace();
+}
+function updatePinch(){
+  if(!pinchActive||activePointers.size<2)return;
+  const dist=pinchDistance();
+  if(!dist)return;
+  setZoom(pinchStartZoom*(dist/pinchStartDist));
+}
+function endPinch(){
+  if(activePointers.size<2)pinchActive=false;
+}
+
+function spawnDrop(x,y,item){drops.push({x,y,item,vx:(Math.random()-.5)*2.4,vy:-3.5-Math.random()*1.6})}
+function spawnDebris(b){
+  const color=debrisColor[b.t]||'#999';
+  for(let i=0;i<11;i++)particles.push({x:b.x+T/2+(Math.random()-.5)*18,y:b.y+T/2+(Math.random()-.5)*18,vx:(Math.random()-.5)*5,vy:-2.5-Math.random()*3,size:3+Math.random()*5,life:.75+Math.random()*.25,color});
+}
+function breakBlock(b){
+  const idx=blocks.indexOf(b);if(idx<0||b.t==='lava')return;
+  blocks.splice(idx,1);spawnDebris(b);saveWorld(true);
+  // Semua block memakai rate yang sama, termasuk block yang dipasang player.
+  // Jadi hasil break bisa block, seed, atau tidak ada drop sama sekali.
+  const rate=dropRate[b.t]||{block:.25,seed:.1},r=Math.random();
+  if(r<rate.block)spawnDrop(b.x+T/2,b.y+T/2,b.t);
+  else if(r<rate.block+rate.seed)spawnDrop(b.x+T/2,b.y+T/2,seedForBlock[b.t]||'grassSeed');
+  else if(r<rate.block+rate.seed+WEARABLE_DROP){ // clothes rare: 1.5% per break
+    const wearable=wearableItems[Math.floor(Math.random()*wearableItems.length)];
+    spawnDrop(b.x+T/2,b.y+T/2,wearable);
+  }
+}
+
+
+function tryPlaceTile(tx,ty){
+  if(selectedType!=='block')return false;
+  if(!inInteraction5x5(tx,ty))return false;
+  if(blockAt(tx,ty))return false;
+  if((inventory[selectedItem]||0)<=0)return false;
+  if(overlapsPlayer(tx,ty)||overlapsDoor(tx,ty))return false;
+  addBlock(tx,ty,selectedItem);
+  inventory[selectedItem]--;
+  updateInventory();saveWorld(true);
+  return true;
+}
+
+function placeAlongLine(from,to){
+  // Bresenham sederhana supaya drag cepat tidak meninggalkan lubang antar-tile.
+  let x0=from.tx,y0=from.ty,x1=to.tx,y1=to.ty;
+  const dx=Math.abs(x1-x0),sx=x0<x1?1:-1;
+  const dy=-Math.abs(y1-y0),sy=y0<y1?1:-1;
+  let err=dx+dy;
+  for(;;){
+    const key=x0+','+y0;
+    if(!placeVisited.has(key)){
+      placeVisited.add(key);
+      tryPlaceTile(x0,y0);
+    }
+    if(x0===x1&&y0===y1)break;
+    const e2=2*err;
+    if(e2>=dy){err+=dy;x0+=sx}
+    if(e2<=dx){err+=dx;y0+=sy}
+  }
+}
+
+function stopPlace(){
+  placeHeld=false;
+  placePointerId=null;
+  lastPlaceTile=null;
+  placeVisited.clear();
+}
+
+canvas.addEventListener('pointerdown',e=>{
+  e.preventDefault();
+  activePointers.set(e.pointerId,{x:e.clientX,y:e.clientY,type:e.pointerType});
+  updateHoverFromClient(e.clientX,e.clientY);
+  if(activePointers.size>=2){beginPinch();return;}
+  const pt=canvasPoint(e);
+  if(!inInteraction5x5(pt.tx,pt.ty))return;
+  const b=blockAt(pt.tx,pt.ty);
+  const plant=plantAt(pt.tx,pt.ty);
+  if(plant&&selectedItem==='punch'){harvestPlant(plant);player.punchAnim=1;return}
+  if(selectedType==='seed'&&!b){tryPlant(pt.tx,pt.ty);return}
+  if(b&&b.t==='lava'&&selectedItem==='punch'){toast('Lava tidak bisa dihancurkan');return}
+  if(selectedItem==='wrench'){if(b)toast('Wrench: nanti untuk edit object');return}
+  if(b&&selectedItem==='punch'){
+    touchBreakActive=true;touchStartX=e.clientX;touchStartY=e.clientY;player.punchAnim=1;startBreak(b,BREAK_MS,'touch');return;
+  }
+  if(!b&&selectedType==='block'){
+    placeHeld=true;
+    placePointerId=e.pointerId;
+    placeVisited.clear();
+    lastPlaceTile={tx:pt.tx,ty:pt.ty};
+    try{canvas.setPointerCapture(e.pointerId)}catch(_){}
+    placeVisited.add(pt.tx+','+pt.ty);
+    tryPlaceTile(pt.tx,pt.ty);
+  }
+},{passive:false});
+
+canvas.addEventListener('pointermove',e=>{
+  if(activePointers.has(e.pointerId))activePointers.set(e.pointerId,{x:e.clientX,y:e.clientY,type:e.pointerType});
+  updateHoverFromClient(e.clientX,e.clientY);
+  if(pinchActive){updatePinch();return;}
+  if(touchBreakActive){
+    if(Math.hypot(e.clientX-touchStartX,e.clientY-touchStartY)>22){touchBreakActive=false;cancelBreak('touch')}
+    return;
+  }
+  if(placeHeld&&e.pointerId===placePointerId){
+    const pt=canvasPoint(e);
+    if(!lastPlaceTile){lastPlaceTile={tx:pt.tx,ty:pt.ty};return}
+    placeAlongLine(lastPlaceTile,{tx:pt.tx,ty:pt.ty});
+    lastPlaceTile={tx:pt.tx,ty:pt.ty};
+    if(selectedType!=='block'||(inventory[selectedItem]||0)<=0)stopPlace();
+  }
+},{passive:false});
+
+canvas.addEventListener('pointerup',e=>{
+  activePointers.delete(e.pointerId); endPinch();
+  touchBreakActive=false;cancelBreak('touch');
+  if(placeHeld&&e.pointerId===placePointerId)stopPlace();
+},{passive:false});
+canvas.addEventListener('pointercancel',e=>{
+  activePointers.delete(e.pointerId); endPinch();
+  touchBreakActive=false;cancelBreak('touch');
+  if(placeHeld&&e.pointerId===placePointerId)stopPlace();
+},{passive:false});
+canvas.addEventListener('pointerleave',()=>{ if(activePointers.size===0) clearHover(); });
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+canvas.addEventListener('wheel',e=>{
+  if(!gameReady)return;
+  e.preventDefault();
+  updateHoverFromClient(e.clientX,e.clientY);
+  setZoom(zoom + (e.deltaY<0?0.08:-0.08));
+},{passive:false});
+
+function setZoom(next){
+  zoom=Math.max(.70,Math.min(1.45,Math.round(next*100)/100));
+  const viewWidth=W/zoom;
+  cameraTarget=Math.max(0,Math.min(WORLD_W*T-viewWidth,player.x-viewWidth*.30));
+  cameraX=Math.max(0,Math.min(WORLD_W*T-viewWidth,cameraX));
+  cameraY=GROUND_Y-GROUND_Y/zoom;
+}
+
+
+let swipeStart=null;
+function setDrawer(open){ui.drawer.classList.toggle('open',open);ui.hotbar.classList.toggle('drawerOpen',open);ui.bpHandle.classList.toggle('drawerOpen',open);ui.bpHandle.textContent=open?'▼ TUTUP':'▲ BACKPACK'}
+ui.bpHandle.addEventListener('pointerdown',e=>{e.preventDefault();swipeStart=e.clientY;try{ui.bpHandle.setPointerCapture(e.pointerId)}catch(_){}},{passive:false});
+ui.bpHandle.addEventListener('pointerup',e=>{e.preventDefault();if(swipeStart===null)return;const dy=e.clientY-swipeStart;if(ui.drawer.classList.contains('open')){if(dy>14||Math.abs(dy)<10)setDrawer(false)}else{if(dy<-14||Math.abs(dy)<10)setDrawer(true)}swipeStart=null},{passive:false});
+
+const drawerTop=document.getElementById('drawerTop');let drawerSwipeY=null;
+drawerTop.addEventListener('pointerdown',e=>{e.preventDefault();drawerSwipeY=e.clientY;try{drawerTop.setPointerCapture(e.pointerId)}catch(_){}},{passive:false});
+drawerTop.addEventListener('pointerup',e=>{e.preventDefault();if(drawerSwipeY!==null&&e.clientY-drawerSwipeY>22)setDrawer(false);drawerSwipeY=null},{passive:false});
+drawerTop.addEventListener('pointercancel',()=>{drawerSwipeY=null});
+
+const drawerScroll=document.getElementById('drawerScroll');let scrollSwipeY=null;
+drawerScroll.addEventListener('pointerdown',e=>{if(e.target.closest('.drawerSlot'))return;scrollSwipeY=e.clientY},{passive:true});
+drawerScroll.addEventListener('pointerup',e=>{if(scrollSwipeY!==null&&drawerScroll.scrollTop<=4&&e.clientY-scrollSwipeY>35)setDrawer(false);scrollSwipeY=null},{passive:true});
+
+
+ui.spliceBtn.addEventListener('pointerdown',e=>{
+  e.preventDefault();e.stopPropagation();spliceMode=!spliceMode;splicePicks=[];
+  ui.spliceBtn.classList.toggle('active',spliceMode);ui.spliceStatus.textContent=spliceMode?'pilih seed pertama':'pilih 2 seed';
+  if(spliceMode)toast('SPLICE: tap 2 seed di backpack');
+},{passive:false});
+
+document.getElementById('enterWorldBtn').addEventListener('click',()=>enterWorld(ui.worldInput.value));
+document.getElementById('randomWorldBtn').addEventListener('click',()=>{ui.worldInput.value='WORLD'+Math.floor(1000+Math.random()*9000)});
+ui.savedWorldList.addEventListener('click',e=>{const b=e.target.closest('[data-load-world]');if(b)enterWorld(b.dataset.loadWorld)});
+ui.worldInput.addEventListener('keydown',e=>{if(e.key==='Enter')enterWorld(ui.worldInput.value)});
+window.addEventListener('beforeunload',()=>saveWorld(true));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)saveWorld(true)});
+
+// ===== Keyboard controls untuk PC/laptop =====
+const heldKeys=new Set();
+function isTypingTarget(el){return !!el && (el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.isContentEditable)}
+
+window.addEventListener('keydown',e=>{
+  if(isTypingTarget(e.target)||!gameReady)return;
+  const key=e.key.toLowerCase();
+  const code=e.code;
+
+  if(key==='a'||e.key==='ArrowLeft'){
+    e.preventDefault();input.left=true;heldKeys.add('left');
+  }
+  if(key==='d'||e.key==='ArrowRight'){
+    e.preventDefault();input.right=true;heldKeys.add('right');
+  }
+  if(key==='w'||e.key==='ArrowUp'||code==='Space'){
+    e.preventDefault();
+    if(!e.repeat)input.jump=true;
+  }
+  if(key==='f'){
+    e.preventDefault();
+    punchHeld=true;
+    if(!e.repeat)tryPunchButton();
+  }
+  if(key==='b'&&!e.repeat){
+    e.preventDefault();setDrawer(!ui.drawer.classList.contains('open'));
+  }
+  if(e.key==='Escape'&&!e.repeat){
+    if(ui.drawer.classList.contains('open')){e.preventDefault();setDrawer(false)}
+  }
+},{passive:false});
+
+window.addEventListener('keyup',e=>{
+  const key=e.key.toLowerCase();
+  if(key==='a'||e.key==='ArrowLeft'){e.preventDefault();input.left=false;heldKeys.delete('left')}
+  if(key==='d'||e.key==='ArrowRight'){e.preventDefault();input.right=false;heldKeys.delete('right')}
+  if(key==='w'||e.key==='ArrowUp'||e.code==='Space'){e.preventDefault();input.jump=false}
+  if(key==='f'){e.preventDefault();punchHeld=false}
+},{passive:false});
+
+window.addEventListener('blur',()=>{
+  input.left=false;input.right=false;input.jump=false;punchHeld=false;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
+});
+
+// Cegah selection/drag/callout di seluruh kontrol game.
+const protectedControls=document.getElementById('controls');
+['contextmenu','selectstart','dragstart'].forEach(type=>protectedControls.addEventListener(type,e=>e.preventDefault(),{passive:false}));
+
+document.addEventListener('contextmenu',e=>e.preventDefault(),{passive:false});
+document.addEventListener('selectstart',e=>e.preventDefault(),{passive:false});
+document.addEventListener('dragstart',e=>{if(e.target.closest&&e.target.closest('#controls'))e.preventDefault()},{passive:false});
+
+setZoom(1);renderInventory();setSelected('tool','punch');refreshSavedWorldList();ui.worldInput.value='WORLD1';loop();
+})();
+</script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.5</title>
+<title>Pixora — Online Alpha Build 14.6</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -90,6 +90,16 @@ button,.ctrl,#controls,.controlGroup{-webkit-user-select:none!important;user-sel
 #changelogCard{max-height:min(88dvh,560px);display:flex;flex-direction:column;overflow:hidden;touch-action:none}#changelogCard ul{margin:8px 0 12px;padding:0 8px 0 20px;font-size:12px;line-height:1.55;overflow-y:auto;min-height:0;flex:1;-webkit-overflow-scrolling:touch;touch-action:pan-y;overscroll-behavior:contain}#changelogPlay{width:100%;height:42px;border:0;border-radius:12px;background:#2d89e5;color:#fff;font-weight:900}
 #itemBtn{background:#416078}
 
+#sfxVolumeRow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;padding:8px 9px;border-radius:10px;background:#0f1720;font-size:10px;font-weight:900;color:#fff}#sfxVolume{width:125px;touch-action:manipulation}
+#pixoraDialog{position:fixed;inset:0;z-index:700;display:none;align-items:center;justify-content:center;padding:16px;background:#06101ac7;backdrop-filter:blur(4px)}
+#pixoraDialog.open{display:flex}
+#pixoraDialogCard{width:min(90vw,390px);background:#17212cf9;color:#fff;border:2px solid #ffffff2b;border-radius:18px;padding:15px;box-shadow:0 16px 42px #0009;touch-action:pan-y}
+#pixoraDialogTitle{font-weight:950;font-size:17px;margin-bottom:8px;color:#9fe8ff}
+#pixoraDialogMessage{font-size:12px;line-height:1.55;white-space:pre-wrap;word-break:break-word;color:#f5f8fb}
+#pixoraDialogInput{width:100%;height:42px;margin-top:10px;border:2px solid #ffffff28;border-radius:10px;background:#0c151f;color:#fff;padding:0 10px;font-size:16px;user-select:text;-webkit-user-select:text;touch-action:manipulation}
+#pixoraDialogButtons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
+#pixoraDialogButtons button{height:40px;border:0;border-radius:10px;color:#fff;font-weight:900;background:#34495c}
+#pixoraDialogOk{background:#2d89e5!important}
 #rotate{position:fixed;inset:0;z-index:100;background:#111;color:#fff;display:none;align-items:center;justify-content:center;text-align:center;font-size:22px;line-height:1.6}
 @media (orientation:portrait){#rotate{display:flex}}
 @media (max-width:780px) and (orientation:landscape){#hotbar{grid-template-columns:repeat(4,46px);gap:5px;padding:7px 8px}.slot{width:46px;height:46px;font-size:22px}#hotbar.drawerOpen{bottom:180px}#bpHandle{bottom:62px}#bpHandle.drawerOpen{bottom:230px}#drawer{height:168px}.ctrl{width:58px;height:58px}#jump{width:68px;height:68px}#punchBtn{width:62px;height:62px}}
@@ -138,9 +148,7 @@ button,.ctrl,#controls,.controlGroup{-webkit-user-select:none!important;user-sel
 .hudResource{height:34px;min-width:62px;border:0;border-radius:12px;background:#17212cf2;color:#fff;display:flex;align-items:center;justify-content:center;gap:7px;padding:5px 9px;font-weight:900;box-shadow:0 3px 12px #0004;touch-action:manipulation}
 button.hudResource{cursor:pointer}
 button.hudResource:active{transform:scale(.96)}
-.hudCoinIcon,.hudGemIcon{position:relative;display:inline-block;width:20px;height:20px;flex:0 0 20px;image-rendering:pixelated}
-.hudCoinIcon{border-radius:50%;background:#f5c63b;border:3px solid #9b7020;box-shadow:inset 0 0 0 2px #ffe785}
-.hudCoinIcon:after{content:'';position:absolute;left:7px;top:4px;width:3px;height:7px;background:#fff1a3}
+.hudGemIcon{position:relative;display:inline-block;width:20px;height:20px;flex:0 0 20px;image-rendering:pixelated}
 .hudGemIcon{width:18px;height:18px;background:#48d7f4;border:3px solid #16778e;transform:rotate(45deg);box-shadow:inset 3px 3px 0 #c8f8ff}
 .hudGemIcon:after{content:'';position:absolute;left:2px;top:2px;width:4px;height:4px;background:#e9feff}
 #hint{display:none!important}
@@ -160,7 +168,7 @@ button.hudResource:active{transform:scale(.96)}
 .panelAction{width:100%;height:40px;border:0;border-radius:10px;margin-top:7px;background:#2b668f;color:#fff;font-size:12px;font-weight:900;touch-action:manipulation}
 .panelAction.secondary{background:#30465a}
 #soundToggleBtn.off{background:#674545}
-@media (max-width:780px) and (orientation:landscape){#hud{right:8px;top:8px}.hudResource{height:30px;min-width:55px;padding:4px 7px}.hudCoinIcon,.hudGemIcon{transform:scale(.88)}.hudGemIcon{transform:rotate(45deg) scale(.88)}#gameMenuBtn{left:8px;top:8px;width:36px;height:30px}#gameMenuBtn span{top:13px}#gameMenuBtn:before{top:7px}#gameMenuBtn:after{top:19px}}
+@media (max-width:780px) and (orientation:landscape){#hud{right:8px;top:8px}.hudResource{height:30px;min-width:55px;padding:4px 7px}.hudGemIcon{transform:rotate(45deg) scale(.88)}#gameMenuBtn{left:8px;top:8px;width:36px;height:30px}#gameMenuBtn span{top:13px}#gameMenuBtn:before{top:7px}#gameMenuBtn:after{top:19px}}
 
 
 /* ===== Build 13 ===== */
@@ -272,16 +280,16 @@ button.hudResource:active{transform:scale(.96)}
 .icon-smallLock{background:#d5b633!important;border-color:#7e6517!important}.icon-bigLock{background:#3f86d8!important;border-color:#1c4e8a!important}.icon-hugeLock{background:#8f57cf!important;border-color:#4e287e!important}.icon-worldLock{background:#d9483e!important;border-color:#7a211d!important}
 
 /* ===== PIXORA BUILD 14.0 AUTH ===== */
-#authScreen{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:10px;overflow:hidden;background:linear-gradient(#58b9e9 0 45%,#79c95a 45% 52%,#9b643b 52% 100%);color:#fff}
+#authScreen{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:10px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;background:linear-gradient(#58b9e9 0 45%,#79c95a 45% 52%,#9b643b 52% 100%);color:#fff}
 #authScreen.hidden{display:none}
 #authScreen:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#ffffff0b 1px,transparent 1px),linear-gradient(#ffffff0b 1px,transparent 1px);background-size:40px 40px;opacity:.8;pointer-events:none}
-#authCard{position:relative;width:min(92vw,430px);height:min(94dvh,620px);max-height:94dvh;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:#101b27f2;border:3px solid #ffffff32;border-radius:18px;box-shadow:0 14px 35px #0008;padding:16px;touch-action:manipulation}
+#authCard{position:relative;width:min(92vw,430px);max-height:calc(100dvh - 20px);box-sizing:border-box;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;background:#101b27f2;border:3px solid #ffffff32;border-radius:18px;box-shadow:0 14px 35px #0008;padding:16px;touch-action:pan-y;overscroll-behavior:contain}
 #pixoraLogo{font-size:34px;font-weight:1000;letter-spacing:3px;text-align:center;text-shadow:0 4px 0 #184765,0 0 18px #fff6;margin:4px 0 2px}
 #authSub{text-align:center;font-size:11px;opacity:.78;margin-bottom:16px;letter-spacing:1.5px}
 .authTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
 .authTab,.authMainBtn,.authAltBtn{border:0;border-radius:10px;font-weight:900;color:#fff;background:#28445e;padding:11px 8px;box-shadow:inset 0 -3px 0 #0004}
 .authTab.active{background:#3e8bc2}
-.authPane{display:none;min-height:0}.authPane.active{display:block;overflow-y:auto!important;overflow-x:hidden;min-height:0;flex:1;-webkit-overflow-scrolling:touch;touch-action:pan-y!important;overscroll-behavior:contain;padding:4px 5px 18px 1px}
+.authPane{display:none;min-height:0}.authPane.active{display:block;overflow:visible!important;min-height:0;flex:0 0 auto;touch-action:pan-y!important;padding:4px 5px 18px 1px}
 .authField{display:block;width:100%;margin:8px 0;padding:12px;border:2px solid #ffffff24;border-radius:10px;background:#09131d;color:#fff;font-size:16px;outline:none;touch-action:manipulation;user-select:text;-webkit-user-select:text}
 .authField:focus{border-color:#7acbff}
 .authMainBtn{width:100%;margin-top:8px;background:#38a85b;font-size:15px}
@@ -294,9 +302,10 @@ button.hudResource:active{transform:scale(.96)}
 #accountChip{position:fixed;left:12px;bottom:84px;z-index:34;display:none;background:#101b27e8;color:#fff;border-radius:12px;padding:7px 9px;font-size:10px;box-shadow:0 3px 10px #0005}#accountChip.show{display:block}#accountChip button{margin-left:7px;border:0;border-radius:7px;background:#a73f3f;color:#fff;font-size:9px;padding:5px 7px}
 
 
-/* Build 14.5: mobile auth scroll + multiplayer chat */
+/* Build 14.6: multiplayer persistence, server drops, punch polish, Pixora dialogs */
 @media (max-height:520px){
-  #authCard{height:96dvh;max-height:96dvh;padding:10px}
+  #authScreen{align-items:flex-start}
+  #authCard{max-height:none;min-height:calc(100dvh - 20px);padding:10px}
   #pixoraLogo{font-size:24px!important;margin-bottom:1px!important}
   #authSub{margin-bottom:6px!important}
   .authTabs{margin-bottom:6px!important}
@@ -305,7 +314,7 @@ button.hudResource:active{transform:scale(.96)}
 #chatPanel{position:fixed;left:10px;top:52px;z-index:108;width:min(62vw,390px);max-height:min(52dvh,300px);display:none;flex-direction:column;background:#101a24e8;border:1px solid #ffffff25;border-radius:12px;padding:8px;box-shadow:0 8px 20px #0007;backdrop-filter:blur(3px)}
 #chatPanel.open{display:flex}
 #chatMessages{min-height:58px;max-height:180px;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding:2px 3px 6px;font-size:10px;line-height:1.45}
-.chatMsg{margin:2px 0;word-break:break-word}.chatMsg b{color:#8feaff}.chatMsg.me b{color:#ffe48a}
+.chatMsg{margin:2px 0;word-break:break-word;color:#f4f8fb;text-shadow:0 1px 1px #0008}.chatMsg b{color:#8feaff}.chatMsg.me{color:#fff7cf}.chatMsg.me b{color:#ffe48a}
 #chatForm{display:flex;gap:5px}
 #chatInput{min-width:0;flex:1;height:34px;border:1px solid #ffffff25;border-radius:8px;background:#0d151e;color:#fff;padding:0 8px;font-size:11px;-webkit-user-select:text;user-select:text}
 #chatSend{width:56px;border:0;border-radius:8px;background:#2d89e5;color:#fff;font-size:10px;font-weight:900}
@@ -318,7 +327,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.5</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.6</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -349,7 +358,6 @@ button.hudResource:active{transform:scale(.96)}
 <canvas id="game" width="1000" height="500"></canvas>
 <button id="gameMenuBtn" aria-label="World menu"><span></span></button>
 <div id="hud">
-  <div class="hudResource" aria-label="Coins"><span class="hudCoinIcon"></span><span id="coin">0</span></div>
   <button class="hudResource" id="gemsHudBtn" aria-label="Open Store"><span class="hudGemIcon"></span><span id="gems">0</span></button>
 </div>
 <div id="hint"><span id="modeName">PUNCH</span><span id="seedCount">0</span></div>
@@ -359,7 +367,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="chatPanel">
   <div id="chatMessages"><div class="chatMsg">World chat siap.</div></div>
   <form id="chatForm">
-    <input id="chatInput" maxlength="100" placeholder="Ketik pesan world…" autocomplete="off">
+    <input id="chatInput" maxlength="120" placeholder="Ketik pesan world…" autocomplete="off">
     <button id="chatSend" type="submit">SEND</button>
   </form>
 </div>
@@ -372,14 +380,15 @@ button.hudResource:active{transform:scale(.96)}
     <div id="worldStatusBox">WORLD<br><strong id="hudWorld">-</strong><br><small id="playerStatusLine">PLAYER</small></div>
     <button class="panelAction" id="respawnMenuBtn">RESPAWN</button>
     <button class="panelAction secondary" id="soundToggleBtn">SOUND ON</button>
+    <label id="sfxVolumeRow">SFX VOLUME <input id="sfxVolume" type="range" min="0" max="100" value="80"></label>
     <button id="exitWorldBtn">EXIT WORLD</button>
   </div>
 </div>
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 14.2</h2>
-    <p>Masukkan nama world. Build 14.3 menyinkronkan world online: player, door, dan perubahan block sekarang memakai world server yang sama.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 14.6</h2>
+    <p>Masukkan nama world. Build 14.6 fokus ke multiplayer sync, drop server, chat bubble, punch, dan persistence.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -429,7 +438,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.2 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.6 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -473,20 +482,31 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.5</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.6</b></div>
     <ul>
-      <li><b>Multiplayer lebih halus</b> — movement interpolation + punch animation diperbaiki.</li>
-      <li><b>World Chat</b> untuk player di world yang sama.</li>
-      <li>World/reconnect persistence diperkuat dan drop hasil harvest ikut sync.</li>
-      <li>Akun: nama game = ID, ID hanya huruf + angka, satu akun hanya satu sesi aktif.</li>
-      <li>Login/Register mobile scroll diperbaiki.</li>
-      <li>Sound diarahkan ke gaya pixel sandbox yang lebih jelas.</li>
-      <li>Nama item/block/clothes diperbarui agar lebih punya identitas Pixora.</li>
+      <li><b>Multiplayer polish</b> — gerakan, punch, crack, collision, dan reconnect diperkuat.</li>
+      <li><b>Server Drop Sync</b> — break, background, harvest, pickup, seed, dan Gems disinkronkan.</li>
+      <li><b>World Chat+</b> — bubble di atas kepala, teks lebih jelas, maksimal 120 karakter.</li>
+      <li><b>Tap-to-hit</b> — block pecah berdasarkan durability dan hit bertahap.</li>
+      <li><b>Pixora Dialog</b> menggantikan popup bawaan browser.</li>
+      <li>Coin dihapus; Gems tetap currency utama. SFX pixel-sandbox diperbarui.</li>
+      <li>Server siap memakai PostgreSQL agar akun dan world bisa disimpan permanen.</li>
     </ul>
     <button id="changelogPlay">PLAY</button>
   </div>
 </div>
 
+<div id="pixoraDialog" aria-hidden="true">
+  <div id="pixoraDialogCard">
+    <div id="pixoraDialogTitle">PIXORA</div>
+    <div id="pixoraDialogMessage"></div>
+    <input id="pixoraDialogInput" type="number" inputmode="numeric" min="1" style="display:none">
+    <div id="pixoraDialogButtons">
+      <button id="pixoraDialogCancel">BATAL</button>
+      <button id="pixoraDialogOk">OK</button>
+    </div>
+  </div>
+</div>
 <div id="rotate">📱↔️<br>Putar HP ke horizontal</div>
 
 <script>
@@ -496,9 +516,9 @@ button.hudResource:active{transform:scale(.96)}
 const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
 const W=1000,H=500,T=40,WORLD_W=100,WORLD_H=100,INTERACT_RADIUS=2;
 let GROUND_Y=55*T; // Build 12.2.1: default surface Y=55 (55 tiles atas, 45 tiles bawah)
-const ui={coin:document.getElementById('coin'),seed:document.getElementById('seedCount'),mode:document.getElementById('modeName'),toast:document.getElementById('toast'),drawer:document.getElementById('drawer'),bpHandle:document.getElementById('bpHandle'),hotbar:document.getElementById('hotbar'),drawerGrid:document.getElementById('drawerGrid'),hudWorld:document.getElementById('hudWorld'),gems:document.getElementById('gems'),worldMenu:document.getElementById('worldMenu'),worldInput:document.getElementById('worldNameInput'),savedWorldList:document.getElementById('savedWorldList'),spliceBtn:document.getElementById('spliceBtn'),spliceStatus:document.getElementById('spliceStatus')};
+const ui={seed:document.getElementById('seedCount'),mode:document.getElementById('modeName'),toast:document.getElementById('toast'),drawer:document.getElementById('drawer'),bpHandle:document.getElementById('bpHandle'),hotbar:document.getElementById('hotbar'),drawerGrid:document.getElementById('drawerGrid'),hudWorld:document.getElementById('hudWorld'),gems:document.getElementById('gems'),worldMenu:document.getElementById('worldMenu'),worldInput:document.getElementById('worldNameInput'),savedWorldList:document.getElementById('savedWorldList'),spliceBtn:document.getElementById('spliceBtn'),spliceStatus:document.getElementById('spliceStatus')};
 
-let cameraX=0,cameraY=0,cameraTarget=0,zoom=1,coinsCollected=0,selectedType='tool',selectedItem='punch';
+let cameraX=0,cameraY=0,cameraTarget=0,zoom=1,selectedType='tool',selectedItem='punch';
 let cameraLift=0,cameraLiftTarget=0;
 let cloudOffset=0;
 const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0};
@@ -541,9 +561,10 @@ function itemRarity(item){
 }
 function itemTypeLabel(type,item){if(type==='seed')return 'SEED';if(type==='wearable')return 'CLOTHES';if(type==='special')return 'SPECIAL';if(type==='block')return 'BLOCK';if(type==='toolitem')return 'TOOL';return 'TOOL'}
 const WEARABLE_DROP=.015;
-const BREAK_MS=145;
+const BREAK_MS=125;
+const TAP_HIT_COOLDOWN=82;
 const MAX_ITEM_STACK=200;
-const BLOCK_HITS={leaf:1,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,bedrock:Infinity};
+const BLOCK_HITS={leaf:2,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,bedrock:Infinity};
 const DAMAGE_RESET_MS=2600;
 let lastDamageSweep=0;
 const LOCK_CONFIG={smallLock:{name:'SMALL LOCK',size:10,price:50,hits:6,color:'#d5b633'},bigLock:{name:'BIG LOCK',size:20,price:150,hits:8,color:'#3f86d8'},hugeLock:{name:'HUGE LOCK',size:35,price:300,hits:10,color:'#8f57cf'},worldLock:{name:'WORLD LOCK',size:100,price:1000,hits:12,color:'#d9483e'}};
@@ -551,9 +572,9 @@ const WORLD_LOCK_HITS=12;
 const LOCK_HIT_COOLDOWN=260;
 const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d',leaf:'#3aaa50',sand:'#d8bd75',glass:'#8fe9f0',brick:'#a64e3b',ice:'#a9e8ff',metal:'#8c969e',caveStone:'#4f555b',moss:'#548f46',lava:'#e95b22',farmBlock:'#d6a53d',bedrock:'#252a2e'};
 
-const player={x:120,y:GROUND_Y-40,w:30,h:40,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-40,punchAnim:0,punchDir:'front',punchTool:'punch',punchTargetX:null,punchTargetY:null,punchReachTiles:1,placeAnim:null,walkTime:0,maxHp:5,hp:5,lastDamageAt:0,damageFlashUntil:0};
+const player={x:120,y:GROUND_Y-40,w:30,h:40,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-40,punchAnim:0,punchSeq:0,punchDir:'front',punchTool:'punch',punchTargetX:null,punchTargetY:null,punchReachTiles:1,placeAnim:null,walkTime:0,maxHp:5,hp:5,lastDamageAt:0,damageFlashUntil:0};
 const input={left:false,right:false,jump:false};
-let blocks=[],drops=[],particles=[],coins=[],plants=[],door=null,weatherOrbs=[];
+let blocks=[],drops=[],particles=[],plants=[],door=null,weatherOrbs=[];
 let placeEffects=[];
 let respawnFxUntil=0;
 let playerName='PLAYER';
@@ -598,6 +619,7 @@ const spliceRecipes={
   'grassSeed+woodSeed':'iceSeed'
 };
 let breakState=null;
+let recentHitAction=null;
 let touchBreakActive=false,touchStartX=0,touchStartY=0,touchBreakBlock=null,touchBreakBg=null;
 let punchHeld=false;
 let nextPunchAt=0;
@@ -606,6 +628,7 @@ const placeVisited=new Set();
 
 // ===== Build 11 procedural SFX =====
 let soundEnabled=localStorage.getItem('pixora_sound_v1')!=='off';
+let sfxVolume=Math.max(0,Math.min(1,Number(localStorage.getItem('pixora_sfx_volume_v1')||'.8')));
 let audioCtx=null;
 function ensureAudio(){
   if(!soundEnabled)return null;
@@ -620,22 +643,22 @@ function tone(freq=220,duration=.06,type='square',volume=.035,slide=0){
   const now=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();
   o.type=type;o.frequency.setValueAtTime(freq,now);
   if(slide)o.frequency.exponentialRampToValueAtTime(Math.max(40,freq+slide),now+duration);
-  g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(volume,now+.006);g.gain.exponentialRampToValueAtTime(.0001,now+duration);
+  g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(Math.max(.0001,volume*sfxVolume),now+.006);g.gain.exponentialRampToValueAtTime(.0001,now+duration);
   o.connect(g);g.connect(ac.destination);o.start(now);o.stop(now+duration+.02);
 }
 function noiseBurst(duration=.04,volume=.035,cutoff=1200){
   const ac=ensureAudio();if(!ac)return;const now=ac.currentTime,len=Math.max(1,Math.floor(ac.sampleRate*duration)),buf=ac.createBuffer(1,len,ac.sampleRate),data=buf.getChannelData(0);
   for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/len,1.8);
-  const src=ac.createBufferSource(),g=ac.createGain(),filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=cutoff;g.gain.setValueAtTime(volume,now);g.gain.exponentialRampToValueAtTime(.0001,now+duration);src.buffer=buf;src.connect(filter);filter.connect(g);g.connect(ac.destination);src.start(now);src.stop(now+duration+.01)
+  const src=ac.createBufferSource(),g=ac.createGain(),filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=cutoff;g.gain.setValueAtTime(Math.max(.0001,volume*sfxVolume),now);g.gain.exponentialRampToValueAtTime(.0001,now+duration);src.buffer=buf;src.connect(filter);filter.connect(g);g.connect(ac.destination);src.start(now);src.stop(now+duration+.01)
 }
 function noiseThud(){
-  const ac=ensureAudio();if(!ac)return;const now=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(145,now);o.frequency.exponentialRampToValueAtTime(72,now+.065);g.gain.setValueAtTime(.065,now);g.gain.exponentialRampToValueAtTime(.0001,now+.075);o.connect(g);g.connect(ac.destination);o.start(now);o.stop(now+.085);noiseBurst(.035,.035,850)
+  const ac=ensureAudio();if(!ac)return;const now=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(145,now);o.frequency.exponentialRampToValueAtTime(72,now+.065);g.gain.setValueAtTime(Math.max(.0001,.065*sfxVolume),now);g.gain.exponentialRampToValueAtTime(.0001,now+.075);o.connect(g);g.connect(ac.destination);o.start(now);o.stop(now+.085);noiseBurst(.035,.035,850)
 }
 function sfx(name){
   if(!soundEnabled)return;
   ensureAudio();
-  if(name==='punch'){noiseThud();tone(235,.025,'square',.018,-55)}
-  else if(name==='break'){noiseBurst(.055,.052,1050);tone(125,.055,'square',.043,-60);setTimeout(()=>tone(78,.04,'square',.026,-18),22)}
+  if(name==='punch'){noiseThud();tone(285,.018,'square',.014,-75);setTimeout(()=>tone(165,.022,'triangle',.010,-30),12)}
+  else if(name==='break'){noiseBurst(.05,.05,1250);tone(150,.045,'square',.038,-70);setTimeout(()=>tone(92,.035,'square',.022,-22),18)}
   else if(name==='place'){tone(205,.038,'square',.038,-45);setTimeout(()=>tone(130,.026,'square',.018,-20),18)}
   else if(name==='pickup'){tone(590,.045,'square',.028,190);setTimeout(()=>tone(820,.036,'square',.018,80),28)}
   else if(name==='gem'){tone(760,.05,'square',.034,260);setTimeout(()=>tone(1080,.055,'triangle',.025,130),34)}
@@ -652,8 +675,11 @@ function sfx(name){
   else if(name==='chat'){tone(510,.03,'square',.014,60)}
   else if(name==='ui'){tone(350,.028,'square',.019,55)}
 }
-function refreshSoundButton(){const b=document.getElementById('soundToggleBtn');if(!b)return;b.textContent=soundEnabled?'SOUND ON':'SOUND OFF';b.classList.toggle('off',!soundEnabled)}
+function refreshSoundButton(){const b=document.getElementById('soundToggleBtn');if(b){b.textContent=soundEnabled?'SOUND ON':'SOUND OFF';b.classList.toggle('off',!soundEnabled)}const v=document.getElementById('sfxVolume');if(v)v.value=String(Math.round(sfxVolume*100))}
 function toggleSound(){soundEnabled=!soundEnabled;localStorage.setItem('pixora_sound_v1',soundEnabled?'on':'off');refreshSoundButton();if(soundEnabled)sfx('ui')}
+window.addEventListener('pointerdown',()=>{if(soundEnabled)ensureAudio()},{once:true,capture:true});
+window.addEventListener('keydown',()=>{if(soundEnabled)ensureAudio()},{once:true,capture:true});
+
 
 const activePointers=new Map();
 let pinchActive=false,pinchStartDist=0,pinchStartZoom=1;
@@ -663,6 +689,34 @@ let mouseX=0,mouseY=0;
 function toast(msg,kind='normal'){
   ui.toast.textContent=msg;ui.toast.classList.remove('info','error','success');if(kind!=='normal')ui.toast.classList.add(kind);ui.toast.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>{ui.toast.classList.remove('show','info','error','success')},1050)
 }
+
+let pixoraDialogResolver=null;
+function closePixoraDialog(result){
+  const panel=document.getElementById('pixoraDialog');if(!panel)return;
+  panel.classList.remove('open');panel.setAttribute('aria-hidden','true');
+  const r=pixoraDialogResolver;pixoraDialogResolver=null;if(r)r(result);
+}
+function pixoraDialog(options={}){
+  if(pixoraDialogResolver)closePixoraDialog(null);
+  const panel=document.getElementById('pixoraDialog'),title=document.getElementById('pixoraDialogTitle'),msg=document.getElementById('pixoraDialogMessage'),input=document.getElementById('pixoraDialogInput'),ok=document.getElementById('pixoraDialogOk'),cancel=document.getElementById('pixoraDialogCancel');
+  title.textContent=String(options.title||'PIXORA');msg.textContent=String(options.message||'');
+  ok.textContent=String(options.okText||'OK');cancel.textContent=String(options.cancelText||'BATAL');
+  const hasCancel=options.cancel!==false;cancel.style.display=hasCancel?'block':'none';document.getElementById('pixoraDialogButtons').style.gridTemplateColumns=hasCancel?'1fr 1fr':'1fr';
+  const wantsInput=options.input==='number';input.style.display=wantsInput?'block':'none';
+  if(wantsInput){input.min=String(options.min??1);input.max=String(options.max??9999);input.value=String(options.value??1)}
+  panel.classList.add('open');panel.setAttribute('aria-hidden','false');sfx('ui');
+  if(wantsInput)setTimeout(()=>{input.focus();input.select?.()},40);
+  return new Promise(resolve=>{pixoraDialogResolver=resolve});
+}
+function pixoraConfirm(message,title='KONFIRMASI',okText='YA',cancelText='BATAL'){return pixoraDialog({title,message,okText,cancelText})}
+async function pixoraPromptNumber(message,{title='JUMLAH',min=1,max=9999,value=1,okText='OK'}={}){
+  const result=await pixoraDialog({title,message,okText,cancelText:'BATAL',input:'number',min,max,value});
+  if(result===null||result===false)return null;const n=Math.floor(Number(result));return Number.isFinite(n)?Math.max(min,Math.min(max,n)):null
+}
+function pixoraNotice(message,title='PIXORA',okText='OK'){return pixoraDialog({title,message,okText,cancel:false})}
+document.getElementById('pixoraDialogCancel').addEventListener('click',()=>closePixoraDialog(null));
+document.getElementById('pixoraDialogOk').addEventListener('click',()=>{const input=document.getElementById('pixoraDialogInput');closePixoraDialog(input.style.display==='none'?true:input.value)});
+document.getElementById('pixoraDialogInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();document.getElementById('pixoraDialogOk').click()}});
 function xpNeededForLevel(level){level=Math.max(1,Math.min(MAX_LEVEL,Number(level||1)));return 80+(level-1)*20}
 function updateLevelUI(){
   const line=document.getElementById('playerLevelLine');
@@ -764,10 +818,9 @@ function removeLegacyShowcaseBlocks(){
 }
 
 function buildWorld(){
-  blocks=[];blockMap.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];coins=[];plants=[];locks=[];weatherOrbs=[];placeEffects=[];
+  blocks=[];blockMap.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];plants=[];locks=[];weatherOrbs=[];placeEffects=[];
   worldId='W'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,7).toUpperCase();
   weather={type:'sunny'};
-  coinsCollected=0;ui.coin.textContent='0';
   GROUND_Y=55*T;
   const gy=55;
   // Build 13.2 natural generation: surface + basic underground materials only.
@@ -792,7 +845,6 @@ function buildWorld(){
   }
   for(let y=WORLD_H-3;y<WORLD_H;y++)for(let x=0;x<WORLD_W;x++)addBlock(x,y,'bedrock');
   randomizeDoor();
-  coins=[{x:11*T,y:GROUND_Y-75,got:false},{x:22*T,y:GROUND_Y-120,got:false},{x:33*T,y:GROUND_Y-75,got:false}];
 }
 
 function cleanWorldName(name){return String(name||'').trim().toUpperCase().replace(/[^A-Z0-9 _-]/g,'').slice(0,18)}
@@ -883,7 +935,7 @@ function saveWorld(silent=true){
     const now=Date.now();
     const data={
       version:"13.2.4",name:currentWorldName,worldId,surfaceTile:Math.floor(GROUND_Y/T),
-      blocks,coins,coinsCollected,plants,door,locks,weatherOrbs,drops,weather,caveBgRemoved:[...caveBgRemoved],
+      blocks,plants,door,locks,weatherOrbs,drops,weather,caveBgRemoved:[...caveBgRemoved],
       playerSpawn:{x:player.spawnX,y:player.spawnY},
       lastVisited:now,savedAt:now
     };
@@ -967,8 +1019,6 @@ function loadSavedWorld(name){
     // Build 13.2.2 migration: Cave Background dimulai dari Dirt pertama tepat di bawah surface Dirt.
     const firstCaveRow=Math.floor(GROUND_Y/T)+1;for(let x=0;x<WORLD_W;x++)caveBgRemoved.delete(blockKey(x,firstCaveRow));
     caveBgDamage=new Map();
-    coins=Array.isArray(d.coins)?d.coins:[];
-    coinsCollected=Math.max(0,Number(d.coinsCollected||0));ui.coin.textContent=coinsCollected;
     plants=Array.isArray(d.plants)?d.plants:[];
     locks=Array.isArray(d.locks)?d.locks.map(l=>({...l,type:l.type||'worldLock',trusted:Array.isArray(l.trusted)?l.trusted:[],hitsTaken:Number(l.hitsTaken||0)})):[];
     weatherOrbs=Array.isArray(d.weatherOrbs)?d.weatherOrbs.filter(o=>o&&WEATHER_TYPES.includes(o.weather)).map(o=>({...o})):[];
@@ -1032,8 +1082,8 @@ function refreshAllWorldsList(){
   else worlds.sort((a,b)=>b.lastVisited-a.lastVisited);
   box.innerHTML=worlds.length?worlds.map(w=>worldCardHTML(w,true)).join(''):'<small style="opacity:.55">World tidak ditemukan.</small>';
 }
-function deleteWorld(name){
-  if(!window.confirm('Hapus world '+name+'? Data world akan hilang permanen. Backpack player tidak ikut terhapus.'))return;
+async function deleteWorld(name){
+  const ok=await pixoraConfirm('Hapus world '+name+'?\nData world lokal akan dihapus. Backpack player tidak ikut terhapus.','HAPUS WORLD','HAPUS','BATAL');if(!ok)return;
   localStorage.removeItem(saveKey(name));const fav=getFavoriteWorlds();fav.delete(name);setFavoriteWorlds(fav);refreshSavedWorldList();toast('World '+name+' dihapus','error');
 }
 function toggleFavoriteWorld(name){const fav=getFavoriteWorlds();fav.has(name)?fav.delete(name):fav.add(name);setFavoriteWorlds(fav);refreshSavedWorldList()}
@@ -1066,7 +1116,7 @@ function exitWorld(){
   if(!gameReady)return;
   saveWorld(true);savePlayer(true);
   const leavingWorld=currentWorldName;multiplayerLeave(leavingWorld);
-  gameReady=false;document.getElementById('chatPanel')?.classList.remove('open');worldChatMessages=[];
+  gameReady=false;document.getElementById('chatPanel')?.classList.remove('open');worldChatMessages=[];chatInitialized=false;chatSeenIds.clear();chatBubbles.clear();
   input.left=false;input.right=false;input.jump=false;punchHeld=false;stopPlace();cancelBreak();
   setDrawer(false);cameraLift=0;cameraLiftTarget=0;
   localStorage.removeItem(ACTIVE_WORLD_KEY);
@@ -1074,9 +1124,9 @@ function exitWorld(){
   ui.worldMenu.classList.remove('hidden');
   refreshSavedWorldList();
 }
-function requestExitWorld(){
+async function requestExitWorld(){
   if(!gameReady)return;
-  const ok=window.confirm('Keluar dari world '+currentWorldName+'?\nProgress akan disimpan otomatis.');
+  const ok=await pixoraConfirm('Keluar dari world '+currentWorldName+'?\nProgress akan disimpan otomatis.','EXIT WORLD','KELUAR','TETAP DI WORLD');
   if(ok)exitWorld();
 }
 
@@ -1162,15 +1212,26 @@ function updatePlayer(){
   cameraLift+=(cameraLiftTarget-cameraLift)*.12;
   const verticalTarget=Math.max(0,Math.min(WORLD_H*T-viewHeight,player.y-viewHeight*.62+cameraLift/zoom));
   cameraY+=(verticalTarget-cameraY)*.10;
-  if(player.punchAnim>0){player.punchAnim=Math.max(0,player.punchAnim-.065);if(player.punchAnim===0){player.punchTargetX=null;player.punchTargetY=null;player.punchReachTiles=1}}
+  if(player.punchAnim>0){player.punchAnim=Math.max(0,player.punchAnim-.085);if(player.punchAnim===0){player.punchTargetX=null;player.punchTargetY=null;player.punchReachTiles=1}}
   if(player.placeAnim&&performance.now()>=player.placeAnim.until)player.placeAnim=null;
 }
-function finishPickup(d){
-  if(!d||d.pick)return;d.pick=true;if(d.id)multiplayerWorldAction({type:'drop-remove',dropId:d.id});
-  if(d.kind==='gems'){gems+=Math.max(1,Number(d.amount||1));addXp(1);sfx('gem');updateInventory();savePlayer(true);return}
-  const amount=Math.max(1,Number(d.amount||1));inventory[d.item]=(inventory[d.item]||0)+amount;addQuickShortcut(d.item);sfx('pickup');updateInventory();savePlayer(true);
-  if(wearableItems.includes(d.item))toast('Dapat '+itemName[d.item]+'! Double tap di backpack untuk pakai','success');
+async function finishPickup(d){
+  if(!d||d.pick||d.pickPending)return;
+  d.pickPending=true;
+  const result=await multiplayerWorldAction({type:'drop-pickup',dropId:d.id});
+  const reward=result?.reward;
+  if(!reward){
+    d.pickPending=false;d.collecting=false;
+    return;
+  }
+  d.pick=true;
+  if(reward.kind==='gems'){gems+=Math.max(1,Number(reward.amount||1));addXp(1);sfx('gem');updateInventory();savePlayer(true);return}
+  const amount=Math.max(1,Number(reward.amount||1)),item=String(reward.item||d.item||'');
+  if(!item)return;
+  inventory[item]=(inventory[item]||0)+amount;addQuickShortcut(item);sfx('pickup');updateInventory();savePlayer(true);
+  if(wearableItems.includes(item))toast('Dapat '+itemName[item]+'! Double tap di backpack untuk pakai','success');
 }
+
 function updateDrops(){
   const now=performance.now();
   for(const d of drops){
@@ -1203,11 +1264,9 @@ function updateParticles(){
   particles=particles.filter(p=>p.life>0);
 }
 
-function updateCoins(){for(const c of coins)if(!c.got&&Math.hypot((player.x+player.w/2)-c.x,(player.y+player.h/2)-c.y)<32){c.got=true;coinsCollected++;sfx('pickup');ui.coin.textContent=coinsCollected;saveWorld(true)}}
-
 function hitsNeededForBlock(b){return BLOCK_HITS[b.t]??3}
 function hitPowerFor(tool,b){if(tool!=='pickaxe')return 1;if(!b||b.t==='bedrock')return 1;return ['stone','caveStone','metal','brick','lava'].includes(b.t)?3:2}
-function setPunchDirectionToTarget(tx,ty,tool='punch'){const g=playerGrid();const dx=tx-g.tx,dy=ty-g.ty;if(dx<0)player.facing=-1;else if(dx>0)player.facing=1;player.punchTool='punch';player.punchReachTiles=Math.max(1,Math.min(2,Math.max(Math.abs(dx),Math.abs(dy))));player.punchTargetX=tx*T+T/2;player.punchTargetY=ty*T+T/2;if(Math.abs(dy)>Math.abs(dx))player.punchDir=dy>0?'down':'up';else player.punchDir='front'}
+function setPunchDirectionToTarget(tx,ty,tool='punch'){const g=playerGrid();const dx=tx-g.tx,dy=ty-g.ty;if(dx<0)player.facing=-1;else if(dx>0)player.facing=1;player.punchTool=tool;player.punchReachTiles=Math.max(1,Math.min(2,Math.max(Math.abs(dx),Math.abs(dy))));player.punchTargetX=tx*T+T/2;player.punchTargetY=ty*T+T/2;if(Math.abs(dy)>Math.abs(dx))player.punchDir=dy>0?'down':'up';else player.punchDir='front'}
 function resetPunchVisual(){
   player.punchAnim=0;player.punchTargetX=null;player.punchTargetY=null;player.punchReachTiles=1;player.punchTool='punch';
 }
@@ -1237,12 +1296,16 @@ function updateBreak(){
     if(state.kind==='bg'){
       const k=blockKey(state.tx,state.ty),d=caveBgDamage.get(k)||{hits:0,lastHitAt:0};
       d.hits+=1;d.lastHitAt=performance.now();caveBgDamage.set(k,d);
-      if(d.hits>=3){breakCaveBackground(state.tx,state.ty);caveBgDamage.delete(k)}
+      player.punchSeq++;
+      recentHitAction={active:true,kind:'bg',tx:state.tx,ty:state.ty,damageProgress:Math.min(.99,d.hits/3),seq:player.punchSeq,until:performance.now()+DAMAGE_RESET_MS,tool:'punch'};
+      if(d.hits>=3){breakCaveBackground(state.tx,state.ty);caveBgDamage.delete(k);recentHitAction.until=performance.now()+220}
     }else{
       const b=state.block,need=hitsNeededForBlock(b);
       if(!Number.isFinite(need)){nextPunchAt=performance.now()+65;resetPunchVisual();return}
       b.hitsTaken=Number(b.hitsTaken||0)+hitPowerFor(state.tool||'punch',b);b.lastHitAt=performance.now();
-      if(b.hitsTaken>=need)breakBlock(b);
+      const tx=Math.floor(b.x/T),ty=Math.floor(b.y/T);player.punchSeq++;
+      recentHitAction={active:true,kind:'block',tx,ty,damageProgress:Math.min(.99,b.hitsTaken/Math.max(1,need)),seq:player.punchSeq,until:performance.now()+DAMAGE_RESET_MS,tool:state.tool||'punch'};
+      if(b.hitsTaken>=need){breakBlock(b);recentHitAction.until=performance.now()+220}
     }
     nextPunchAt=performance.now()+55;
   }
@@ -1259,7 +1322,6 @@ function update(){
   updateDeath();
   updateDrops();
   updateParticles();
-  updateCoins();
   updateBreak();
   updateDamageDecay();
 
@@ -1272,7 +1334,6 @@ function update(){
   // Setiap block baru selalu memulai progress break dari 0.
   // Ada jeda pendek antar-block supaya hold Punch konsisten.
   if(punchHeld && !breakState && player.punchAnim<=0 && performance.now()>=nextPunchAt)tryPunchButton();
-  if(touchBreakActive&&!breakState&&performance.now()>=nextPunchAt){if(touchBreakBlock&&blocks.includes(touchBreakBlock))startBreak(touchBreakBlock,BREAK_MS,'touch',equipped.tool==='pickaxe'?'pickaxe':'punch');else if(touchBreakBg&&hasCaveBackground(touchBreakBg.tx,touchBreakBg.ty))startBgBreak(touchBreakBg.tx,touchBreakBg.ty,BREAK_MS,'touch');}
 }
 
 function drawSky(){
@@ -1362,6 +1423,32 @@ function drawDoor(){
   ctx.fillStyle='#ffffffdd';ctx.font='bold 10px Arial';ctx.fillText('WORLD START',x-11,y-7);
 }
 
+function punchReachEase(progress){
+  progress=Math.max(0,Math.min(1,Number(progress||0)));
+  if(progress<.16)return -.10*(progress/.16);
+  if(progress<.48){const t=(progress-.16)/.32;return -.10+1.10*(1-Math.pow(1-t,3))}
+  if(progress<.68)return 1;
+  const t=(progress-.68)/.32;return 1-t*.92;
+}
+function wrapBubbleLines(text,maxWidth=150){
+  const words=String(text||'').split(/\s+/).filter(Boolean),lines=[];let line='';
+  ctx.save();ctx.font='700 9px Arial';
+  for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test;if(lines.length>=3)break}
+  if(line&&lines.length<4)lines.push(line);ctx.restore();return lines.slice(0,4);
+}
+function drawChatBubble(playerId,cx,topY){
+  const b=chatBubbles.get(playerId);if(!b)return;
+  const now=performance.now();if(now>=b.expires){chatBubbles.delete(playerId);return}
+  const lines=wrapBubbleLines(b.text,145);if(!lines.length)return;
+  ctx.save();ctx.font='700 9px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+  let w=50;for(const line of lines)w=Math.max(w,ctx.measureText(line).width+16);w=Math.min(165,w);
+  const lineH=13,h=lines.length*lineH+12,x=cx-w/2,y=topY-h-12;
+  ctx.fillStyle='rgba(13,24,34,.94)';ctx.strokeStyle='rgba(159,232,255,.88)';ctx.lineWidth=1.5;
+  ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,7);else ctx.rect(x,y,w,h);ctx.fill();ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx-5,y+h);ctx.lineTo(cx,y+h+6);ctx.lineTo(cx+5,y+h);ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.fillStyle='#fff';for(let i=0;i<lines.length;i++)ctx.fillText(lines[i],cx,y+8+i*lineH+lineH/2);
+  ctx.restore();
+}
 function drawPlayer(){
   const now=performance.now();
   const x=Math.round(player.x),y=Math.round(player.y);
@@ -1403,7 +1490,7 @@ function drawPlayer(){
   const idleX=shoulderX+player.facing*1+walkArm,idleY=shoulderY+9-Math.abs(walkArm)*.25;
   let ex=idleX,ey=idleY,phase=0;
   if(active){
-    phase=Math.max(0,Math.sin((1-player.punchAnim)*Math.PI));
+    phase=punchReachEase(1-player.punchAnim);
     let targetX=player.punchTargetX,targetY=player.punchTargetY;
     if(!Number.isFinite(targetX)||!Number.isFinite(targetY)){
       const dist=T*(player.punchReachTiles||1)-7;targetX=shoulderX+player.facing*dist;targetY=shoulderY;
@@ -1431,6 +1518,7 @@ function drawPlayer(){
   ctx.fillStyle=skinDark;ctx.fillRect(Math.round(ex-handSize/2),Math.round(ey-handSize/2),handSize,handSize);
   ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#fff';const nameLabel=playerName+' • Lv.'+playerLevel;ctx.strokeText(nameLabel,x+player.w/2,y-6+bob);ctx.fillText(nameLabel,x+player.w/2,y-6+bob);
   if(respawnFxUntil>now){const p=(respawnFxUntil-now)/650;ctx.strokeStyle='rgba(150,245,255,'+p+')';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+player.w/2,y+player.h/2,12+(1-p)*18,0,Math.PI*2);ctx.stroke()}
+  drawChatBubble(pixoraSession?.player?.playerId,x+player.w/2,y-10+bob);
   ctx.restore();
 }
 
@@ -1446,16 +1534,20 @@ function drawRemotePlayers(){
     const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6+bob,5,6);ctx.fillRect(x+17,y+6+bob,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8+bob,2,3);ctx.fillRect(x+18+ps,y+8+bob,2,3);
     ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);ctx.fillStyle=skin;ctx.fillRect(x+6,y+17+bob,18,10);
     ctx.fillStyle='#343b45';ctx.fillRect(x+7,y+27+legSwing,7,8);ctx.fillRect(x+16,y+27-legSwing,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35+legSwing,9,5);ctx.fillRect(x+16,y+35-legSwing,9,5);
-    const sx=x+(r.facing>0?23:7),sy=y+21+bob;let ex=sx+r.facing*(4+(walking?Math.sin(r.walkPhase||0)*2:0)),ey=sy+8;const ra=r.actionState;
-    if(ra&&ra.active&&Number.isFinite(Number(ra.tx))&&Number.isFinite(Number(ra.ty))){
-      const tx=Number(ra.tx)*T+T/2,ty=Number(ra.ty)*T+T/2,dx=tx-sx,dy=ty-sy,len=Math.hypot(dx,dy)||1;
-      r.facing=dx<0?-1:1;
-      const hitPhase=ra.kind==='air'?Math.sin(Math.max(0,Math.min(1,Number(ra.progress||0)))*Math.PI):(.18+.82*Math.abs(Math.sin(now/82)));
-      const reach=Math.min(T*1.75,Math.max(10,len))*hitPhase;
+    const ra=r.actionState;let drawFacing=r.facing;
+    let targetX=null,targetY=null;
+    if(ra&&ra.active&&Number.isFinite(Number(ra.tx))&&Number.isFinite(Number(ra.ty))){targetX=Number(ra.tx)*T+T/2;targetY=Number(ra.ty)*T+T/2;if(targetX<x+player.w/2)drawFacing=-1;else if(targetX>x+player.w/2)drawFacing=1}
+    const sx=x+(drawFacing>0?23:7),sy=y+21+bob;let ex=sx+drawFacing*(4+(walking?Math.sin(r.walkPhase||0)*2:0)),ey=sy+8;
+    if(targetX!==null){
+      const dx=targetX-sx,dy=targetY-sy,len=Math.hypot(dx,dy)||1;
+      const pulseAge=now-Number(r.punchPulseStart||0),pulseProgress=Math.max(0,Math.min(1,pulseAge/190));
+      const hitPhase=pulseAge>=0&&pulseAge<190?punchReachEase(pulseProgress):.08;
+      const reach=Math.min(T*1.85,Math.max(12,len))*hitPhase;
       ex=sx+dx/len*reach;ey=sy+dy/len*reach;
     }
     ctx.strokeStyle=skin;ctx.lineWidth=5;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.stroke();ctx.fillStyle='#d79d68';ctx.fillRect(ex-3,ey-3,6,6);
     ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#8ff4ff';ctx.strokeText(r.displayName,x+player.w/2,y-6+bob);ctx.fillText(r.displayName,x+player.w/2,y-6+bob);
+    drawChatBubble(r.playerId,x+player.w/2,y-10+bob);
     ctx.restore();
   }
 }
@@ -1567,15 +1659,15 @@ function tryPlant(tx,ty){
 }
 function harvestPlant(p){
   if(!plantMature(p)){const sec=Math.max(1,Math.ceil((p.growMs-(Date.now()-p.plantedAt))/1000));toast('Belum tumbuh • '+sec+' dtk');return}
+  const tx=p.tx,ty=p.ty,seed=p.seed;
   plants.splice(plants.indexOf(p),1);
-  const block=plantBlockForSeed[p.seed]||'grass',range=plantYield[p.seed]||[1,3],amount=range[0]+Math.floor(Math.random()*(range[1]-range[0]+1)),made=[];
-  for(let i=0;i<amount;i++)made.push(spawnDrop(p.tx*T+T/2+(Math.random()-.5)*18,p.ty*T+T/2,block,1,250));
-  if(Math.random()<.46)made.push(spawnDrop(p.tx*T+T/2,p.ty*T+T/2,p.seed,1,250));
-  if(Math.random()<.10)made.push(spawnDrop(p.tx*T+T/2+(Math.random()-.5)*14,p.ty*T+T/2,p.seed,1,250));
-  if(Math.random()<seedGemChance(p.seed))made.push(spawnGemDrop(p.tx*T+T/2+(Math.random()-.5)*12,p.ty*T+T/2,seedGemAmount(p.seed)));
-  multiplayerWorldAction({type:'harvest',tx:p.tx,ty:p.ty,drops:made.map(d=>({id:d.id,x:d.x,y:d.y,item:d.item||null,kind:d.kind||'item',amount:Number(d.amount||1),pickupAfter:Number(d.pickupAfter||0)}))});
-  sfx('harvest');addXp(3+Math.min(3,amount));toast('Panen '+amount+' '+itemName[block]);saveWorld(true);
+  pulsePunchAt(tx,ty,'punch','air',0);sfx('harvest');addXp(3);saveWorld(true);
+  multiplayerWorldAction({type:'harvest',tx,ty,seed}).then(result=>{
+    if(result?.harvestAmount)toast('Panen '+result.harvestAmount+' '+(itemName[result.harvestItem]||result.harvestItem||'item'),'success');
+    else toast('Panen berhasil','success');
+  });
 }
+
 
 function gemVisual(amount){amount=Math.max(1,Number(amount||1));if(amount>=100)return '#3b78ff';if(amount>=50)return '#43c866';if(amount>=10)return '#e64a43';if(amount>=5)return '#ee75c8';return '#f59a31'}
 function drawDropWarning(d){
@@ -1623,8 +1715,6 @@ function drawParticles(){
   ctx.globalAlpha=1;
 }
 
-function drawCoins(){for(const q of coins){if(q.got)continue;const x=q.x;ctx.fillStyle='#ffd83d';ctx.beginPath();ctx.arc(x,q.y,10,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#967000';ctx.stroke()}}
-
 function drawOneCrack(b,total){
   if(!b||total<=0)return;
   const x=b.x,y=b.y,cx=x+T/2,cy=y+T/2;
@@ -1661,7 +1751,12 @@ function drawBreakCracks(){
   if(breakState&&breakState.kind==='bg'){
     const k=blockKey(breakState.tx,breakState.ty);if(!caveBgDamage.has(k))drawOneCrack({x:breakState.tx*T,y:breakState.ty*T},Math.min(1,(breakState.progress||0)/3));
   }
-  for(const r of remotePlayers.values()){const a=r.actionState;if(!a||!a.active||!Number.isFinite(Number(a.tx))||!Number.isFinite(Number(a.ty)))continue;const p=Math.max(.08,Math.min(.95,Number(a.progress||0)));if(a.kind==='block'||a.kind==='bg')drawOneCrack({x:Number(a.tx)*T,y:Number(a.ty)*T},p);}
+  for(const r of remotePlayers.values()){
+    const a=r.actionState;if(!a||!a.active||!Number.isFinite(Number(a.tx))||!Number.isFinite(Number(a.ty)))continue;
+    const tx=Number(a.tx),ty=Number(a.ty),p=Math.max(.08,Math.min(.95,Number(a.progress||0)));
+    if(a.kind==='block'&&blockAt(tx,ty))drawOneCrack({x:tx*T,y:ty*T},p);
+    else if(a.kind==='bg'&&hasCaveBackground(tx,ty)&&!blockAt(tx,ty))drawOneCrack({x:tx*T,y:ty*T},p);
+  }
 }
 
 
@@ -1717,7 +1812,7 @@ function draw(){
   const viewHeight=H/zoom;
   drawCaveBackground(viewWidth,viewHeight);
   const minBX=Math.max(0,Math.floor(cameraX/T)-1),maxBX=Math.min(WORLD_W-1,Math.ceil((cameraX+viewWidth)/T)+1),minBY=Math.max(0,Math.floor(cameraY/T)-1),maxBY=Math.min(WORLD_H-1,Math.ceil((cameraY+viewHeight)/T)+1);for(let ty=minBY;ty<=maxBY;ty++)for(let tx=minBX;tx<=maxBX;tx++){const b=blockAt(tx,ty);if(b)drawBlock(b)}
-  drawDoor();drawLocks();drawWeatherOrbs();drawCoins();drawPlants();drawPlacementPreview();drawPlaceEffects();drawDrops();drawParticles();
+  drawDoor();drawLocks();drawWeatherOrbs();drawPlants();drawPlacementPreview();drawPlaceEffects();drawDrops();drawParticles();
   drawRemotePlayers();
   if(!deathState.active||performance.now()-deathState.start<260)drawPlayer();
   drawLevelUpFx();
@@ -1955,12 +2050,9 @@ function inInteraction5x5(tx,ty){
 
 function nearestPunchTarget(){
   const g=playerGrid();
-  const checks=[];
-  for(let dist=1;dist<=2;dist++)checks.push([g.tx+(player.facing*dist),g.ty]);
-  // Build 14.5: kalau depan kosong, cari ceiling/atas dan bawah dalam interaction range.
-  checks.push([g.tx,g.ty-1],[g.tx+player.facing,g.ty-1],[g.tx,g.ty-2],[g.tx,g.ty+1]);
-  for(const [tx,ty] of checks){
-    if(!inInteraction5x5(tx,ty))continue;
+  // Tombol Punch biasa selalu lurus kiri/kanan, maksimal 2 tile.
+  for(let dist=1;dist<=2;dist++){
+    const tx=g.tx+(player.facing*dist),ty=g.ty;
     const o=weatherOrbAt(tx,ty);if(o)return {kind:'weatherOrb',target:o};
     const l=lockAt(tx,ty);if(l)return {kind:'lock',target:l};
     const b=blockAt(tx,ty);if(b)return {kind:'block',target:b};
@@ -1969,15 +2061,40 @@ function nearestPunchTarget(){
   return null;
 }
 
+function pulsePunchAt(tx,ty,tool='punch',kind='air',damageProgress=0){
+  setPunchDirectionToTarget(tx,ty,tool);player.punchAnim=1;player.punchSeq++;
+  // Crack state stays visible between taps, while the arm pulse itself is driven by seq.
+  const keepMs=(kind==='block'||kind==='bg')?DAMAGE_RESET_MS:280;
+  recentHitAction={active:true,kind,tx,ty,damageProgress:Math.max(0,Math.min(1,Number(damageProgress||0))),seq:player.punchSeq,until:performance.now()+keepMs,tool};
+}
+function tapHitBlock(b,tool='punch'){
+  if(!b||performance.now()<nextPunchAt)return false;
+  const tx=Math.floor(b.x/T),ty=Math.floor(b.y/T);if(!inInteraction5x5(tx,ty))return false;
+  if(b.t==='bedrock'){pulsePunchAt(tx,ty,tool,'block',0);sfx('punch');nextPunchAt=performance.now()+TAP_HIT_COOLDOWN;return true}
+  if(!canEditTile(tx,ty)){toast('Area terkunci','error');return false}
+  const need=hitsNeededForBlock(b),power=hitPowerFor(tool,b);
+  b.hitsTaken=Number(b.hitsTaken||0)+power;b.lastHitAt=performance.now();
+  const damageProgress=Math.min(.99,b.hitsTaken/Math.max(1,need));
+  pulsePunchAt(tx,ty,tool,'block',damageProgress);sfx(tool==='pickaxe'?'pickaxe':'punch');
+  if(b.hitsTaken>=need){breakBlock(b);if(recentHitAction)recentHitAction.until=performance.now()+220;}
+  nextPunchAt=performance.now()+TAP_HIT_COOLDOWN;return true;
+}
+function tapHitBackground(tx,ty){
+  if(performance.now()<nextPunchAt||!hasCaveBackground(tx,ty)||blockAt(tx,ty)||!inInteraction5x5(tx,ty))return false;
+  const k=blockKey(tx,ty),d=caveBgDamage.get(k)||{hits:0,lastHitAt:0};d.hits++;d.lastHitAt=performance.now();caveBgDamage.set(k,d);
+  pulsePunchAt(tx,ty,'punch','bg',Math.min(.99,d.hits/3));sfx('punch');
+  if(d.hits>=3){breakCaveBackground(tx,ty);caveBgDamage.delete(k);if(recentHitAction)recentHitAction.until=performance.now()+220;}
+  nextPunchAt=performance.now()+TAP_HIT_COOLDOWN;return true;
+}
 function startBreak(b,duration=BREAK_MS,source='touch',tool='punch'){
   if(!b)return;if(b.t==='bedrock'){player.punchAnim=1;nextPunchAt=performance.now()+150;return;}
   const tx=Math.floor(b.x/T),ty=Math.floor(b.y/T);setPunchDirectionToTarget(tx,ty,'punch');
-  breakState=null;breakState={block:b,start:performance.now(),duration,progress:0,source,tool};sfx(tool==='pickaxe'?'pickaxe':'punch');player.punchAnim=1;
+  breakState=null;breakState={block:b,start:performance.now(),duration,progress:0,source,tool};sfx(tool==='pickaxe'?'pickaxe':'punch');player.punchAnim=1;player.punchSeq++;
 }
 function startBgBreak(tx,ty,duration=BREAK_MS,source='touch'){
   if(!hasCaveBackground(tx,ty)||blockAt(tx,ty))return;
   setPunchDirectionToTarget(tx,ty,'punch');
-  breakState={kind:'bg',tx,ty,start:performance.now(),duration,progress:0,source,tool:'punch'};sfx('punch');player.punchAnim=1;
+  breakState={kind:'bg',tx,ty,start:performance.now(),duration,progress:0,source,tool:'punch'};sfx('punch');player.punchAnim=1;player.punchSeq++;
 }
 function cancelBreak(source){
   if(!breakState)return;
@@ -2004,9 +2121,9 @@ function tryPunchButton(){
   const g=playerGrid();
   for(let dist=1;dist<=2;dist++){
     const plant=plantAt(g.tx+(player.facing*dist),g.ty);
-    if(plant){player.punchAnim=1;harvestPlant(plant);nextPunchAt=performance.now()+120;return}
+    if(plant){player.punchAnim=1;player.punchSeq++;harvestPlant(plant);nextPunchAt=performance.now()+120;return}
   }
-  player.punchAnim=1;nextPunchAt=performance.now()+90;
+  player.punchAnim=1;player.punchSeq++;recentHitAction={active:true,kind:'air',tx:g.tx+player.facing,ty:g.ty,damageProgress:0,seq:player.punchSeq,until:performance.now()+240,tool};nextPunchAt=performance.now()+90;
 }
 
 punchBtn.addEventListener('pointerdown',e=>{
@@ -2127,13 +2244,10 @@ function breakBlock(b){
   if(!b||b.t==='bedrock')return;
   const tx=Math.floor(b.x/T),ty=Math.floor(b.y/T);if(!canEditTile(tx,ty)){toast('Area terkunci','error');return}
   removeBlockObj(b);spawnDebris(b);addXp(2+Math.floor((blockRarity[b.t]||1)/5));sfx('break');saveWorld(true);
+  // Loot ditentukan server supaya semua device melihat drop yang sama dan tidak double-spawn.
   multiplayerWorldAction({type:'break',tx,ty});
-  const rate=dropRate[b.t]||{block:.25,seed:0,gems:.25},r=Math.random();
-  if(r<rate.block)spawnDrop(b.x+T/2,b.y+T/2,b.t);
-  else if(rate.seed>0&&r<rate.block+rate.seed){const seed=seedForBlock[b.t];if(seed)spawnDrop(b.x+T/2,b.y+T/2,seed)}
-  else if(r<rate.block+(rate.seed||0)+WEARABLE_DROP){const wearable=wearableItems[Math.floor(Math.random()*wearableItems.length)];spawnDrop(b.x+T/2,b.y+T/2,wearable)}
-  if(Math.random()<(rate.gems||.25)){const rarity=blockRarity[b.t]||1;const gemAmount=b.t==='farmBlock'?(1+Math.floor(Math.random()*14)):gemAmountForRarity(rarity);spawnGemDrop(b.x+T/2,b.y+T/2,gemAmount)}
 }
+
 
 
 const pendingPlaceTiles=new Set();
@@ -2213,10 +2327,10 @@ canvas.addEventListener('pointerdown',e=>{
     hitWorldLock(tappedLock);nextPunchAt=performance.now()+LOCK_HIT_COOLDOWN;return;
   }
   if(b&&selectedItem==='punch'){
-    const tool=equipped.tool==='pickaxe'?'pickaxe':'punch';touchBreakActive=true;touchBreakBlock=b;touchBreakBg=null;touchStartX=e.clientX;touchStartY=e.clientY;setPunchDirectionToTarget(pt.tx,pt.ty,tool);player.punchAnim=1;startBreak(b,BREAK_MS,'touch',tool);return;
+    const tool=equipped.tool==='pickaxe'?'pickaxe':'punch';tapHitBlock(b,tool);return;
   }
   if(!b&&selectedItem==='punch'&&hasCaveBackground(pt.tx,pt.ty)){
-    touchBreakActive=true;touchBreakBlock=null;touchBreakBg={tx:pt.tx,ty:pt.ty};touchStartX=e.clientX;touchStartY=e.clientY;setPunchDirectionToTarget(pt.tx,pt.ty,'punch');player.punchAnim=1;startBgBreak(pt.tx,pt.ty,BREAK_MS,'touch');return;
+    tapHitBackground(pt.tx,pt.ty);return;
   }
   if(!b&&selectedType==='block'){
     placeHeld=true;
@@ -2316,21 +2430,27 @@ function openItemAction(){
 function closeItemAction(){itemActionPanel.classList.remove('open')}
 function actionAmount(item){const q=document.getElementById('itemQty');return Math.max(1,Math.min(inventory[item]||0,Math.floor(Number(q.value||1))))}
 function unequipIfGone(item){const slot=wearableSlot[item];if(slot&&(inventory[item]||0)<=0&&equipped[slot]===item)equipped[slot]=null;if(item==='pickaxe'&&(inventory[item]||0)<=0&&equipped.tool===item)equipped.tool=null}
-function dropSelectedItem(){
-  const e=selectedInventoryEntry();if(!e)return;const amount=actionAmount(e.item);if(amount<=0)return;
-  inventory[e.item]-=amount;unequipIfGone(e.item);spawnDrop(player.x+player.w/2+player.facing*34,player.y+player.h*.55,e.item,amount,1100);updateInventory();savePlayer(true);saveWorld(true);closeItemAction();toast('Drop '+amount+' '+(itemName[e.item]||e.item),'success')
+async function dropInventoryAmount(item,amount){
+  amount=Math.max(1,Math.min(inventory[item]||0,Math.floor(Number(amount||1))));if(!amount)return false;
+  const candidate={id:'D-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9),x:player.x+player.w/2+player.facing*34,y:player.y+player.h*.55,item,kind:'item',amount,pickupAfter:Date.now()+1100};
+  const result=await multiplayerWorldAction({type:'drop-add',drop:candidate});if(!result?.ok){toast('Drop gagal tersambung ke server','error');return false}
+  inventory[item]-=amount;unequipIfGone(item);updateInventory();savePlayer(true);saveWorld(true);toast('Drop '+amount+' '+(itemName[item]||item),'success');return true;
 }
-function trashSelectedItem(){
+async function dropSelectedItem(){
   const e=selectedInventoryEntry();if(!e)return;const amount=actionAmount(e.item);if(amount<=0)return;
-  if(!window.confirm('Trash '+amount+' '+(itemName[e.item]||e.item)+'? Item akan hilang permanen.'))return;
+  if(await dropInventoryAmount(e.item,amount))closeItemAction();
+}
+async function trashSelectedItem(){
+  const e=selectedInventoryEntry();if(!e)return;const amount=actionAmount(e.item);if(amount<=0)return;
+  const ok=await pixoraConfirm('Buang permanen '+amount+' '+(itemName[e.item]||e.item)+'?','TRASH ITEM','BUANG','BATAL');if(!ok)return;
   inventory[e.item]-=amount;unequipIfGone(e.item);updateInventory();savePlayer(true);saveWorld(true);closeItemAction();toast('Item dibuang','error')
 }
-function promptItemAmount(e,verb){
-  const max=inventory[e.item]||0;const raw=window.prompt(verb+' berapa '+(itemName[e.item]||e.item)+'? (1-'+max+')','1');
-  if(raw===null)return 0;return Math.max(1,Math.min(max,Math.floor(Number(raw)||1)));
+async function promptItemAmount(e,verb){
+  const max=inventory[e.item]||0;const raw=await pixoraPromptNumber(verb+' berapa '+(itemName[e.item]||e.item)+'?',{title:verb.toUpperCase()+' ITEM',min:1,max,value:1,okText:verb.toUpperCase()});
+  return raw==null?0:raw;
 }
-function sideDropSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}const amount=promptItemAmount(e,'Drop');if(!amount)return;inventory[e.item]-=amount;unequipIfGone(e.item);spawnDrop(player.x+player.w/2+player.facing*34,player.y+player.h*.55,e.item,amount,1100);updateInventory();savePlayer(true);saveWorld(true);toast('Drop '+amount+' '+(itemName[e.item]||e.item),'success')}
-function sideTrashSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}const amount=promptItemAmount(e,'Trash');if(!amount)return;if(!window.confirm('Trash '+amount+' '+(itemName[e.item]||e.item)+'? Item akan hilang permanen.'))return;inventory[e.item]-=amount;unequipIfGone(e.item);updateInventory();savePlayer(true);saveWorld(true);toast('Item dibuang','error')}
+async function sideDropSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}const amount=await promptItemAmount(e,'Drop');if(!amount)return;await dropInventoryAmount(e.item,amount)}
+async function sideTrashSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}const amount=await promptItemAmount(e,'Trash');if(!amount)return;const ok=await pixoraConfirm('Buang permanen '+amount+' '+(itemName[e.item]||e.item)+'?','TRASH ITEM','BUANG','BATAL');if(!ok)return;inventory[e.item]-=amount;unequipIfGone(e.item);updateInventory();savePlayer(true);saveWorld(true);toast('Item dibuang','error')}
 document.getElementById('drawerDropBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();sideDropSelected()},{passive:false});
 document.getElementById('drawerTrashBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();sideTrashSelected()},{passive:false});
 document.getElementById('itemBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();openItemAction()},{passive:false});
@@ -2357,6 +2477,7 @@ document.getElementById('gameMenuBtn').addEventListener('pointerdown',e=>{e.prev
 document.getElementById('gamePanelClose').addEventListener('pointerdown',e=>{e.preventDefault();setGamePanel(false)},{passive:false});
 document.getElementById('respawnMenuBtn').addEventListener('pointerdown',e=>{e.preventDefault();setGamePanel(false);respawn()},{passive:false});
 document.getElementById('soundToggleBtn').addEventListener('pointerdown',e=>{e.preventDefault();toggleSound()},{passive:false});
+document.getElementById('sfxVolume').addEventListener('input',e=>{sfxVolume=Math.max(0,Math.min(1,Number(e.target.value||0)/100));localStorage.setItem('pixora_sfx_volume_v1',String(sfxVolume));if(sfxVolume>0&&soundEnabled)ensureAudio()});
 document.getElementById('gemsHudBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();if(gameReady)setStore(true)},{passive:false});
 refreshSoundButton();
 
@@ -2401,7 +2522,7 @@ function applyCloudPlayerSave(d){
   quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
   migrateGrassToDirtPlayer();updateLevelUI();return true;
 }
-// ===== PIXORA BUILD 14.5: multiplayer smoothing + persistent world/chat =====
+// ===== PIXORA BUILD 14.6: multiplayer persistence + action/drop sync =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
@@ -2415,7 +2536,7 @@ function multiplayerWorldSnapshot(){
     locks:Array.isArray(locks)?locks.map(l=>({...l,trusted:Array.isArray(l.trusted)?[...l.trusted]:[]})):[],
     weatherOrbs:Array.isArray(weatherOrbs)?weatherOrbs.map(o=>({...o})):[],
     weather:(weather&&WEATHER_TYPES.includes(weather.type))?{type:weather.type}:{type:'sunny'},
-    coins:Array.isArray(coins)?coins.map(c=>({...c})):[],coinsCollected:Number(coinsCollected||0),drops:Array.isArray(drops)?drops.filter(d=>!d.pick).map(d=>({id:d.id||'',x:d.x,y:d.y,item:d.item||null,kind:d.kind||'item',amount:Number(d.amount||1),pickupAfter:Number(d.pickupAfter||0)})):[]
+    drops:Array.isArray(drops)?drops.filter(d=>!d.pick).map(d=>({id:d.id||'',x:d.x,y:d.y,item:d.item||null,kind:d.kind||'item',amount:Number(d.amount||1),pickupAfter:Number(d.pickupAfter||0)})):[]
   };
 }
 function applyMultiplayerWorldSnapshot(snap,teleport=false){
@@ -2430,7 +2551,6 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   locks=Array.isArray(snap.locks)?snap.locks.map(l=>({...l,trusted:Array.isArray(l.trusted)?[...l.trusted]:[],hitsTaken:0})):[];
   weatherOrbs=Array.isArray(snap.weatherOrbs)?snap.weatherOrbs.map(o=>({...o})):[];
   weather=(snap.weather&&WEATHER_TYPES.includes(snap.weather.type))?{type:snap.weather.type}:{type:'sunny'};
-  coins=Array.isArray(snap.coins)?snap.coins.map(c=>({...c})):[];coinsCollected=Math.max(0,Number(snap.coinsCollected||0));ui.coin.textContent=coinsCollected;
   drops=Array.isArray(snap.drops)?snap.drops.map(d=>({...d,bobSeed:Math.random()*Math.PI*2,collecting:false,pick:false})):[];
   if(snap.door&&Number.isFinite(Number(snap.door.x))){const dt=Math.floor(Number(snap.door.x)/T);door={x:dt*T+2,y:Math.floor(GROUND_Y/T)*T-40,w:36,h:40};}else door=null;
   ensureDoorSafe();if(door){player.spawnX=door.x+3;player.spawnY=door.y+door.h-player.h;if(teleport){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;}}
@@ -2440,20 +2560,41 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
 function applyRemotePlayers(list){
   const now=performance.now(),seen=new Set();
   for(const r of Array.isArray(list)?list:[]){
-    if(!r||!r.playerId)continue;seen.add(r.playerId);const a=(r.actionState&&typeof r.actionState==='object')?r.actionState:null;const old=remotePlayers.get(r.playerId),nx=Number(r.x)||0,ny=Number(r.y)||0;
-    if(old){old.targetX=nx;old.targetY=ny;old.serverVx=Number(r.vx)||0;old.serverVy=Number(r.vy)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.actionState=a;old.lastSeen=now}
-    else remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:nx,y:ny,targetX:nx,targetY:ny,serverVx:Number(r.vx)||0,serverVy:Number(r.vy)||0,facing:Number(r.facing)<0?-1:1,actionState:a,lastSeen:now,walkPhase:0});
+    if(!r||!r.playerId)continue;
+    seen.add(r.playerId);
+    const a=(r.actionState&&typeof r.actionState==='object')?r.actionState:null;
+    const old=remotePlayers.get(r.playerId),nx=Number(r.x)||0,ny=Number(r.y)||0;
+    if(old){
+      old.targetX=nx;old.targetY=ny;old.serverVx=Number(r.vx)||0;old.serverVy=Number(r.vy)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');
+      const seq=Number(a?.seq||0);if(a?.active&&seq&&seq!==old.lastPunchSeq){old.lastPunchSeq=seq;old.punchPulseStart=now}
+      old.actionState=a;old.lastSeen=now;
+    }else{
+      remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:nx,y:ny,targetX:nx,targetY:ny,serverVx:Number(r.vx)||0,serverVy:Number(r.vy)||0,facing:Number(r.facing)<0?-1:1,actionState:a,lastSeen:now,walkPhase:0,lastPunchSeq:Number(a?.seq||0),punchPulseStart:a?.active?now:0});
+    }
   }
   for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>3200)remotePlayers.delete(id)}
 }
+
 function currentMultiplayerActionState(){
   if(breakState){
-    if(breakState.kind==='bg')return {active:true,kind:'bg',tx:breakState.tx,ty:breakState.ty,progress:Math.max(0,Math.min(1,Number(breakState.progress||0))),tool:'punch'};
-    if(breakState.block)return {active:true,kind:'block',tx:Math.floor(breakState.block.x/T),ty:Math.floor(breakState.block.y/T),progress:Math.max(0,Math.min(1,Number(breakState.progress||0))),tool:String(breakState.tool||'punch')};
+    if(breakState.kind==='bg'){
+      const d=caveBgDamage.get(blockKey(breakState.tx,breakState.ty))||{hits:0};
+      return {active:true,kind:'bg',tx:breakState.tx,ty:breakState.ty,progress:Math.max(0,Math.min(.99,(Number(d.hits||0)+Number(breakState.progress||0))/3)),tool:'punch',seq:player.punchSeq};
+    }
+    if(breakState.block){
+      const b=breakState.block,need=hitsNeededForBlock(b),power=hitPowerFor(breakState.tool||'punch',b);
+      return {active:true,kind:'block',tx:Math.floor(b.x/T),ty:Math.floor(b.y/T),progress:Math.max(0,Math.min(.99,(Number(b.hitsTaken||0)+Number(breakState.progress||0)*power)/Math.max(1,need))),tool:String(breakState.tool||'punch'),seq:player.punchSeq};
+    }
   }
-  if(player.punchAnim>0){const tx=Number.isFinite(player.punchTargetX)?Math.floor(player.punchTargetX/T):Math.floor((player.x+player.w/2)/T)+player.facing;const ty=Number.isFinite(player.punchTargetY)?Math.floor(player.punchTargetY/T):Math.floor((player.y+player.h/2)/T);return {active:true,kind:'air',tx,ty,progress:Math.max(0,Math.min(1,1-player.punchAnim)),tool:String(player.punchTool||'punch')}}
-  return {active:false};
+  if(recentHitAction&&performance.now()<recentHitAction.until)return {...recentHitAction,progress:recentHitAction.damageProgress};
+  if(player.punchAnim>0){
+    const tx=Number.isFinite(player.punchTargetX)?Math.floor(player.punchTargetX/T):Math.floor((player.x+player.w/2)/T)+player.facing;
+    const ty=Number.isFinite(player.punchTargetY)?Math.floor(player.punchTargetY/T):Math.floor((player.y+player.h/2)/T);
+    return {active:true,kind:'air',tx,ty,progress:0,tool:String(player.punchTool||'punch'),seq:player.punchSeq};
+  }
+  return {active:false,seq:player.punchSeq};
 }
+
 async function multiplayerJoin(){
   if(!gameReady||!currentWorldName||!pixoraSession)return;const token=multiplayerToken();if(!token)return;
   try{
@@ -2467,23 +2608,57 @@ async function multiplayerLeave(world=currentWorldName){
   const token=multiplayerToken(),w=world||multiplayerJoinedWorld;remotePlayers.clear();multiplayerJoinedWorld='';multiplayerWorldRevision=0;if(!token||!w)return;
   try{await authRequest('/api/world/leave',{world:w},token)}catch(_){ }
 }
-async function multiplayerWorldAction(action){
-  if(!gameReady||!currentWorldName||!pixoraSession||!action)return false;const token=multiplayerToken();if(!token)return false;
-  multiplayerActionInFlight++;const actionId=(pixoraSession?.player?.playerId||'P')+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
-  try{const d=await authRequest('/api/world/action',{world:currentWorldName,action,actionId},token);multiplayerWorldRevision=Math.max(multiplayerWorldRevision,Number(d.revision||0));return !!d.ok}
-  catch(e){console.warn('world action sync',e);return false}finally{multiplayerActionInFlight=Math.max(0,multiplayerActionInFlight-1)}
+function mergeServerDrops(list){
+  for(const raw of Array.isArray(list)?list:[]){
+    if(!raw||!raw.id)continue;
+    const existing=drops.find(d=>d.id===raw.id);
+    if(existing){if(!existing.collecting)Object.assign(existing,raw);continue}
+    drops.push({...raw,bobSeed:Math.random()*Math.PI*2,collecting:false,pick:false,pickPending:false});
+  }
 }
+async function multiplayerWorldAction(action){
+  if(!gameReady||!currentWorldName||!pixoraSession||!action)return null;const token=multiplayerToken();if(!token)return null;
+  multiplayerActionInFlight++;const actionId=(pixoraSession?.player?.playerId||'P')+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);
+  try{
+    const d=await authRequest('/api/world/action',{world:currentWorldName,action,actionId},token);
+    multiplayerWorldRevision=Math.max(multiplayerWorldRevision,Number(d.revision||0));
+    if(Array.isArray(d.dropsAdded))mergeServerDrops(d.dropsAdded);
+    return d;
+  }catch(e){console.warn('world action sync',e);return null}
+  finally{multiplayerActionInFlight=Math.max(0,multiplayerActionInFlight-1)}
+}
+
 let multiplayerSmoothTs=0;
+function remoteCollidesAt(x,y){
+  const HIT_X=3,HIT_TOP=8,HIT_BOTTOM=2,left=x+HIT_X,right=x+player.w-HIT_X,top=y+HIT_TOP,bottom=y+player.h-HIT_BOTTOM;
+  for(const b of blocks){
+    if(!isSolidBlock(b))continue;
+    if(top<b.y+T-.5&&bottom>b.y+.5&&left<b.x+T&&right>b.x)return true;
+  }
+  return false;
+}
+function stepRemoteCollisionSafe(p,nx,ny){
+  if(!remoteCollidesAt(nx,p.y))p.x=nx;
+  if(!remoteCollidesAt(p.x,ny))p.y=ny;
+  if(remoteCollidesAt(p.x,p.y)){
+    // Recovery only for desync: search a nearby free pixel position, preferring upward.
+    const ox=p.x,oy=p.y;
+    for(let up=1;up<=T*2;up++){if(!remoteCollidesAt(ox,oy-up)){p.y=oy-up;break}}
+  }
+}
 function multiplayerTick(ts){
   if(!gameReady||!currentWorldName||!pixoraSession)return;
   const dt=Math.max(1,Math.min(50,multiplayerSmoothTs?ts-multiplayerSmoothTs:16));multiplayerSmoothTs=ts;
-  const alpha=1-Math.exp(-dt/85);
+  const alpha=1-Math.exp(-dt/52);
   for(const [,p] of remotePlayers){
-    const dx=p.targetX-p.x,dy=p.targetY-p.y,dist=Math.hypot(dx,dy);
-    if(dist>180){p.x=p.targetX;p.y=p.targetY}else{p.x+=dx*alpha;p.y+=dy*alpha}
-    if(Math.abs(dx)>0.4)p.walkPhase=(p.walkPhase||0)+dt*.012;
+    const lead=Math.min(3.2,Math.max(0,dt/16.67+1.6));
+    const predictedX=p.targetX+(p.serverVx||0)*lead,predictedY=p.targetY+(p.serverVy||0)*lead;
+    const dx=predictedX-p.x,dy=predictedY-p.y,dist=Math.hypot(dx,dy);
+    if(dist>220){if(!remoteCollidesAt(p.targetX,p.targetY)){p.x=p.targetX;p.y=p.targetY}}
+    else stepRemoteCollisionSafe(p,p.x+dx*alpha,p.y+dy*alpha);
+    if(Math.abs(dx)>0.25)p.walkPhase=(p.walkPhase||0)+dt*.014;
   }
-  if(multiplayerInFlight||ts-multiplayerLastSync<75)return;multiplayerLastSync=ts;multiplayerInFlight=true;
+  if(multiplayerInFlight||ts-multiplayerLastSync<58)return;multiplayerLastSync=ts;multiplayerInFlight=true;
   const token=multiplayerToken();
   authRequest('/api/world/state',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),knownRevision:multiplayerWorldRevision},token).then(d=>{
     applyRemotePlayers(d.players);applyWorldChat(d.chat);const rev=Math.max(0,Number(d.revision||0));
@@ -2493,19 +2668,35 @@ function multiplayerTick(ts){
 }
 
 
+
 let worldChatMessages=[];
+let chatInitialized=false;
+const chatSeenIds=new Set();
+const chatBubbles=new Map();
 function applyWorldChat(list){
-  if(!Array.isArray(list))return;const oldLast=worldChatMessages.length?worldChatMessages[worldChatMessages.length-1]?.id:null;
-  worldChatMessages=list.slice(-30);
+  if(!Array.isArray(list))return;
+  const incoming=list.slice(-30),now=performance.now();
+  if(!chatInitialized){for(const m of incoming)if(m?.id)chatSeenIds.add(m.id);chatInitialized=true}
+  else{
+    for(const m of incoming){
+      if(!m?.id||chatSeenIds.has(m.id))continue;
+      chatSeenIds.add(m.id);
+      chatBubbles.set(m.playerId,{text:String(m.text||'').slice(0,120),expires:now+4200,id:m.id});
+      sfx('chat');
+    }
+  }
+  worldChatMessages=incoming;
+  while(chatSeenIds.size>120){const first=chatSeenIds.values().next().value;chatSeenIds.delete(first)}
   const box=document.getElementById('chatMessages');if(!box)return;
   box.innerHTML=worldChatMessages.length?worldChatMessages.map(m=>`<div class="chatMsg${m.playerId===pixoraSession?.player?.playerId?' me':''}"><b>${escapeChat(m.name||'PLAYER')}:</b> ${escapeChat(m.text||'')}</div>`).join(''):'<div class="chatMsg">Belum ada pesan.</div>';
   box.scrollTop=box.scrollHeight;
-  const newLast=worldChatMessages.length?worldChatMessages[worldChatMessages.length-1]?.id:null;if(oldLast&&newLast&&oldLast!==newLast)sfx('chat');
 }
+
 function escapeChat(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 async function sendWorldChat(text){
-  text=String(text||'').trim().slice(0,100);if(!text||!gameReady||!currentWorldName)return;
-  try{const d=await authRequest('/api/world/chat',{world:currentWorldName,text},multiplayerToken());applyWorldChat(d.chat);sfx('ui')}catch(e){toast('Chat gagal dikirim','error')}
+  text=String(text||'').trim();if(!text||!gameReady||!currentWorldName)return;
+  if(text.length>120){toast('Pesan terlalu panjang • maksimal 120 karakter','error');return}
+  try{const d=await authRequest('/api/world/chat',{world:currentWorldName,text},multiplayerToken());applyWorldChat(d.chat);sfx('ui')}catch(e){toast(String(e?.message)==='CHAT_TOO_LONG'?'Pesan terlalu panjang • maksimal 120 karakter':'Chat gagal dikirim','error')}
 }
 
 function pixoraApi(path){return (PIXORA_API_BASE||'')+path}
@@ -2523,7 +2714,7 @@ async function authRequest(path,payload={},token=''){
     const res=await fetch(pixoraApi(path),{method:'POST',headers:{'Content-Type':'application/json',...(token?{'Authorization':'Bearer '+token}:{})},body:JSON.stringify(payload),signal:controller.signal});
     let data={};try{data=await res.json()}catch(_){ }
     if(!res.ok){
-      if(data.error==='SESSION_REPLACED'){localStorage.removeItem(PIXORA_SESSION_KEY);setTimeout(()=>{alert('Akun ini login di perangkat lain. Sesi di perangkat ini diputus.');location.reload()},20)}
+      if(data.error==='SESSION_REPLACED'){localStorage.removeItem(PIXORA_SESSION_KEY);setTimeout(async()=>{await pixoraNotice('Akun ini login di perangkat lain.\nSesi di perangkat ini diputus.','SESI BERAKHIR','LOGIN ULANG');location.reload()},20)}
       throw new Error(data.error||('HTTP_'+res.status));
     }
     return data;
@@ -2540,7 +2731,7 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_14_5_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_14_6_'+safe;
 }
 function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;
@@ -2595,7 +2786,7 @@ const chatToggleBtn=document.getElementById('chatToggleBtn'),chatPanel=document.
 chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameReady){toast('Masuk world dulu','info');return}chatPanel.classList.toggle('open');if(chatPanel.classList.contains('open'))setTimeout(()=>chatInput.focus(),40)},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim())return;chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_14_5';
+let CHANGELOG_KEY='pixora_seen_build_14_6';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

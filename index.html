@@ -275,13 +275,13 @@ button.hudResource:active{transform:scale(.96)}
 #authScreen{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:18px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:linear-gradient(#58b9e9 0 45%,#79c95a 45% 52%,#9b643b 52% 100%);color:#fff;touch-action:pan-y}
 #authScreen.hidden{display:none}
 #authScreen:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#ffffff0b 1px,transparent 1px),linear-gradient(#ffffff0b 1px,transparent 1px);background-size:40px 40px;opacity:.8;pointer-events:none}
-#authCard{position:relative;width:min(92vw,430px);max-height:calc(100dvh - 36px);overflow-y:auto;overflow-x:hidden;margin:auto 0;background:#101b27f2;border:3px solid #ffffff32;border-radius:18px;box-shadow:0 14px 35px #0008;padding:18px;touch-action:pan-y;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+#authCard{position:relative;width:min(92vw,430px);max-height:calc(100dvh - 24px);overflow-y:auto!important;overflow-x:hidden;margin:auto 0;background:#101b27f2;border:3px solid #ffffff32;border-radius:18px;box-shadow:0 14px 35px #0008;padding:18px;touch-action:pan-y!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:thin}
 #pixoraLogo{font-size:34px;font-weight:1000;letter-spacing:3px;text-align:center;text-shadow:0 4px 0 #184765,0 0 18px #fff6;margin:4px 0 2px}
 #authSub{text-align:center;font-size:11px;opacity:.78;margin-bottom:16px;letter-spacing:1.5px}
 .authTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
 .authTab,.authMainBtn,.authAltBtn{border:0;border-radius:10px;font-weight:900;color:#fff;background:#28445e;padding:11px 8px;box-shadow:inset 0 -3px 0 #0004}
 .authTab.active{background:#3e8bc2}
-.authPane{display:none}.authPane.active{display:block}
+.authPane{display:none}.authPane.active{display:block;max-height:52dvh;overflow-y:auto!important;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y!important;overscroll-behavior:contain;padding-right:2px}
 .authField{display:block;width:100%;margin:8px 0;padding:12px;border:2px solid #ffffff24;border-radius:10px;background:#09131d;color:#fff;font-size:16px;outline:none;touch-action:manipulation;user-select:text;-webkit-user-select:text}
 .authField:focus{border-color:#7acbff}
 .authMainBtn{width:100%;margin-top:8px;background:#38a85b;font-size:15px}
@@ -300,7 +300,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.3</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.4</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -318,10 +318,10 @@ button.hudResource:active{transform:scale(.96)}
       <button class="authMainBtn" id="loginBtn">LOGIN</button>
     </div>
     <div class="authPane" data-auth-pane="register">
-      <input class="authField" id="registerName" maxlength="12" placeholder="Nama tampilan" autocomplete="off">
-      <input class="authField" id="registerId" maxlength="24" placeholder="Login ID" autocomplete="username">
+      <input class="authField" id="registerId" maxlength="24" placeholder="ID / nama player" autocomplete="username">
       <input class="authField" id="registerPw" maxlength="72" type="password" placeholder="Password (min. 6 karakter)" autocomplete="new-password">
       <button class="authMainBtn" id="registerBtn">CREATE ACCOUNT</button>
+      <div class="authHint">ID ini juga menjadi nama kamu di Pixora dan harus unik secara global.</div>
     </div>
     <div id="authStatus">Connecting ke Pixora Server diperlukan untuk masuk.</div>
   </div>
@@ -801,6 +801,7 @@ function savePlayer(silent=true){
       try{const prev=JSON.parse(previous);if(prev&&typeof prev==='object')localStorage.setItem(PLAYER_SAVE_BACKUP_KEY,previous)}catch(_){ }
     }
     localStorage.setItem(PLAYER_SAVE_KEY,next);
+    schedulePixoraCloudSave();
     if(!silent)toast('Player tersimpan ✓');
     return true;
   }catch(err){if(!silent)toast('Save player gagal');return false}
@@ -1016,7 +1017,7 @@ async function enterWorld(name){
   cameraLift=0;cameraLiftTarget=0;ui.hudWorld.textContent=name;updateInventory();setSelected('tool','punch');setZoom(1);
   try{
     const token=multiplayerToken();if(!pixoraSession||!token)throw new Error('NO_SESSION');
-    const d=await authRequest('/api/world/join',{world:name,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,worldSnapshot:multiplayerWorldSnapshot()},token);
+    const d=await authRequest('/api/world/join',{world:name,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),worldSnapshot:multiplayerWorldSnapshot()},token);
     multiplayerJoinedWorld=name;multiplayerWorldRevision=Math.max(0,Number(d.revision||0));
     if(d.worldSnapshot)applyMultiplayerWorldSnapshot(d.worldSnapshot,true);applyRemotePlayers(d.players);
     gameReady=true;ui.worldMenu.classList.add('hidden');setGamePanel(false);saveWorld(true);
@@ -1413,7 +1414,9 @@ function drawRemotePlayers(){
     const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6,5,6);ctx.fillRect(x+17,y+6,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8,2,3);ctx.fillRect(x+18+ps,y+8,2,3);
     ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13,4,1);ctx.fillStyle=skin;ctx.fillRect(x+6,y+17,18,10);
     ctx.fillStyle='#343b45';ctx.fillRect(x+7,y+27,7,8);ctx.fillRect(x+16,y+27,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35,9,5);ctx.fillRect(x+16,y+35,9,5);
-    const sx=x+(r.facing>0?23:7),sy=y+20;ctx.strokeStyle=skin;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(sx+r.facing*3,sy+9);ctx.stroke();
+    const sx=x+(r.facing>0?23:7),sy=y+20;let ex=sx+r.facing*3,ey=sy+9;const ra=r.actionState;
+    if(ra&&ra.active&&Number.isFinite(Number(ra.tx))&&Number.isFinite(Number(ra.ty))){const tx=Number(ra.tx)*T+T/2,ty=Number(ra.ty)*T+T/2,dx=tx-sx,dy=ty-sy,len=Math.hypot(dx,dy)||1,reach=Math.min(T*1.7,Math.max(10,len));ex=sx+dx/len*reach;ey=sy+dy/len*reach;r.facing=dx<0?-1:1}
+    ctx.strokeStyle=skin;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.stroke();ctx.fillStyle='#d79d68';ctx.fillRect(Math.round(ex-3),Math.round(ey-3),6,6);
     ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#8ff4ff';ctx.strokeText(r.displayName,x+player.w/2,y-6);ctx.fillText(r.displayName,x+player.w/2,y-6);
     ctx.restore();
   }
@@ -1623,6 +1626,7 @@ function drawBreakCracks(){
   if(breakState&&breakState.kind==='bg'){
     const k=blockKey(breakState.tx,breakState.ty);if(!caveBgDamage.has(k))drawOneCrack({x:breakState.tx*T,y:breakState.ty*T},Math.min(1,(breakState.progress||0)/3));
   }
+  for(const r of remotePlayers.values()){const a=r.actionState;if(!a||!a.active||!Number.isFinite(Number(a.tx))||!Number.isFinite(Number(a.ty)))continue;const p=Math.max(.08,Math.min(.95,Number(a.progress||0)));if(a.kind==='block'||a.kind==='bg')drawOneCrack({x:Number(a.tx)*T,y:Number(a.ty)*T},p);}
 }
 
 
@@ -2337,6 +2341,28 @@ const PIXORA_REMEMBER_ID_KEY='pixora_remember_login_id_v1';
 const PIXORA_API_BASE='https://pixora-server-xo0t.onrender.com';
 let pixoraSession=null;
 let pixoraBooted=false;
+let pixoraCloudSaveTimer=null;
+let pixoraCloudSavePaused=false;
+let pixoraCloudSaveInFlight=false;
+function makeCloudPlayerSave(){
+  return {version:3,inventory:{...inventory},equipped:{...equipped},gems:Math.max(0,Number(gems||0)),backpackCapacity:Math.max(24,Number(backpackCapacity||24)),backpackUpgrades:Math.max(0,Number(backpackUpgrades||0)),playerLevel:Math.max(1,Number(playerLevel||1)),playerXp:Math.max(0,Number(playerXp||0)),quickSlots:[...quickSlots].slice(0,3),savedAt:Date.now()};
+}
+function schedulePixoraCloudSave(delay=450){
+  if(pixoraCloudSavePaused||!pixoraSession||pixoraSession.player?.accountType!=='account')return;
+  clearTimeout(pixoraCloudSaveTimer);pixoraCloudSaveTimer=setTimeout(async()=>{
+    if(pixoraCloudSaveInFlight||pixoraCloudSavePaused)return;pixoraCloudSaveInFlight=true;
+    try{await authRequest('/api/player/save',{save:makeCloudPlayerSave()},multiplayerToken())}catch(e){console.warn('cloud player save',e)}finally{pixoraCloudSaveInFlight=false}
+  },delay);
+}
+function applyCloudPlayerSave(d){
+  if(!d||typeof d!=='object')return false;
+  inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};
+  Object.keys(equipped).forEach(k=>equipped[k]=(d.equipped||{})[k]||null);
+  gems=Math.max(0,Number(d.gems||0));backpackCapacity=Math.max(24,Number(d.backpackCapacity||24));backpackUpgrades=Math.max(0,Math.floor(Number(d.backpackUpgrades||0)));
+  playerLevel=Math.max(1,Math.min(MAX_LEVEL,Math.floor(Number(d.playerLevel||1))));playerXp=playerLevel>=MAX_LEVEL?0:Math.max(0,Math.min(xpNeededForLevel(playerLevel)-1,Math.floor(Number(d.playerXp||0))));
+  quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
+  migrateGrassToDirtPlayer();updateLevelUI();return true;
+}
 // ===== PIXORA BUILD 14.2: multiplayer world + movement sync =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
@@ -2374,13 +2400,25 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
 }
 function applyRemotePlayers(list){
   const now=performance.now(),seen=new Set();
-  for(const r of Array.isArray(list)?list:[]){if(!r||!r.playerId)continue;seen.add(r.playerId);const old=remotePlayers.get(r.playerId);if(old){old.targetX=Number(r.x)||0;old.targetY=Number(r.y)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.lastSeen=now}else remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:Number(r.x)||0,y:Number(r.y)||0,targetX:Number(r.x)||0,targetY:Number(r.y)||0,facing:Number(r.facing)<0?-1:1,lastSeen:now});}
+  for(const r of Array.isArray(list)?list:[]){
+    if(!r||!r.playerId)continue;seen.add(r.playerId);const a=(r.actionState&&typeof r.actionState==='object')?r.actionState:null;const old=remotePlayers.get(r.playerId);
+    if(old){old.targetX=Number(r.x)||0;old.targetY=Number(r.y)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.actionState=a;old.lastSeen=now}
+    else remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:Number(r.x)||0,y:Number(r.y)||0,targetX:Number(r.x)||0,targetY:Number(r.y)||0,facing:Number(r.facing)<0?-1:1,actionState:a,lastSeen:now});
+  }
   for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>2500)remotePlayers.delete(id)}
+}
+function currentMultiplayerActionState(){
+  if(breakState){
+    if(breakState.kind==='bg')return {active:true,kind:'bg',tx:breakState.tx,ty:breakState.ty,progress:Math.max(0,Math.min(1,Number(breakState.progress||0))),tool:'punch'};
+    if(breakState.block)return {active:true,kind:'block',tx:Math.floor(breakState.block.x/T),ty:Math.floor(breakState.block.y/T),progress:Math.max(0,Math.min(1,Number(breakState.progress||0))),tool:String(breakState.tool||'punch')};
+  }
+  if(player.punchAnim>0){const tx=Number.isFinite(player.punchTargetX)?Math.floor(player.punchTargetX/T):Math.floor((player.x+player.w/2)/T)+player.facing;const ty=Number.isFinite(player.punchTargetY)?Math.floor(player.punchTargetY/T):Math.floor((player.y+player.h/2)/T);return {active:true,kind:'air',tx,ty,progress:Math.max(0,Math.min(1,1-player.punchAnim)),tool:String(player.punchTool||'punch')}}
+  return {active:false};
 }
 async function multiplayerJoin(){
   if(!gameReady||!currentWorldName||!pixoraSession)return;const token=multiplayerToken();if(!token)return;
   try{
-    const d=await authRequest('/api/world/join',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,worldSnapshot:multiplayerWorldSnapshot()},token);
+    const d=await authRequest('/api/world/join',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),worldSnapshot:multiplayerWorldSnapshot()},token);
     multiplayerJoinedWorld=currentWorldName;multiplayerWorldRevision=Math.max(0,Number(d.revision||0));
     if(d.worldSnapshot)applyMultiplayerWorldSnapshot(d.worldSnapshot,true);
     applyRemotePlayers(d.players);toast('Online world synced','success');
@@ -2401,7 +2439,7 @@ function multiplayerTick(ts){
   for(const [,p] of remotePlayers){p.x+=(p.targetX-p.x)*.35;p.y+=(p.targetY-p.y)*.35}
   if(multiplayerInFlight||ts-multiplayerLastSync<100)return;multiplayerLastSync=ts;multiplayerInFlight=true;
   const token=multiplayerToken();
-  authRequest('/api/world/state',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,knownRevision:multiplayerWorldRevision},token).then(d=>{
+  authRequest('/api/world/state',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),knownRevision:multiplayerWorldRevision},token).then(d=>{
     applyRemotePlayers(d.players);const rev=Math.max(0,Number(d.revision||0));
     if(d.worldSnapshot&&rev>multiplayerWorldRevision){if(multiplayerActionInFlight===0){applyMultiplayerWorldSnapshot(d.worldSnapshot,false);multiplayerWorldRevision=rev}}
     else multiplayerWorldRevision=Math.max(multiplayerWorldRevision,rev);
@@ -2437,13 +2475,15 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_14_3_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_14_4_'+safe;
 }
 function bootPixoraSession(session){
-  if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;
+  if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;
   localNamespaceFor(session.player.playerId||session.player.accountId||session.player.displayName);
   loadGlobalPlayer();
-  playerName=String(session.player.displayName||'PLAYER').slice(0,16);playerNameLocked=true;savePlayer(true);syncPlayerNameInput();
+  if(session.player?.accountType==='account'&&session.playerSave)applyCloudPlayerSave(session.playerSave);
+  playerName=String(session.player.displayName||session.player.accountId||'PLAYER').slice(0,24);playerNameLocked=true;savePlayer(true);syncPlayerNameInput();
+  pixoraCloudSavePaused=false;if(session.player?.accountType==='account'&&!session.playerSave)schedulePixoraCloudSave(150);
   setZoom(1);renderInventory();setSelected('tool','punch');refreshSavedWorldList();ui.worldInput.value='WORLD1';refreshSoundButton();
   document.getElementById('authScreen').classList.add('hidden');
   const chip=document.getElementById('accountChip');chip.classList.add('show');document.getElementById('accountChipName').textContent=playerName;
@@ -2455,7 +2495,7 @@ function authErrorMessage(err){
   if(code==='NO_CONNECTION')return 'Tidak ada koneksi internet. Pixora tidak bisa login.';
   if(code==='SERVER_TIMEOUT')return 'Pixora Server tidak merespons. Coba lagi.';
   if(code==='INVALID_CREDENTIALS')return 'Login ID atau password salah.';
-  if(code==='ACCOUNT_EXISTS')return 'Login ID sudah digunakan.';
+  if(code==='ACCOUNT_EXISTS')return 'ID itu sudah dipakai player lain. Pilih ID lain.';
   if(code==='BAD_REQUEST')return 'Data belum lengkap / format tidak valid.';
   if(code.startsWith('HTTP_')||code==='Failed to fetch')return 'Pixora Server belum terhubung ke website ini.';
   return 'Tidak bisa terhubung ke Pixora Server: '+code;
@@ -2473,7 +2513,7 @@ function initAuthFlow(){
   document.querySelectorAll('.authTab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.authTab').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.authPane').forEach(p=>p.classList.toggle('active',p.dataset.authPane===btn.dataset.authTab));setAuthStatus('Connecting ke Pixora Server diperlukan untuk masuk.')}));
   document.getElementById('guestBtn').addEventListener('click',()=>{const name=String(document.getElementById('guestName').value||'Player').trim().slice(0,12)||'Player';completeAuth('/api/guest',{name})});
   document.getElementById('loginBtn').addEventListener('click',()=>completeAuth('/api/login',{id:document.getElementById('loginId').value.trim(),password:document.getElementById('loginPw').value}));
-  document.getElementById('registerBtn').addEventListener('click',()=>completeAuth('/api/register',{name:document.getElementById('registerName').value.trim(),id:document.getElementById('registerId').value.trim(),password:document.getElementById('registerPw').value}));
+  document.getElementById('registerBtn').addEventListener('click',()=>completeAuth('/api/register',{id:document.getElementById('registerId').value.trim(),password:document.getElementById('registerPw').value}));
   document.getElementById('logoutBtn').addEventListener('click',async()=>{const token=localStorage.getItem(PIXORA_SESSION_KEY)||'';try{if(token)await authRequest('/api/logout',{},token)}catch(_){ }localStorage.removeItem(PIXORA_SESSION_KEY);location.reload()});
   if(!navigator.onLine)setAuthStatus('Tidak ada koneksi internet. Pixora tidak bisa login.','error');
   window.addEventListener('online',()=>{if(!pixoraBooted)setAuthStatus('Internet kembali. Silakan login.')});
@@ -2483,7 +2523,7 @@ function initAuthFlow(){
 }
 
 
-let CHANGELOG_KEY='pixora_seen_build_14_3';
+let CHANGELOG_KEY='pixora_seen_build_14_4';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

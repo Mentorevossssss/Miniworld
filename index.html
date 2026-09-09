@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.3</title>
+<title>Pixora — Online Alpha Build 14.5</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -272,16 +272,16 @@ button.hudResource:active{transform:scale(.96)}
 .icon-smallLock{background:#d5b633!important;border-color:#7e6517!important}.icon-bigLock{background:#3f86d8!important;border-color:#1c4e8a!important}.icon-hugeLock{background:#8f57cf!important;border-color:#4e287e!important}.icon-worldLock{background:#d9483e!important;border-color:#7a211d!important}
 
 /* ===== PIXORA BUILD 14.0 AUTH ===== */
-#authScreen{position:fixed;inset:0;z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:18px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:linear-gradient(#58b9e9 0 45%,#79c95a 45% 52%,#9b643b 52% 100%);color:#fff;touch-action:pan-y}
+#authScreen{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:10px;overflow:hidden;background:linear-gradient(#58b9e9 0 45%,#79c95a 45% 52%,#9b643b 52% 100%);color:#fff}
 #authScreen.hidden{display:none}
 #authScreen:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#ffffff0b 1px,transparent 1px),linear-gradient(#ffffff0b 1px,transparent 1px);background-size:40px 40px;opacity:.8;pointer-events:none}
-#authCard{position:relative;width:min(92vw,430px);max-height:calc(100dvh - 24px);overflow-y:auto!important;overflow-x:hidden;margin:auto 0;background:#101b27f2;border:3px solid #ffffff32;border-radius:18px;box-shadow:0 14px 35px #0008;padding:18px;touch-action:pan-y!important;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scrollbar-width:thin}
+#authCard{position:relative;width:min(92vw,430px);height:min(94dvh,620px);max-height:94dvh;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:#101b27f2;border:3px solid #ffffff32;border-radius:18px;box-shadow:0 14px 35px #0008;padding:16px;touch-action:manipulation}
 #pixoraLogo{font-size:34px;font-weight:1000;letter-spacing:3px;text-align:center;text-shadow:0 4px 0 #184765,0 0 18px #fff6;margin:4px 0 2px}
 #authSub{text-align:center;font-size:11px;opacity:.78;margin-bottom:16px;letter-spacing:1.5px}
 .authTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
 .authTab,.authMainBtn,.authAltBtn{border:0;border-radius:10px;font-weight:900;color:#fff;background:#28445e;padding:11px 8px;box-shadow:inset 0 -3px 0 #0004}
 .authTab.active{background:#3e8bc2}
-.authPane{display:none}.authPane.active{display:block;max-height:52dvh;overflow-y:auto!important;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y!important;overscroll-behavior:contain;padding-right:2px}
+.authPane{display:none;min-height:0}.authPane.active{display:block;overflow-y:auto!important;overflow-x:hidden;min-height:0;flex:1;-webkit-overflow-scrolling:touch;touch-action:pan-y!important;overscroll-behavior:contain;padding:4px 5px 18px 1px}
 .authField{display:block;width:100%;margin:8px 0;padding:12px;border:2px solid #ffffff24;border-radius:10px;background:#09131d;color:#fff;font-size:16px;outline:none;touch-action:manipulation;user-select:text;-webkit-user-select:text}
 .authField:focus{border-color:#7acbff}
 .authMainBtn{width:100%;margin-top:8px;background:#38a85b;font-size:15px}
@@ -293,6 +293,24 @@ button.hudResource:active{transform:scale(.96)}
 .authSpinner{display:inline-block;width:12px;height:12px;border:2px solid #ffffff55;border-top-color:#fff;border-radius:50%;animation:pixspin .7s linear infinite;vertical-align:-2px;margin-right:6px}@keyframes pixspin{to{transform:rotate(360deg)}}
 #accountChip{position:fixed;left:12px;bottom:84px;z-index:34;display:none;background:#101b27e8;color:#fff;border-radius:12px;padding:7px 9px;font-size:10px;box-shadow:0 3px 10px #0005}#accountChip.show{display:block}#accountChip button{margin-left:7px;border:0;border-radius:7px;background:#a73f3f;color:#fff;font-size:9px;padding:5px 7px}
 
+
+/* Build 14.5: mobile auth scroll + multiplayer chat */
+@media (max-height:520px){
+  #authCard{height:96dvh;max-height:96dvh;padding:10px}
+  #pixoraLogo{font-size:24px!important;margin-bottom:1px!important}
+  #authSub{margin-bottom:6px!important}
+  .authTabs{margin-bottom:6px!important}
+}
+#chatToggleBtn{position:fixed;left:54px;top:10px;z-index:46;height:34px;border:0;border-radius:10px;background:#17212cf2;color:#fff;padding:0 11px;font-size:10px;font-weight:900;box-shadow:0 3px 12px #0004;touch-action:manipulation}
+#chatPanel{position:fixed;left:10px;top:52px;z-index:108;width:min(62vw,390px);max-height:min(52dvh,300px);display:none;flex-direction:column;background:#101a24e8;border:1px solid #ffffff25;border-radius:12px;padding:8px;box-shadow:0 8px 20px #0007;backdrop-filter:blur(3px)}
+#chatPanel.open{display:flex}
+#chatMessages{min-height:58px;max-height:180px;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding:2px 3px 6px;font-size:10px;line-height:1.45}
+.chatMsg{margin:2px 0;word-break:break-word}.chatMsg b{color:#8feaff}.chatMsg.me b{color:#ffe48a}
+#chatForm{display:flex;gap:5px}
+#chatInput{min-width:0;flex:1;height:34px;border:1px solid #ffffff25;border-radius:8px;background:#0d151e;color:#fff;padding:0 8px;font-size:11px;-webkit-user-select:text;user-select:text}
+#chatSend{width:56px;border:0;border-radius:8px;background:#2d89e5;color:#fff;font-size:10px;font-weight:900}
+@media (max-width:780px) and (orientation:landscape){#chatToggleBtn{left:51px;top:8px;height:30px}#chatPanel{left:8px;top:44px;width:min(66vw,360px);max-height:58dvh}}
+
 </style>
 </head>
 <body>
@@ -300,7 +318,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.4</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.5</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -318,7 +336,7 @@ button.hudResource:active{transform:scale(.96)}
       <button class="authMainBtn" id="loginBtn">LOGIN</button>
     </div>
     <div class="authPane" data-auth-pane="register">
-      <input class="authField" id="registerId" maxlength="24" placeholder="ID / nama player" autocomplete="username">
+      <input class="authField" id="registerId" maxlength="24" placeholder="ID / nama player (huruf + angka)" autocomplete="username">
       <input class="authField" id="registerPw" maxlength="72" type="password" placeholder="Password (min. 6 karakter)" autocomplete="new-password">
       <button class="authMainBtn" id="registerBtn">CREATE ACCOUNT</button>
       <div class="authHint">ID ini juga menjadi nama kamu di Pixora dan harus unik secara global.</div>
@@ -336,6 +354,16 @@ button.hudResource:active{transform:scale(.96)}
 </div>
 <div id="hint"><span id="modeName">PUNCH</span><span id="seedCount">0</span></div>
 <div id="toast"></div>
+
+<button id="chatToggleBtn" aria-label="World chat">CHAT</button>
+<div id="chatPanel">
+  <div id="chatMessages"><div class="chatMsg">World chat siap.</div></div>
+  <form id="chatForm">
+    <input id="chatInput" maxlength="100" placeholder="Ketik pesan world…" autocomplete="off">
+    <button id="chatSend" type="submit">SEND</button>
+  </form>
+</div>
+
 <div id="weatherBadge">SUNNY</div>
 
 <div id="gamePanel">
@@ -445,15 +473,15 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.2</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.5</b></div>
     <ul>
-      <li><b>World Sync</b> — player di world yang sama sekarang memakai terrain + Start Door yang sama.</li>
-      <li>Break dan place block tersinkron antar perangkat.</li>
-      <li>Guest + Account Login foundation.</li>
-      <li>Fresh progression: Backpack awal <b>24 slot</b>.</li>
-      <li>Backpack Upgrade <b>+10</b>; harga naik 25% tiap beli.</li>
-      <li>Luminite Pack: <b>20 = 250 Gems</b>.</li>
-      <li>PC: tekan <b>Q</b> untuk Punch / Wrench.</li>
+      <li><b>Multiplayer lebih halus</b> — movement interpolation + punch animation diperbaiki.</li>
+      <li><b>World Chat</b> untuk player di world yang sama.</li>
+      <li>World/reconnect persistence diperkuat dan drop hasil harvest ikut sync.</li>
+      <li>Akun: nama game = ID, ID hanya huruf + angka, satu akun hanya satu sesi aktif.</li>
+      <li>Login/Register mobile scroll diperbaiki.</li>
+      <li>Sound diarahkan ke gaya pixel sandbox yang lebih jelas.</li>
+      <li>Nama item/block/clothes diperbarui agar lebih punya identitas Pixora.</li>
     </ul>
     <button id="changelogPlay">PLAY</button>
   </div>
@@ -485,9 +513,9 @@ const equipped={hair:null,shirt:null,pants:null,shoes:null,tool:null};
 const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes'};
 const seedForBlock={grass:'grassSeed',dirt:'dirtSeed',stone:'stoneSeed',wood:'woodSeed',leaf:'leafSeed',sand:'sandSeed',glass:'glassSeed',brick:'brickSeed',ice:'iceSeed',metal:'metalSeed',caveStone:'caveStoneSeed',moss:'mossSeed',farmBlock:'farmSeed'};
 const itemName={
-  grass:'GRASS',dirt:'DIRT',stone:'STONE',wood:'WOOD',leaf:'LEAF',sand:'SAND',glass:'GLASS',brick:'BRICK',ice:'ICE',metal:'METAL',caveStone:'PURE STONE',moss:'MOSS',lava:'LAVA',farmBlock:'LUMINITE BLOCK',bedrock:'BEDROCK',
-  grassSeed:'GRASS SEED',dirtSeed:'DIRT SEED',stoneSeed:'STONE SEED',woodSeed:'TREE SEED',leafSeed:'LEAF SEED',sandSeed:'SAND SEED',glassSeed:'GLASS SEED',brickSeed:'BRICK SEED',iceSeed:'ICE SEED',metalSeed:'METAL SEED',caveStoneSeed:'PURE STONE SEED',mossSeed:'MOSS SEED',farmSeed:'LUMINITE SEED',
-  redShirt:'RED SHIRT',bluePants:'BLUE PANTS',blackHair:'BLACK HAIR',whiteShoes:'WHITE SHOES',smallLock:'SMALL LOCK',bigLock:'BIG LOCK',hugeLock:'HUGE LOCK',worldLock:'WORLD LOCK',pickaxe:'PICKAXE',sunnyOrb:'SUNNY ORB',rainOrb:'RAIN ORB',cloudyOrb:'CLOUDY ORB',fogOrb:'FOG ORB',stormOrb:'STORM ORB'
+  grass:'VERDANT TURF',dirt:'EARTHEN SOIL',stone:'GRAYSTONE',wood:'TIMBERWOOD',leaf:'CANOPY LEAF',sand:'SUNVEIL SAND',glass:'SKYGLASS',brick:'EMBERBRICK',ice:'FROSTGLASS',metal:'IRONWEAVE BLOCK',caveStone:'DEEPSTONE',moss:'VERDANT MOSS',lava:'MOLTENROCK',farmBlock:'LUMINITE BLOCK',bedrock:'BEDROCK',
+  grassSeed:'VERDANT TURF SEED',dirtSeed:'EARTHEN SOIL SEED',stoneSeed:'GRAYSTONE SEED',woodSeed:'TIMBERWOOD SEED',leafSeed:'CANOPY SEED',sandSeed:'SUNVEIL SEED',glassSeed:'SKYGLASS SEED',brickSeed:'EMBERBRICK SEED',iceSeed:'FROSTGLASS SEED',metalSeed:'IRONWEAVE SEED',caveStoneSeed:'DEEPSTONE SEED',mossSeed:'VERDANT MOSS SEED',farmSeed:'LUMINITE SEED',
+  redShirt:'CRIMSON TRAIL TEE',bluePants:'AZURE TREK PANTS',blackHair:'NIGHTFALL HAIR',whiteShoes:'CLOUDSTEP SNEAKERS',smallLock:'BRASS GUARD LOCK',bigLock:'AZURE GUARD LOCK',hugeLock:'VIOLET FORTRESS LOCK',worldLock:'CRIMSON WORLD LOCK',pickaxe:'IRONSPARK PICKAXE',sunnyOrb:'DAWN ORB',rainOrb:'RAINFALL ORB',cloudyOrb:'SKYVEIL ORB',fogOrb:'MIST ORB',stormOrb:'TEMPEST ORB'
 };
 const blockItems=['dirt','stone','wood','leaf','sand','glass','brick','ice','metal','caveStone','moss','lava','farmBlock'];
 const seedItems=['dirtSeed','stoneSeed','woodSeed','leafSeed','sandSeed','glassSeed','brickSeed','iceSeed','metalSeed','caveStoneSeed','mossSeed','farmSeed'];
@@ -595,30 +623,34 @@ function tone(freq=220,duration=.06,type='square',volume=.035,slide=0){
   g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(volume,now+.006);g.gain.exponentialRampToValueAtTime(.0001,now+duration);
   o.connect(g);g.connect(ac.destination);o.start(now);o.stop(now+duration+.02);
 }
+function noiseBurst(duration=.04,volume=.035,cutoff=1200){
+  const ac=ensureAudio();if(!ac)return;const now=ac.currentTime,len=Math.max(1,Math.floor(ac.sampleRate*duration)),buf=ac.createBuffer(1,len,ac.sampleRate),data=buf.getChannelData(0);
+  for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/len,1.8);
+  const src=ac.createBufferSource(),g=ac.createGain(),filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=cutoff;g.gain.setValueAtTime(volume,now);g.gain.exponentialRampToValueAtTime(.0001,now+duration);src.buffer=buf;src.connect(filter);filter.connect(g);g.connect(ac.destination);src.start(now);src.stop(now+duration+.01)
+}
 function noiseThud(){
-  const ac=ensureAudio();if(!ac)return;const now=ac.currentTime;
-  const osc=ac.createOscillator(),g=ac.createGain();osc.type='sine';osc.frequency.setValueAtTime(92,now);osc.frequency.exponentialRampToValueAtTime(48,now+.075);g.gain.setValueAtTime(.05,now);g.gain.exponentialRampToValueAtTime(.0001,now+.09);osc.connect(g);g.connect(ac.destination);osc.start(now);osc.stop(now+.1);
-  const len=Math.max(1,Math.floor(ac.sampleRate*.045)),buf=ac.createBuffer(1,len,ac.sampleRate),data=buf.getChannelData(0);for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*(1-i/len);
-  const src=ac.createBufferSource(),ng=ac.createGain(),filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=700;ng.gain.value=.028;src.buffer=buf;src.connect(filter);filter.connect(ng);ng.connect(ac.destination);src.start(now);src.stop(now+.05);
+  const ac=ensureAudio();if(!ac)return;const now=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.setValueAtTime(145,now);o.frequency.exponentialRampToValueAtTime(72,now+.065);g.gain.setValueAtTime(.065,now);g.gain.exponentialRampToValueAtTime(.0001,now+.075);o.connect(g);g.connect(ac.destination);o.start(now);o.stop(now+.085);noiseBurst(.035,.035,850)
 }
 function sfx(name){
   if(!soundEnabled)return;
-  if(name==='punch'){noiseThud();}
-  else if(name==='break'){tone(105,.07,'square',.035,-45);setTimeout(()=>tone(75,.05,'square',.02,-20),25);}
-  else if(name==='place'){tone(180,.045,'square',.025,-25);}
-  else if(name==='pickup'){tone(520,.055,'sine',.025,180);}
-  else if(name==='gem'){tone(700,.06,'sine',.03,260);setTimeout(()=>tone(980,.05,'sine',.018,120),35);}
-  else if(name==='plant'){tone(330,.055,'triangle',.025,90);}
-  else if(name==='harvest'){tone(420,.06,'triangle',.025,160);}
-  else if(name==='splice'){tone(310,.07,'sine',.025,250);setTimeout(()=>tone(620,.08,'sine',.02,220),55);}
-  else if(name==='buy'){tone(520,.06,'square',.025,120);setTimeout(()=>tone(760,.07,'square',.02,160),45);}
-  else if(name==='lock'){tone(150,.07,'square',.03,-20);setTimeout(()=>tone(220,.045,'square',.02,0),45);}
-  else if(name==='death'){tone(145,.12,'triangle',.035,-85);setTimeout(()=>tone(72,.12,'sine',.02,-20),65);}
-  else if(name==='respawn'){tone(250,.08,'sine',.025,260);setTimeout(()=>tone(620,.07,'sine',.018,180),55);}
-  else if(name==='damage'){tone(115,.07,'square',.032,-35);}
-  else if(name==='pickaxe'){tone(155,.045,'square',.03,30);setTimeout(()=>tone(95,.04,'triangle',.018,-15),24);}
-  else if(name==='levelup'){tone(420,.07,'sine',.028,180);setTimeout(()=>tone(660,.08,'sine',.026,180),70);setTimeout(()=>tone(900,.10,'sine',.022,130),145);}
-  else if(name==='ui'){tone(300,.035,'square',.015,40);}
+  ensureAudio();
+  if(name==='punch'){noiseThud();tone(235,.025,'square',.018,-55)}
+  else if(name==='break'){noiseBurst(.055,.052,1050);tone(125,.055,'square',.043,-60);setTimeout(()=>tone(78,.04,'square',.026,-18),22)}
+  else if(name==='place'){tone(205,.038,'square',.038,-45);setTimeout(()=>tone(130,.026,'square',.018,-20),18)}
+  else if(name==='pickup'){tone(590,.045,'square',.028,190);setTimeout(()=>tone(820,.036,'square',.018,80),28)}
+  else if(name==='gem'){tone(760,.05,'square',.034,260);setTimeout(()=>tone(1080,.055,'triangle',.025,130),34)}
+  else if(name==='plant'){tone(290,.038,'square',.026,70);setTimeout(()=>tone(410,.03,'triangle',.018,45),24)}
+  else if(name==='harvest'){noiseBurst(.035,.025,1500);tone(430,.045,'square',.03,160);setTimeout(()=>tone(690,.04,'triangle',.018,100),30)}
+  else if(name==='splice'){tone(320,.055,'square',.026,250);setTimeout(()=>tone(690,.065,'triangle',.024,230),46)}
+  else if(name==='buy'){tone(540,.045,'square',.027,130);setTimeout(()=>tone(790,.05,'square',.022,150),36)}
+  else if(name==='lock'){tone(165,.055,'square',.036,-22);noiseBurst(.025,.018,900);setTimeout(()=>tone(235,.035,'square',.021,0),38)}
+  else if(name==='death'){tone(155,.1,'square',.038,-90);setTimeout(()=>tone(72,.11,'triangle',.023,-20),58)}
+  else if(name==='respawn'){tone(260,.06,'square',.026,280);setTimeout(()=>tone(650,.055,'triangle',.023,190),45)}
+  else if(name==='damage'){tone(125,.055,'square',.037,-38);noiseBurst(.025,.018,750)}
+  else if(name==='pickaxe'){tone(190,.035,'square',.038,45);noiseBurst(.025,.025,1900);setTimeout(()=>tone(112,.035,'triangle',.021,-18),20)}
+  else if(name==='levelup'){tone(430,.06,'square',.03,190);setTimeout(()=>tone(680,.07,'square',.028,190),60);setTimeout(()=>tone(940,.085,'triangle',.024,140),125)}
+  else if(name==='chat'){tone(510,.03,'square',.014,60)}
+  else if(name==='ui'){tone(350,.028,'square',.019,55)}
 }
 function refreshSoundButton(){const b=document.getElementById('soundToggleBtn');if(!b)return;b.textContent=soundEnabled?'SOUND ON':'SOUND OFF';b.classList.toggle('off',!soundEnabled)}
 function toggleSound(){soundEnabled=!soundEnabled;localStorage.setItem('pixora_sound_v1',soundEnabled?'on':'off');refreshSoundButton();if(soundEnabled)sfx('ui')}
@@ -1019,7 +1051,7 @@ async function enterWorld(name){
     const token=multiplayerToken();if(!pixoraSession||!token)throw new Error('NO_SESSION');
     const d=await authRequest('/api/world/join',{world:name,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),worldSnapshot:multiplayerWorldSnapshot()},token);
     multiplayerJoinedWorld=name;multiplayerWorldRevision=Math.max(0,Number(d.revision||0));
-    if(d.worldSnapshot)applyMultiplayerWorldSnapshot(d.worldSnapshot,true);applyRemotePlayers(d.players);
+    if(d.worldSnapshot)applyMultiplayerWorldSnapshot(d.worldSnapshot,true);applyRemotePlayers(d.players);applyWorldChat(d.chat);
     gameReady=true;ui.worldMenu.classList.add('hidden');setGamePanel(false);saveWorld(true);
     toast('World '+name+' siap • online synced','success');
   }catch(e){currentWorldName='';localStorage.removeItem(ACTIVE_WORLD_KEY);toast('Gagal sync world ke server','error');console.warn('world prejoin',e)}
@@ -1034,7 +1066,7 @@ function exitWorld(){
   if(!gameReady)return;
   saveWorld(true);savePlayer(true);
   const leavingWorld=currentWorldName;multiplayerLeave(leavingWorld);
-  gameReady=false;
+  gameReady=false;document.getElementById('chatPanel')?.classList.remove('open');worldChatMessages=[];
   input.left=false;input.right=false;input.jump=false;punchHeld=false;stopPlace();cancelBreak();
   setDrawer(false);cameraLift=0;cameraLiftTarget=0;
   localStorage.removeItem(ACTIVE_WORLD_KEY);
@@ -1134,7 +1166,7 @@ function updatePlayer(){
   if(player.placeAnim&&performance.now()>=player.placeAnim.until)player.placeAnim=null;
 }
 function finishPickup(d){
-  if(!d||d.pick)return;d.pick=true;
+  if(!d||d.pick)return;d.pick=true;if(d.id)multiplayerWorldAction({type:'drop-remove',dropId:d.id});
   if(d.kind==='gems'){gems+=Math.max(1,Number(d.amount||1));addXp(1);sfx('gem');updateInventory();savePlayer(true);return}
   const amount=Math.max(1,Number(d.amount||1));inventory[d.item]=(inventory[d.item]||0)+amount;addQuickShortcut(d.item);sfx('pickup');updateInventory();savePlayer(true);
   if(wearableItems.includes(d.item))toast('Dapat '+itemName[d.item]+'! Double tap di backpack untuk pakai','success');
@@ -1406,18 +1438,24 @@ function drawRemotePlayers(){
   const now=performance.now();
   for(const r of remotePlayers.values()){
     if(now-r.lastSeen>5000)continue;
-    const x=Math.round(r.x),y=Math.round(r.y),skin='#efbd87',outline='#765039';
-    ctx.save();
-    ctx.globalAlpha=.96;
+    const x=r.x,y=r.y,skin='#efbd87',outline='#765039',walking=Math.abs((r.targetX||0)-r.x)>.6;
+    const legSwing=walking?Math.sin(r.walkPhase||0)*2.2:0,bob=walking?Math.abs(Math.sin(r.walkPhase||0))*1.1:0;
+    ctx.save();ctx.globalAlpha=.96;
     ctx.fillStyle='#0003';ctx.beginPath();ctx.ellipse(x+player.w/2,y+player.h+2,14,4,0,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle=outline;ctx.fillRect(x+5,y,20,17);ctx.fillStyle=skin;ctx.fillRect(x+7,y+2,16,13);
-    const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6,5,6);ctx.fillRect(x+17,y+6,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8,2,3);ctx.fillRect(x+18+ps,y+8,2,3);
-    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13,4,1);ctx.fillStyle=skin;ctx.fillRect(x+6,y+17,18,10);
-    ctx.fillStyle='#343b45';ctx.fillRect(x+7,y+27,7,8);ctx.fillRect(x+16,y+27,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35,9,5);ctx.fillRect(x+16,y+35,9,5);
-    const sx=x+(r.facing>0?23:7),sy=y+20;let ex=sx+r.facing*3,ey=sy+9;const ra=r.actionState;
-    if(ra&&ra.active&&Number.isFinite(Number(ra.tx))&&Number.isFinite(Number(ra.ty))){const tx=Number(ra.tx)*T+T/2,ty=Number(ra.ty)*T+T/2,dx=tx-sx,dy=ty-sy,len=Math.hypot(dx,dy)||1,reach=Math.min(T*1.7,Math.max(10,len));ex=sx+dx/len*reach;ey=sy+dy/len*reach;r.facing=dx<0?-1:1}
-    ctx.strokeStyle=skin;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.stroke();ctx.fillStyle='#d79d68';ctx.fillRect(Math.round(ex-3),Math.round(ey-3),6,6);
-    ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#8ff4ff';ctx.strokeText(r.displayName,x+player.w/2,y-6);ctx.fillText(r.displayName,x+player.w/2,y-6);
+    ctx.fillStyle=outline;ctx.fillRect(x+5,y+bob,20,17);ctx.fillStyle=skin;ctx.fillRect(x+7,y+2+bob,16,13);
+    const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6+bob,5,6);ctx.fillRect(x+17,y+6+bob,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8+bob,2,3);ctx.fillRect(x+18+ps,y+8+bob,2,3);
+    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);ctx.fillStyle=skin;ctx.fillRect(x+6,y+17+bob,18,10);
+    ctx.fillStyle='#343b45';ctx.fillRect(x+7,y+27+legSwing,7,8);ctx.fillRect(x+16,y+27-legSwing,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35+legSwing,9,5);ctx.fillRect(x+16,y+35-legSwing,9,5);
+    const sx=x+(r.facing>0?23:7),sy=y+21+bob;let ex=sx+r.facing*(4+(walking?Math.sin(r.walkPhase||0)*2:0)),ey=sy+8;const ra=r.actionState;
+    if(ra&&ra.active&&Number.isFinite(Number(ra.tx))&&Number.isFinite(Number(ra.ty))){
+      const tx=Number(ra.tx)*T+T/2,ty=Number(ra.ty)*T+T/2,dx=tx-sx,dy=ty-sy,len=Math.hypot(dx,dy)||1;
+      r.facing=dx<0?-1:1;
+      const hitPhase=ra.kind==='air'?Math.sin(Math.max(0,Math.min(1,Number(ra.progress||0)))*Math.PI):(.18+.82*Math.abs(Math.sin(now/82)));
+      const reach=Math.min(T*1.75,Math.max(10,len))*hitPhase;
+      ex=sx+dx/len*reach;ey=sy+dy/len*reach;
+    }
+    ctx.strokeStyle=skin;ctx.lineWidth=5;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(ex,ey);ctx.stroke();ctx.fillStyle='#d79d68';ctx.fillRect(ex-3,ey-3,6,6);
+    ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#8ff4ff';ctx.strokeText(r.displayName,x+player.w/2,y-6+bob);ctx.fillText(r.displayName,x+player.w/2,y-6+bob);
     ctx.restore();
   }
 }
@@ -1529,17 +1567,14 @@ function tryPlant(tx,ty){
 }
 function harvestPlant(p){
   if(!plantMature(p)){const sec=Math.max(1,Math.ceil((p.growMs-(Date.now()-p.plantedAt))/1000));toast('Belum tumbuh • '+sec+' dtk');return}
-  plants.splice(plants.indexOf(p),1);multiplayerWorldAction({type:'plant-remove',tx:p.tx,ty:p.ty});
-  const block=plantBlockForSeed[p.seed]||'grass';
-  const range=plantYield[p.seed]||[1,3];
-  const amount=range[0]+Math.floor(Math.random()*(range[1]-range[0]+1));
-  for(let i=0;i<amount;i++)spawnDrop(p.tx*T+T/2+(Math.random()-.5)*18,p.ty*T+T/2,block);
-  if(Math.random()<.46)spawnDrop(p.tx*T+T/2,p.ty*T+T/2,p.seed);
-  if(Math.random()<.10)spawnDrop(p.tx*T+T/2+(Math.random()-.5)*14,p.ty*T+T/2,p.seed);
-  // Build 13.2.4: semua jenis seed/tree mempunyai Gem drop chance berdasarkan rarity.
-  if(Math.random()<seedGemChance(p.seed))spawnGemDrop(p.tx*T+T/2+(Math.random()-.5)*12,p.ty*T+T/2,seedGemAmount(p.seed));
-  sfx('harvest');addXp(3+Math.min(3,amount));toast('Panen '+amount+' '+itemName[block]);
-  saveWorld(true);
+  plants.splice(plants.indexOf(p),1);
+  const block=plantBlockForSeed[p.seed]||'grass',range=plantYield[p.seed]||[1,3],amount=range[0]+Math.floor(Math.random()*(range[1]-range[0]+1)),made=[];
+  for(let i=0;i<amount;i++)made.push(spawnDrop(p.tx*T+T/2+(Math.random()-.5)*18,p.ty*T+T/2,block,1,250));
+  if(Math.random()<.46)made.push(spawnDrop(p.tx*T+T/2,p.ty*T+T/2,p.seed,1,250));
+  if(Math.random()<.10)made.push(spawnDrop(p.tx*T+T/2+(Math.random()-.5)*14,p.ty*T+T/2,p.seed,1,250));
+  if(Math.random()<seedGemChance(p.seed))made.push(spawnGemDrop(p.tx*T+T/2+(Math.random()-.5)*12,p.ty*T+T/2,seedGemAmount(p.seed)));
+  multiplayerWorldAction({type:'harvest',tx:p.tx,ty:p.ty,drops:made.map(d=>({id:d.id,x:d.x,y:d.y,item:d.item||null,kind:d.kind||'item',amount:Number(d.amount||1),pickupAfter:Number(d.pickupAfter||0)}))});
+  sfx('harvest');addXp(3+Math.min(3,amount));toast('Panen '+amount+' '+itemName[block]);saveWorld(true);
 }
 
 function gemVisual(amount){amount=Math.max(1,Number(amount||1));if(amount>=100)return '#3b78ff';if(amount>=50)return '#43c866';if(amount>=10)return '#e64a43';if(amount>=5)return '#ee75c8';return '#f59a31'}
@@ -1920,8 +1955,11 @@ function inInteraction5x5(tx,ty){
 
 function nearestPunchTarget(){
   const g=playerGrid();
-  for(let dist=1;dist<=2;dist++){
-    const tx=g.tx+(player.facing*dist),ty=g.ty;
+  const checks=[];
+  for(let dist=1;dist<=2;dist++)checks.push([g.tx+(player.facing*dist),g.ty]);
+  // Build 14.5: kalau depan kosong, cari ceiling/atas dan bawah dalam interaction range.
+  checks.push([g.tx,g.ty-1],[g.tx+player.facing,g.ty-1],[g.tx,g.ty-2],[g.tx,g.ty+1]);
+  for(const [tx,ty] of checks){
     if(!inInteraction5x5(tx,ty))continue;
     const o=weatherOrbAt(tx,ty);if(o)return {kind:'weatherOrb',target:o};
     const l=lockAt(tx,ty);if(l)return {kind:'lock',target:l};
@@ -2066,13 +2104,13 @@ function spawnDrop(x,y,item,amount=1,pickupDelayMs=0){
   amount=Math.max(1,Number(amount||1));
   const near=drops.find(d=>d.kind==='item'&&d.item===item&&!d.collecting&&Math.hypot(d.x-x,d.y-y)<34);
   if(near){near.amount=(near.amount||1)+amount;near.x=(near.x+x)/2;near.y=(near.y+y)/2;near.pickupAfter=Math.max(near.pickupAfter||0,Date.now()+Math.max(0,pickupDelayMs));return near}
-  const d={x:x+(Math.random()-.5)*16,y:y+(Math.random()-.5)*12,item,kind:'item',amount,bobSeed:Math.random()*Math.PI*2,pickupAfter:Date.now()+Math.max(0,pickupDelayMs)};drops.push(d);return d
+  const d={id:'D-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9),x:x+(Math.random()-.5)*16,y:y+(Math.random()-.5)*12,item,kind:'item',amount,bobSeed:Math.random()*Math.PI*2,pickupAfter:Date.now()+Math.max(0,pickupDelayMs)};drops.push(d);return d
 }
 function spawnGemDrop(x,y,amount){
   amount=Math.max(1,Number(amount||1));
   const near=drops.find(d=>d.kind==='gems'&&Math.hypot(d.x-x,d.y-y)<30);
   if(near){near.amount=(near.amount||1)+amount;near.x=(near.x+x)/2;near.y=(near.y+y)/2;return near}
-  const d={x:x+(Math.random()-.5)*10,y:y+(Math.random()-.5)*8,kind:'gems',amount,bobSeed:Math.random()*Math.PI*2};drops.push(d);return d;
+  const d={id:'G-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9),x:x+(Math.random()-.5)*10,y:y+(Math.random()-.5)*8,kind:'gems',amount,bobSeed:Math.random()*Math.PI*2};drops.push(d);return d;
 }
 function spawnDebris(b){
   const base=debrisColor[b.t]||'#999';
@@ -2363,7 +2401,7 @@ function applyCloudPlayerSave(d){
   quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
   migrateGrassToDirtPlayer();updateLevelUI();return true;
 }
-// ===== PIXORA BUILD 14.2: multiplayer world + movement sync =====
+// ===== PIXORA BUILD 14.5: multiplayer smoothing + persistent world/chat =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
@@ -2377,7 +2415,7 @@ function multiplayerWorldSnapshot(){
     locks:Array.isArray(locks)?locks.map(l=>({...l,trusted:Array.isArray(l.trusted)?[...l.trusted]:[]})):[],
     weatherOrbs:Array.isArray(weatherOrbs)?weatherOrbs.map(o=>({...o})):[],
     weather:(weather&&WEATHER_TYPES.includes(weather.type))?{type:weather.type}:{type:'sunny'},
-    coins:Array.isArray(coins)?coins.map(c=>({...c})):[],coinsCollected:Number(coinsCollected||0)
+    coins:Array.isArray(coins)?coins.map(c=>({...c})):[],coinsCollected:Number(coinsCollected||0),drops:Array.isArray(drops)?drops.filter(d=>!d.pick).map(d=>({id:d.id||'',x:d.x,y:d.y,item:d.item||null,kind:d.kind||'item',amount:Number(d.amount||1),pickupAfter:Number(d.pickupAfter||0)})):[]
   };
 }
 function applyMultiplayerWorldSnapshot(snap,teleport=false){
@@ -2393,6 +2431,7 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   weatherOrbs=Array.isArray(snap.weatherOrbs)?snap.weatherOrbs.map(o=>({...o})):[];
   weather=(snap.weather&&WEATHER_TYPES.includes(snap.weather.type))?{type:snap.weather.type}:{type:'sunny'};
   coins=Array.isArray(snap.coins)?snap.coins.map(c=>({...c})):[];coinsCollected=Math.max(0,Number(snap.coinsCollected||0));ui.coin.textContent=coinsCollected;
+  drops=Array.isArray(snap.drops)?snap.drops.map(d=>({...d,bobSeed:Math.random()*Math.PI*2,collecting:false,pick:false})):[];
   if(snap.door&&Number.isFinite(Number(snap.door.x))){const dt=Math.floor(Number(snap.door.x)/T);door={x:dt*T+2,y:Math.floor(GROUND_Y/T)*T-40,w:36,h:40};}else door=null;
   ensureDoorSafe();if(door){player.spawnX=door.x+3;player.spawnY=door.y+door.h-player.h;if(teleport){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;}}
   if(keepBreak){if(keepBreak.kind==='bg'){if(hasCaveBackground(keepBreak.tx,keepBreak.ty))breakState=keepBreak;else breakState=null}else{const nb=blockAt(keepBreak.tx,keepBreak.ty);if(nb){keepBreak.block=nb;delete keepBreak.tx;delete keepBreak.ty;breakState=keepBreak}else breakState=null}}
@@ -2401,11 +2440,11 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
 function applyRemotePlayers(list){
   const now=performance.now(),seen=new Set();
   for(const r of Array.isArray(list)?list:[]){
-    if(!r||!r.playerId)continue;seen.add(r.playerId);const a=(r.actionState&&typeof r.actionState==='object')?r.actionState:null;const old=remotePlayers.get(r.playerId);
-    if(old){old.targetX=Number(r.x)||0;old.targetY=Number(r.y)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.actionState=a;old.lastSeen=now}
-    else remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:Number(r.x)||0,y:Number(r.y)||0,targetX:Number(r.x)||0,targetY:Number(r.y)||0,facing:Number(r.facing)<0?-1:1,actionState:a,lastSeen:now});
+    if(!r||!r.playerId)continue;seen.add(r.playerId);const a=(r.actionState&&typeof r.actionState==='object')?r.actionState:null;const old=remotePlayers.get(r.playerId),nx=Number(r.x)||0,ny=Number(r.y)||0;
+    if(old){old.targetX=nx;old.targetY=ny;old.serverVx=Number(r.vx)||0;old.serverVy=Number(r.vy)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.actionState=a;old.lastSeen=now}
+    else remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:nx,y:ny,targetX:nx,targetY:ny,serverVx:Number(r.vx)||0,serverVy:Number(r.vy)||0,facing:Number(r.facing)<0?-1:1,actionState:a,lastSeen:now,walkPhase:0});
   }
-  for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>2500)remotePlayers.delete(id)}
+  for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>3200)remotePlayers.delete(id)}
 }
 function currentMultiplayerActionState(){
   if(breakState){
@@ -2421,7 +2460,7 @@ async function multiplayerJoin(){
     const d=await authRequest('/api/world/join',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),worldSnapshot:multiplayerWorldSnapshot()},token);
     multiplayerJoinedWorld=currentWorldName;multiplayerWorldRevision=Math.max(0,Number(d.revision||0));
     if(d.worldSnapshot)applyMultiplayerWorldSnapshot(d.worldSnapshot,true);
-    applyRemotePlayers(d.players);toast('Online world synced','success');
+    applyRemotePlayers(d.players);applyWorldChat(d.chat);toast('Online world synced','success');
   }catch(e){console.warn('multiplayer join',e);toast('World sync gagal','error')}
 }
 async function multiplayerLeave(world=currentWorldName){
@@ -2434,16 +2473,39 @@ async function multiplayerWorldAction(action){
   try{const d=await authRequest('/api/world/action',{world:currentWorldName,action,actionId},token);multiplayerWorldRevision=Math.max(multiplayerWorldRevision,Number(d.revision||0));return !!d.ok}
   catch(e){console.warn('world action sync',e);return false}finally{multiplayerActionInFlight=Math.max(0,multiplayerActionInFlight-1)}
 }
+let multiplayerSmoothTs=0;
 function multiplayerTick(ts){
   if(!gameReady||!currentWorldName||!pixoraSession)return;
-  for(const [,p] of remotePlayers){p.x+=(p.targetX-p.x)*.35;p.y+=(p.targetY-p.y)*.35}
-  if(multiplayerInFlight||ts-multiplayerLastSync<100)return;multiplayerLastSync=ts;multiplayerInFlight=true;
+  const dt=Math.max(1,Math.min(50,multiplayerSmoothTs?ts-multiplayerSmoothTs:16));multiplayerSmoothTs=ts;
+  const alpha=1-Math.exp(-dt/85);
+  for(const [,p] of remotePlayers){
+    const dx=p.targetX-p.x,dy=p.targetY-p.y,dist=Math.hypot(dx,dy);
+    if(dist>180){p.x=p.targetX;p.y=p.targetY}else{p.x+=dx*alpha;p.y+=dy*alpha}
+    if(Math.abs(dx)>0.4)p.walkPhase=(p.walkPhase||0)+dt*.012;
+  }
+  if(multiplayerInFlight||ts-multiplayerLastSync<75)return;multiplayerLastSync=ts;multiplayerInFlight=true;
   const token=multiplayerToken();
   authRequest('/api/world/state',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,actionState:currentMultiplayerActionState(),knownRevision:multiplayerWorldRevision},token).then(d=>{
-    applyRemotePlayers(d.players);const rev=Math.max(0,Number(d.revision||0));
+    applyRemotePlayers(d.players);applyWorldChat(d.chat);const rev=Math.max(0,Number(d.revision||0));
     if(d.worldSnapshot&&rev>multiplayerWorldRevision){if(multiplayerActionInFlight===0){applyMultiplayerWorldSnapshot(d.worldSnapshot,false);multiplayerWorldRevision=rev}}
     else multiplayerWorldRevision=Math.max(multiplayerWorldRevision,rev);
   }).catch(()=>{}).finally(()=>{multiplayerInFlight=false});
+}
+
+
+let worldChatMessages=[];
+function applyWorldChat(list){
+  if(!Array.isArray(list))return;const oldLast=worldChatMessages.length?worldChatMessages[worldChatMessages.length-1]?.id:null;
+  worldChatMessages=list.slice(-30);
+  const box=document.getElementById('chatMessages');if(!box)return;
+  box.innerHTML=worldChatMessages.length?worldChatMessages.map(m=>`<div class="chatMsg${m.playerId===pixoraSession?.player?.playerId?' me':''}"><b>${escapeChat(m.name||'PLAYER')}:</b> ${escapeChat(m.text||'')}</div>`).join(''):'<div class="chatMsg">Belum ada pesan.</div>';
+  box.scrollTop=box.scrollHeight;
+  const newLast=worldChatMessages.length?worldChatMessages[worldChatMessages.length-1]?.id:null;if(oldLast&&newLast&&oldLast!==newLast)sfx('chat');
+}
+function escapeChat(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function sendWorldChat(text){
+  text=String(text||'').trim().slice(0,100);if(!text||!gameReady||!currentWorldName)return;
+  try{const d=await authRequest('/api/world/chat',{world:currentWorldName,text},multiplayerToken());applyWorldChat(d.chat);sfx('ui')}catch(e){toast('Chat gagal dikirim','error')}
 }
 
 function pixoraApi(path){return (PIXORA_API_BASE||'')+path}
@@ -2460,7 +2522,10 @@ async function authRequest(path,payload={},token=''){
   try{
     const res=await fetch(pixoraApi(path),{method:'POST',headers:{'Content-Type':'application/json',...(token?{'Authorization':'Bearer '+token}:{})},body:JSON.stringify(payload),signal:controller.signal});
     let data={};try{data=await res.json()}catch(_){ }
-    if(!res.ok)throw new Error(data.error||('HTTP_'+res.status));
+    if(!res.ok){
+      if(data.error==='SESSION_REPLACED'){localStorage.removeItem(PIXORA_SESSION_KEY);setTimeout(()=>{alert('Akun ini login di perangkat lain. Sesi di perangkat ini diputus.');location.reload()},20)}
+      throw new Error(data.error||('HTTP_'+res.status));
+    }
     return data;
   }catch(err){
     if(err&&err.name==='AbortError')throw new Error('SERVER_TIMEOUT');
@@ -2475,7 +2540,7 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_14_4_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_14_5_'+safe;
 }
 function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;
@@ -2494,7 +2559,10 @@ function authErrorMessage(err){
   const code=String(err&&err.message||err||'');
   if(code==='NO_CONNECTION')return 'Tidak ada koneksi internet. Pixora tidak bisa login.';
   if(code==='SERVER_TIMEOUT')return 'Pixora Server tidak merespons. Coba lagi.';
-  if(code==='INVALID_CREDENTIALS')return 'Login ID atau password salah.';
+  if(code==='INVALID_CREDENTIALS')return 'Password salah.';
+  if(code==='ACCOUNT_NOT_FOUND')return 'ID akun tidak ditemukan.';
+  if(code==='SESSION_REPLACED')return 'Akun ini login di perangkat lain.';
+  if(code==='BAD_ID')return 'ID hanya boleh berisi huruf A-Z dan angka 0-9 (3–24 karakter).';
   if(code==='ACCOUNT_EXISTS')return 'ID itu sudah dipakai player lain. Pilih ID lain.';
   if(code==='BAD_REQUEST')return 'Data belum lengkap / format tidak valid.';
   if(code.startsWith('HTTP_')||code==='Failed to fetch')return 'Pixora Server belum terhubung ke website ini.';
@@ -2513,7 +2581,7 @@ function initAuthFlow(){
   document.querySelectorAll('.authTab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.authTab').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.authPane').forEach(p=>p.classList.toggle('active',p.dataset.authPane===btn.dataset.authTab));setAuthStatus('Connecting ke Pixora Server diperlukan untuk masuk.')}));
   document.getElementById('guestBtn').addEventListener('click',()=>{const name=String(document.getElementById('guestName').value||'Player').trim().slice(0,12)||'Player';completeAuth('/api/guest',{name})});
   document.getElementById('loginBtn').addEventListener('click',()=>completeAuth('/api/login',{id:document.getElementById('loginId').value.trim(),password:document.getElementById('loginPw').value}));
-  document.getElementById('registerBtn').addEventListener('click',()=>completeAuth('/api/register',{id:document.getElementById('registerId').value.trim(),password:document.getElementById('registerPw').value}));
+  document.getElementById('registerBtn').addEventListener('click',()=>{const id=document.getElementById('registerId').value.trim();if(!/^[A-Za-z0-9]{3,24}$/.test(id)){setAuthStatus('ID hanya boleh huruf dan angka, 3–24 karakter.','error');return}completeAuth('/api/register',{id,password:document.getElementById('registerPw').value})});
   document.getElementById('logoutBtn').addEventListener('click',async()=>{const token=localStorage.getItem(PIXORA_SESSION_KEY)||'';try{if(token)await authRequest('/api/logout',{},token)}catch(_){ }localStorage.removeItem(PIXORA_SESSION_KEY);location.reload()});
   if(!navigator.onLine)setAuthStatus('Tidak ada koneksi internet. Pixora tidak bisa login.','error');
   window.addEventListener('online',()=>{if(!pixoraBooted)setAuthStatus('Internet kembali. Silakan login.')});
@@ -2523,7 +2591,11 @@ function initAuthFlow(){
 }
 
 
-let CHANGELOG_KEY='pixora_seen_build_14_4';
+const chatToggleBtn=document.getElementById('chatToggleBtn'),chatPanel=document.getElementById('chatPanel'),chatForm=document.getElementById('chatForm'),chatInput=document.getElementById('chatInput');
+chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameReady){toast('Masuk world dulu','info');return}chatPanel.classList.toggle('open');if(chatPanel.classList.contains('open'))setTimeout(()=>chatInput.focus(),40)},{passive:false});
+chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim())return;chatInput.value='';sendWorldChat(text)});
+
+let CHANGELOG_KEY='pixora_seen_build_14_5';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

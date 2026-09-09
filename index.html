@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.0</title>
+<title>Pixora — Online Alpha Build 14.1</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -300,7 +300,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.0</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.1</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -349,8 +349,8 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 14.0</h2>
-    <p>Masukkan nama world. Build 14.0 memakai akun Pixora; cloud world sync akan menjadi tahap multiplayer berikutnya.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 14.1</h2>
+    <p>Masukkan nama world. Build 14.1 menambahkan multiplayer presence: player di world yang sama sekarang bisa saling melihat secara real-time.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -400,7 +400,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.0 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.1 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -444,9 +444,9 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.0</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.1</b></div>
     <ul>
-      <li><b>Pixora Online Alpha</b> dimulai.</li>
+      <li><b>Multiplayer Preview</b> — player di world yang sama bisa saling melihat.</li>
       <li>Guest + Account Login foundation.</li>
       <li>Fresh progression: Backpack awal <b>24 slot</b>.</li>
       <li>Backpack Upgrade <b>+10</b>; harga naik 25% tiap beli.</li>
@@ -1016,7 +1016,7 @@ function enterWorld(name){
   if(status==='missing'||status==='expired'||status==='corrupt')buildWorld();
   cameraLift=0;cameraLiftTarget=0;
   gameReady=true;ui.hudWorld.textContent=name;ui.worldMenu.classList.add('hidden');setGamePanel(false);
-  updateInventory();setSelected('tool','punch');setZoom(1);saveWorld(true);
+  updateInventory();setSelected('tool','punch');setZoom(1);saveWorld(true);setTimeout(multiplayerJoin,120);
   toast(status==='loaded'?'World '+name+' dilanjutkan':status==='expired'?'World inactive 3 hari • regenerate':status==='corrupt'?'World save void/rusak • terrain dipulihkan':'World '+name+' dibuat');
 }
 function pointInsideDoor(wx,wy){return !!door&&wx>=door.x&&wx<=door.x+door.w&&wy>=door.y&&wy<=door.y+door.h}
@@ -1027,6 +1027,7 @@ function playerNearDoor(){
 function exitWorld(){
   if(!gameReady)return;
   saveWorld(true);savePlayer(true);
+  const leavingWorld=currentWorldName;multiplayerLeave(leavingWorld);
   gameReady=false;
   input.left=false;input.right=false;input.jump=false;punchHeld=false;stopPlace();cancelBreak();
   setDrawer(false);cameraLift=0;cameraLiftTarget=0;
@@ -1395,6 +1396,24 @@ function drawPlayer(){
   ctx.restore();
 }
 
+function drawRemotePlayers(){
+  const now=performance.now();
+  for(const r of remotePlayers.values()){
+    if(now-r.lastSeen>5000)continue;
+    const x=Math.round(r.x),y=Math.round(r.y),skin='#efbd87',outline='#765039';
+    ctx.save();
+    ctx.globalAlpha=.96;
+    ctx.fillStyle='#0003';ctx.beginPath();ctx.ellipse(x+player.w/2,y+player.h+2,14,4,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=outline;ctx.fillRect(x+5,y,20,17);ctx.fillStyle=skin;ctx.fillRect(x+7,y+2,16,13);
+    const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6,5,6);ctx.fillRect(x+17,y+6,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8,2,3);ctx.fillRect(x+18+ps,y+8,2,3);
+    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13,4,1);ctx.fillStyle=skin;ctx.fillRect(x+6,y+17,18,10);
+    ctx.fillStyle='#343b45';ctx.fillRect(x+7,y+27,7,8);ctx.fillRect(x+16,y+27,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35,9,5);ctx.fillRect(x+16,y+35,9,5);
+    const sx=x+(r.facing>0?23:7),sy=y+20;ctx.strokeStyle=skin;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(sx+r.facing*3,sy+9);ctx.stroke();
+    ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#8ff4ff';ctx.strokeText(r.displayName,x+player.w/2,y-6);ctx.fillText(r.displayName,x+player.w/2,y-6);
+    ctx.restore();
+  }
+}
+
 function drawLevelUpFx(){
   const now=performance.now();if(!levelUpFx||now>=levelUpFx.until)return;
   const total=levelUpFx.until-levelUpFx.start,p=(now-levelUpFx.start)/Math.max(1,total),alpha=Math.max(0,1-p);
@@ -1655,6 +1674,7 @@ function draw(){
   drawCaveBackground(viewWidth,viewHeight);
   const minBX=Math.max(0,Math.floor(cameraX/T)-1),maxBX=Math.min(WORLD_W-1,Math.ceil((cameraX+viewWidth)/T)+1),minBY=Math.max(0,Math.floor(cameraY/T)-1),maxBY=Math.min(WORLD_H-1,Math.ceil((cameraY+viewHeight)/T)+1);for(let ty=minBY;ty<=maxBY;ty++)for(let tx=minBX;tx<=maxBX;tx++){const b=blockAt(tx,ty);if(b)drawBlock(b)}
   drawDoor();drawLocks();drawWeatherOrbs();drawCoins();drawPlants();drawPlacementPreview();drawPlaceEffects();drawDrops();drawParticles();
+  drawRemotePlayers();
   if(!deathState.active||performance.now()-deathState.start<260)drawPlayer();
   drawLevelUpFx();
   drawBreakCracks();
@@ -1666,7 +1686,7 @@ let loopLast=0,loopAcc=0;
 function loop(ts=performance.now()){
   if(!loopLast)loopLast=ts;const dt=Math.min(100,Math.max(0,ts-loopLast));loopLast=ts;loopAcc+=dt;
   const step=1000/60;let safety=0;while(loopAcc>=step&&safety<3){update();loopAcc-=step;safety++}if(loopAcc>step*3)loopAcc=step
-  draw();requestAnimationFrame(loop)
+  multiplayerTick(ts);draw();requestAnimationFrame(loop)
 }
 
 function totalSeeds(){return seedItems.reduce((sum,n)=>sum+(inventory[n]||0),0)}
@@ -2309,6 +2329,35 @@ const PIXORA_SESSION_KEY='pixora_session_token_v1';
 const PIXORA_API_BASE='https://pixora-server-xo0t.onrender.com';
 let pixoraSession=null;
 let pixoraBooted=false;
+// ===== PIXORA BUILD 14.1: multiplayer presence / movement sync =====
+const remotePlayers=new Map();
+let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='';
+function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
+function applyRemotePlayers(list){
+  const seen=new Set();const now=performance.now();
+  for(const r of Array.isArray(list)?list:[]){
+    if(!r||!r.playerId)continue;seen.add(r.playerId);
+    const old=remotePlayers.get(r.playerId);
+    if(old){old.targetX=Number(r.x)||0;old.targetY=Number(r.y)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||'PLAYER');old.lastSeen=now;}
+    else remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:Number(r.x)||0,y:Number(r.y)||0,targetX:Number(r.x)||0,targetY:Number(r.y)||0,facing:Number(r.facing)<0?-1:1,lastSeen:now});
+  }
+  for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>2500)remotePlayers.delete(id)}
+}
+async function multiplayerJoin(){
+  if(!gameReady||!currentWorldName||!pixoraSession)return;const token=multiplayerToken();if(!token)return;
+  try{const d=await authRequest('/api/world/join',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy},token);multiplayerJoinedWorld=currentWorldName;applyRemotePlayers(d.players);toast('Online world connected','success')}catch(e){console.warn('multiplayer join',e)}
+}
+async function multiplayerLeave(world=currentWorldName){
+  const token=multiplayerToken(),w=world||multiplayerJoinedWorld;remotePlayers.clear();multiplayerJoinedWorld='';if(!token||!w)return;
+  try{await authRequest('/api/world/leave',{world:w},token)}catch(_){ }
+}
+function multiplayerTick(ts){
+  if(!gameReady||!currentWorldName||!pixoraSession)return;
+  for(const r of remotePlayers){const p=r[1];p.x+=(p.targetX-p.x)*.35;p.y+=(p.targetY-p.y)*.35}
+  if(multiplayerInFlight||ts-multiplayerLastSync<100)return;multiplayerLastSync=ts;multiplayerInFlight=true;
+  const token=multiplayerToken();
+  authRequest('/api/world/state',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy},token).then(d=>applyRemotePlayers(d.players)).catch(()=>{}).finally(()=>{multiplayerInFlight=false});
+}
 function pixoraApi(path){return (PIXORA_API_BASE||'')+path}
 function setAuthStatus(text,kind=''){
   const el=document.getElementById('authStatus');if(!el)return;el.className=kind;el.innerHTML=text;
@@ -2338,7 +2387,7 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_14_0_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_14_1_'+safe;
 }
 function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;
@@ -2394,7 +2443,7 @@ document.addEventListener('visibilitychange',()=>{
 
 // ===== Keyboard controls untuk PC/laptop =====
 
-let CHANGELOG_KEY='pixora_seen_build_14_0';
+let CHANGELOG_KEY='pixora_seen_build_14_1';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

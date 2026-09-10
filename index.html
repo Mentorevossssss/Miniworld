@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.7.0</title>
+<title>Pixora — Online Alpha Build 14.7.1</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -321,7 +321,7 @@ button.hudResource:active{transform:scale(.96)}
 #chatSend{width:56px;border:0;border-radius:8px;background:#2d89e5;color:#fff;font-size:10px;font-weight:900}
 @media (max-width:780px) and (orientation:landscape){#chatToggleBtn{left:51px;top:8px;height:30px}#chatPanel{left:8px;top:44px;width:min(66vw,360px);max-height:58dvh}}
 
-/* ===== Pixora Build 14.7.0: profile, trade, splice book, seed/tree UI ===== */
+/* ===== Pixora Build 14.7.1: profile, trade, splice book, seed/tree UI ===== */
 #accountChip #guestConvertBtn{background:#2d89e5}
 .pixoraPanel{position:fixed;inset:0;z-index:650;display:none;align-items:center;justify-content:center;padding:14px;background:#06101ac7;backdrop-filter:blur(4px)}.pixoraPanel.open{display:flex}
 .pixoraCard{width:min(92vw,560px);max-height:88dvh;overflow-y:auto;touch-action:pan-y;background:#142333f7;color:#fff;border:2px solid #ffffff25;border-radius:18px;padding:14px;box-shadow:0 16px 44px #0009}.compactCard{width:min(92vw,440px)}.bookCard{width:min(94vw,640px)}.tradeCard{width:min(94vw,600px)}
@@ -343,7 +343,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.7.0</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.7.1</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -405,8 +405,8 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 14.7.0</h2>
-    <p>Masukkan nama world. Build 14.7.0 menambah Profile/Wrench, account conversion, social + trade, Splice Book, Door/Platform, dan revamp Seed/Tree.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 14.7.1</h2>
+    <p>Masukkan nama world. Build 14.7.1 menambah Profile/Wrench, account conversion, social + trade, Splice Book, Door/Platform, dan revamp Seed/Tree.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine" style="display:none">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -456,7 +456,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.7.0 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.7.1 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -501,7 +501,7 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.7.0</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.7.1</b></div>
     <ul>
       <li><b>Player Profile + Wrench</b> — level tidak lagi di samping nama; wrench membuka Profile/Player Interaction.</li>
       <li><b>Guest → Account</b> — bind Guest menjadi akun permanen dengan Email + Confirm Password tanpa kehilangan save.</li>
@@ -512,6 +512,7 @@ button.hudResource:active{transform:scale(.96)}
       <li><b>Seed + Tree Revamp</b> — seed card lebih jelas, growth stage baru, READY TO HARVEST, dan harvest particles.</li>
       <li><b>Featured</b> — tab Featured sekarang khusus item event. Jika tidak ada event, tab akan kosong.</li>
       <li><b>Roles</b> — fondasi Player / Moderator / Admin / Owner tersimpan di server.</li>
+      <li><b>Staff Commands</b> — /help, /who, /warp, Moderator pull/kick, Admin ban/unban/give, Owner hell/vanish/staff/audit dengan permission server-side.</li>
     </ul>
     <button id="changelogPlay">PLAY</button>
   </div>
@@ -669,6 +670,7 @@ const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d'
 
 const player={x:120,y:GROUND_Y-40,w:30,h:40,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-40,punchAnim:0,punchSeq:0,punchDir:'front',punchTool:'punch',punchTargetX:null,punchTargetY:null,punchReachTiles:1,placeAnim:null,walkTime:0,maxHp:5,hp:5,lastDamageAt:0,damageFlashUntil:0};
 const input={left:false,right:false,jump:false};
+let staffModeEnabled=false,staffDownHeld=false,ownerVanishEnabled=false;
 let blocks=[],drops=[],particles=[],plants=[],door=null,placedDoors=[],weatherOrbs=[],jammers=[],worldBans=[];
 let placeEffects=[];
 let respawnFxUntil=0;
@@ -1262,6 +1264,9 @@ function damagePlayer(amount=1,source='hazard'){
 
 function updatePlayer(){
   if(deathState.active)return;
+  if(staffModeEnabled){
+    const speed=5.2;player.vx=(input.left?-speed:(input.right?speed:0));player.vy=(input.jump?-speed:(staffDownHeld?speed:0));if(player.vx)player.facing=player.vx<0?-1:1;player.x=Math.max(0,Math.min(WORLD_W*T-player.w,player.x+player.vx));player.y=Math.max(-T*2,Math.min(WORLD_H*T-player.h,player.y+player.vy));player.onGround=false;input.jump=false;return;
+  }
   // Build 13.2.2: normalisasi movement; White Shoes tetap bonus kecil, bukan lonjakan kecepatan.
   const hasSpeedShoes=equipped.shoes==='whiteShoes';
   const accel=hasSpeedShoes?.50:.42,maxSpeed=hasSpeedShoes?3.45:2.75,friction=hasSpeedShoes?.79:.76;
@@ -2774,7 +2779,7 @@ document.getElementById('doorConfigClose').addEventListener('pointerdown',e=>{e.
 document.getElementById('doorConfigSave').addEventListener('pointerdown',async e=>{e.preventDefault();const d=window.__editingDoor;if(!d)return;const doorId=String(document.getElementById('doorOwnId').value||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,18),target=cleanWorldName(document.getElementById('doorTargetWorld').value),targetId=String(document.getElementById('doorTargetId').value||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,18);if(!target){toast('Masukkan target world','error');return}const r=await multiplayerWorldAction({type:'door-update',tx:d.tx,ty:d.ty,doorId,targetWorld:target,targetId});if(r?.ok){d.doorId=doorId;d.targetWorld=target;d.targetId=targetId;document.getElementById('doorConfigPanel').classList.remove('open');saveWorld(true);toast('World Door → '+target+(targetId?' #'+targetId:''),'success')}else toast('Gagal menyimpan World Door','error')},{passive:false});
 
 
-// ===== PIXORA BUILD 14.7.0: account binding, profile/wrench, social, trade =====
+// ===== PIXORA BUILD 14.7.1: account binding, profile/wrench, social, trade =====
 function selfProfileTarget(){return {playerId:ownPlayerId(),displayName:playerName,role:String(pixoraSession?.player?.role||'Player'),accountType:String(pixoraSession?.player?.accountType||'guest'),equipped:{...equipped},self:true}}
 function wrenchPlayerAt(wx,wy){
   if(rectHit(wx,wy,1,1,player.x-5,player.y-6,player.w+10,player.h+12))return selfProfileTarget();
@@ -2888,7 +2893,7 @@ function applyCloudPlayerSave(d){
   quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);socialFriends=new Set(Array.isArray(d.friends)?d.friends:[]);socialBlocked=new Set(Array.isArray(d.blocked)?d.blocked:[]);socialIgnored=new Set(Array.isArray(d.ignored)?d.ignored:[]);
   migrateGrassToDirtPlayer();updateLevelUI();return true;
 }
-// ===== PIXORA BUILD 14.7.0: break-drop correction + free-aim punch hotfix =====
+// ===== PIXORA BUILD 14.7.1: break-drop correction + free-aim punch hotfix =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
@@ -2983,6 +2988,8 @@ function applyServerEvents(events){
     if(ev.type==='trade-updated'){if(currentTrade?.id===ev.tradeId)refreshTradeState();continue}
     if(ev.type==='trade-complete'){if(ev.playerSave){applyCloudPlayerSave(ev.playerSave);updateInventory();savePlayer(true)}closeTradeLocal();toast('Trade selesai','success');continue}
     if(ev.type==='trade-cancelled'){if(currentTrade?.id===ev.tradeId)closeTradeLocal();toast('Trade dibatalkan','info');continue}
+    if(ev.type==='staff-warp'){toast(ev.reason==='HELL'?'Owner mengirim kamu ke HELL':'Staff memindahkan kamu','error');setTimeout(()=>commandWarpToWorld(ev.world||'HELL'),0);continue}
+    if(ev.type==='staff-save-refresh'){if(ev.playerSave){applyCloudPlayerSave(ev.playerSave);updateInventory();savePlayer(true);toast('Inventory diperbarui oleh staff','info')}continue}
   }
 }
 
@@ -3052,7 +3059,7 @@ function multiplayerTick(ts){
   if(multiplayerInFlight||ts-multiplayerLastSync<58)return;multiplayerLastSync=ts;multiplayerInFlight=true;
   const token=multiplayerToken();
   authRequest('/api/world/state',{world:currentWorldName,x:player.x,y:player.y,facing:player.facing,onGround:player.onGround,vx:player.vx,vy:player.vy,equipped:currentMultiplayerEquipment(),actionState:currentMultiplayerActionState(),knownRevision:multiplayerWorldRevision},token).then(d=>{
-    applyRemotePlayers(d.players);applyServerEvents(d.events);applyWorldChat(d.chat);const rev=Math.max(0,Number(d.revision||0));
+    applyRemotePlayers(d.players);applyServerEvents(d.events);applyWorldChat(d.chat);if(d.forceWorld&&cleanWorldName(d.forceWorld)!==currentWorldName)setTimeout(()=>commandWarpToWorld(d.forceWorld),0);const rev=Math.max(0,Number(d.revision||0));
     if(d.worldSnapshot&&rev>multiplayerWorldRevision){if(multiplayerActionInFlight===0){applyMultiplayerWorldSnapshot(d.worldSnapshot,false);multiplayerWorldRevision=rev}}
     else multiplayerWorldRevision=Math.max(multiplayerWorldRevision,rev);
   }).catch(()=>{}).finally(()=>{multiplayerInFlight=false});
@@ -3084,10 +3091,12 @@ function applyWorldChat(list){
 }
 
 function escapeChat(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function commandWarpToWorld(dest){dest=cleanWorldName(dest);if(!dest||dest===currentWorldName)return;if(gameReady){saveWorld(true);await multiplayerLeave(currentWorldName);gameReady=false}currentWorldName='';await enterWorld(dest)}
+function handleCommandResponse(c){if(!c)return;if(c.message)toast(String(c.message).slice(0,260),c.ok===false?'error':'info');if(typeof c.staffMode==='boolean'){staffModeEnabled=c.staffMode;if(!staffModeEnabled){staffDownHeld=false;player.vx=0;player.vy=0}}if(typeof c.vanished==='boolean')ownerVanishEnabled=c.vanished;if(c.teleportWorld)setTimeout(()=>commandWarpToWorld(c.teleportWorld),0)}
 async function sendWorldChat(text){
   text=String(text||'').trim();if(!text||!gameReady||!currentWorldName)return;
-  if(text.length>120){toast('Pesan terlalu panjang • maksimal 120 karakter','error');return}
-  try{const d=await authRequest('/api/world/chat',{world:currentWorldName,text},multiplayerToken());applyWorldChat(d.chat);sfx('ui')}catch(e){toast(String(e?.message)==='CHAT_TOO_LONG'?'Pesan terlalu panjang • maksimal 120 karakter':'Chat gagal dikirim','error')}
+  if(text.length>180){toast('Pesan terlalu panjang','error');return}
+  try{const d=await authRequest('/api/world/chat',{world:currentWorldName,text},multiplayerToken());applyWorldChat(d.chat);if(d.command)handleCommandResponse(d.command);sfx('ui')}catch(e){const code=String(e?.message||'');toast(code==='CHAT_TOO_LONG'?'Pesan terlalu panjang':code==='COMMAND_DENIED'?'Command ditolak / permission kurang':code==='HELL_LOCKED'?'Kamu sedang dikunci di HELL':'Chat gagal dikirim','error')}
 }
 
 function pixoraApi(path){return (PIXORA_API_BASE||'')+path}
@@ -3106,6 +3115,7 @@ async function authRequest(path,payload={},token=''){
     let data={};try{data=await res.json()}catch(_){ }
     if(!res.ok){
       if(data.error==='SESSION_REPLACED'){localStorage.removeItem(PIXORA_SESSION_KEY);setTimeout(async()=>{await pixoraNotice('Akun ini login di perangkat lain.\nSesi di perangkat ini diputus.','SESI BERAKHIR','LOGIN ULANG');location.reload()},20)}
+      if(data.error==='SERVER_BANNED'){localStorage.removeItem(PIXORA_SESSION_KEY);setTimeout(async()=>{await pixoraNotice('Akun/player ini di-ban dari server Pixora.','SERVER BAN','OK');location.reload()},20)}
       throw new Error(data.error||('HTTP_'+res.status));
     }
     return data;
@@ -3220,6 +3230,7 @@ window.addEventListener('keydown',e=>{
     e.preventDefault();
     if(!e.repeat)input.jump=true;
   }
+  if(staffModeEnabled&&(key==='s'||e.key==='ArrowDown')){e.preventDefault();staffDownHeld=true;}
   if(key==='f'){
     e.preventDefault();
     keyboardPunchHeld=true;punchHeld=true;
@@ -3242,11 +3253,12 @@ window.addEventListener('keyup',e=>{
   if(key==='a'||e.key==='ArrowLeft'){e.preventDefault();input.left=false;heldKeys.delete('left')}
   if(key==='d'||e.key==='ArrowRight'){e.preventDefault();input.right=false;heldKeys.delete('right')}
   if(key==='w'||e.key==='ArrowUp'||e.code==='Space'){e.preventDefault();input.jump=false}
+  if(key==='s'||e.key==='ArrowDown'){e.preventDefault();staffDownHeld=false}
   if(key==='f'){e.preventDefault();keyboardPunchHeld=false;refreshPunchHeld()}
 },{passive:false});
 
 window.addEventListener('blur',()=>{
-  input.left=false;input.right=false;input.jump=false;punchHeld=false;keyboardPunchHeld=false;mousePunchHeld=false;canvasPunchHold=null;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
+  input.left=false;input.right=false;input.jump=false;staffDownHeld=false;punchHeld=false;keyboardPunchHeld=false;mousePunchHeld=false;canvasPunchHold=null;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
   Object.values(heldControlPointers).forEach(set=>set.clear());
 });
 

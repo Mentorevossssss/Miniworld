@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.6</title>
+<title>Pixora — Online Alpha Build 14.6.1</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -327,7 +327,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.6</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.6.1</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -387,8 +387,8 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 14.6</h2>
-    <p>Masukkan nama world. Build 14.6 fokus ke multiplayer sync, drop server, chat bubble, punch, dan persistence.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 14.6.1</h2>
+    <p>Masukkan nama world. Build 14.6.1 adalah hotfix kontrol + chat untuk Build 14.6.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -438,7 +438,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.6 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.6.1 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -482,15 +482,14 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.6</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.6.1</b></div>
     <ul>
-      <li><b>Multiplayer polish</b> — gerakan, punch, crack, collision, dan reconnect diperkuat.</li>
-      <li><b>Server Drop Sync</b> — break, background, harvest, pickup, seed, dan Gems disinkronkan.</li>
-      <li><b>World Chat+</b> — bubble di atas kepala, teks lebih jelas, maksimal 120 karakter.</li>
-      <li><b>Tap-to-hit</b> — block pecah berdasarkan durability dan hit bertahap.</li>
-      <li><b>Pixora Dialog</b> menggantikan popup bawaan browser.</li>
-      <li>Coin dihapus; Gems tetap currency utama. SFX pixel-sandbox diperbarui.</li>
-      <li>Server siap memakai PostgreSQL agar akun dan world bisa disimpan permanen.</li>
+      <li><b>Desktop Chat</b> — tekan Enter untuk membuka/fokus chat; Enter di chat mengirim pesan.</li>
+      <li><b>Bubble Stack</b> — maksimal 4 bubble per player, terpisah dan pesan lama fade perlahan.</li>
+      <li><b>Move + Punch</b> — input multi-touch diperkuat agar jalan dan punch bisa bersamaan.</li>
+      <li><b>Hold Punch</b> — tahan tombol Punch untuk hit berulang sampai block pecah sesuai durability.</li>
+      <li><b>Break Sync Hotfix</b> — progress hit lokal tidak lagi mudah reset saat snapshot multiplayer masuk.</li>
+      <li>Semua sistem/keputusan Build 14.6 lainnya tetap dipertahankan.</li>
     </ul>
     <button id="changelogPlay">PLAY</button>
   </div>
@@ -622,6 +621,7 @@ let breakState=null;
 let recentHitAction=null;
 let touchBreakActive=false,touchStartX=0,touchStartY=0,touchBreakBlock=null,touchBreakBg=null;
 let punchHeld=false;
+let keyboardPunchHeld=false;
 let nextPunchAt=0;
 let placeHeld=false,placePointerId=null,lastPlaceTile=null;
 const placeVisited=new Set();
@@ -1436,17 +1436,38 @@ function wrapBubbleLines(text,maxWidth=150){
   for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test;if(lines.length>=3)break}
   if(line&&lines.length<4)lines.push(line);ctx.restore();return lines.slice(0,4);
 }
+const CHAT_BUBBLE_LIMIT=4,CHAT_BUBBLE_LIFE=5600,CHAT_BUBBLE_FADE=1700;
+const CHAT_BUBBLE_STYLES=[
+  ['rgba(13,24,34,.94)','rgba(159,232,255,.90)'],
+  ['rgba(24,22,38,.94)','rgba(202,180,255,.90)'],
+  ['rgba(18,34,27,.94)','rgba(167,241,190,.90)'],
+  ['rgba(38,28,18,.94)','rgba(255,219,156,.90)']
+];
+function addPlayerChatBubble(m,now=performance.now()){
+  const id=String(m?.playerId||'');if(!id)return;
+  let list=Array.isArray(chatBubbles.get(id))?chatBubbles.get(id).filter(b=>now<b.expires):[];
+  const seed=String(m?.id||'').split('').reduce((a,c)=>(a+c.charCodeAt(0))%997,0);
+  list.push({text:String(m?.text||'').slice(0,120),created:now,expires:now+CHAT_BUBBLE_LIFE,id:m?.id||'',style:seed%CHAT_BUBBLE_STYLES.length});
+  if(list.length>CHAT_BUBBLE_LIMIT)list=list.slice(-CHAT_BUBBLE_LIMIT);
+  chatBubbles.set(id,list);
+}
 function drawChatBubble(playerId,cx,topY){
-  const b=chatBubbles.get(playerId);if(!b)return;
-  const now=performance.now();if(now>=b.expires){chatBubbles.delete(playerId);return}
-  const lines=wrapBubbleLines(b.text,145);if(!lines.length)return;
+  const now=performance.now(),raw=chatBubbles.get(playerId);if(!Array.isArray(raw)||!raw.length)return;
+  const list=raw.filter(b=>now<b.expires);if(!list.length){chatBubbles.delete(playerId);return}if(list.length!==raw.length)chatBubbles.set(playerId,list);
   ctx.save();ctx.font='700 9px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
-  let w=50;for(const line of lines)w=Math.max(w,ctx.measureText(line).width+16);w=Math.min(165,w);
-  const lineH=13,h=lines.length*lineH+12,x=cx-w/2,y=topY-h-12;
-  ctx.fillStyle='rgba(13,24,34,.94)';ctx.strokeStyle='rgba(159,232,255,.88)';ctx.lineWidth=1.5;
-  ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,7);else ctx.rect(x,y,w,h);ctx.fill();ctx.stroke();
-  ctx.beginPath();ctx.moveTo(cx-5,y+h);ctx.lineTo(cx,y+h+6);ctx.lineTo(cx+5,y+h);ctx.closePath();ctx.fill();ctx.stroke();
-  ctx.fillStyle='#fff';for(let i=0;i<lines.length;i++)ctx.fillText(lines[i],cx,y+8+i*lineH+lineH/2);
+  let bottom=topY-12;
+  // Newest sits closest to the player; older bubbles stack upward and fade out smoothly.
+  for(let i=list.length-1;i>=0;i--){
+    const b=list[i],lines=wrapBubbleLines(b.text,145);if(!lines.length)continue;
+    const remaining=b.expires-now,alpha=Math.max(0,Math.min(1,remaining/CHAT_BUBBLE_FADE));if(alpha<=0)continue;
+    let w=50;for(const line of lines)w=Math.max(w,ctx.measureText(line).width+16);w=Math.min(165,w);
+    const lineH=13,h=lines.length*lineH+12,offset=[0,-4,4,-2][Number(b.style||0)%4],x=cx-w/2+offset,y=bottom-h;
+    const style=CHAT_BUBBLE_STYLES[Number(b.style||0)%CHAT_BUBBLE_STYLES.length];ctx.globalAlpha=alpha;ctx.fillStyle=style[0];ctx.strokeStyle=style[1];ctx.lineWidth=1.5;
+    ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,7);else ctx.rect(x,y,w,h);ctx.fill();ctx.stroke();
+    if(i===list.length-1){ctx.beginPath();ctx.moveTo(cx-5,y+h);ctx.lineTo(cx,y+h+6);ctx.lineTo(cx+5,y+h);ctx.closePath();ctx.fill();ctx.stroke()}
+    ctx.fillStyle='#fff';for(let j=0;j<lines.length;j++)ctx.fillText(lines[j],cx+offset,y+8+j*lineH+lineH/2);
+    bottom=y-5;
+  }
   ctx.restore();
 }
 function drawPlayer(){
@@ -2016,7 +2037,7 @@ ui.drawerGrid.addEventListener('pointerup',e=>{
 const heldControlPointers={left:new Set(),right:new Set(),jump:new Set(),punch:new Set()};
 function bindHold(id,key){
   const el=document.getElementById(id),set=heldControlPointers[key];
-  const down=e=>{e.preventDefault();e.stopPropagation();set.add(e.pointerId);input[key]=true};
+  const down=e=>{e.preventDefault();e.stopPropagation();set.add(e.pointerId);input[key]=true;try{el.setPointerCapture(e.pointerId)}catch(_){}};
   const up=e=>{e.preventDefault();e.stopPropagation();set.delete(e.pointerId);input[key]=set.size>0};
   el.addEventListener('pointerdown',down,{passive:false});
   el.addEventListener('pointerup',up,{passive:false});
@@ -2129,14 +2150,16 @@ function tryPunchButton(){
 punchBtn.addEventListener('pointerdown',e=>{
   e.preventDefault();e.stopPropagation();
   heldControlPointers.punch.add(e.pointerId);punchHeld=true;
+  try{punchBtn.setPointerCapture(e.pointerId)}catch(_){}
   tryPunchButton();
 },{passive:false});
 
 const releasePunch=e=>{
-  e.preventDefault();e.stopPropagation();heldControlPointers.punch.delete(e.pointerId);punchHeld=heldControlPointers.punch.size>0;
+  e.preventDefault();e.stopPropagation();heldControlPointers.punch.delete(e.pointerId);punchHeld=keyboardPunchHeld||heldControlPointers.punch.size>0;
 };
 punchBtn.addEventListener('pointerup',releasePunch,{passive:false});
 punchBtn.addEventListener('pointercancel',releasePunch,{passive:false});
+punchBtn.addEventListener('lostpointercapture',releasePunch,{passive:false});
 
 punchBtn.addEventListener('contextmenu',e=>e.preventDefault());
 
@@ -2522,7 +2545,7 @@ function applyCloudPlayerSave(d){
   quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
   migrateGrassToDirtPlayer();updateLevelUI();return true;
 }
-// ===== PIXORA BUILD 14.6: multiplayer persistence + action/drop sync =====
+// ===== PIXORA BUILD 14.6.1: 14.6 persistence + controls/chat hotfix =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
@@ -2543,12 +2566,16 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   if(!snap||!Array.isArray(snap.blocks))return false;
   let keepBreak=null;
   if(breakState){if(breakState.kind==='bg')keepBreak={...breakState};else if(breakState.block)keepBreak={...breakState,tx:Math.floor(breakState.block.x/T),ty:Math.floor(breakState.block.y/T),block:null}}
+  // 14.6.1: snapshot server tidak boleh menghapus progress hit lokal yang masih aktif.
+  const now=performance.now(),oldDamage=new Map(),oldLockDamage=new Map();
+  for(const b of blocks){if(!b)continue;const h=Number(b.hitsTaken||0),last=Number(b.lastHitAt||0);if(h>0&&last>0&&now-last<=DAMAGE_RESET_MS)oldDamage.set(blockKey(Math.floor(b.x/T),Math.floor(b.y/T)),{t:b.t,hitsTaken:h,lastHitAt:last})}
+  for(const l of locks){if(!l)continue;const h=Number(l.hitsTaken||0);if(h>0)oldLockDamage.set(blockKey(Number(l.tx),Number(l.ty)),{type:l.type||'worldLock',hitsTaken:h})}
   const st=Number(snap.surfaceTile);if(Number.isFinite(st)&&st>=4&&st<=WORLD_H-4)GROUND_Y=st*T;
   if(snap.worldId)worldId=String(snap.worldId);
-  blocks=snap.blocks.filter(b=>b&&Number.isFinite(Number(b.x))&&Number.isFinite(Number(b.y))&&typeof b.t==='string').map(b=>({x:Number(b.x),y:Number(b.y),t:b.t,hitsTaken:0,lastHitAt:0}));rebuildBlockMap();
+  blocks=snap.blocks.filter(b=>b&&Number.isFinite(Number(b.x))&&Number.isFinite(Number(b.y))&&typeof b.t==='string').map(b=>{const x=Number(b.x),y=Number(b.y),t=b.t,old=oldDamage.get(blockKey(Math.floor(x/T),Math.floor(y/T)));return {x,y,t,hitsTaken:old&&old.t===t?old.hitsTaken:0,lastHitAt:old&&old.t===t?old.lastHitAt:0}});rebuildBlockMap();
   caveBgRemoved=new Set(Array.isArray(snap.caveBgRemoved)?snap.caveBgRemoved.filter(k=>typeof k==='string'):[]);
   plants=Array.isArray(snap.plants)?snap.plants.map(p=>({...p})):[];
-  locks=Array.isArray(snap.locks)?snap.locks.map(l=>({...l,trusted:Array.isArray(l.trusted)?[...l.trusted]:[],hitsTaken:0})):[];
+  locks=Array.isArray(snap.locks)?snap.locks.map(l=>{const type=l.type||'worldLock',old=oldLockDamage.get(blockKey(Number(l.tx),Number(l.ty)));return {...l,type,trusted:Array.isArray(l.trusted)?[...l.trusted]:[],hitsTaken:old&&old.type===type?old.hitsTaken:0}}):[];
   weatherOrbs=Array.isArray(snap.weatherOrbs)?snap.weatherOrbs.map(o=>({...o})):[];
   weather=(snap.weather&&WEATHER_TYPES.includes(snap.weather.type))?{type:snap.weather.type}:{type:'sunny'};
   drops=Array.isArray(snap.drops)?snap.drops.map(d=>({...d,bobSeed:Math.random()*Math.PI*2,collecting:false,pick:false})):[];
@@ -2681,7 +2708,7 @@ function applyWorldChat(list){
     for(const m of incoming){
       if(!m?.id||chatSeenIds.has(m.id))continue;
       chatSeenIds.add(m.id);
-      chatBubbles.set(m.playerId,{text:String(m.text||'').slice(0,120),expires:now+4200,id:m.id});
+      addPlayerChatBubble(m,now);
       sfx('chat');
     }
   }
@@ -2786,7 +2813,7 @@ const chatToggleBtn=document.getElementById('chatToggleBtn'),chatPanel=document.
 chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameReady){toast('Masuk world dulu','info');return}chatPanel.classList.toggle('open');if(chatPanel.classList.contains('open'))setTimeout(()=>chatInput.focus(),40)},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim())return;chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_14_6';
+let CHANGELOG_KEY='pixora_seen_build_14_6_1';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 
@@ -2794,7 +2821,11 @@ const heldKeys=new Set();
 function isTypingTarget(el){return !!el && (el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.isContentEditable)}
 
 window.addEventListener('keydown',e=>{
-  if(isTypingTarget(e.target)||!gameReady)return;
+  if(!gameReady)return;
+  if(e.key==='Enter'&&!isTypingTarget(e.target)&&!e.repeat){
+    e.preventDefault();chatPanel.classList.add('open');setTimeout(()=>chatInput.focus(),0);return;
+  }
+  if(isTypingTarget(e.target))return;
   const key=e.key.toLowerCase();
   const code=e.code;
 
@@ -2810,7 +2841,7 @@ window.addEventListener('keydown',e=>{
   }
   if(key==='f'){
     e.preventDefault();
-    punchHeld=true;
+    keyboardPunchHeld=true;punchHeld=true;
     if(!e.repeat)tryPunchButton();
   }
   if(key==='q'&&!e.repeat){
@@ -2830,11 +2861,12 @@ window.addEventListener('keyup',e=>{
   if(key==='a'||e.key==='ArrowLeft'){e.preventDefault();input.left=false;heldKeys.delete('left')}
   if(key==='d'||e.key==='ArrowRight'){e.preventDefault();input.right=false;heldKeys.delete('right')}
   if(key==='w'||e.key==='ArrowUp'||e.code==='Space'){e.preventDefault();input.jump=false}
-  if(key==='f'){e.preventDefault();punchHeld=false}
+  if(key==='f'){e.preventDefault();keyboardPunchHeld=false;punchHeld=heldControlPointers.punch.size>0}
 },{passive:false});
 
 window.addEventListener('blur',()=>{
-  input.left=false;input.right=false;input.jump=false;punchHeld=false;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
+  input.left=false;input.right=false;input.jump=false;punchHeld=false;keyboardPunchHeld=false;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
+  Object.values(heldControlPointers).forEach(set=>set.clear());
 });
 
 // Cegah selection/drag/callout di seluruh kontrol game.

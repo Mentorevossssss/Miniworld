@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.6.3</title>
+<title>Pixora — Online Alpha Build 14.7.0</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -321,6 +321,21 @@ button.hudResource:active{transform:scale(.96)}
 #chatSend{width:56px;border:0;border-radius:8px;background:#2d89e5;color:#fff;font-size:10px;font-weight:900}
 @media (max-width:780px) and (orientation:landscape){#chatToggleBtn{left:51px;top:8px;height:30px}#chatPanel{left:8px;top:44px;width:min(66vw,360px);max-height:58dvh}}
 
+/* ===== Pixora Build 14.7.0: profile, trade, splice book, seed/tree UI ===== */
+#accountChip #guestConvertBtn{background:#2d89e5}
+.pixoraPanel{position:fixed;inset:0;z-index:650;display:none;align-items:center;justify-content:center;padding:14px;background:#06101ac7;backdrop-filter:blur(4px)}.pixoraPanel.open{display:flex}
+.pixoraCard{width:min(92vw,560px);max-height:88dvh;overflow-y:auto;touch-action:pan-y;background:#142333f7;color:#fff;border:2px solid #ffffff25;border-radius:18px;padding:14px;box-shadow:0 16px 44px #0009}.compactCard{width:min(92vw,440px)}.bookCard{width:min(94vw,640px)}.tradeCard{width:min(94vw,600px)}
+.panelTitle{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.panelTitle b{font-size:15px}.panelHint{font-size:10px;line-height:1.45;opacity:.72;margin:7px 0 10px}.panelField{width:100%;height:40px;margin:5px 0;border:1px solid #ffffff28;border-radius:9px;background:#0b1722;color:#fff;padding:0 10px;font-size:13px;user-select:text;-webkit-user-select:text;touch-action:manipulation}.panelPrimary,.panelDanger{width:100%;height:40px;border:0;border-radius:9px;color:#fff;font-weight:900}.panelPrimary{background:#3aaa59}.panelDanger{background:#a54141}.panelStatus{font-size:10px;min-height:16px;margin-top:7px}
+.profileHero{display:flex;align-items:center;gap:10px;background:#0d1925;border-radius:12px;padding:10px}.profileAvatar{width:42px;height:42px;border-radius:10px;background:#2d89e5;display:flex;align-items:center;justify-content:center;font-weight:1000;font-size:20px}.profileHero small{display:block;opacity:.65;margin-top:3px}.profileStats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.profileStats>div{background:#0d1925;border-radius:9px;padding:9px}.profileStats span{display:block;font-size:8px;opacity:.55}.profileStats b{font-size:11px}.profileStats .wide{grid-column:1/-1}
+.actionGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.actionGrid button{height:38px;border:0;border-radius:9px;background:#263b50;color:#fff;font-size:10px;font-weight:900}.actionGrid button.danger,.ownerActions button.danger{background:#9f3d3d}.ownerActions{border-top:1px solid #ffffff20;padding-top:9px;grid-template-columns:repeat(3,1fr)}
+#spliceBookList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;touch-action:pan-y}.recipeRow{background:#0d1925;border:1px solid #ffffff17;border-radius:10px;padding:9px;font-size:10px;line-height:1.4}.recipeRow b{color:#8feaff}
+.tradeColumns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tradeColumns>div>b{font-size:9px}.tradeOfferBox{min-height:110px;background:#0d1925;border-radius:10px;padding:8px;margin-top:5px;font-size:10px}.tradeOfferItem{display:flex;justify-content:space-between;gap:8px;margin:4px 0}.tradeAddRow{display:grid;grid-template-columns:1fr 64px 70px;gap:6px;margin-top:9px}.tradeAddRow select,.tradeAddRow input{min-width:0;height:36px;background:#0d1925;color:#fff;border:1px solid #ffffff25;border-radius:8px;padding:0 6px;touch-action:manipulation;user-select:text}.tradeAddRow button{border:0;border-radius:8px;background:#2d89e5;color:#fff;font-weight:900}.tradeButtons{display:grid;grid-template-columns:1fr 110px;gap:7px}
+.drawerSlot.seedSlot{background:linear-gradient(180deg,#142a1e,#0e1c16);border-color:#5cab6d}.slot.seedSlot{background:#11271b;border-color:#5cab6d}.seedTag{position:absolute;left:3px;bottom:3px;font-size:6px;font-weight:900;background:#56c96a;color:#0a2310;border-radius:4px;padding:1px 3px}.seedMeta{position:absolute;right:3px;top:3px;font-size:6px;color:#9ff5ad}.drawerSlot.systemSlot{border-color:#d9b85a;background:#2a2412}.systemTag{position:absolute;left:4px;bottom:3px;font-size:6px;background:#e1c25e;color:#2a2105;border-radius:4px;padding:1px 3px;font-weight:900}
+.icon-woodPlatform{background:#9a602d;border:3px solid #643a20;clip-path:polygon(0 34%,100% 34%,100% 68%,0 68%)}.icon-woodPlatform:after{content:'';position:absolute;left:4px;top:14px;width:20px;height:3px;background:#d18d48}.icon-woodDoor{background:#9a602d;border:3px solid #643a20}.icon-woodDoor:after{content:'';position:absolute;right:4px;top:14px;width:4px;height:4px;background:#e8c86a}.icon-worldDoor{background:#3d5f88;border:3px solid #213a58;box-shadow:inset 0 0 0 4px #79d9ff}.icon-worldDoor:after{content:'';position:absolute;left:9px;top:7px;width:7px;height:16px;background:#8e5cff;box-shadow:0 0 7px #8e5cff}.icon-spliceBook{background:#d4b45f;border:3px solid #705523;border-radius:3px}.icon-spliceBook:before{content:'';position:absolute;left:5px;top:3px;width:3px;height:20px;background:#6f5321}.icon-spliceBook:after{content:'S';position:absolute;left:12px;top:6px;font:bold 12px Arial;color:#4a3818}
+.icon-platformSeed,.icon-doorSeed,.icon-worldDoorSeed{border:0;background:transparent}.icon-platformSeed:before,.icon-doorSeed:before,.icon-worldDoorSeed:before{content:'';position:absolute;left:10px;top:8px;width:10px;height:15px;border-radius:70% 30% 65% 35%;transform:rotate(35deg);border:3px solid #18351d}.icon-platformSeed:before{background:#c98546}.icon-doorSeed:before{background:#bf7339}.icon-worldDoorSeed:before{background:#745bdd;box-shadow:0 0 8px #8f7cff}.icon-platformSeed:after,.icon-doorSeed:after,.icon-worldDoorSeed:after{content:'';position:absolute;left:7px;top:4px;width:6px;height:8px;background:#49b858;transform:rotate(-35deg)}
+.readyTreeLabel{pointer-events:none}
+@media(max-width:720px){#spliceBookList{grid-template-columns:1fr}.pixoraCard{max-height:92dvh}.actionGrid{grid-template-columns:1fr 1fr}}
+
 </style>
 </head>
 <body>
@@ -328,7 +343,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.6.3</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.7.0</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -347,14 +362,16 @@ button.hudResource:active{transform:scale(.96)}
     </div>
     <div class="authPane" data-auth-pane="register">
       <input class="authField" id="registerId" maxlength="24" placeholder="ID / nama player (huruf + angka)" autocomplete="username">
+      <input class="authField" id="registerEmail" maxlength="160" type="email" placeholder="Email untuk recovery" autocomplete="email">
       <input class="authField" id="registerPw" maxlength="72" type="password" placeholder="Password (min. 6 karakter)" autocomplete="new-password">
+      <input class="authField" id="registerPw2" maxlength="72" type="password" placeholder="Ulangi password" autocomplete="new-password">
       <button class="authMainBtn" id="registerBtn">CREATE ACCOUNT</button>
       <div class="authHint">ID ini juga menjadi nama kamu di Pixora dan harus unik secara global.</div>
     </div>
     <div id="authStatus">Connecting ke Pixora Server diperlukan untuk masuk.</div>
   </div>
 </div>
-<div id="accountChip"><span id="accountChipName">PLAYER</span><button id="logoutBtn">LOGOUT</button></div>
+<div id="accountChip"><span id="accountChipName">PLAYER</span><button id="guestConvertBtn" style="display:none">CREATE ACCOUNT</button><button id="modPanelBtn" style="display:none">MOD</button><button id="logoutBtn">LOGOUT</button></div>
 
 <canvas id="game" width="1000" height="500"></canvas>
 <button id="gameMenuBtn" aria-label="World menu"><span></span></button>
@@ -388,10 +405,10 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 14.6.3</h2>
-    <p>Masukkan nama world. Build 14.6.3 memulihkan drop Block + Seed dan memperbaiki arah/animasi punch pada tile kosong.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 14.7.0</h2>
+    <p>Masukkan nama world. Build 14.7.0 menambah Profile/Wrench, account conversion, social + trade, Splice Book, Door/Platform, dan revamp Seed/Tree.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
-    <div id="playerLevelLine">LV. 1 • 0 / 80 XP</div>
+    <div id="playerLevelLine" style="display:none">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
     <div id="worldMenuButtons"><button class="menuBtn" id="enterWorldBtn">BUAT / MASUK</button><button class="menuBtn secondary" id="randomWorldBtn">NAMA RANDOM</button></div>
     <div id="savedTitle">RECENT WORLDS</div>
@@ -439,7 +456,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.6.3 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.7.0 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -475,7 +492,7 @@ button.hudResource:active{transform:scale(.96)}
       <div id="itemInfoName">ITEM</div>
       <div class="rarityLine">RARITY <span class="rarityBadge" id="itemInfoRarity">1</span></div>
       <div>JUMLAH: <b id="itemInfoCount">0 / 200</b></div>
-      <div>TYPE: <b id="itemInfoType">BLOCK</b></div>
+      <div>TYPE: <b id="itemInfoType">BLOCK</b></div><div id="itemSeedExtra" style="display:none">GROWS INTO: <b id="itemSeedGrow">-</b></div>
     </div>
     <div id="itemQtyRow" style="display:none"><span>JUMLAH</span><input id="itemQty" type="number" min="1" value="1" inputmode="numeric"></div>
     <div class="itemActionButtons"><button class="itemActionMain" id="dropItemBtn">DROP</button><button class="itemActionMain danger" id="trashItemBtn">TRASH</button></div>
@@ -484,21 +501,91 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.6.3</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.7.0</b></div>
     <ul>
-      <li><b>Guest Tetap Tersimpan</b> — logout tidak menghapus Guest. Device/browser yang sama kembali ke Guest + save yang sama.</li>
-      <li><b>Mouse Hold Punch</b> — tahan klik kiri pada Punch sekarang benar-benar terus memukul.</li>
-      <li><b>Safe Placement</b> — block tidak bisa ditempatkan menimpa badan player lain; server juga memvalidasi.</li>
-      <li><b>Player Knockback</b> — punch player mendorong target jika Punch Jammer tidak aktif.</li>
-      <li><b>Punch Jammer</b> — world utility baru; selama terpasang, knockback antar-player dimatikan.</li>
-      <li><b>Wing</b> — equipment punggung baru dan terlihat oleh player lain di multiplayer.</li>
-      <li><b>Break Drop Fix</b> — Block dan Seed kembali bisa drop dari break sesuai drop-rate farming. Clothes/Wearable tetap Store-only.</li>
-      <li><b>Free-Aim Punch</b> — klik/tahan ke tile kosong tetap memainkan animasi punch ke arah kursor, termasuk ke atas/langit-langit.</li>
-      <li><b>Drop / Trash</b> — Drop default seluruh stack, Trash default 1.</li>
-      <li><b>Desktop Chat</b> — Enter saat chat kosong menutup chat.</li>
-      <li><b>Capacity</b> — 100 player aktif per server, 20 player per world.</li>
+      <li><b>Player Profile + Wrench</b> — level tidak lagi di samping nama; wrench membuka Profile/Player Interaction.</li>
+      <li><b>Guest → Account</b> — bind Guest menjadi akun permanen dengan Email + Confirm Password tanpa kehilangan save.</li>
+      <li><b>Social + Trade</b> — Friend, Block, Ignore, Report dan trade server-authoritative dengan confirm + final confirm.</li>
+      <li><b>World Owner Tools</b> — owner World Lock mendapat Pull, Kick, dan Ban.</li>
+      <li><b>Splice Book</b> — setiap player mendapat buku resep permanen yang tidak bisa dibuang.</li>
+      <li><b>Door + Platform</b> — Platform, Door biasa, dan World Door baru diperoleh melalui Splice.</li>
+      <li><b>Seed + Tree Revamp</b> — seed card lebih jelas, growth stage baru, READY TO HARVEST, dan harvest particles.</li>
+      <li><b>Featured</b> — tab Featured sekarang khusus item event. Jika tidak ada event, tab akan kosong.</li>
+      <li><b>Roles</b> — fondasi Player / Moderator / Admin / Owner tersimpan di server.</li>
     </ul>
     <button id="changelogPlay">PLAY</button>
+  </div>
+</div>
+
+
+<div class="pixoraPanel" id="convertAccountPanel">
+  <div class="pixoraCard compactCard">
+    <div class="panelTitle"><b>CREATE PERMANENT ACCOUNT</b><button class="panelClose" id="convertAccountClose">X</button></div>
+    <div class="panelHint">Guest ini akan di-bind ke akun permanen. Progress, inventory, Gems, equipment, level, dan backpack tetap dipakai.</div>
+    <input class="panelField" id="convertId" maxlength="24" placeholder="Account ID (huruf + angka)">
+    <input class="panelField" id="convertEmail" maxlength="160" type="email" placeholder="Email recovery">
+    <input class="panelField" id="convertPw" maxlength="72" type="password" placeholder="Password (min. 6)">
+    <input class="panelField" id="convertPw2" maxlength="72" type="password" placeholder="Confirm Password">
+    <button class="panelPrimary" id="convertAccountSubmit">CREATE & BIND ACCOUNT</button>
+    <div class="panelStatus" id="convertAccountStatus"></div>
+  </div>
+</div>
+
+<div class="pixoraPanel" id="playerInteractPanel">
+  <div class="pixoraCard compactCard">
+    <div class="panelTitle"><b id="interactTitle">PLAYER</b><button class="panelClose" id="playerInteractClose">X</button></div>
+    <div class="profileHero"><div class="profileAvatar" id="interactAvatar">P</div><div><b id="interactName">PLAYER</b><small id="interactMeta">PLAYER</small></div></div>
+    <div id="selfProfileBox" class="profileStats" style="display:none">
+      <div><span>LEVEL</span><b id="profileLevel">1</b></div><div><span>XP</span><b id="profileXp">0 / 80</b></div><div><span>ROLE</span><b id="profileRole">Player</b></div><div><span>ACCOUNT</span><b id="profileAccount">Guest</b></div>
+      <div class="wide"><span>EQUIPMENT</span><b id="profileEquipment">None</b></div><div class="wide"><span>FRIENDS</span><b id="profileFriends">0</b></div>
+    </div>
+    <div id="otherPlayerActions" class="actionGrid">
+      <button data-player-action="friend">ADD FRIEND</button><button data-player-action="trade">TRADE</button>
+      <button data-player-action="block">BLOCK</button><button data-player-action="inspect">INSPECT EQUIPMENT</button>
+      <button data-player-action="ignore">IGNORE</button><button data-player-action="report">REPORT</button>
+      <button data-player-action="moderator" id="moderatorRoleBtn" style="display:none">MAKE MOD</button>
+    </div>
+    <div id="worldOwnerActions" class="actionGrid ownerActions" style="display:none">
+      <button data-owner-action="pull">PULL</button><button data-owner-action="kick">KICK</button><button class="danger" data-owner-action="ban">BAN</button>
+    </div>
+  </div>
+</div>
+
+<div class="pixoraPanel" id="moderatorPanel">
+  <div class="pixoraCard compactCard">
+    <div class="panelTitle"><b>MODERATOR REPORTS</b><button class="panelClose" id="moderatorPanelClose">X</button></div>
+    <div class="panelHint">Report terbaru dari player. Role Moderator, Admin, dan Owner dapat membuka queue ini.</div>
+    <div id="moderatorReportList" class="tradeOfferBox" style="max-height:48vh;overflow:auto"></div>
+  </div>
+</div>
+
+<div class="pixoraPanel" id="spliceBookPanel">
+  <div class="pixoraCard bookCard">
+    <div class="panelTitle"><b>PIXORA SPLICE BOOK</b><button class="panelClose" id="spliceBookClose">X</button></div>
+    <div class="panelHint">Buku ini permanen di backpack dan tidak bisa Drop/Trash. Resep yang tersedia di build ini:</div>
+    <div id="spliceBookList"></div>
+  </div>
+</div>
+
+<div class="pixoraPanel" id="tradePanel">
+  <div class="pixoraCard tradeCard">
+    <div class="panelTitle"><b>PLAYER TRADE</b><button class="panelClose" id="tradeClose">X</button></div>
+    <div id="tradeWith" class="panelHint">Trade</div>
+    <div class="tradeColumns"><div><b>YOUR OFFER</b><div id="tradeMyOffer" class="tradeOfferBox"></div></div><div><b>THEIR OFFER</b><div id="tradeTheirOffer" class="tradeOfferBox"></div></div></div>
+    <div class="tradeAddRow"><select id="tradeItemSelect"></select><input id="tradeQty" type="number" min="1" max="200" value="1"><button id="tradeAddBtn">ADD</button><button id="tradeRemoveBtn">REMOVE</button></div>
+    <div id="tradeStateText" class="panelHint">Edit offer lalu Confirm.</div>
+    <div class="tradeButtons"><button id="tradeConfirmBtn" class="panelPrimary">CONFIRM</button><button id="tradeCancelBtn" class="panelDanger">CANCEL</button></div>
+  </div>
+</div>
+
+<div class="pixoraPanel" id="doorConfigPanel">
+  <div class="pixoraCard compactCard">
+    <div class="panelTitle"><b id="doorConfigTitle">WORLD DOOR</b><button class="panelClose" id="doorConfigClose">X</button></div>
+    <div class="panelHint" id="doorConfigHint">Atur world tujuan untuk portal ini.</div>
+    <input class="panelField" id="doorOwnId" maxlength="18" placeholder="ID pintu ini (opsional, contoh: HOME)">
+    <input class="panelField" id="doorTargetWorld" maxlength="18" placeholder="Target world (contoh: FARMKU)">
+    <input class="panelField" id="doorTargetId" maxlength="18" placeholder="Target Door ID opsional">
+    <button class="panelPrimary" id="doorConfigSave">SAVE DOOR</button>
   </div>
 </div>
 
@@ -527,7 +614,7 @@ const ui={seed:document.getElementById('seedCount'),mode:document.getElementById
 let cameraX=0,cameraY=0,cameraTarget=0,zoom=1,selectedType='tool',selectedItem='punch';
 let cameraLift=0,cameraLiftTarget=0;
 let cloudOffset=0;
-const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,pixoraWing:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,punchJammer:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0};
+const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,woodPlatform:0,woodDoor:0,worldDoor:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,platformSeed:0,doorSeed:0,worldDoorSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,pixoraWing:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,punchJammer:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0,spliceBook:1};
 let inventory={...DEFAULT_INVENTORY};
 let gems=0;
 let backpackCapacity=24;
@@ -539,12 +626,12 @@ const equipped={hair:null,shirt:null,pants:null,shoes:null,back:null,tool:null};
 const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes',pixoraWing:'back'};
 const seedForBlock={grass:'grassSeed',dirt:'dirtSeed',stone:'stoneSeed',wood:'woodSeed',leaf:'leafSeed',sand:'sandSeed',glass:'glassSeed',brick:'brickSeed',ice:'iceSeed',metal:'metalSeed',caveStone:'caveStoneSeed',moss:'mossSeed',farmBlock:'farmSeed'};
 const itemName={
-  grass:'VERDANT TURF',dirt:'EARTHEN SOIL',stone:'GRAYSTONE',wood:'TIMBERWOOD',leaf:'CANOPY LEAF',sand:'SUNVEIL SAND',glass:'SKYGLASS',brick:'EMBERBRICK',ice:'FROSTGLASS',metal:'IRONWEAVE BLOCK',caveStone:'DEEPSTONE',moss:'VERDANT MOSS',lava:'MOLTENROCK',farmBlock:'LUMINITE BLOCK',bedrock:'BEDROCK',
-  grassSeed:'VERDANT TURF SEED',dirtSeed:'EARTHEN SOIL SEED',stoneSeed:'GRAYSTONE SEED',woodSeed:'TIMBERWOOD SEED',leafSeed:'CANOPY SEED',sandSeed:'SUNVEIL SEED',glassSeed:'SKYGLASS SEED',brickSeed:'EMBERBRICK SEED',iceSeed:'FROSTGLASS SEED',metalSeed:'IRONWEAVE SEED',caveStoneSeed:'DEEPSTONE SEED',mossSeed:'VERDANT MOSS SEED',farmSeed:'LUMINITE SEED',
-  redShirt:'CRIMSON TRAIL TEE',bluePants:'AZURE TREK PANTS',blackHair:'NIGHTFALL HAIR',whiteShoes:'CLOUDSTEP SNEAKERS',pixoraWing:'PIXORA SKY WING',punchJammer:'PUNCH JAMMER',smallLock:'BRASS GUARD LOCK',bigLock:'AZURE GUARD LOCK',hugeLock:'VIOLET FORTRESS LOCK',worldLock:'CRIMSON WORLD LOCK',pickaxe:'IRONSPARK PICKAXE',sunnyOrb:'DAWN ORB',rainOrb:'RAINFALL ORB',cloudyOrb:'SKYVEIL ORB',fogOrb:'MIST ORB',stormOrb:'TEMPEST ORB'
+  grass:'VERDANT TURF',dirt:'EARTHEN SOIL',stone:'GRAYSTONE',wood:'TIMBERWOOD',leaf:'CANOPY LEAF',sand:'SUNVEIL SAND',glass:'SKYGLASS',brick:'EMBERBRICK',ice:'FROSTGLASS',metal:'IRONWEAVE BLOCK',caveStone:'DEEPSTONE',moss:'VERDANT MOSS',lava:'MOLTENROCK',farmBlock:'LUMINITE BLOCK',woodPlatform:'TIMBER PLATFORM',woodDoor:'TIMBER DOOR',worldDoor:'WORLD PORTAL DOOR',bedrock:'BEDROCK',
+  grassSeed:'VERDANT TURF SEED',dirtSeed:'EARTHEN SOIL SEED',stoneSeed:'GRAYSTONE SEED',woodSeed:'TIMBERWOOD SEED',leafSeed:'CANOPY SEED',sandSeed:'SUNVEIL SEED',glassSeed:'SKYGLASS SEED',brickSeed:'EMBERBRICK SEED',iceSeed:'FROSTGLASS SEED',metalSeed:'IRONWEAVE SEED',caveStoneSeed:'DEEPSTONE SEED',mossSeed:'VERDANT MOSS SEED',farmSeed:'LUMINITE SEED',platformSeed:'TIMBER PLATFORM SEED',doorSeed:'TIMBER DOOR SEED',worldDoorSeed:'WORLD PORTAL SEED',
+  redShirt:'CRIMSON TRAIL TEE',bluePants:'AZURE TREK PANTS',blackHair:'NIGHTFALL HAIR',whiteShoes:'CLOUDSTEP SNEAKERS',pixoraWing:'PIXORA SKY WING',punchJammer:'PUNCH JAMMER',smallLock:'BRASS GUARD LOCK',bigLock:'AZURE GUARD LOCK',hugeLock:'VIOLET FORTRESS LOCK',worldLock:'CRIMSON WORLD LOCK',pickaxe:'IRONSPARK PICKAXE',sunnyOrb:'DAWN ORB',rainOrb:'RAINFALL ORB',cloudyOrb:'SKYVEIL ORB',fogOrb:'MIST ORB',stormOrb:'TEMPEST ORB',spliceBook:'SPLICE BOOK'
 };
-const blockItems=['dirt','stone','wood','leaf','sand','glass','brick','ice','metal','caveStone','moss','lava','farmBlock'];
-const seedItems=['dirtSeed','stoneSeed','woodSeed','leafSeed','sandSeed','glassSeed','brickSeed','iceSeed','metalSeed','caveStoneSeed','mossSeed','farmSeed'];
+const blockItems=['dirt','stone','wood','leaf','sand','glass','brick','ice','metal','caveStone','moss','lava','farmBlock','woodPlatform','woodDoor','worldDoor'];
+const seedItems=['dirtSeed','stoneSeed','woodSeed','leafSeed','sandSeed','glassSeed','brickSeed','iceSeed','metalSeed','caveStoneSeed','mossSeed','farmSeed','platformSeed','doorSeed','worldDoorSeed'];
 const wearableItems=['redShirt','bluePants','blackHair','whiteShoes','pixoraWing'];
 const WEATHER_ORB_ITEM_TO_TYPE={sunnyOrb:'sunny',rainOrb:'rain',cloudyOrb:'cloudy',fogOrb:'fog',stormOrb:'storm'};
 const weatherOrbItems=Object.keys(WEATHER_ORB_ITEM_TO_TYPE);
@@ -552,8 +639,9 @@ const lockItems=['smallLock','bigLock','hugeLock','worldLock'];
 const jammerItems=['punchJammer'];
 const specialItems=[...lockItems,...weatherOrbItems,...jammerItems];
 const countedToolItems=['pickaxe'];
+const systemItems=['spliceBook'];
 const dropRate={grass:{block:.42,seed:.30,gems:.28},dirt:{block:.38,seed:.20,gems:.24},stone:{block:.32,seed:.08,gems:.34},wood:{block:.45,seed:.24,gems:.25},leaf:{block:.24,seed:.42,gems:.22},sand:{block:.40,seed:.18,gems:.22},glass:{block:.31,seed:.12,gems:.38},brick:{block:.36,seed:.12,gems:.32},ice:{block:.34,seed:.22,gems:.30},metal:{block:.28,seed:.06,gems:.46},caveStone:{block:.32,seed:.10,gems:.40},moss:{block:.36,seed:.34,gems:.24},lava:{block:.22,seed:0,gems:.44},farmBlock:{block:.46,seed:.34,gems:.38}};
-const blockRarity={grass:1,dirt:1,stone:1,caveStone:1,lava:1,wood:2,leaf:2,sand:2,brick:3,moss:3,glass:4,ice:3,metal:3,farmBlock:8,bedrock:99};
+const blockRarity={grass:1,dirt:1,stone:1,caveStone:1,lava:1,wood:2,leaf:2,sand:2,brick:3,moss:3,glass:4,ice:3,metal:3,farmBlock:8,woodPlatform:3,woodDoor:5,worldDoor:10,bedrock:99};
 function gemAmountForRarity(rarity){rarity=Math.max(1,Number(rarity||1));if(rarity<=10)return 1;const max=1+Math.floor((rarity-1)/10);return 1+Math.floor(Math.random()*max)}
 function seedGemChance(seed){const r=Math.max(1,itemRarity(seed)||1);return Math.min(.48,.08+r*.025)}
 function seedGemAmount(seed){return seed==='farmSeed'?(1+Math.floor(Math.random()*14)):gemAmountForRarity(itemRarity(seed))}
@@ -561,17 +649,17 @@ function itemRarity(item){
   if(blockRarity[item])return blockRarity[item];
   if(seedItems.includes(item)){const b=plantBlockForSeed[item];return blockRarity[b]||1}
   if(item==='smallLock')return 8;if(item==='bigLock')return 14;if(item==='hugeLock')return 22;if(item==='worldLock')return 30;
-  if(item==='pickaxe')return 8;if(item==='punchJammer')return 20;if(item==='pixoraWing')return 25;
+  if(item==='pickaxe')return 8;if(item==='punchJammer')return 20;if(item==='pixoraWing')return 25;if(item==='woodPlatform')return 3;if(item==='woodDoor')return 5;if(item==='worldDoor')return 10;if(item==='spliceBook')return 99;
   if(weatherOrbItems.includes(item))return item==='stormOrb'?24:18;
   if(wearableItems.includes(item))return 20;
   return 1;
 }
-function itemTypeLabel(type,item){if(type==='seed')return 'SEED';if(type==='wearable')return 'CLOTHES';if(type==='special')return 'SPECIAL';if(type==='block')return 'BLOCK';if(type==='toolitem')return 'TOOL';return 'TOOL'}
+function itemTypeLabel(type,item){if(type==='seed')return 'SEED';if(type==='wearable')return 'CLOTHES';if(type==='special')return 'SPECIAL';if(type==='system')return 'SYSTEM';if(type==='block')return (item==='woodDoor'||item==='worldDoor')?'DOOR':(item==='woodPlatform'?'PLATFORM':'BLOCK');if(type==='toolitem')return 'TOOL';return 'TOOL'}
 const WEARABLE_DROP=.015;
 const BREAK_MS=125;
 const TAP_HIT_COOLDOWN=82;
 const MAX_ITEM_STACK=200;
-const BLOCK_HITS={leaf:2,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,bedrock:Infinity};
+const BLOCK_HITS={leaf:2,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,woodPlatform:3,woodDoor:4,worldDoor:6,bedrock:Infinity};
 const DAMAGE_RESET_MS=2600;
 let lastDamageSweep=0;
 const LOCK_CONFIG={smallLock:{name:'SMALL LOCK',size:10,price:50,hits:6,color:'#d5b633'},bigLock:{name:'BIG LOCK',size:20,price:150,hits:8,color:'#3f86d8'},hugeLock:{name:'HUGE LOCK',size:35,price:300,hits:10,color:'#8f57cf'},worldLock:{name:'WORLD LOCK',size:100,price:1000,hits:12,color:'#d9483e'}};
@@ -581,12 +669,14 @@ const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d'
 
 const player={x:120,y:GROUND_Y-40,w:30,h:40,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-40,punchAnim:0,punchSeq:0,punchDir:'front',punchTool:'punch',punchTargetX:null,punchTargetY:null,punchReachTiles:1,placeAnim:null,walkTime:0,maxHp:5,hp:5,lastDamageAt:0,damageFlashUntil:0};
 const input={left:false,right:false,jump:false};
-let blocks=[],drops=[],particles=[],plants=[],door=null,weatherOrbs=[],jammers=[];
+let blocks=[],drops=[],particles=[],plants=[],door=null,placedDoors=[],weatherOrbs=[],jammers=[],worldBans=[];
 let placeEffects=[];
 let respawnFxUntil=0;
 let playerName='PLAYER';
 let playerNameLocked=false;
 let playerLevel=1,playerXp=0;
+let socialFriends=new Set(),socialBlocked=new Set(),socialIgnored=new Set();
+let interactTarget=null,currentTrade=null,currentTradeOffer={};
 let levelUpFx={until:0,level:1,start:0};
 const MAX_LEVEL=50;
 let playerId='';
@@ -607,8 +697,8 @@ let PLAYER_ID_KEY='pixora_player_id_v1';
 const AUTOSAVE_MS=3500;
 let spliceMode=false,splicePicks=[];
 let quickSlots=[null,null,null];
-const plantBlockForSeed={grassSeed:'grass',dirtSeed:'dirt',stoneSeed:'stone',woodSeed:'wood',leafSeed:'leaf',sandSeed:'sand',glassSeed:'glass',brickSeed:'brick',iceSeed:'ice',metalSeed:'metal',caveStoneSeed:'caveStone',mossSeed:'moss',farmSeed:'farmBlock'};
-const plantYield={grassSeed:[1,3],dirtSeed:[1,4],stoneSeed:[1,2],woodSeed:[2,4],leafSeed:[1,3],sandSeed:[1,4],glassSeed:[1,2],brickSeed:[1,3],iceSeed:[1,3],metalSeed:[1,2],caveStoneSeed:[1,3],mossSeed:[1,4],farmSeed:[1,3]};
+const plantBlockForSeed={grassSeed:'grass',dirtSeed:'dirt',stoneSeed:'stone',woodSeed:'wood',leafSeed:'leaf',sandSeed:'sand',glassSeed:'glass',brickSeed:'brick',iceSeed:'ice',metalSeed:'metal',caveStoneSeed:'caveStone',mossSeed:'moss',farmSeed:'farmBlock',platformSeed:'woodPlatform',doorSeed:'woodDoor',worldDoorSeed:'worldDoor'};
+const plantYield={grassSeed:[1,3],dirtSeed:[1,4],stoneSeed:[1,2],woodSeed:[2,4],leafSeed:[1,3],sandSeed:[1,4],glassSeed:[1,2],brickSeed:[1,3],iceSeed:[1,3],metalSeed:[1,2],caveStoneSeed:[1,3],mossSeed:[1,4],farmSeed:[1,3],platformSeed:[1,3],doorSeed:[1,2],worldDoorSeed:[1,1]};
 const PLANT_GROW_MS=12000;
 function growthMsForSeed(seed){const block=plantBlockForSeed[seed]||'grass',r=Math.max(1,itemRarity(seed)||blockRarity[block]||1);return Math.round(7000+Math.pow(r-1,1.18)*6500)}
 function plantDisplayBlock(p){return plantBlockForSeed[p.seed]||'grass'}
@@ -623,7 +713,10 @@ const spliceRecipes={
   'sandSeed+stoneSeed':'brickSeed',
   'iceSeed+sandSeed':'glassSeed',
   'caveStoneSeed+stoneSeed':'metalSeed',
-  'grassSeed+woodSeed':'iceSeed'
+  'grassSeed+woodSeed':'iceSeed',
+  'sandSeed+woodSeed':'platformSeed',
+  'glassSeed+woodSeed':'doorSeed',
+  'doorSeed+farmSeed':'worldDoorSeed'
 };
 let breakState=null;
 let recentHitAction=null;
@@ -732,7 +825,7 @@ function updateLevelUI(){
   const line=document.getElementById('playerLevelLine');
   if(line)line.textContent=playerLevel>=MAX_LEVEL?('LV. '+MAX_LEVEL+' • MAX LEVEL'):('LV. '+playerLevel+' • '+playerXp+' / '+xpNeededForLevel(playerLevel)+' XP');
   const ps=document.getElementById('playerStatusLine');
-  if(ps&&gameReady)ps.textContent=playerName+' • Lv. '+playerLevel+(playerLevel>=MAX_LEVEL?' • MAX':' • '+playerXp+'/'+xpNeededForLevel(playerLevel)+' XP');
+  if(ps&&gameReady)ps.textContent=playerName;
 }
 function triggerLevelUpFx(level){
   const now=performance.now();levelUpFx={start:now,until:now+1250,level};
@@ -763,7 +856,8 @@ function hasCaveBackground(tx,ty){
 }
 function caveBgDamageState(tx,ty){return caveBgDamage.get(blockKey(tx,ty))||{hits:0,lastHitAt:0}}
 function removeBlockObj(b){if(!b)return;const i=blocks.indexOf(b);if(i>=0)blocks.splice(i,1);blockMap.delete(blockKey(Math.floor(b.x/T),Math.floor(b.y/T)))}
-function isSolidBlock(b){return b.t!=='wood'&&b.t!=='leaf'}
+function isPlatformBlock(b){return !!b&&b.t==='woodPlatform'}
+function isSolidBlock(b){return b.t!=='wood'&&b.t!=='leaf'&&!isPlatformBlock(b)}
 
 function setSpawnFromDoor(){
   if(!door)return;
@@ -828,7 +922,7 @@ function removeLegacyShowcaseBlocks(){
 }
 
 function buildWorld(){
-  blocks=[];blockMap.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];plants=[];locks=[];weatherOrbs=[];jammers=[];placeEffects=[];
+  blocks=[];blockMap.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];plants=[];locks=[];placedDoors=[];weatherOrbs=[];jammers=[];worldBans=[];placeEffects=[];
   worldId='W'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,7).toUpperCase();
   weather={type:'sunny'};
   GROUND_Y=55*T;
@@ -886,6 +980,7 @@ function savePlayer(silent=true){
       playerNameLocked,
       playerLevel,playerXp,
       quickSlots:[...quickSlots],
+      friends:[...socialFriends],blocked:[...socialBlocked],ignored:[...socialIgnored],
       playerId,
       savedAt:Date.now()
     };
@@ -916,7 +1011,7 @@ function loadGlobalPlayer(){
   // Migrasi otomatis dari save world lama agar inventory/gems lama tidak hilang.
   if(!d||typeof d!=='object')d=playerSnapshotFromWorldSaves();
   if(d&&typeof d==='object'){
-    inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};
+    inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};inventory.spliceBook=1;inventory.spliceBook=1;
     Object.keys(equipped).forEach(k=>equipped[k]=(d.equipped||{})[k]||null);
     gems=Math.max(0,Number(d.gems||0));
     backpackCapacity=Math.max(24,Number(d.backpackCapacity||24));
@@ -925,11 +1020,11 @@ function loadGlobalPlayer(){
     playerNameLocked=typeof d.playerNameLocked==='boolean'?d.playerNameLocked:(playerName!=='PLAYER');
     playerLevel=Math.max(1,Math.min(MAX_LEVEL,Math.floor(Number(d.playerLevel||1))));
     playerXp=playerLevel>=MAX_LEVEL?0:Math.max(0,Math.min(xpNeededForLevel(playerLevel)-1,Math.floor(Number(d.playerXp||0))));
-    quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
+    quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);socialFriends=new Set(Array.isArray(d.friends)?d.friends:[]);socialBlocked=new Set(Array.isArray(d.blocked)?d.blocked:[]);socialIgnored=new Set(Array.isArray(d.ignored)?d.ignored:[]);
     playerId=String(d.playerId||playerId);
     localStorage.setItem(PLAYER_ID_KEY,playerId);
   }else{
-    inventory={...DEFAULT_INVENTORY};
+    inventory={...DEFAULT_INVENTORY};inventory.spliceBook=1;socialFriends=new Set();socialBlocked=new Set();socialIgnored=new Set();
     gems=0;backpackCapacity=24;backpackUpgrades=0;playerName='PLAYER';playerNameLocked=false;playerLevel=1;playerXp=0;quickSlots=[null,null,null];
     Object.keys(equipped).forEach(k=>equipped[k]=null);
   }
@@ -945,7 +1040,7 @@ function saveWorld(silent=true){
     const now=Date.now();
     const data={
       version:"13.2.4",name:currentWorldName,worldId,surfaceTile:Math.floor(GROUND_Y/T),
-      blocks,plants,door,locks,weatherOrbs,jammers,drops,weather,caveBgRemoved:[...caveBgRemoved],
+      blocks,plants,door,placedDoors,locks,weatherOrbs,jammers,worldBans,drops,weather,caveBgRemoved:[...caveBgRemoved],
       playerSpawn:{x:player.spawnX,y:player.spawnY},
       lastVisited:now,savedAt:now
     };
@@ -1033,6 +1128,7 @@ function loadSavedWorld(name){
     locks=Array.isArray(d.locks)?d.locks.map(l=>({...l,type:l.type||'worldLock',trusted:Array.isArray(l.trusted)?l.trusted:[],hitsTaken:Number(l.hitsTaken||0)})):[];
     weatherOrbs=Array.isArray(d.weatherOrbs)?d.weatherOrbs.filter(o=>o&&WEATHER_TYPES.includes(o.weather)).map(o=>({...o})):[];
     jammers=Array.isArray(d.jammers)?d.jammers.filter(j=>j&&j.type==='punch'&&Number.isFinite(Number(j.tx))&&Number.isFinite(Number(j.ty))).map(j=>({...j})):[];
+    placedDoors=Array.isArray(d.placedDoors)?d.placedDoors.map(x=>({...x})):[];worldBans=Array.isArray(d.worldBans)?d.worldBans.map(String):[];
     drops=Array.isArray(d.drops)?d.drops:[];particles=[];
     migrateGrassToDirtWorld();
     // Migrate only the old fixed showcase blocks; player-built blocks elsewhere stay untouched.
@@ -1193,10 +1289,13 @@ function updatePlayer(){
     }
   }
 
-  player.y+=player.vy;
+  for(const d of placedDoors){if(!doorSolidCollision(d))continue;const bx=d.tx*T,by=d.ty*T,left=player.x+HIT_X,right=player.x+player.w-HIT_X,top=player.y+HIT_TOP,bottom=player.y+player.h-HIT_BOTTOM;if(top<by+T-.5&&bottom>by+.5&&left<bx+T&&right>bx){if(player.vx>0)player.x=bx-(player.w-HIT_X);else if(player.vx<0)player.x=bx+T-HIT_X;player.vx=0}}
+
+  const prevPlayerY=player.y;player.y+=player.vy;
   player.onGround=false;
   for(const b of blocks){
     if(Math.abs(b.x-player.x)>T*2||Math.abs(b.y-player.y)>T*2)continue;
+    if(isPlatformBlock(b)){const left=player.x+HIT_X,right=player.x+player.w-HIT_X,prevBottom=prevPlayerY+player.h-HIT_BOTTOM,bottom=player.y+player.h-HIT_BOTTOM;if(player.vy>=0&&left<b.x+T&&right>b.x&&prevBottom<=b.y+5&&bottom>=b.y){player.y=b.y-(player.h-HIT_BOTTOM);player.vy=0;player.onGround=true}continue}
     if(!isSolidBlock(b))continue;
     const left=player.x+HIT_X,right=player.x+player.w-HIT_X,top=player.y+HIT_TOP,bottom=player.y+player.h-HIT_BOTTOM;
     if(left<b.x+T&&right>b.x&&top<b.y+T-.5&&bottom>b.y+.5){
@@ -1204,6 +1303,8 @@ function updatePlayer(){
       else if(player.vy<0){player.y=b.y+T-HIT_TOP;player.vy=0}
     }
   }
+
+  for(const d of placedDoors){if(!doorSolidCollision(d))continue;const bx=d.tx*T,by=d.ty*T,left=player.x+HIT_X,right=player.x+player.w-HIT_X,top=player.y+HIT_TOP,bottom=player.y+player.h-HIT_BOTTOM;if(left<bx+T&&right>bx&&top<by+T-.5&&bottom>by+.5){if(player.vy>0){player.y=by-(player.h-HIT_BOTTOM);player.vy=0;player.onGround=true}else if(player.vy<0){player.y=by+T-HIT_TOP;player.vy=0}}}
 
   // Build 13: Lava memberi hidden damage bertahap, bukan instant kill.
   for(const b of blocks){
@@ -1424,6 +1525,8 @@ function drawBlock(b){
     ctx.fillStyle='#6f4d1d';ctx.fillRect(x,y,T,T);ctx.fillStyle='#b9862f';ctx.fillRect(x+4,y+4,T-8,T-8);ctx.fillStyle='#fff1a0';ctx.fillRect(x+7,y+7,8,7);ctx.fillRect(x+24,y+13,7,6);ctx.fillStyle='#ffbe38';ctx.fillRect(x+11,y+27,8,6);ctx.fillRect(x+27,y+29,5,5);
   }else if(b.t==='lava'){
     ctx.fillStyle='#c8421e';ctx.fillRect(x,y,T,T);ctx.fillStyle='#f36d24';ctx.fillRect(x+3,y+5,T-6,9);ctx.fillStyle='#ffb12e';ctx.fillRect(x+6,y+9,8,6);ctx.fillRect(x+24,y+20,8,6);ctx.fillStyle='#7e2518';ctx.fillRect(x+8,y+29,7,6);
+  }else if(b.t==='woodPlatform'){
+    ctx.fillStyle='#6c3f20';ctx.fillRect(x,y+14,T,14);ctx.fillStyle='#b97738';ctx.fillRect(x+2,y+15,T-4,8);ctx.fillStyle='#d99a55';ctx.fillRect(x+5,y+17,12,3);ctx.fillRect(x+24,y+17,10,3);
   }else if(b.t==='bedrock'){
     ctx.fillStyle='#252a2e';ctx.fillRect(x,y,T,T);ctx.fillStyle='#3c4348';ctx.fillRect(x+5,y+6,10,7);ctx.fillRect(x+24,y+20,9,8);ctx.fillStyle='#15191c';ctx.fillRect(x+14,y+30,7,5);
   }
@@ -1438,6 +1541,39 @@ function drawDoor(){
   ctx.fillStyle='#392616';ctx.fillRect(x+11,y+14,door.w-22,door.h-20);
   ctx.fillStyle='#e7bf4f';ctx.fillRect(x+28,y+22,4,4);
   ctx.fillStyle='#ffffffdd';ctx.font='bold 10px Arial';ctx.fillText('WORLD START',x-11,y-7);
+}
+
+function placedDoorAt(tx,ty){return placedDoors.find(d=>Number(d.tx)===tx&&Number(d.ty)===ty)||null}
+function drawPlacedDoors(){
+  for(const d of placedDoors){const x=d.tx*T,y=d.ty*T;ctx.save();
+    if(d.type==='woodDoor'){
+      ctx.globalAlpha=d.open?.42:1;ctx.fillStyle='#73451f';ctx.fillRect(x+5,y+1,30,39);ctx.fillStyle='#ad6b32';ctx.fillRect(x+9,y+5,22,32);ctx.fillStyle='#e2bd55';ctx.fillRect(x+25,y+21,4,4);
+      if(d.open){ctx.fillStyle='#8ff4ff';ctx.font='bold 7px Arial';ctx.textAlign='center';ctx.fillText('OPEN',x+20,y-3)}
+    }else{
+      ctx.fillStyle='#243d5c';ctx.fillRect(x+4,y,32,40);ctx.fillStyle='#68d9ff';ctx.fillRect(x+8,y+4,24,32);ctx.fillStyle='#5d3ec8';ctx.fillRect(x+12,y+7,16,27);const pulse=.55+.45*Math.sin(performance.now()/180);ctx.globalAlpha=pulse;ctx.fillStyle='#d1c7ff';ctx.fillRect(x+17,y+9,6,23);ctx.globalAlpha=1;ctx.font='bold 6px Arial';ctx.textAlign='center';ctx.fillStyle='#fff';ctx.fillText(d.doorId?('#'+d.doorId):(d.targetWorld||'UNSET'),x+20,y-4);
+    }
+    ctx.restore();
+  }
+}
+function doorSolidCollision(d){return d&&d.type==='woodDoor'&&!d.open}
+function canOwnEditDoor(d){return d&&String(d.owner||'')===String(pixoraSession?.player?.playerId||playerId)}
+async function tryPlaceDoorObject(tx,ty,item){
+  if(!['woodDoor','worldDoor'].includes(item)||!inInteraction5x5(tx,ty)||(inventory[item]||0)<=0)return false;
+  if(blockAt(tx,ty)||plantAt(tx,ty)||lockAt(tx,ty)||weatherOrbAt(tx,ty)||jammerAt(tx,ty)||placedDoorAt(tx,ty)||overlapsAnyPlayer(tx,ty)||overlapsDoor(tx,ty)||!canEditTile(tx,ty))return false;
+  inventory[item]--;triggerPlaceHand(tx,ty);updateInventory();savePlayer(true);
+  const local={id:'LOCAL-'+Date.now(),tx,ty,type:item,owner:String(pixoraSession?.player?.playerId||playerId),doorId:'',targetWorld:'',targetId:'',open:false};placedDoors.push(local);saveWorld(true);
+  const result=await multiplayerWorldAction({type:'door-place',tx,ty,doorType:item});
+  if(!result?.ok){placedDoors=placedDoors.filter(d=>d!==local);inventory[item]=Math.min(MAX_ITEM_STACK,(inventory[item]||0)+1);updateInventory();savePlayer(true);saveWorld(true);toast('Door tidak bisa dipasang di sini','error');return false}
+  if(result.door)Object.assign(local,result.door);sfx('place');addXp(2);saveWorld(true);return true;
+}
+function openDoorConfig(d){
+  if(!d)return;if(!canOwnEditDoor(d)){toast('Hanya pemilik Door yang bisa mengubahnya','error');return}
+  if(d.type==='woodDoor'){d.open=!d.open;multiplayerWorldAction({type:'door-update',tx:d.tx,ty:d.ty,open:d.open}).then(()=>saveWorld(true));toast(d.open?'Door dibuka':'Door ditutup','success');return}
+  window.__editingDoor=d;document.getElementById('doorOwnId').value=d.doorId||'';document.getElementById('doorTargetWorld').value=d.targetWorld||'';document.getElementById('doorTargetId').value=d.targetId||'';document.getElementById('doorConfigPanel').classList.add('open');sfx('ui');
+}
+async function useWorldPortalDoor(d){
+  if(!d||d.type!=='worldDoor')return false;if(!d.targetWorld){toast('World Door belum punya tujuan','info');return true}
+  const dest=cleanWorldName(d.targetWorld),targetId=String(d.targetId||'');if(!dest)return true;saveWorld(true);await multiplayerLeave(currentWorldName);currentWorldName='';gameReady=false;await enterWorld(dest);if(gameReady&&targetId){const target=placedDoors.find(x=>x.type==='worldDoor'&&String(x.doorId||'').toUpperCase()===targetId.toUpperCase());if(target){player.x=target.tx*T+T+4;player.y=target.ty*T+T-player.h;player.vx=0;player.vy=0}}return true;
 }
 
 function punchReachEase(progress){
@@ -1560,7 +1696,7 @@ function drawPlayer(){
   const farPunch=active&&(player.punchReachTiles||1)>=2,armWidth=farPunch?6:5,handSize=farPunch?7:5;
   ctx.strokeStyle=skin;ctx.lineWidth=armWidth;ctx.lineCap='square';ctx.beginPath();ctx.moveTo(shoulderX,shoulderY);ctx.lineTo(ex,ey);ctx.stroke();
   ctx.fillStyle=skinDark;ctx.fillRect(Math.round(ex-handSize/2),Math.round(ey-handSize/2),handSize,handSize);
-  ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#fff';const nameLabel=playerName+' • Lv.'+playerLevel;ctx.strokeText(nameLabel,x+player.w/2,y-6+bob);ctx.fillText(nameLabel,x+player.w/2,y-6+bob);
+  ctx.font='700 9px Arial';ctx.textAlign='center';ctx.lineWidth=3;ctx.strokeStyle='#10202a';ctx.fillStyle='#fff';const nameLabel=playerName;ctx.strokeText(nameLabel,x+player.w/2,y-6+bob);ctx.fillText(nameLabel,x+player.w/2,y-6+bob);
   if(respawnFxUntil>now){const p=(respawnFxUntil-now)/650;ctx.strokeStyle='rgba(150,245,255,'+p+')';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+player.w/2,y+player.h/2,12+(1-p)*18,0,Math.PI*2);ctx.stroke()}
   drawChatBubble(pixoraSession?.player?.playerId,x+player.w/2,y-10+bob);
   ctx.restore();
@@ -1620,8 +1756,11 @@ function drawMiniItemIcon(item,x,y,size=18){
     if(item==='metal'){ctx.fillStyle='#cfd5da';ctx.fillRect(s*.15,s*.15,s*.16,s*.16);ctx.fillRect(s*.68,s*.68,s*.16,s*.16)}
     if(item==='farmBlock'){ctx.fillStyle='#fff1a0';ctx.fillRect(s*.16,s*.16,s*.24,s*.22);ctx.fillRect(s*.60,s*.38,s*.20,s*.18);ctx.fillStyle='#ffbe38';ctx.fillRect(s*.30,s*.68,s*.22,s*.16)}
     if(item==='lava'){ctx.fillStyle='#ff8a24';ctx.fillRect(1,s*.12,s-2,s*.28);ctx.fillStyle='#ffd34a';ctx.fillRect(s*.18,s*.28,s*.25,s*.18)}
+  }else if(item==='woodPlatform'){ctx.fillStyle='#6c3f20';ctx.fillRect(0,s*.38,s,s*.34);ctx.fillStyle='#d09550';ctx.fillRect(s*.08,s*.4,s*.84,s*.14);
+  }else if(item==='woodDoor'){ctx.fillStyle='#9a602d';ctx.fillRect(s*.15,0,s*.7,s);ctx.fillStyle='#e6bf58';ctx.fillRect(s*.68,s*.52,s*.12,s*.12);
+  }else if(item==='worldDoor'){ctx.fillStyle='#284b70';ctx.fillRect(s*.1,0,s*.8,s);ctx.fillStyle='#7d5be0';ctx.fillRect(s*.28,s*.12,s*.44,s*.76);ctx.fillStyle='#b8f3ff';ctx.fillRect(s*.47,s*.18,s*.08,s*.62);
   }else if(seedItems.includes(item)){
-    const col={grassSeed:'#54c95f',dirtSeed:'#c48a43',stoneSeed:'#8e969b',woodSeed:'#9b5c2f',leafSeed:'#2f9f4c',sandSeed:'#d8bd75',glassSeed:'#8fe9f0',brickSeed:'#a64e3b',iceSeed:'#a9e8ff',metalSeed:'#8c969e',caveStoneSeed:'#4f555b',mossSeed:'#548f46',farmSeed:'#ffd45a'}[item]||'#65c97a';
+    const col={grassSeed:'#54c95f',dirtSeed:'#c48a43',stoneSeed:'#8e969b',woodSeed:'#9b5c2f',leafSeed:'#2f9f4c',sandSeed:'#d8bd75',glassSeed:'#8fe9f0',brickSeed:'#a64e3b',iceSeed:'#a9e8ff',metalSeed:'#8c969e',caveStoneSeed:'#4f555b',mossSeed:'#548f46',farmSeed:'#ffd45a',platformSeed:'#c98546',doorSeed:'#bf7339',worldDoorSeed:'#745bdd'}[item]||'#65c97a';
     ctx.fillStyle=col;ctx.beginPath();ctx.ellipse(s*.52,s*.58,s*.23,s*.34,.55,0,Math.PI*2);ctx.fill();
     ctx.fillStyle='#49b858';ctx.fillRect(s*.28,s*.12,s*.16,s*.28);
   }else if(item==='worldLock'){
@@ -1688,19 +1827,26 @@ function activateWeatherOrb(o){
 function plantAt(tx,ty){return plants.find(p=>p.tx===tx&&p.ty===ty)}
 function plantMature(p){return Date.now()-p.plantedAt>=p.growMs}
 function drawPlants(){
-  const palette={grass:['#4fc85b','#85e889'],dirt:['#a76a3c','#d39b67'],stone:['#788086','#b4bbc0'],wood:['#9a612d','#cf8a43'],leaf:['#329c4b','#65d678'],sand:['#d6bc75','#f2dda1'],glass:['#77dbe8','#d8fbff'],brick:['#a84e3b','#d6725d'],ice:['#9bdcf5','#e5f8ff'],metal:['#7d8992','#d1d8dd'],caveStone:['#4f555b','#858e95'],moss:['#548f46','#7fbd6c'],farmBlock:['#8b6426','#ffe690'],lava:['#d84a20','#ff9a2e']};
+  const palette={grass:['#4fc85b','#85e889'],dirt:['#a76a3c','#d39b67'],stone:['#788086','#b4bbc0'],wood:['#9a612d','#cf8a43'],leaf:['#329c4b','#65d678'],sand:['#d6bc75','#f2dda1'],glass:['#77dbe8','#d8fbff'],brick:['#a84e3b','#d6725d'],ice:['#9bdcf5','#e5f8ff'],metal:['#7d8992','#d1d8dd'],caveStone:['#4f555b','#858e95'],moss:['#548f46','#7fbd6c'],farmBlock:['#8b6426','#ffe690'],woodPlatform:['#9a612d','#d89b5a'],woodDoor:['#9a612d','#e0b45f'],worldDoor:['#5d55c8','#9feaff'],lava:['#d84a20','#ff9a2e']};
+  const now=Date.now();
   for(const p of plants){
-    const x=p.tx*T,y=p.ty*T,mature=plantMature(p),block=plantDisplayBlock(p),cols=palette[block]||['#43b954','#69ce70'];
-    const age=Math.max(0,Math.min(1,(Date.now()-p.plantedAt)/Math.max(1,p.growMs)));
-    ctx.fillStyle='#5f3c22';ctx.fillRect(x+18,y+25,4,15);
-    ctx.fillStyle=cols[0];ctx.fillRect(x+9,y+(mature?9:17),11,7);ctx.fillRect(x+21,y+(mature?6:15),11,7);
-    if(age>.45){ctx.fillStyle=cols[1];ctx.fillRect(x+15,y+(mature?3:11),11,8)}
-    if(mature){ctx.fillStyle='#fff9';ctx.fillRect(x+18,y+5,3,3)}
-    // Always show what this tree grows into.
-    drawMiniItemIcon(block,x+20,y-5,12);
-    ctx.save();ctx.font='bold 7px Arial';ctx.textAlign='center';ctx.lineWidth=2;ctx.strokeStyle='#10202a';ctx.fillStyle='#fff';const label=(itemName[block]||block.toUpperCase())+' • R'+Math.max(1,Number(p.rarity||itemRarity(p.seed)));ctx.strokeText(label,x+20,y-12);ctx.fillText(label,x+20,y-12);ctx.restore();
+    const x=p.tx*T,y=p.ty*T,block=plantDisplayBlock(p),cols=palette[block]||['#43b954','#69ce70'];
+    const age=Math.max(0,Math.min(1,(now-p.plantedAt)/Math.max(1,p.growMs))),stage=age<.25?0:age<.55?1:age<.82?2:3,mature=stage===3;
+    ctx.save();
+    // soil sprout shadow
+    ctx.fillStyle='rgba(0,0,0,.18)';ctx.fillRect(x+10,y+35,20,3);
+    if(stage===0){ctx.fillStyle='#5f3c22';ctx.fillRect(x+18,y+29,4,10);ctx.fillStyle=cols[0];ctx.fillRect(x+12,y+25,8,6);ctx.fillRect(x+21,y+22,8,6)}
+    else{
+      const trunkTop=stage===1?19:stage===2?12:7;ctx.fillStyle='#6f4728';ctx.fillRect(x+17,y+trunkTop,6,39-trunkTop);ctx.fillStyle='#9a6235';ctx.fillRect(x+18,y+trunkTop+2,2,34-trunkTop);
+      const spread=stage===1?9:stage===2?13:16,cy=y+(stage===1?17:stage===2?11:7);ctx.fillStyle=cols[0];ctx.fillRect(x+20-spread,cy,spread*2,10);ctx.fillRect(x+13,cy-5,15,12);if(stage>=2){ctx.fillStyle=cols[1];ctx.fillRect(x+6,cy+4,12,9);ctx.fillRect(x+23,cy+2,12,10);ctx.fillRect(x+14,cy-9,13,8)}
+      if(mature){const glow=.55+.35*Math.sin(performance.now()/220);ctx.globalAlpha=glow;ctx.fillStyle='#fff4a4';ctx.fillRect(x+8,cy+3,4,4);ctx.fillRect(x+29,cy,4,4);ctx.fillRect(x+19,cy-7,4,4);ctx.globalAlpha=1}
+    }
+    // Result preview and compact growth status
+    drawMiniItemIcon(block,x+20,y-8,13);ctx.font='bold 6px Arial';ctx.textAlign='center';ctx.lineWidth=2;ctx.strokeStyle='#10202a';ctx.fillStyle=mature?'#fff59a':'#fff';const status=mature?'READY TO HARVEST':('GROW '+Math.round(age*100)+'%');ctx.strokeText(status,x+20,y-17);ctx.fillText(status,x+20,y-17);
+    ctx.restore();
   }
 }
+
 function triggerPlaceHand(tx,ty,duration=170){
   const g=playerGrid();if(tx<g.tx)player.facing=-1;else if(tx>g.tx)player.facing=1;
   player.placeAnim={tx,ty,start:performance.now(),until:performance.now()+duration};
@@ -1726,7 +1872,7 @@ function harvestPlant(p){
   if(!plantMature(p)){const sec=Math.max(1,Math.ceil((p.growMs-(Date.now()-p.plantedAt))/1000));toast('Belum tumbuh • '+sec+' dtk');return}
   const tx=p.tx,ty=p.ty,seed=p.seed;
   plants.splice(plants.indexOf(p),1);
-  pulsePunchAt(tx,ty,'punch','air',0);sfx('harvest');addXp(3);saveWorld(true);
+  pulsePunchAt(tx,ty,'punch','air',0);const hx=tx*T+T/2,hy=ty*T+T/2;for(let i=0;i<16;i++)particles.push({x:hx+(Math.random()-.5)*18,y:hy+(Math.random()-.5)*18,vx:(Math.random()-.5)*3.5,vy:-1-Math.random()*3,size:2+Math.random()*3,life:.7,color:i%3===0?'#fff4a3':i%2?'#73db7e':'#b47a42',gravity:.08});sfx('harvest');addXp(3);saveWorld(true);
   multiplayerWorldAction({type:'harvest',tx,ty,seed}).then(result=>{
     if(result?.harvestAmount)toast('Panen '+result.harvestAmount+' '+(itemName[result.harvestItem]||result.harvestItem||'item'),'success');
     else toast('Panen berhasil','success');
@@ -1878,7 +2024,7 @@ function draw(){
   const viewHeight=H/zoom;
   drawCaveBackground(viewWidth,viewHeight);
   const minBX=Math.max(0,Math.floor(cameraX/T)-1),maxBX=Math.min(WORLD_W-1,Math.ceil((cameraX+viewWidth)/T)+1),minBY=Math.max(0,Math.floor(cameraY/T)-1),maxBY=Math.min(WORLD_H-1,Math.ceil((cameraY+viewHeight)/T)+1);for(let ty=minBY;ty<=maxBY;ty++)for(let tx=minBX;tx<=maxBX;tx++){const b=blockAt(tx,ty);if(b)drawBlock(b)}
-  drawDoor();drawLocks();drawWeatherOrbs();drawJammers();drawPlants();drawPlacementPreview();drawPlaceEffects();drawDrops();drawParticles();
+  drawDoor();drawPlacedDoors();drawLocks();drawWeatherOrbs();drawJammers();drawPlants();drawPlacementPreview();drawPlaceEffects();drawDrops();drawParticles();
   drawRemotePlayers();
   if(!deathState.active||performance.now()-deathState.start<260)drawPlayer();
   drawLevelUpFx();
@@ -1900,14 +2046,16 @@ function slotHTML(type,item,drawer=false){
   const name=type==='tool'?(item==='punch'?'PUNCH':'WRENCH'):(itemName[item]||item.toUpperCase());
   const count=type==='tool'?'':`<span class="count">${inventory[item]||0}</span>`;
   const label=drawer?`<span class="drawerName">${name}</span>`:'';
-  const klass=drawer?'drawerSlot':'slot';
+  const klass=(drawer?'drawerSlot':'slot')+(type==='seed'?' seedSlot':'')+(type==='system'?' systemSlot':'');
   const icon=`<span class="pixelIcon icon-${item}"></span>`;
   const equipMark=(drawer&&((type==='wearable'&&equipped[wearableSlot[item]]===item)||(type==='toolitem'&&equipped.tool===item)))?'<span class="equipMark">E</span>':'';
-  return `<div class="${klass}" data-type="${type}" data-item="${item}">${label}${icon}${count}${equipMark}</div>`;
+  const seedTag=type==='seed'?`<span class="seedTag">SEED</span><span class="seedMeta">R${itemRarity(item)}</span>`:'';
+  const systemTag=type==='system'?'<span class="systemTag">PERMANENT</span>':'';
+  return `<div class="${klass}" data-type="${type}" data-item="${item}">${label}${icon}${count}${equipMark}${seedTag}${systemTag}</div>`;
 }
 
 
-function backpackItemPool(){return [...blockItems,...seedItems,...wearableItems,...specialItems,...countedToolItems]}
+function backpackItemPool(){return [...blockItems,...seedItems,...wearableItems,...specialItems,...countedToolItems,...systemItems]}
 function usedBackpackSlots(){return 2+backpackItemPool().reduce((n,item)=>n+((inventory[item]||0)>0?1:0),0)}
 function pickupStatus(item,amount=1){
   const current=Math.max(0,Number(inventory[item]||0));amount=Math.max(1,Number(amount||1));
@@ -1936,9 +2084,10 @@ const STORE_CATALOG=[
   {id:'fogOrb',name:'FOG ORB',category:'weather',price:150,icon:'fogOrb',inventoryItem:'fogOrb',desc:'Tempatkan di world lalu punch untuk mengaktifkan Fog.'},
   {id:'stormOrb',name:'STORM ORB',category:'weather',price:200,icon:'stormOrb',inventoryItem:'stormOrb',desc:'Weather Orb premium untuk mengaktifkan Storm.'}
 ];
+const ACTIVE_EVENT_ITEMS=[];
 let storeCategory='featured',storeSelectedId='worldLock';
 function backpackUpgradePrice(){return Math.max(1,Math.round(100*Math.pow(1.25,backpackUpgrades)))}
-function storeItemsForCategory(cat){if(cat==='featured')return STORE_CATALOG.filter(i=>['punchJammer','pixoraWing','worldLock','farmBlock','pickaxe','backpackUpgrade','rainOrb','stormOrb'].includes(i.id));return STORE_CATALOG.filter(i=>i.category===cat)}
+function storeItemsForCategory(cat){if(cat==='featured')return STORE_CATALOG.filter(i=>ACTIVE_EVENT_ITEMS.includes(i.id));return STORE_CATALOG.filter(i=>i.category===cat)}
 function storeItemById(id){const base=STORE_CATALOG.find(i=>i.id===id)||STORE_CATALOG[0];return base.id==='backpackUpgrade'?{...base,price:backpackUpgradePrice()}:base}
 function storeCanBuy(item){
   if(!item)return false;
@@ -1957,6 +2106,7 @@ function updateStoreUI(){
   document.querySelectorAll('.storeTab').forEach(b=>b.classList.toggle('active',b.dataset.storeCat===storeCategory));
   const grid=document.getElementById('storeGrid');if(!grid)return;
   const items=storeItemsForCategory(storeCategory).map(i=>storeItemById(i.id));if(!items.some(i=>i.id===storeSelectedId)&&items.length)storeSelectedId=items[0].id;
+  if(!items.length){grid.innerHTML='<div style="grid-column:1/-1;padding:24px;text-align:center;opacity:.6;font-size:11px">NO ACTIVE EVENT</div>';document.getElementById('storeDetailName').textContent='FEATURED';document.getElementById('storeDetailIcon').innerHTML='';document.getElementById('storeDetailDesc').textContent='Featured hanya untuk item Event / Limited-Time Pixora. Belum ada event aktif.';document.getElementById('storeDetailPriceValue').textContent='—';const buy=document.getElementById('storeBuyBtn');buy.disabled=true;buy.textContent='NO ACTIVE EVENT';return}
   grid.innerHTML=items.map(i=>`<button class="storeProduct${i.id===storeSelectedId?' selected':''}" data-store-item="${i.id}"><span class="pixelIcon icon-${i.icon}"></span><div class="storeProductName">${i.name}${i.amount?' ×'+i.amount:''}</div><div class="storeProductPrice"><span class="miniGem"></span>${i.price}</div></button>`).join('');
   const item=storeItemById(storeSelectedId);document.getElementById('storeDetailName').textContent=item.name;document.getElementById('storeDetailIcon').innerHTML=`<span class="pixelIcon icon-${item.icon}"></span>`;document.getElementById('storeDetailDesc').textContent=item.desc;document.getElementById('storeDetailPriceValue').textContent=item.price;
   const buy=document.getElementById('storeBuyBtn');buy.disabled=!storeCanBuy(item);buy.textContent=item.maxOne&&(inventory[item.inventoryItem]||0)>=1?'SUDAH DIMILIKI':(gems<item.price?'GEMS KURANG':'BUY');
@@ -1976,6 +2126,7 @@ function itemEntry(item){
   if(wearableItems.includes(item))return {type:'wearable',item};
   if(specialItems.includes(item))return {type:'special',item};
   if(countedToolItems.includes(item))return {type:'toolitem',item};
+  if(systemItems.includes(item))return {type:'system',item};
   return null;
 }
 function compactQuickSlots(){
@@ -1994,8 +2145,9 @@ function renderInventory(){
   const ownedWearables=wearableItems.filter(n=>(inventory[n]||0)>0);
   const ownedSpecial=specialItems.filter(n=>(inventory[n]||0)>0);
   const ownedTools=countedToolItems.filter(n=>(inventory[n]||0)>0);
+  const ownedSystem=systemItems.filter(n=>(inventory[n]||0)>0);
   const worldEntries=ownedWorld.map(item=>({type:seedItems.includes(item)?'seed':'block',item}));
-  const drawerEntries=[{type:'tool',item:'punch'},{type:'tool',item:'wrench'},...worldEntries,...ownedWearables.map(item=>({type:'wearable',item})),...ownedSpecial.map(item=>({type:'special',item})),...ownedTools.map(item=>({type:'toolitem',item}))];
+  const drawerEntries=[{type:'tool',item:'punch'},{type:'tool',item:'wrench'},...worldEntries,...ownedWearables.map(item=>({type:'wearable',item})),...ownedSpecial.map(item=>({type:'special',item})),...ownedTools.map(item=>({type:'toolitem',item})),...ownedSystem.map(item=>({type:'system',item}))];
 
   compactQuickSlots();
   const primary={type:'tool',item:(selectedType==='tool'&&selectedItem==='wrench')?'wrench':'punch'};
@@ -2064,12 +2216,15 @@ ui.hotbar.addEventListener('pointerdown',e=>{
   chooseInventoryItem(el);
 },{passive:false});
 
+function renderSpliceBook(){const box=document.getElementById('spliceBookList');if(!box)return;const rows=Object.entries(spliceRecipes).map(([k,v])=>{const [a,b]=k.split('+');return `<div class="recipeRow"><b>${itemName[a]||a}</b> + <b>${itemName[b]||b}</b><br>→ ${itemName[v]||v}<br><span style="opacity:.55">Grow: ${itemName[plantBlockForSeed[v]]||plantBlockForSeed[v]||'-'}</span></div>`});box.innerHTML=rows.join('')}
+function openSpliceBook(){renderSpliceBook();document.getElementById('spliceBookPanel').classList.add('open');sfx('ui')}
 let lastWearTapItem=null,lastWearTapAt=0;
 ui.drawerGrid.addEventListener('pointerup',e=>{
   const el=e.target.closest('[data-item]');
   if(!el)return;
   e.preventDefault();e.stopPropagation();
   chooseInventoryItem(el);
+  if(el.dataset.type==='system'&&el.dataset.item==='spliceBook'){openSpliceBook();return}
   if(el.dataset.type==='wearable'||el.dataset.type==='toolitem'){
     const now=performance.now();
     if(lastWearTapItem===el.dataset.item && now-lastWearTapAt<360){
@@ -2243,22 +2398,25 @@ function lockBounds(l){
   const half=Math.floor(c.size/2);return {x1:l.tx-half,y1:l.ty-half,x2:l.tx-half+c.size-1,y2:l.ty-half+c.size-1};
 }
 function lockCovering(tx,ty){return locks.find(l=>{const b=lockBounds(l);return tx>=b.x1&&tx<=b.x2&&ty>=b.y1&&ty<=b.y2})}
-function canEditTile(tx,ty){const l=lockCovering(tx,ty);return !l||l.owner==='LOCAL_PLAYER'||(Array.isArray(l.trusted)&&l.trusted.includes(playerId))}
+function ownPlayerId(){return String(pixoraSession?.player?.playerId||playerId||'')}
+function isOwnLock(l){return !!l&&(String(l.owner||'')===ownPlayerId()||String(l.owner||'')==='LOCAL_PLAYER')}
+function canEditTile(tx,ty){const l=lockCovering(tx,ty);return !l||isOwnLock(l)||(Array.isArray(l.trusted)&&l.trusted.includes(ownPlayerId()))}
 function overlapsLock(tx,ty){return !!lockAt(tx,ty)}
 function tryPlaceLock(tx,ty){
   if(selectedType!=='special'||!lockItems.includes(selectedItem))return false;
   const type=selectedItem,cfg=LOCK_CONFIG[type];if(!cfg)return false;
   if(!inInteraction5x5(tx,ty)||blockAt(tx,ty)||plantAt(tx,ty)||lockAt(tx,ty)||overlapsDoor(tx,ty)||overlapsPlayer(tx,ty))return false;
   if((inventory[type]||0)<=0)return false;
-  // Do not allow overlapping protection regions.
   const test={tx,ty,type},tb=lockBounds(test);if(locks.some(l=>{const b=lockBounds(l);return !(tb.x2<b.x1||tb.x1>b.x2||tb.y2<b.y1||tb.y1>b.y2)})){toast('Area ini sudah terkena Lock lain','info');return false}
-  const l={tx,ty,type,owner:'LOCAL_PLAYER',trusted:[],hitsTaken:0};locks.push(l);inventory[type]--;focusedLock=l;lockAreaVisibleUntil=performance.now()+4500;
-  sfx('lock');updateInventory();savePlayer(true);saveWorld(true);toast(cfg.name+' dipasang • '+(cfg.size>=WORLD_W?'seluruh world':cfg.size+'×'+cfg.size));return true;
+  const l={tx,ty,type,owner:ownPlayerId(),trusted:[],hitsTaken:0};locks.push(l);inventory[type]--;focusedLock=l;lockAreaVisibleUntil=performance.now()+4500;
+  sfx('lock');updateInventory();savePlayer(true);saveWorld(true);
+  multiplayerWorldAction({type:'lock-place',tx,ty,lockType:type}).then(r=>{if(!r?.ok){const i=locks.indexOf(l);if(i>=0)locks.splice(i,1);inventory[type]=(inventory[type]||0)+1;updateInventory();savePlayer(true);saveWorld(true);toast('Lock gagal dipasang','error')}else toast(cfg.name+' dipasang • '+(cfg.size>=WORLD_W?'seluruh world':cfg.size+'×'+cfg.size),'success')});
+  return true;
 }
 function lockHitsLeft(l){const c=lockConfig(l);return Math.max(0,c.hits-Number(l.hitsTaken||0))}
 function showLockInfo(l){
   if(!l)return;const c=lockConfig(l);focusedLock=l;lockAreaVisibleUntil=performance.now()+10000;
-  document.getElementById('lockInfoTitle').textContent=c.name;document.getElementById('lockInfoOwner').textContent=l.owner==='LOCAL_PLAYER'?'LOCAL PLAYER':String(l.owner||'UNKNOWN');
+  document.getElementById('lockInfoTitle').textContent=c.name;document.getElementById('lockInfoOwner').textContent=isOwnLock(l)?'YOU':String(l.owner||'UNKNOWN');
   document.getElementById('lockInfoProtection').textContent=c.size>=WORLD_W?'FULL WORLD':c.size+' × '+c.size;document.getElementById('lockInfoDurability').textContent=lockHitsLeft(l)+' / '+c.hits+' HITS';
   document.getElementById('lockInfoPanel').classList.add('open');sfx('ui');
 }
@@ -2271,7 +2429,7 @@ function hitWorldLock(l){
 }
 function drawLocks(){
   for(const l of locks){const c=lockConfig(l),x=l.tx*T,y=l.ty*T;
-    if(l===focusedLock&&performance.now()<lockAreaVisibleUntil){const b=lockBounds(l);ctx.save();ctx.strokeStyle=l.owner==='LOCAL_PLAYER'?'rgba(75,235,105,.95)':(Array.isArray(l.trusted)&&l.trusted.includes(playerId)?'rgba(255,220,70,.95)':'rgba(245,75,70,.95)');ctx.lineWidth=3;ctx.setLineDash([10,6]);ctx.strokeRect(b.x1*T+2,b.y1*T+2,(b.x2-b.x1+1)*T-4,(b.y2-b.y1+1)*T-4);ctx.setLineDash([]);ctx.restore()}
+    if(l===focusedLock&&performance.now()<lockAreaVisibleUntil){const b=lockBounds(l);ctx.save();ctx.strokeStyle=isOwnLock(l)?'rgba(75,235,105,.95)':(Array.isArray(l.trusted)&&l.trusted.includes(ownPlayerId())?'rgba(255,220,70,.95)':'rgba(245,75,70,.95)');ctx.lineWidth=3;ctx.setLineDash([10,6]);ctx.strokeRect(b.x1*T+2,b.y1*T+2,(b.x2-b.x1+1)*T-4,(b.y2-b.y1+1)*T-4);ctx.setLineDash([]);ctx.restore()}
     ctx.fillStyle=c.color;ctx.fillRect(x+7,y+13,26,23);ctx.strokeStyle='#5b411d';ctx.lineWidth=3;ctx.strokeRect(x+7,y+13,26,23);ctx.strokeStyle='#d9dde2';ctx.lineWidth=4;ctx.beginPath();ctx.arc(x+20,y+14,9,Math.PI,0);ctx.stroke();ctx.fillStyle='#4e381d';ctx.fillRect(x+18,y+22,5,9);
     const dmg=Math.min(1,Number(l.hitsTaken||0)/c.hits);if(dmg>0){ctx.save();ctx.strokeStyle='rgba(58,42,18,'+(0.45+dmg*.5)+')';ctx.lineWidth=2;const cx=x+20,cy=y+25,count=Math.max(1,Math.ceil(dmg*6)),rays=[[-10,-8],[8,-10],[11,1],[7,9],[-7,10],[-11,2]];for(let i=0;i<count;i++){const [rx,ry]=rays[i];ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+rx,cy+ry);ctx.stroke()}ctx.restore()}
   }
@@ -2349,15 +2507,16 @@ function breakBlock(b){
 const pendingPlaceTiles=new Set();
 function tryPlaceTile(tx,ty){
   if(selectedType!=='block')return false;
+  if(selectedItem==='woodDoor'||selectedItem==='worldDoor')return tryPlaceDoorObject(tx,ty,selectedItem);
   if(!inInteraction5x5(tx,ty))return false;
   const key=blockKey(tx,ty);if(pendingPlaceTiles.has(key))return false;
-  if(blockAt(tx,ty)||lockAt(tx,ty)||weatherOrbAt(tx,ty)||jammerAt(tx,ty))return false;
+  if(blockAt(tx,ty)||lockAt(tx,ty)||weatherOrbAt(tx,ty)||jammerAt(tx,ty)||placedDoorAt(tx,ty))return false;
   if((inventory[selectedItem]||0)<=0)return false;
   if(!canEditTile(tx,ty)||overlapsAnyPlayer(tx,ty)||overlapsDoor(tx,ty))return false;
   const item=selectedItem;inventory[item]--;pendingPlaceTiles.add(key);triggerPlaceHand(tx,ty);updateInventory();savePlayer(true);
   setTimeout(()=>{
     pendingPlaceTiles.delete(key);
-    if(blockAt(tx,ty)||lockAt(tx,ty)||weatherOrbAt(tx,ty)||jammerAt(tx,ty)||overlapsAnyPlayer(tx,ty)||overlapsDoor(tx,ty)){inventory[item]++;updateInventory();savePlayer(true);return}
+    if(blockAt(tx,ty)||lockAt(tx,ty)||weatherOrbAt(tx,ty)||jammerAt(tx,ty)||placedDoorAt(tx,ty)||overlapsAnyPlayer(tx,ty)||overlapsDoor(tx,ty)){inventory[item]++;updateInventory();savePlayer(true);return}
     const placed=addBlock(tx,ty,item);if(placed)placed.placeAt=performance.now();
     if(placed){
       multiplayerWorldAction({type:'place',tx,ty,blockType:item}).then(result=>{
@@ -2401,9 +2560,12 @@ canvas.addEventListener('pointerdown',e=>{
   updateHoverFromClient(e.clientX,e.clientY);
   if(activePointers.size>=2){beginPinch();return;}
   const pt=canvasPoint(e);
+  if(selectedItem==='wrench'){const wr=wrenchPlayerAt(pt.wx,pt.wy);if(wr){openPlayerInteraction(wr);return}}
   if(pointInsideDoor(pt.wx,pt.wy)&&playerNearDoor()){requestExitWorld();return;}
   if(!inInteraction5x5(pt.tx,pt.ty))return;
   const b=blockAt(pt.tx,pt.ty);
+  const placedDoor=placedDoorAt(pt.tx,pt.ty);
+  if(placedDoor){if(selectedItem==='wrench'){openDoorConfig(placedDoor);return}if(placedDoor.type==='worldDoor'){useWorldPortalDoor(placedDoor);return}}
   const plant=plantAt(pt.tx,pt.ty);
   const orb=weatherOrbAt(pt.tx,pt.ty);
   if(plant&&selectedType==='seed'){tryPlant(pt.tx,pt.ty);return}
@@ -2534,7 +2696,7 @@ function openItemAction(){
   document.getElementById('itemInfoName').textContent=itemName[e.item]||e.item.toUpperCase();
   document.getElementById('itemInfoRarity').textContent=itemRarity(e.item);
   document.getElementById('itemInfoCount').textContent=count+' / '+MAX_ITEM_STACK;
-  document.getElementById('itemInfoType').textContent=itemTypeLabel(e.type,e.item);
+  document.getElementById('itemInfoType').textContent=itemTypeLabel(e.type,e.item);const seedExtra=document.getElementById('itemSeedExtra');if(e.type==='seed'){seedExtra.style.display='block';document.getElementById('itemSeedGrow').textContent=itemName[plantBlockForSeed[e.item]]||plantBlockForSeed[e.item]||'-'}else seedExtra.style.display='none';
   const q=document.getElementById('itemQty');q.max=count;q.value=1;
   itemActionPanel.classList.add('open');sfx('ui');
 }
@@ -2542,6 +2704,7 @@ function closeItemAction(){itemActionPanel.classList.remove('open')}
 function actionAmount(item){const q=document.getElementById('itemQty');return Math.max(1,Math.min(inventory[item]||0,Math.floor(Number(q.value||1))))}
 function unequipIfGone(item){const slot=wearableSlot[item];if(slot&&(inventory[item]||0)<=0&&equipped[slot]===item)equipped[slot]=null;if(item==='pickaxe'&&(inventory[item]||0)<=0&&equipped.tool===item)equipped.tool=null}
 async function dropInventoryAmount(item,amount){
+  if(item==='spliceBook'){toast('Splice Book adalah item permanen','info');return false}
   amount=Math.max(1,Math.min(inventory[item]||0,Math.floor(Number(amount||1))));if(!amount)return false;
   const candidate={id:'D-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,9),x:player.x+player.w/2+player.facing*34,y:player.y+player.h*.55,item,kind:'item',amount,pickupAfter:Date.now()+1100};
   const result=await multiplayerWorldAction({type:'drop-add',drop:candidate});if(!result?.ok){toast('Drop gagal tersambung ke server','error');return false}
@@ -2552,7 +2715,7 @@ async function dropSelectedItem(){
   if(await dropInventoryAmount(e.item,amount))closeItemAction();
 }
 async function trashSelectedItem(){
-  const e=selectedInventoryEntry();if(!e)return;const amount=await promptItemAmount(e,'Trash');if(!amount)return;
+  const e=selectedInventoryEntry();if(!e)return;if(e.item==='spliceBook'){toast('Splice Book tidak bisa dihapus','info');return}const amount=await promptItemAmount(e,'Trash');if(!amount)return;
   const ok=await pixoraConfirm('Buang permanen '+amount+' '+(itemName[e.item]||e.item)+'?','TRASH ITEM','BUANG','BATAL');if(!ok)return;
   inventory[e.item]-=amount;unequipIfGone(e.item);updateInventory();savePlayer(true);saveWorld(true);closeItemAction();toast('Item dibuang','error')
 }
@@ -2562,7 +2725,7 @@ async function promptItemAmount(e,verb){
   return raw==null?0:raw;
 }
 async function sideDropSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}const amount=await promptItemAmount(e,'Drop');if(!amount)return;await dropInventoryAmount(e.item,amount)}
-async function sideTrashSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}const amount=await promptItemAmount(e,'Trash');if(!amount)return;const ok=await pixoraConfirm('Buang permanen '+amount+' '+(itemName[e.item]||e.item)+'?','TRASH ITEM','BUANG','BATAL');if(!ok)return;inventory[e.item]-=amount;unequipIfGone(e.item);updateInventory();savePlayer(true);saveWorld(true);toast('Item dibuang','error')}
+async function sideTrashSelected(){const e=selectedInventoryEntry();if(!e){toast('Pilih item di Backpack dulu','info');return}if(e.item==='spliceBook'){toast('Splice Book tidak bisa dihapus','info');return}const amount=await promptItemAmount(e,'Trash');if(!amount)return;const ok=await pixoraConfirm('Buang permanen '+amount+' '+(itemName[e.item]||e.item)+'?','TRASH ITEM','BUANG','BATAL');if(!ok)return;inventory[e.item]-=amount;unequipIfGone(e.item);updateInventory();savePlayer(true);saveWorld(true);toast('Item dibuang','error')}
 document.getElementById('drawerDropBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();sideDropSelected()},{passive:false});
 document.getElementById('drawerTrashBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();sideTrashSelected()},{passive:false});
 document.getElementById('itemBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();openItemAction()},{passive:false});
@@ -2584,7 +2747,7 @@ storeBuyBtn.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagat
 storeBuyBtn.addEventListener('contextmenu',e=>e.preventDefault(),{passive:false});
 
 const gamePanel=document.getElementById('gamePanel');
-function setGamePanel(open){gamePanel.classList.toggle('open',open);if(open&&ui.hudWorld)ui.hudWorld.textContent=currentWorldName||'-';const ps=document.getElementById('playerStatusLine');if(ps)ps.textContent=playerName+' • Lv. '+playerLevel+(playerLevel>=MAX_LEVEL?' • MAX':' • '+playerXp+'/'+xpNeededForLevel(playerLevel)+' XP');sfx('ui')}
+function setGamePanel(open){gamePanel.classList.toggle('open',open);if(open&&ui.hudWorld)ui.hudWorld.textContent=currentWorldName||'-';const ps=document.getElementById('playerStatusLine');if(ps)ps.textContent=playerName;sfx('ui')}
 document.getElementById('gameMenuBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();if(gameReady)setGamePanel(true)},{passive:false});
 document.getElementById('gamePanelClose').addEventListener('pointerdown',e=>{e.preventDefault();setGamePanel(false)},{passive:false});
 document.getElementById('respawnMenuBtn').addEventListener('pointerdown',e=>{e.preventDefault();setGamePanel(false);respawn()},{passive:false});
@@ -2606,6 +2769,95 @@ const playerNameInput=document.getElementById('playerNameInput');
 playerNameInput.addEventListener('change',()=>{if(playerNameLocked){syncPlayerNameInput();return}playerName=String(playerNameInput.value||'PLAYER').trim().slice(0,16)||'PLAYER';playerNameInput.value=playerName;savePlayer(true)});
 playerNameInput.addEventListener('keydown',e=>{if(e.key==='Enter'){if(!playerNameLocked){playerName=String(playerNameInput.value||'PLAYER').trim().slice(0,16)||'PLAYER';savePlayer(true)}playerNameInput.blur()}});
 
+document.getElementById('spliceBookClose').addEventListener('pointerdown',e=>{e.preventDefault();document.getElementById('spliceBookPanel').classList.remove('open')},{passive:false});
+document.getElementById('doorConfigClose').addEventListener('pointerdown',e=>{e.preventDefault();document.getElementById('doorConfigPanel').classList.remove('open')},{passive:false});
+document.getElementById('doorConfigSave').addEventListener('pointerdown',async e=>{e.preventDefault();const d=window.__editingDoor;if(!d)return;const doorId=String(document.getElementById('doorOwnId').value||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,18),target=cleanWorldName(document.getElementById('doorTargetWorld').value),targetId=String(document.getElementById('doorTargetId').value||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,18);if(!target){toast('Masukkan target world','error');return}const r=await multiplayerWorldAction({type:'door-update',tx:d.tx,ty:d.ty,doorId,targetWorld:target,targetId});if(r?.ok){d.doorId=doorId;d.targetWorld=target;d.targetId=targetId;document.getElementById('doorConfigPanel').classList.remove('open');saveWorld(true);toast('World Door → '+target+(targetId?' #'+targetId:''),'success')}else toast('Gagal menyimpan World Door','error')},{passive:false});
+
+
+// ===== PIXORA BUILD 14.7.0: account binding, profile/wrench, social, trade =====
+function selfProfileTarget(){return {playerId:ownPlayerId(),displayName:playerName,role:String(pixoraSession?.player?.role||'Player'),accountType:String(pixoraSession?.player?.accountType||'guest'),equipped:{...equipped},self:true}}
+function wrenchPlayerAt(wx,wy){
+  if(rectHit(wx,wy,1,1,player.x-5,player.y-6,player.w+10,player.h+12))return selfProfileTarget();
+  let best=null,dist=Infinity;for(const r of remotePlayers.values()){if(rectHit(wx,wy,1,1,Number(r.x||0)-5,Number(r.y||0)-6,player.w+10,player.h+12)){const d=Math.hypot(wx-(Number(r.x||0)+player.w/2),wy-(Number(r.y||0)+player.h/2));if(d<dist){best=r;dist=d}}}return best;
+}
+function equipmentText(eq){const out=[];for(const [slot,item] of Object.entries(eq||{}))if(item)out.push((slot==='back'?'BACK':slot.toUpperCase())+': '+(itemName[item]||item));return out.length?out.join(' • '):'None'}
+function hasWorldOwnerPower(){return locks.some(l=>l?.type==='worldLock'&&isOwnLock(l))}
+function refreshInteractionButtons(){
+  if(!interactTarget||interactTarget.self)return;const id=String(interactTarget.playerId||'');
+  const map={friend:socialFriends.has(id)?'REMOVE FRIEND':'ADD FRIEND',block:socialBlocked.has(id)?'UNBLOCK':'BLOCK',ignore:socialIgnored.has(id)?'UNIGNORE':'IGNORE'};
+  for(const [act,label] of Object.entries(map)){const b=document.querySelector('[data-player-action="'+act+'"]');if(b)b.textContent=label}
+  const rb=document.getElementById('moderatorRoleBtn');if(rb){const can=String(pixoraSession?.player?.role||'Player')==='Owner'&&interactTarget.accountType==='account';rb.style.display=can?'block':'none';rb.textContent=String(interactTarget.role||'Player')==='Moderator'?'REMOVE MOD':'MAKE MOD'}
+}
+function openPlayerInteraction(target){
+  if(!target)return;interactTarget=target;const self=!!target.self||String(target.playerId)===ownPlayerId(),panel=document.getElementById('playerInteractPanel');
+  document.getElementById('interactTitle').textContent=self?'MY PROFILE':'PLAYER INTERACTION';document.getElementById('interactName').textContent=String(target.displayName||playerName||'PLAYER');document.getElementById('interactAvatar').textContent=String(target.displayName||'P').slice(0,1).toUpperCase();
+  document.getElementById('interactMeta').textContent=(target.role||'Player')+' • '+(String(target.accountType||'guest')==='account'?'Permanent':'Guest');
+  document.getElementById('selfProfileBox').style.display=self?'grid':'none';document.getElementById('otherPlayerActions').style.display=self?'none':'grid';document.getElementById('worldOwnerActions').style.display=!self&&hasWorldOwnerPower()?'grid':'none';
+  if(self){document.getElementById('profileLevel').textContent=playerLevel;document.getElementById('profileXp').textContent=playerXp+' / '+xpNeededForLevel(playerLevel);document.getElementById('profileRole').textContent=String(pixoraSession?.player?.role||'Player');document.getElementById('profileAccount').textContent=pixoraSession?.player?.accountType==='account'?'Permanent':'Guest';document.getElementById('profileEquipment').textContent=equipmentText(equipped);document.getElementById('profileFriends').textContent=String(socialFriends.size)}else refreshInteractionButtons();
+  panel.classList.add('open');sfx('ui');
+}
+function closePlayerInteraction(){document.getElementById('playerInteractPanel').classList.remove('open');interactTarget=null}
+async function forceCloudSave(){if(pixoraSession?.player?.accountType!=='account')return false;try{await authRequest('/api/player/save',{save:makeCloudPlayerSave()},multiplayerToken());return true}catch(e){toast('Cloud save gagal','error');return false}}
+
+function offerEntries(o){return Object.entries(o||{}).filter(([,n])=>Number(n)>0)}
+function populateTradeItems(){const sel=document.getElementById('tradeItemSelect');if(!sel)return;const items=Object.entries(inventory).filter(([k,v])=>k!=='spliceBook'&&Number(v)>0);sel.innerHTML=items.map(([k,v])=>'<option value="'+escapeChat(k)+'">'+escapeChat(itemName[k]||k)+' ×'+Math.floor(v)+'</option>').join('')||'<option value="">NO ITEMS</option>'}
+function renderTradeState(){
+  const t=currentTrade;if(!t)return;const me=ownPlayerId(),other=t.a===me?t.b:t.a;document.getElementById('tradeWith').textContent='Trading with '+String(t.names?.[other]||'PLAYER');
+  const box=(o)=>offerEntries(o).map(([k,n])=>'<div>'+escapeChat(itemName[k]||k)+' <b>×'+Math.floor(n)+'</b></div>').join('')||'<small>Empty</small>';
+  document.getElementById('tradeMyOffer').innerHTML=box(t.offers?.[me]);document.getElementById('tradeTheirOffer').innerHTML=box(t.offers?.[other]);
+  const mine=!!t.confirmed?.[me],theirs=!!t.confirmed?.[other],fMine=!!t.finalConfirmed?.[me],fTheirs=!!t.finalConfirmed?.[other],btn=document.getElementById('tradeConfirmBtn');
+  if(t.status==='locked'){document.getElementById('tradeStateText').textContent='OFFERS LOCKED • final confirmation required';btn.textContent=fMine?'FINAL CONFIRMED':'FINAL CONFIRM';btn.disabled=fMine}
+  else{document.getElementById('tradeStateText').textContent=(mine?'You confirmed':'Waiting for your confirm')+' • '+(theirs?'They confirmed':'They not confirmed');btn.textContent=mine?'CONFIRMED':'CONFIRM';btn.disabled=mine}
+  populateTradeItems();
+}
+let tradePollTimer=null;
+function stopTradePoll(){clearInterval(tradePollTimer);tradePollTimer=null}
+function openTradeFromState(t){if(!t)return;currentTrade=t;currentTradeOffer={...(t.offers?.[ownPlayerId()]||{})};document.getElementById('tradePanel').classList.add('open');renderTradeState();stopTradePoll();tradePollTimer=setInterval(refreshTradeState,900)}
+async function refreshTradeState(){if(!currentTrade?.id)return;try{const d=await authRequest('/api/trade/state',{tradeId:currentTrade.id},multiplayerToken());if(d.trade){currentTrade=d.trade;currentTradeOffer={...(d.trade.offers?.[ownPlayerId()]||{})};renderTradeState()}}catch(e){if(String(e?.message)!=='TRADE_NOT_FOUND')console.warn('trade poll',e)}}
+async function requestTrade(target){if(pixoraSession?.player?.accountType!=='account'||target?.accountType!=='account'){toast('Trade membutuhkan akun permanen','info');return}if(!await forceCloudSave())return;try{const d=await authRequest('/api/trade/request',{targetPlayerId:target.playerId},multiplayerToken());toast('Trade request dikirim','success');if(d.trade)currentTrade=d.trade}catch(e){toast(authErrorMessage(e),'error')}}
+async function handleTradeRequest(ev){if(currentTrade)return;const ok=await pixoraConfirm((ev.name||'Player')+' ingin trade dengan kamu.','TRADE REQUEST','ACCEPT','DECLINE');if(!ok){try{await authRequest('/api/trade/cancel',{tradeId:ev.tradeId},multiplayerToken())}catch(_){}return}if(!await forceCloudSave())return;try{const d=await authRequest('/api/trade/accept',{tradeId:ev.tradeId},multiplayerToken());openTradeFromState(d.trade)}catch(e){toast('Trade sudah tidak tersedia','error')}}
+function closeTradeLocal(){stopTradePoll();currentTrade=null;currentTradeOffer={};document.getElementById('tradePanel').classList.remove('open')}
+
+function showGuestConvert(){if(pixoraSession?.player?.accountType!=='guest')return;document.getElementById('convertAccountStatus').textContent='';document.getElementById('convertAccountPanel').classList.add('open');sfx('ui')}
+async function convertGuestAccount(){
+  const id=document.getElementById('convertId').value.trim(),email=document.getElementById('convertEmail').value.trim(),password=document.getElementById('convertPw').value,confirmPassword=document.getElementById('convertPw2').value,st=document.getElementById('convertAccountStatus');
+  if(!/^[A-Za-z0-9]{3,24}$/.test(id)){st.textContent='ID harus huruf + angka, 3–24 karakter.';return}if(password!==confirmPassword){st.textContent='Confirm Password tidak sama.';return}
+  const btn=document.getElementById('convertAccountSubmit');btn.disabled=true;st.textContent='Binding Guest save…';
+  try{const d=await authRequest('/api/guest/convert',{id,email,password,confirmPassword,save:makeCloudPlayerSave()},multiplayerToken());pixoraSession={...pixoraSession,...d,player:d.player,playerSave:d.playerSave};playerName=String(d.player.displayName||id);document.getElementById('accountChipName').textContent=playerName;document.getElementById('guestConvertBtn').style.display='none';const mb=document.getElementById('modPanelBtn');if(mb)mb.style.display=['Moderator','Admin','Owner'].includes(String(d.player?.role||'Player'))?'inline-flex':'none';localStorage.setItem(PIXORA_REMEMBER_ID_KEY,id);savePlayer(true);schedulePixoraCloudSave(100);document.getElementById('convertAccountPanel').classList.remove('open');toast('Guest berhasil jadi akun permanen','success')}
+  catch(e){st.textContent=authErrorMessage(e)}finally{btn.disabled=false}
+}
+
+async function playerAction(action){
+  const t=interactTarget;if(!t||t.self)return;const id=String(t.playerId||'');
+  if(action==='friend'){socialFriends.has(id)?socialFriends.delete(id):socialFriends.add(id);savePlayer(true);refreshInteractionButtons();return}
+  if(action==='block'){socialBlocked.has(id)?socialBlocked.delete(id):socialBlocked.add(id);savePlayer(true);refreshInteractionButtons();return}
+  if(action==='ignore'){socialIgnored.has(id)?socialIgnored.delete(id):socialIgnored.add(id);savePlayer(true);refreshInteractionButtons();return}
+  if(action==='inspect'){await pixoraNotice(equipmentText(t.equipped),'EQUIPMENT — '+String(t.displayName||'PLAYER'));return}
+  if(action==='trade'){closePlayerInteraction();requestTrade(t);return}
+  if(action==='report'){const ok=await pixoraConfirm('Report '+String(t.displayName||'player')+' ke moderator?','REPORT PLAYER','REPORT','BATAL');if(ok){try{await authRequest('/api/report',{targetPlayerId:id,world:currentWorldName,reason:'Reported from Player Interaction'},multiplayerToken());toast('Report terkirim','success')}catch(e){toast('Report gagal','error')}}return}
+  if(action==='moderator'){if(String(pixoraSession?.player?.role)!=='Owner')return;const next=String(t.role||'Player')==='Moderator'?'Player':'Moderator';try{const d=await authRequest('/api/mod/role',{targetPlayerId:id,role:next},multiplayerToken());t.role=d.role;document.getElementById('interactMeta').textContent=t.role+' • Permanent';refreshInteractionButtons();toast('Role → '+d.role,'success')}catch(e){toast(authErrorMessage(e),'error')}}
+}
+async function ownerWorldAction(cmd){const t=interactTarget;if(!t||t.self)return;let ok=true;if(cmd==='kick'||cmd==='ban')ok=await pixoraConfirm((cmd==='ban'?'Ban ':'Kick ')+String(t.displayName||'player')+' dari world?','WORLD OWNER',cmd.toUpperCase(),'BATAL');if(!ok)return;const r=await multiplayerWorldAction({type:'world-command',command:cmd,targetPlayerId:t.playerId});toast(r?.ok?cmd.toUpperCase()+' berhasil':'Command gagal',r?.ok?'success':'error');if(r?.ok&&cmd!=='pull')closePlayerInteraction()}
+
+async function openModeratorPanel(){
+  if(!['Moderator','Admin','Owner'].includes(String(pixoraSession?.player?.role||'Player')))return;
+  const box=document.getElementById('moderatorReportList');box.innerHTML='<small>Loading reports…</small>';document.getElementById('moderatorPanel').classList.add('open');
+  try{const d=await authRequest('/api/mod/reports',{},multiplayerToken());const rows=Array.isArray(d.reports)?d.reports:[];box.innerHTML=rows.length?rows.map(r=>'<div style="padding:8px;border-bottom:1px solid #ffffff22"><b>'+escapeChat(String(r.target||'PLAYER'))+'</b><br><small>From '+escapeChat(String(r.from||'?'))+' • '+escapeChat(String(r.world||'-'))+'</small><br>'+escapeChat(String(r.reason||'Player report'))+'</div>').join(''):'<small>No reports.</small>'}catch(e){box.textContent='Tidak bisa memuat reports: '+authErrorMessage(e)}
+}
+document.getElementById('modPanelBtn').addEventListener('pointerdown',e=>{e.preventDefault();openModeratorPanel()},{passive:false});
+document.getElementById('moderatorPanelClose').addEventListener('pointerdown',e=>{e.preventDefault();document.getElementById('moderatorPanel').classList.remove('open')},{passive:false});
+document.getElementById('guestConvertBtn').addEventListener('pointerdown',e=>{e.preventDefault();showGuestConvert()},{passive:false});
+document.getElementById('convertAccountClose').addEventListener('pointerdown',e=>{e.preventDefault();document.getElementById('convertAccountPanel').classList.remove('open')},{passive:false});
+document.getElementById('convertAccountSubmit').addEventListener('pointerdown',e=>{e.preventDefault();convertGuestAccount()},{passive:false});
+document.getElementById('playerInteractClose').addEventListener('pointerdown',e=>{e.preventDefault();closePlayerInteraction()},{passive:false});
+document.getElementById('otherPlayerActions').addEventListener('pointerdown',e=>{const b=e.target.closest('[data-player-action]');if(!b)return;e.preventDefault();playerAction(b.dataset.playerAction)},{passive:false});
+document.getElementById('worldOwnerActions').addEventListener('pointerdown',e=>{const b=e.target.closest('[data-owner-action]');if(!b)return;e.preventDefault();ownerWorldAction(b.dataset.ownerAction)},{passive:false});
+document.getElementById('tradeAddBtn').addEventListener('pointerdown',async e=>{e.preventDefault();if(!currentTrade||currentTrade.status!=='active')return;const item=document.getElementById('tradeItemSelect').value,qty=Math.max(1,Math.min(200,Math.floor(Number(document.getElementById('tradeQty').value||1))));if(!item)return;const next={...currentTradeOffer};next[item]=Math.min(Number(inventory[item]||0),Number(next[item]||0)+qty);try{const d=await authRequest('/api/trade/offer',{tradeId:currentTrade.id,offer:next},multiplayerToken());currentTrade=d.trade;currentTradeOffer={...(d.trade.offers?.[ownPlayerId()]||{})};renderTradeState()}catch(e){toast('Offer gagal: '+authErrorMessage(e),'error')}},{passive:false});
+document.getElementById('tradeRemoveBtn').addEventListener('pointerdown',async e=>{e.preventDefault();if(!currentTrade||currentTrade.status!=='active')return;const item=document.getElementById('tradeItemSelect').value,qty=Math.max(1,Math.min(200,Math.floor(Number(document.getElementById('tradeQty').value||1))));if(!item)return;const next={...currentTradeOffer},left=Math.max(0,Number(next[item]||0)-qty);if(left)next[item]=left;else delete next[item];try{const d=await authRequest('/api/trade/offer',{tradeId:currentTrade.id,offer:next},multiplayerToken());currentTrade=d.trade;currentTradeOffer={...(d.trade.offers?.[ownPlayerId()]||{})};renderTradeState()}catch(e){toast('Offer gagal: '+authErrorMessage(e),'error')}},{passive:false});
+document.getElementById('tradeConfirmBtn').addEventListener('pointerdown',async e=>{e.preventDefault();if(!currentTrade)return;try{const d=await authRequest('/api/trade/confirm',{tradeId:currentTrade.id},multiplayerToken());currentTrade=d.trade;if(d.playerSave){applyCloudPlayerSave(d.playerSave);updateInventory();savePlayer(true)}renderTradeState()}catch(err){toast('Trade berubah / tidak valid','error');refreshTradeState()}},{passive:false});
+document.getElementById('tradeCancelBtn').addEventListener('pointerdown',async e=>{e.preventDefault();try{if(currentTrade)await authRequest('/api/trade/cancel',{tradeId:currentTrade.id},multiplayerToken())}catch(_){}closeTradeLocal()},{passive:false});
+document.getElementById('tradeClose').addEventListener('pointerdown',async e=>{e.preventDefault();try{if(currentTrade)await authRequest('/api/trade/cancel',{tradeId:currentTrade.id},multiplayerToken())}catch(_){}closeTradeLocal()},{passive:false});
+
 // ===== PIXORA BUILD 14.0.1: Connected authentication server =====
 const PIXORA_SESSION_KEY='pixora_session_token_v1';
 const PIXORA_REMEMBER_ID_KEY='pixora_remember_login_id_v1';
@@ -2618,7 +2870,7 @@ let pixoraCloudSaveTimer=null;
 let pixoraCloudSavePaused=false;
 let pixoraCloudSaveInFlight=false;
 function makeCloudPlayerSave(){
-  return {version:3,inventory:{...inventory},equipped:{...equipped},gems:Math.max(0,Number(gems||0)),backpackCapacity:Math.max(24,Number(backpackCapacity||24)),backpackUpgrades:Math.max(0,Number(backpackUpgrades||0)),playerLevel:Math.max(1,Number(playerLevel||1)),playerXp:Math.max(0,Number(playerXp||0)),quickSlots:[...quickSlots].slice(0,3),savedAt:Date.now()};
+  return {version:6,inventory:{...inventory,spliceBook:1},equipped:{...equipped},gems:Math.max(0,Number(gems||0)),backpackCapacity:Math.max(24,Number(backpackCapacity||24)),backpackUpgrades:Math.max(0,Number(backpackUpgrades||0)),playerLevel:Math.max(1,Number(playerLevel||1)),playerXp:Math.max(0,Number(playerXp||0)),quickSlots:[...quickSlots].slice(0,3),friends:[...socialFriends],blocked:[...socialBlocked],ignored:[...socialIgnored],savedAt:Date.now()};
 }
 function schedulePixoraCloudSave(delay=450){
   if(pixoraCloudSavePaused||!pixoraSession||pixoraSession.player?.accountType!=='account')return;
@@ -2629,14 +2881,14 @@ function schedulePixoraCloudSave(delay=450){
 }
 function applyCloudPlayerSave(d){
   if(!d||typeof d!=='object')return false;
-  inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};
+  inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};inventory.spliceBook=1;
   Object.keys(equipped).forEach(k=>equipped[k]=(d.equipped||{})[k]||null);
   gems=Math.max(0,Number(d.gems||0));backpackCapacity=Math.max(24,Number(d.backpackCapacity||24));backpackUpgrades=Math.max(0,Math.floor(Number(d.backpackUpgrades||0)));
   playerLevel=Math.max(1,Math.min(MAX_LEVEL,Math.floor(Number(d.playerLevel||1))));playerXp=playerLevel>=MAX_LEVEL?0:Math.max(0,Math.min(xpNeededForLevel(playerLevel)-1,Math.floor(Number(d.playerXp||0))));
-  quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
+  quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);socialFriends=new Set(Array.isArray(d.friends)?d.friends:[]);socialBlocked=new Set(Array.isArray(d.blocked)?d.blocked:[]);socialIgnored=new Set(Array.isArray(d.ignored)?d.ignored:[]);
   migrateGrassToDirtPlayer();updateLevelUI();return true;
 }
-// ===== PIXORA BUILD 14.6.3: break-drop correction + free-aim punch hotfix =====
+// ===== PIXORA BUILD 14.7.0: break-drop correction + free-aim punch hotfix =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
@@ -2645,11 +2897,13 @@ function multiplayerWorldSnapshot(){
     worldId:String(worldId||''),surfaceTile:Math.floor(GROUND_Y/T),
     blocks:blocks.map(b=>({x:b.x,y:b.y,t:b.t})),
     door:door?{x:door.x,y:door.y,w:door.w,h:door.h}:null,
+    placedDoors:Array.isArray(placedDoors)?placedDoors.map(d=>({...d})):[],
     caveBgRemoved:[...caveBgRemoved],
     plants:Array.isArray(plants)?plants.map(p=>({...p})):[],
-    locks:Array.isArray(locks)?locks.map(l=>({...l,trusted:Array.isArray(l.trusted)?[...l.trusted]:[]})):[],
+    locks:Array.isArray(locks)?locks.map(l=>({...l,owner:String(l.owner||'')==='LOCAL_PLAYER'?ownPlayerId():l.owner,trusted:Array.isArray(l.trusted)?[...l.trusted]:[]})):[],
     weatherOrbs:Array.isArray(weatherOrbs)?weatherOrbs.map(o=>({...o})):[],
     jammers:Array.isArray(jammers)?jammers.map(j=>({...j})):[],
+    worldBans:Array.isArray(worldBans)?[...worldBans]:[],
     weather:(weather&&WEATHER_TYPES.includes(weather.type))?{type:weather.type}:{type:'sunny'},
     drops:Array.isArray(drops)?drops.filter(d=>!d.pick).map(d=>({id:d.id||'',x:d.x,y:d.y,item:d.item||null,kind:d.kind||'item',amount:Number(d.amount||1),pickupAfter:Number(d.pickupAfter||0)})):[]
   };
@@ -2667,9 +2921,10 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   blocks=snap.blocks.filter(b=>b&&Number.isFinite(Number(b.x))&&Number.isFinite(Number(b.y))&&typeof b.t==='string').map(b=>{const x=Number(b.x),y=Number(b.y),t=b.t,old=oldDamage.get(blockKey(Math.floor(x/T),Math.floor(y/T)));return {x,y,t,hitsTaken:old&&old.t===t?old.hitsTaken:0,lastHitAt:old&&old.t===t?old.lastHitAt:0}});rebuildBlockMap();
   caveBgRemoved=new Set(Array.isArray(snap.caveBgRemoved)?snap.caveBgRemoved.filter(k=>typeof k==='string'):[]);
   plants=Array.isArray(snap.plants)?snap.plants.map(p=>({...p})):[];
-  locks=Array.isArray(snap.locks)?snap.locks.map(l=>{const type=l.type||'worldLock',old=oldLockDamage.get(blockKey(Number(l.tx),Number(l.ty)));return {...l,type,trusted:Array.isArray(l.trusted)?[...l.trusted]:[],hitsTaken:old&&old.type===type?old.hitsTaken:0}}):[];
+  locks=Array.isArray(snap.locks)?snap.locks.map(l=>{const type=l.type||'worldLock',old=oldLockDamage.get(blockKey(Number(l.tx),Number(l.ty)));return {...l,owner:String(l.owner||'')==='LOCAL_PLAYER'?ownPlayerId():l.owner,type,trusted:Array.isArray(l.trusted)?[...l.trusted]:[],hitsTaken:old&&old.type===type?old.hitsTaken:0}}):[];
   weatherOrbs=Array.isArray(snap.weatherOrbs)?snap.weatherOrbs.map(o=>({...o})):[];
   jammers=Array.isArray(snap.jammers)?snap.jammers.filter(j=>j&&j.type==='punch').map(j=>({...j})):[];
+  placedDoors=Array.isArray(snap.placedDoors)?snap.placedDoors.map(d=>({...d})):[];worldBans=Array.isArray(snap.worldBans)?snap.worldBans.map(String):[];
   weather=(snap.weather&&WEATHER_TYPES.includes(snap.weather.type))?{type:snap.weather.type}:{type:'sunny'};
   drops=Array.isArray(snap.drops)?snap.drops.map(d=>({...d,bobSeed:Math.random()*Math.PI*2,collecting:false,pick:false})):[];
   if(snap.door&&Number.isFinite(Number(snap.door.x))){const dt=Math.floor(Number(snap.door.x)/T);door={x:dt*T+2,y:Math.floor(GROUND_Y/T)*T-40,w:36,h:40};}else door=null;
@@ -2685,11 +2940,11 @@ function applyRemotePlayers(list){
     const a=(r.actionState&&typeof r.actionState==='object')?r.actionState:null;
     const old=remotePlayers.get(r.playerId),nx=Number(r.x)||0,ny=Number(r.y)||0;
     if(old){
-      old.targetX=nx;old.targetY=ny;old.serverVx=Number(r.vx)||0;old.serverVy=Number(r.vy)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.equipped=(r.equipped&&typeof r.equipped==='object')?{...r.equipped}:old.equipped||{};
+      old.targetX=nx;old.targetY=ny;old.serverVx=Number(r.vx)||0;old.serverVy=Number(r.vy)||0;old.facing=Number(r.facing)<0?-1:1;old.displayName=String(r.displayName||old.displayName||'PLAYER');old.role=String(r.role||old.role||'Player');old.accountType=String(r.accountType||old.accountType||'guest');old.equipped=(r.equipped&&typeof r.equipped==='object')?{...r.equipped}:old.equipped||{};
       const seq=Number(a?.seq||0);if(a?.active&&seq&&seq!==old.lastPunchSeq){old.lastPunchSeq=seq;old.punchPulseStart=now}
       old.actionState=a;old.lastSeen=now;
     }else{
-      remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),x:nx,y:ny,targetX:nx,targetY:ny,serverVx:Number(r.vx)||0,serverVy:Number(r.vy)||0,facing:Number(r.facing)<0?-1:1,equipped:(r.equipped&&typeof r.equipped==='object')?{...r.equipped}:{},actionState:a,lastSeen:now,walkPhase:0,lastPunchSeq:Number(a?.seq||0),punchPulseStart:a?.active?now:0});
+      remotePlayers.set(r.playerId,{playerId:r.playerId,displayName:String(r.displayName||'PLAYER'),role:String(r.role||'Player'),accountType:String(r.accountType||'guest'),x:nx,y:ny,targetX:nx,targetY:ny,serverVx:Number(r.vx)||0,serverVy:Number(r.vy)||0,facing:Number(r.facing)<0?-1:1,equipped:(r.equipped&&typeof r.equipped==='object')?{...r.equipped}:{},actionState:a,lastSeen:now,walkPhase:0,lastPunchSeq:Number(a?.seq||0),punchPulseStart:a?.active?now:0});
     }
   }
   for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>3200)remotePlayers.delete(id)}
@@ -2718,7 +2973,17 @@ function currentMultiplayerActionState(){
 }
 
 function applyServerEvents(events){
-  for(const ev of Array.isArray(events)?events:[]){if(ev?.type!=='knockback')continue;player.vx+=Number(ev.vx||0);player.vy=Math.min(player.vy,Number(ev.vy||-5));player.onGround=false;sfx('punch')}
+  for(const ev of Array.isArray(events)?events:[]){
+    if(!ev)continue;
+    if(ev.type==='knockback'){player.vx+=Number(ev.vx||0);player.vy=Math.min(player.vy,Number(ev.vy||-5));player.onGround=false;sfx('punch');continue}
+    if(ev.type==='pull'){player.x=Number(ev.x||player.x);player.y=Number(ev.y||player.y);player.vx=0;player.vy=0;toast('Kamu di-pull oleh World Owner','info');continue}
+    if(ev.type==='world-kick'){toast(ev.reason==='BANNED'?'Kamu di-ban dari world':'Kamu di-kick dari world','error');setTimeout(()=>{if(gameReady)exitWorld()},50);continue}
+    if(ev.type==='trade-request'){handleTradeRequest(ev);continue}
+    if(ev.type==='trade-open'){authRequest('/api/trade/state',{tradeId:ev.tradeId},multiplayerToken()).then(d=>openTradeFromState(d.trade)).catch(()=>{});continue}
+    if(ev.type==='trade-updated'){if(currentTrade?.id===ev.tradeId)refreshTradeState();continue}
+    if(ev.type==='trade-complete'){if(ev.playerSave){applyCloudPlayerSave(ev.playerSave);updateInventory();savePlayer(true)}closeTradeLocal();toast('Trade selesai','success');continue}
+    if(ev.type==='trade-cancelled'){if(currentTrade?.id===ev.tradeId)closeTradeLocal();toast('Trade dibatalkan','info');continue}
+  }
 }
 
 async function multiplayerJoin(){
@@ -2830,7 +3095,7 @@ function setAuthStatus(text,kind=''){
   const el=document.getElementById('authStatus');if(!el)return;el.className=kind;el.innerHTML=text;
 }
 function setAuthBusy(busy,label='Connecting…'){
-  ['guestBtn','loginBtn','registerBtn'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=busy});
+  ['guestBtn','loginBtn','registerBtn','convertAccountSubmit'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=busy});
   if(busy)setAuthStatus('<span class="authSpinner"></span>'+label);
 }
 async function authRequest(path,payload={},token=''){
@@ -2862,7 +3127,7 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_14_6_2_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_14_7_0_'+safe;
 }
 function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;
@@ -2873,7 +3138,7 @@ function bootPixoraSession(session){
   pixoraCloudSavePaused=false;if(session.player?.accountType==='account'&&!session.playerSave)schedulePixoraCloudSave(150);
   setZoom(1);renderInventory();setSelected('tool','punch');refreshSavedWorldList();ui.worldInput.value='WORLD1';refreshSoundButton();
   document.getElementById('authScreen').classList.add('hidden');
-  const chip=document.getElementById('accountChip');chip.classList.add('show');document.getElementById('accountChipName').textContent=playerName;
+  const chip=document.getElementById('accountChip');chip.classList.add('show');document.getElementById('accountChipName').textContent=playerName;const gcb=document.getElementById('guestConvertBtn');if(gcb)gcb.style.display=session.player?.accountType==='guest'?'inline-flex':'none';const mb=document.getElementById('modPanelBtn');if(mb)mb.style.display=['Moderator','Admin','Owner'].includes(String(session.player?.role||'Player'))?'inline-flex':'none';
   showChangelogOnce();
   const resumeWorld=cleanWorldName(localStorage.getItem(ACTIVE_WORLD_KEY)||'');if(resumeWorld&&playerNameLocked)setTimeout(()=>enterWorld(resumeWorld),0);
 }
@@ -2886,6 +3151,17 @@ function authErrorMessage(err){
   if(code==='SESSION_REPLACED')return 'Akun ini login di perangkat lain.';
   if(code==='BAD_ID')return 'ID hanya boleh berisi huruf A-Z dan angka 0-9 (3–24 karakter).';
   if(code==='ACCOUNT_EXISTS')return 'ID itu sudah dipakai player lain. Pilih ID lain.';
+  if(code==='PASSWORD_MISMATCH')return 'Confirm Password tidak sama.';
+  if(code==='BAD_EMAIL')return 'Format email tidak valid.';
+  if(code==='EMAIL_EXISTS')return 'Email itu sudah digunakan akun lain.';
+  if(code==='ALREADY_ACCOUNT')return 'Profil ini sudah merupakan akun permanen.';
+  if(code==='ACCOUNT_REQUIRED')return 'Fitur ini membutuhkan akun permanen.';
+  if(code==='PLAYER_NOT_AVAILABLE')return 'Player tidak tersedia untuk trade.';
+  if(code==='TRADE_BUSY')return 'Salah satu player sedang melakukan trade.';
+  if(code==='OWNER_REQUIRED')return 'Hanya Owner Pixora yang dapat mengubah role.';
+  if(code==='WORLD_BANNED')return 'Kamu di-ban dari world ini.';
+  if(code==='TRADE_INVENTORY_CHANGED'||code==='ITEM_CHANGED')return 'Inventory berubah. Periksa offer trade lagi.';
+  if(code==='SAVE_REQUIRED')return 'Save akun belum siap. Coba lagi.';
   if(code==='BAD_REQUEST')return 'Data belum lengkap / format tidak valid.';
   if(code.startsWith('HTTP_')||code==='Failed to fetch')return 'Pixora Server belum terhubung ke website ini.';
   return 'Tidak bisa terhubung ke Pixora Server: '+code;
@@ -2904,7 +3180,7 @@ function initAuthFlow(){
   document.querySelectorAll('.authTab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.authTab').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.authPane').forEach(p=>p.classList.toggle('active',p.dataset.authPane===btn.dataset.authTab));setAuthStatus('Connecting ke Pixora Server diperlukan untuk masuk.')}));
   document.getElementById('guestBtn').addEventListener('click',()=>{const name=String(document.getElementById('guestName').value||'Player').trim().slice(0,12)||'Player';completeAuth('/api/guest',{name,guestId:pixoraGuestDeviceId()})});
   document.getElementById('loginBtn').addEventListener('click',()=>completeAuth('/api/login',{id:document.getElementById('loginId').value.trim(),password:document.getElementById('loginPw').value}));
-  document.getElementById('registerBtn').addEventListener('click',()=>{const id=document.getElementById('registerId').value.trim();if(!/^[A-Za-z0-9]{3,24}$/.test(id)){setAuthStatus('ID hanya boleh huruf dan angka, 3–24 karakter.','error');return}completeAuth('/api/register',{id,password:document.getElementById('registerPw').value})});
+  document.getElementById('registerBtn').addEventListener('click',()=>{const id=document.getElementById('registerId').value.trim(),email=document.getElementById('registerEmail').value.trim(),password=document.getElementById('registerPw').value,confirmPassword=document.getElementById('registerPw2').value;if(!/^[A-Za-z0-9]{3,24}$/.test(id)){setAuthStatus('ID hanya boleh huruf dan angka, 3–24 karakter.','error');return}if(password!==confirmPassword){setAuthStatus('Confirm Password tidak sama.','error');return}completeAuth('/api/register',{id,email,password,confirmPassword})});
   document.getElementById('logoutBtn').addEventListener('click',async()=>{const token=localStorage.getItem(PIXORA_SESSION_KEY)||'';try{if(token)await authRequest('/api/logout',{},token)}catch(_){ }localStorage.removeItem(PIXORA_SESSION_KEY);location.reload()});
   if(!navigator.onLine)setAuthStatus('Tidak ada koneksi internet. Pixora tidak bisa login.','error');
   window.addEventListener('online',()=>{if(!pixoraBooted)setAuthStatus('Internet kembali. Silakan login.')});
@@ -2918,7 +3194,7 @@ const chatToggleBtn=document.getElementById('chatToggleBtn'),chatPanel=document.
 chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameReady){toast('Masuk world dulu','info');return}chatPanel.classList.toggle('open');if(chatPanel.classList.contains('open'))setTimeout(()=>chatInput.focus(),40)},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim()){chatPanel.classList.remove('open');chatInput.blur();return}chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_14_6_2';
+let CHANGELOG_KEY='pixora_seen_build_14_7_0';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

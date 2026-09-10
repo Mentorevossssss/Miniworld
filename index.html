@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 14.6.2</title>
+<title>Pixora — Online Alpha Build 14.6.3</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -328,7 +328,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 14.6.2</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 14.6.3</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -388,8 +388,8 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 14.6.2</h2>
-    <p>Masukkan nama world. Build 14.6.2 menambah Guest persistence, player knockback + Punch Jammer, Store item baru, Wing, dan hotfix kontrol.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 14.6.3</h2>
+    <p>Masukkan nama world. Build 14.6.3 memulihkan drop Block + Seed dan memperbaiki arah/animasi punch pada tile kosong.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -439,7 +439,7 @@ button.hudResource:active{transform:scale(.96)}
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.6.2 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 14.6.3 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -448,8 +448,6 @@ button.hudResource:active{transform:scale(.96)}
     </div>
     <div id="storeTabs">
       <button class="storeTab active" data-store-cat="featured">FEATURED</button>
-      <button class="storeTab" data-store-cat="blocks">BLOCKS</button>
-      <button class="storeTab" data-store-cat="seeds">SEEDS</button>
       <button class="storeTab" data-store-cat="clothes">CLOTHES</button>
       <button class="storeTab" data-store-cat="world">WORLD</button>
       <button class="storeTab" data-store-cat="tools">TOOLS</button>
@@ -486,7 +484,7 @@ button.hudResource:active{transform:scale(.96)}
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 14.6.2</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 14.6.3</b></div>
     <ul>
       <li><b>Guest Tetap Tersimpan</b> — logout tidak menghapus Guest. Device/browser yang sama kembali ke Guest + save yang sama.</li>
       <li><b>Mouse Hold Punch</b> — tahan klik kiri pada Punch sekarang benar-benar terus memukul.</li>
@@ -494,7 +492,8 @@ button.hudResource:active{transform:scale(.96)}
       <li><b>Player Knockback</b> — punch player mendorong target jika Punch Jammer tidak aktif.</li>
       <li><b>Punch Jammer</b> — world utility baru; selama terpasang, knockback antar-player dimatikan.</li>
       <li><b>Wing</b> — equipment punggung baru dan terlihat oleh player lain di multiplayer.</li>
-      <li><b>Store Expansion</b> — block, seed, dan clothes lama dari break sekarang dibeli lewat Store; break tidak lagi menjatuhkan item tersebut.</li>
+      <li><b>Break Drop Fix</b> — Block dan Seed kembali bisa drop dari break sesuai drop-rate farming. Clothes/Wearable tetap Store-only.</li>
+      <li><b>Free-Aim Punch</b> — klik/tahan ke tile kosong tetap memainkan animasi punch ke arah kursor, termasuk ke atas/langit-langit.</li>
       <li><b>Drop / Trash</b> — Drop default seluruh stack, Trash default 1.</li>
       <li><b>Desktop Chat</b> — Enter saat chat kosong menutup chat.</li>
       <li><b>Capacity</b> — 100 player aktif per server, 20 player per world.</li>
@@ -1347,6 +1346,7 @@ function update(){
   if(canvasPunchHold&&player.punchAnim<=0&&performance.now()>=nextPunchAt){
     if(canvasPunchHold.kind==='block'){const b=blockAt(canvasPunchHold.tx,canvasPunchHold.ty);if(b)tapHitBlock(b,equipped.tool==='pickaxe'?'pickaxe':'punch');else canvasPunchHold=null}
     else if(canvasPunchHold.kind==='bg'){if(hasCaveBackground(canvasPunchHold.tx,canvasPunchHold.ty))tapHitBackground(canvasPunchHold.tx,canvasPunchHold.ty);else canvasPunchHold=null}
+    else if(canvasPunchHold.kind==='air'){const tool=equipped.tool==='pickaxe'?'pickaxe':'punch';pulsePunchAt(canvasPunchHold.tx,canvasPunchHold.ty,tool,'air',0);sfx(tool==='pickaxe'?'pickaxe':'punch');nextPunchAt=performance.now()+TAP_HIT_COOLDOWN}
   }
   // Setiap block baru selalu memulai progress break dari 0.
   // Ada jeda pendek antar-block supaya hold Punch konsisten.
@@ -1917,31 +1917,7 @@ function pickupStatus(item,amount=1){
 }
 function canReceiveItem(item,amount=1){return pickupStatus(item,amount)==='ok'}
 const STORE_CATALOG=[
-  {id:'dirt',name:'EARTHEN SOIL',category:'blocks',price:3,icon:'dirt',inventoryItem:'dirt',desc:'1 Earthen Soil. Block dasar untuk building dan farming.'},
-  {id:'stone',name:'GRAYSTONE',category:'blocks',price:5,icon:'stone',inventoryItem:'stone',desc:'1 Graystone.'},
-  {id:'wood',name:'TIMBERWOOD',category:'blocks',price:6,icon:'wood',inventoryItem:'wood',desc:'1 Timberwood.'},
-  {id:'leaf',name:'CANOPY LEAF',category:'blocks',price:5,icon:'leaf',inventoryItem:'leaf',desc:'1 Canopy Leaf.'},
-  {id:'sand',name:'SUNVEIL SAND',category:'blocks',price:4,icon:'sand',inventoryItem:'sand',desc:'1 Sunveil Sand.'},
-  {id:'glass',name:'SKYGLASS',category:'blocks',price:8,icon:'glass',inventoryItem:'glass',desc:'1 Skyglass.'},
-  {id:'brick',name:'EMBERBRICK',category:'blocks',price:8,icon:'brick',inventoryItem:'brick',desc:'1 Emberbrick.'},
-  {id:'ice',name:'FROSTGLASS',category:'blocks',price:7,icon:'ice',inventoryItem:'ice',desc:'1 Frostglass.'},
-  {id:'metal',name:'IRONWEAVE BLOCK',category:'blocks',price:10,icon:'metal',inventoryItem:'metal',desc:'1 Ironweave Block.'},
-  {id:'caveStone',name:'DEEPSTONE',category:'blocks',price:7,icon:'caveStone',inventoryItem:'caveStone',desc:'1 Deepstone.'},
-  {id:'moss',name:'VERDANT MOSS',category:'blocks',price:6,icon:'moss',inventoryItem:'moss',desc:'1 Verdant Moss.'},
-  {id:'lava',name:'MOLTENROCK',category:'blocks',price:12,icon:'lava',inventoryItem:'lava',desc:'1 Moltenrock. Berbahaya jika disentuh.'},
-  {id:'farmBlock',name:'LUMINITE PACK',category:'blocks',price:250,amount:20,icon:'farmBlock',inventoryItem:'farmBlock',desc:'20 Luminite Block • Rarity 8 • 4 hit. Farming block dengan peluang Gems.'},
-  {id:'dirtSeed',name:'EARTHEN SOIL SEED',category:'seeds',price:6,icon:'dirtSeed',inventoryItem:'dirtSeed',desc:'1 Earthen Soil Seed.'},
-  {id:'stoneSeed',name:'GRAYSTONE SEED',category:'seeds',price:10,icon:'stoneSeed',inventoryItem:'stoneSeed',desc:'1 Graystone Seed.'},
-  {id:'woodSeed',name:'TIMBERWOOD SEED',category:'seeds',price:12,icon:'woodSeed',inventoryItem:'woodSeed',desc:'1 Timberwood Seed.'},
-  {id:'leafSeed',name:'CANOPY SEED',category:'seeds',price:10,icon:'leafSeed',inventoryItem:'leafSeed',desc:'1 Canopy Seed.'},
-  {id:'sandSeed',name:'SUNVEIL SEED',category:'seeds',price:8,icon:'sandSeed',inventoryItem:'sandSeed',desc:'1 Sunveil Seed.'},
-  {id:'glassSeed',name:'SKYGLASS SEED',category:'seeds',price:16,icon:'glassSeed',inventoryItem:'glassSeed',desc:'1 Skyglass Seed.'},
-  {id:'brickSeed',name:'EMBERBRICK SEED',category:'seeds',price:16,icon:'brickSeed',inventoryItem:'brickSeed',desc:'1 Emberbrick Seed.'},
-  {id:'iceSeed',name:'FROSTGLASS SEED',category:'seeds',price:14,icon:'iceSeed',inventoryItem:'iceSeed',desc:'1 Frostglass Seed.'},
-  {id:'metalSeed',name:'IRONWEAVE SEED',category:'seeds',price:20,icon:'metalSeed',inventoryItem:'metalSeed',desc:'1 Ironweave Seed.'},
-  {id:'caveStoneSeed',name:'DEEPSTONE SEED',category:'seeds',price:14,icon:'caveStoneSeed',inventoryItem:'caveStoneSeed',desc:'1 Deepstone Seed.'},
-  {id:'mossSeed',name:'VERDANT MOSS SEED',category:'seeds',price:12,icon:'mossSeed',inventoryItem:'mossSeed',desc:'1 Verdant Moss Seed.'},
-  {id:'farmSeed',name:'LUMINITE SEED',category:'seeds',price:35,icon:'farmSeed',inventoryItem:'farmSeed',desc:'1 Luminite Seed.'},
+  {id:'farmBlock',name:'LUMINITE PACK',category:'world',price:250,amount:20,icon:'farmBlock',inventoryItem:'farmBlock',desc:'20 Luminite Block • Rarity 8 • 4 hit. Farming block dengan peluang Gems.'},
   {id:'redShirt',name:'CRIMSON TRAIL TEE',category:'clothes',price:80,icon:'redShirt',inventoryItem:'redShirt',maxOne:true,desc:'Shirt equipment.'},
   {id:'bluePants',name:'AZURE TREK PANTS',category:'clothes',price:80,icon:'bluePants',inventoryItem:'bluePants',maxOne:true,desc:'Pants equipment.'},
   {id:'blackHair',name:'NIGHTFALL HAIR',category:'clothes',price:100,icon:'blackHair',inventoryItem:'blackHair',maxOne:true,desc:'Hair equipment.'},
@@ -2457,6 +2433,11 @@ canvas.addEventListener('pointerdown',e=>{
   if(!b&&selectedItem==='punch'&&hasCaveBackground(pt.tx,pt.ty)){
     canvasPunchHold={pointerId:e.pointerId,kind:'bg',tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}tapHitBackground(pt.tx,pt.ty);return;
   }
+  if(!b&&selectedItem==='punch'){
+    const tool=equipped.tool==='pickaxe'?'pickaxe':'punch';
+    canvasPunchHold={pointerId:e.pointerId,kind:'air',tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}
+    pulsePunchAt(pt.tx,pt.ty,tool,'air',0);sfx(tool==='pickaxe'?'pickaxe':'punch');nextPunchAt=performance.now()+TAP_HIT_COOLDOWN;return;
+  }
   if(!b&&selectedType==='block'){
     placeHeld=true;
     placePointerId=e.pointerId;
@@ -2472,6 +2453,9 @@ canvas.addEventListener('pointermove',e=>{
   if(activePointers.has(e.pointerId))activePointers.set(e.pointerId,{x:e.clientX,y:e.clientY,type:e.pointerType});
   updateHoverFromClient(e.clientX,e.clientY);
   if(pinchActive){updatePinch();return;}
+  if(canvasPunchHold&&canvasPunchHold.pointerId===e.pointerId&&canvasPunchHold.kind==='air'){
+    const pt=canvasPoint(e);if(inInteraction5x5(pt.tx,pt.ty)){canvasPunchHold.tx=pt.tx;canvasPunchHold.ty=pt.ty}
+  }
   if(touchBreakActive){
     if(Math.hypot(e.clientX-touchStartX,e.clientY-touchStartY)>22){touchBreakActive=false;cancelBreak('touch')}
     return;
@@ -2652,7 +2636,7 @@ function applyCloudPlayerSave(d){
   quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);
   migrateGrassToDirtPlayer();updateLevelUI();return true;
 }
-// ===== PIXORA BUILD 14.6.2: 14.6 persistence + controls/chat hotfix =====
+// ===== PIXORA BUILD 14.6.3: break-drop correction + free-aim punch hotfix =====
 const remotePlayers=new Map();
 let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',multiplayerWorldRevision=0,multiplayerActionInFlight=0;
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
@@ -2674,7 +2658,7 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   if(!snap||!Array.isArray(snap.blocks))return false;
   let keepBreak=null;
   if(breakState){if(breakState.kind==='bg')keepBreak={...breakState};else if(breakState.block)keepBreak={...breakState,tx:Math.floor(breakState.block.x/T),ty:Math.floor(breakState.block.y/T),block:null}}
-  // 14.6.2: snapshot server tidak boleh menghapus progress hit lokal yang masih aktif.
+  // 14.6.3: snapshot server tidak boleh menghapus progress hit lokal yang masih aktif.
   const now=performance.now(),oldDamage=new Map(),oldLockDamage=new Map();
   for(const b of blocks){if(!b)continue;const h=Number(b.hitsTaken||0),last=Number(b.lastHitAt||0);if(h>0&&last>0&&now-last<=DAMAGE_RESET_MS)oldDamage.set(blockKey(Math.floor(b.x/T),Math.floor(b.y/T)),{t:b.t,hitsTaken:h,lastHitAt:last})}
   for(const l of locks){if(!l)continue;const h=Number(l.hitsTaken||0);if(h>0)oldLockDamage.set(blockKey(Number(l.tx),Number(l.ty)),{type:l.type||'worldLock',hitsTaken:h})}

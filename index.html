@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 15.0</title>
+<title>Pixora — Online Alpha Build 15.0.1</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -337,7 +337,7 @@ button.hudResource:active{transform:scale(.96)}
 @media(max-width:720px){#spliceBookList{grid-template-columns:1fr}.pixoraCard{max-height:92dvh}.actionGrid{grid-template-columns:1fr 1fr}}
 
 
-/* ===== Pixora Build 15.0: mobile stability, social UI, IOTM ===== */
+/* ===== Pixora Build 15.0.1: mobile stability, social UI, IOTM ===== */
 html,body{overscroll-behavior:none}body{position:fixed;inset:0;width:100%;height:100%;overflow:hidden}
 input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout:none){input,textarea,select{font-size:16px!important}}
 .icon-alphaWing{background:transparent!important;border:0!important}.icon-alphaWing:before,.icon-alphaWing:after{content:'';position:absolute;top:1px;width:17px;height:29px;background:linear-gradient(145deg,#ffffff 0%,#bdf8ff 32%,#66dfff 68%,#598dff 100%);border:2px solid #dffbff;filter:drop-shadow(0 0 4px #69e9ff);clip-path:polygon(50% 0,100% 12%,82% 42%,100% 55%,67% 72%,60% 100%,18% 77%,0 38%)}.icon-alphaWing:before{left:-1px;transform:scaleX(-1) rotate(-7deg)}.icon-alphaWing:after{right:-1px;transform:rotate(-7deg)}
@@ -358,6 +358,8 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 [class*="icon-"][class$="Seed"]:before{filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))}.seedSlot .pixelIcon{transform:scale(.94)}
 /* wearable icon polish */
 .icon-redShirt{background:#d94745!important;border-radius:6px 6px 3px 3px!important;clip-path:polygon(18% 8%,35% 0,65% 0,82% 8%,100% 30%,82% 43%,75% 30%,75% 100%,25% 100%,25% 30%,18% 43%,0 30%)!important;box-shadow:inset 0 5px 0 #f16a65!important}.icon-bluePants{background:#365da7!important;clip-path:polygon(15% 0,85% 0,80% 100%,55% 100%,50% 48%,45% 100%,20% 100%)!important}.icon-blackHair{background:#211b19!important;border-radius:48% 52% 30% 35%!important;clip-path:polygon(5% 30%,16% 8%,38% 0,72% 4%,94% 21%,88% 64%,76% 47%,63% 67%,49% 45%,31% 66%,19% 44%,7% 60%)!important}.icon-whiteShoes{background:transparent!important;border:0!important}.icon-whiteShoes:before,.icon-whiteShoes:after{content:'';position:absolute;bottom:6px;width:14px;height:8px;background:#f5f7f8;border:2px solid #aeb8bf;border-radius:5px 8px 4px 4px}.icon-whiteShoes:before{left:1px}.icon-whiteShoes:after{right:1px}.icon-pixoraWing{background:transparent!important;border:0!important}.icon-pixoraWing:before,.icon-pixoraWing:after{content:'';position:absolute;top:3px;width:14px;height:25px;background:linear-gradient(135deg,#e7fbff,#8ddff7 65%,#5eb7d5);border:2px solid #397fa0}.icon-pixoraWing:before{left:1px;clip-path:polygon(100% 38%,0 0,18% 52%,5% 100%,100% 69%)}.icon-pixoraWing:after{right:1px;clip-path:polygon(0 38%,100% 0,82% 52%,95% 100%,0 69%)}
+.icon-pixoraHat{background:transparent!important;border:0!important}.icon-pixoraHat:before{content:'';position:absolute;left:4px;top:8px;width:24px;height:12px;background:linear-gradient(180deg,#1b2430 0%,#2a1d3f 55%,#314ba5 100%);border:2px solid #94c8ff;border-bottom:0;border-radius:10px 10px 4px 4px;box-shadow:inset 0 3px 0 #5168d0,0 0 5px rgba(110,180,255,.25)}.icon-pixoraHat:after{content:'P';position:absolute;left:11px;top:10px;width:10px;height:10px;color:#f2f8ff;font:900 9px Arial;text-shadow:-8px 1px 0 #f2f8ff,8px 1px 0 #f2f8ff,12px -1px 0 #86dfff;background:transparent}
+
 .drawerSlot{background:linear-gradient(180deg,#172433,#111b27);border-color:#ffffff22}.drawerSlot:hover{border-color:#78c9f7}.drawerName{letter-spacing:.15px}
 
 </style>
@@ -432,7 +434,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="worldMenu">
   <div id="worldCard">
     <h2>PIXORA — ONLINE ALPHA BUILD 15.0</h2>
-    <p>Masukkan nama world. Build 15.0 membawa Staff &amp; Friend System baru, social commands, Alpha Wing testing, serta gameplay dan mobile fixes.</p>
+    <p>Masukkan nama world. Build 15.0.1 membawa hotfix chat scroll, Owner display name Pixora, Pixora Hat testing, serta semua sistem Build 15.0.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine" style="display:none">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -664,7 +666,7 @@ const ui={seed:document.getElementById('seedCount'),mode:document.getElementById
 let cameraX=0,cameraY=0,cameraTarget=0,zoom=1,selectedType='tool',selectedItem='punch';
 let cameraLift=0,cameraLiftTarget=0;
 let cloudOffset=0;
-const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,woodPlatform:0,woodDoor:0,worldDoor:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,platformSeed:0,doorSeed:0,worldDoorSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,pixoraWing:0,alphaWing:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,punchJammer:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0,spliceBook:1};
+const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,woodPlatform:0,woodDoor:0,worldDoor:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,platformSeed:0,doorSeed:0,worldDoorSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,pixoraWing:0,alphaWing:0,pixoraHat:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,punchJammer:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0,spliceBook:1};
 let inventory={...DEFAULT_INVENTORY};
 let gems=0;
 let backpackCapacity=24;
@@ -673,16 +675,16 @@ let locks=[];
 let focusedLock=null;
 let lockAreaVisibleUntil=0;
 const equipped={hair:null,shirt:null,pants:null,shoes:null,back:null,tool:null};
-const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes',pixoraWing:'back',alphaWing:'back'};
+const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes',pixoraWing:'back',alphaWing:'back',pixoraHat:'hair'};
 const seedForBlock={grass:'grassSeed',dirt:'dirtSeed',stone:'stoneSeed',wood:'woodSeed',leaf:'leafSeed',sand:'sandSeed',glass:'glassSeed',brick:'brickSeed',ice:'iceSeed',metal:'metalSeed',caveStone:'caveStoneSeed',moss:'mossSeed',farmBlock:'farmSeed'};
 const itemName={
   grass:'GRASS',dirt:'DIRT',stone:'ROCK',wood:'WOOD',leaf:'LEAVES',sand:'SAND',glass:'GLASS',brick:'BRICK',ice:'ICE',metal:'METAL',caveStone:'CAVE ROCK',moss:'MOSS',lava:'LAVA',farmBlock:'LUMINITE BLOCK',woodPlatform:'PLATFORM',woodDoor:'DOOR',worldDoor:'WORLD DOOR',bedrock:'BEDROCK',
   grassSeed:'GRASS SEED',dirtSeed:'DIRT SEED',stoneSeed:'ROCK SEED',woodSeed:'WOOD SEED',leafSeed:'LEAF SEED',sandSeed:'SAND SEED',glassSeed:'GLASS SEED',brickSeed:'BRICK SEED',iceSeed:'ICE SEED',metalSeed:'METAL SEED',caveStoneSeed:'CAVE ROCK SEED',mossSeed:'MOSS SEED',farmSeed:'LUMINITE SEED',platformSeed:'PLATFORM SEED',doorSeed:'DOOR SEED',worldDoorSeed:'WORLD DOOR SEED',
-  redShirt:'CRIMSON TEE',bluePants:'BLUE PANTS',blackHair:'BLACK HAIR',whiteShoes:'WHITE SNEAKERS',pixoraWing:'PIXORA WING',alphaWing:'ALPHA WING',punchJammer:'PUNCH JAMMER',smallLock:'SMALL LOCK',bigLock:'BIG LOCK',hugeLock:'HUGE LOCK',worldLock:'WORLD LOCK',pickaxe:'PICKAXE',sunnyOrb:'SUNNY ORB',rainOrb:'RAIN ORB',cloudyOrb:'CLOUDY ORB',fogOrb:'FOG ORB',stormOrb:'STORM ORB',spliceBook:'SPLICE BOOK'
+  redShirt:'CRIMSON TEE',bluePants:'BLUE PANTS',blackHair:'BLACK HAIR',whiteShoes:'WHITE SNEAKERS',pixoraWing:'PIXORA WING',alphaWing:'ALPHA WING',pixoraHat:'PIXORA HAT',punchJammer:'PUNCH JAMMER',smallLock:'SMALL LOCK',bigLock:'BIG LOCK',hugeLock:'HUGE LOCK',worldLock:'WORLD LOCK',pickaxe:'PICKAXE',sunnyOrb:'SUNNY ORB',rainOrb:'RAIN ORB',cloudyOrb:'CLOUDY ORB',fogOrb:'FOG ORB',stormOrb:'STORM ORB',spliceBook:'SPLICE BOOK'
 };
 const blockItems=['grass','dirt','stone','wood','leaf','sand','glass','brick','ice','metal','caveStone','moss','lava','farmBlock','woodPlatform','woodDoor','worldDoor'];
 const seedItems=['grassSeed','dirtSeed','stoneSeed','woodSeed','leafSeed','sandSeed','glassSeed','brickSeed','iceSeed','metalSeed','caveStoneSeed','mossSeed','farmSeed','platformSeed','doorSeed','worldDoorSeed'];
-const wearableItems=['redShirt','bluePants','blackHair','whiteShoes','pixoraWing','alphaWing'];
+const wearableItems=['redShirt','bluePants','blackHair','whiteShoes','pixoraWing','alphaWing','pixoraHat'];
 const WEATHER_ORB_ITEM_TO_TYPE={sunnyOrb:'sunny',rainOrb:'rain',cloudyOrb:'cloudy',fogOrb:'fog',stormOrb:'storm'};
 const weatherOrbItems=Object.keys(WEATHER_ORB_ITEM_TO_TYPE);
 const lockItems=['smallLock','bigLock','hugeLock','worldLock'];
@@ -699,7 +701,7 @@ function itemRarity(item){
   if(blockRarity[item])return blockRarity[item];
   if(seedItems.includes(item)){const b=plantBlockForSeed[item];return blockRarity[b]||1}
   if(item==='smallLock')return 8;if(item==='bigLock')return 14;if(item==='hugeLock')return 22;if(item==='worldLock')return 30;
-  if(item==='pickaxe')return 8;if(item==='punchJammer')return 20;if(item==='pixoraWing')return 25;if(item==='alphaWing')return 100;if(item==='woodPlatform')return 3;if(item==='woodDoor')return 5;if(item==='worldDoor')return 10;if(item==='spliceBook')return 99;
+  if(item==='pickaxe')return 8;if(item==='punchJammer')return 20;if(item==='pixoraWing')return 25;if(item==='alphaWing')return 100;if(item==='pixoraHat')return 60;if(item==='woodPlatform')return 3;if(item==='woodDoor')return 5;if(item==='worldDoor')return 10;if(item==='spliceBook')return 99;
   if(weatherOrbItems.includes(item))return item==='stormOrb'?24:18;
   if(wearableItems.includes(item))return 20;
   return 1;
@@ -1708,6 +1710,21 @@ function drawAlphaWingAt(x,y,bob,onGround,vy,now){
   ctx.save();ctx.globalCompositeOperation='source-over';ctx.shadowColor='#65eaff';ctx.shadowBlur=12;
   const side=(sgn)=>{const rootX=x+15+sgn*7,tipX=x+15+sgn*(30*spread),outerX=x+15+sgn*(24*spread);ctx.beginPath();ctx.moveTo(rootX,cy+2);ctx.lineTo(x+15+sgn*17,cy-14+flap*sgn*5);ctx.lineTo(tipX,tipY);ctx.lineTo(outerX,cy+2-flap*12);ctx.lineTo(x+15+sgn*30,cy+18);ctx.lineTo(x+15+sgn*15,cy+11);ctx.closePath();const g=ctx.createLinearGradient(rootX,cy,tipX,tipY);g.addColorStop(0,'#5a94ff');g.addColorStop(.38,'#62e6ff');g.addColorStop(.72,'#c8faff');g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fill();ctx.strokeStyle='#eaffff';ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle='#72dfff';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(rootX,cy);ctx.lineTo(tipX,tipY+3);ctx.moveTo(rootX,cy+4);ctx.lineTo(outerX,cy+2);ctx.stroke()};side(-1);side(1);ctx.shadowBlur=4;ctx.fillStyle='#ffffff';ctx.fillRect(x+12,cy-4,6,9);ctx.restore();
 }
+function drawPixoraHatAt(x,y,bob=0,small=false){
+  ctx.save();
+  const brimY=y+4+bob,capY=y-1+bob,scale=small?.9:1;
+  ctx.shadowColor='rgba(118,201,255,.35)';ctx.shadowBlur=small?4:6;
+  ctx.fillStyle='#131c28';ctx.fillRect(x+6*scale,capY,18*scale,5*scale);
+  ctx.fillStyle='#271d3d';ctx.fillRect(x+7*scale,capY+1*scale,16*scale,4*scale);
+  ctx.fillStyle='#3f58bf';ctx.fillRect(x+9*scale,capY+3*scale,12*scale,2*scale);
+  ctx.fillStyle='#cfe8ff';ctx.fillRect(x+4*scale,brimY,22*scale,3*scale);
+  ctx.fillStyle='#1a2330';ctx.fillRect(x+5*scale,brimY,20*scale,2*scale);
+  ctx.fillStyle='#edf6ff';ctx.font=(small?'900 5px Arial':'900 7px Arial');ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',x+15*scale,capY+4.5*scale);
+  ctx.fillStyle='#ffffff';ctx.fillRect(x+5*scale,capY+4*scale,2*scale,1*scale);ctx.fillRect(x+23*scale,capY+4*scale,2*scale,1*scale);
+  ctx.fillStyle='#b9ebff';ctx.fillRect(x+26*scale,capY+1*scale,2*scale,2*scale);ctx.fillStyle='#79cfff';ctx.fillRect(x+27*scale,capY+2*scale,1*scale,2*scale);
+  ctx.restore();
+}
+
 function nameColorForWorldRole(role){return role==='owner'?'#ffd83d':role==='admin'?'#fff09a':'#ffffff'}
 function localWorldRole(){const wl=locks.find(l=>l?.type==='worldLock');if(!wl)return 'player';const me=ownPlayerId();if(String(wl.owner||'')===me)return 'owner';if(Array.isArray(wl.trusted)&&wl.trusted.map(String).includes(me))return 'admin';return 'player'}
 function drawStaffBadge(role,cx,y,hidden=false){if(hidden||!['Moderator','Admin','Owner'].includes(String(role||'')))return 0;ctx.save();if(role==='Owner'){ctx.fillStyle='#ffd85a';ctx.strokeStyle='#4c3610';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx-7,y+5);ctx.lineTo(cx-5,y-2);ctx.lineTo(cx-1,y+2);ctx.lineTo(cx+2,y-4);ctx.lineTo(cx+5,y+2);ctx.lineTo(cx+8,y-2);ctx.lineTo(cx+7,y+5);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();return 18}ctx.fillStyle=role==='Admin'?'#bd8cff':'#67d9ff';ctx.strokeStyle='#10202a';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(cx-7,y-5,14,12,3);ctx.fill();ctx.stroke();ctx.fillStyle='#10202a';ctx.font='900 8px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(role==='Admin'?'A':'M',cx,y+1);ctx.restore();return 16}
@@ -1740,7 +1757,7 @@ function drawPlayer(){
   if(blink){ctx.fillStyle='#2a2622';ctx.fillRect(x+8,y+10+bob,4,1);ctx.fillRect(x+18,y+10+bob,4,1)}
   else{ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6+bob,5,6);ctx.fillRect(x+17,y+6+bob,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8+bob,2,3);ctx.fillRect(x+18+ps,y+8+bob,2,3)}
   ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);
-  if(equipped.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}
+  if(equipped.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}else if(equipped.hair==='pixoraHat'){drawPixoraHatAt(x,y,bob,false)}
   ctx.fillStyle=equipped.shirt==='redShirt'?'#d94745':skin;ctx.fillRect(x+6,y+17+bob,18,10);if(equipped.shirt==='redShirt'){ctx.fillStyle='#f36b65';ctx.fillRect(x+8,y+18+bob,14,3);ctx.fillStyle='#b72e31';ctx.fillRect(x+14,y+22+bob,2,5)}
 
   // Legs alternate forward/back while walking instead of sliding as one rigid sprite.
@@ -1805,7 +1822,7 @@ function drawRemotePlayers(){
     if(r.equipped?.back==='pixoraWing'){ctx.fillStyle='#9fe8ff';ctx.strokeStyle='#397fa0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+8,y+20+bob);ctx.lineTo(x-6,y+8+bob);ctx.lineTo(x-1,y+22+bob);ctx.lineTo(x+1,y+33+bob);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(x+22,y+20+bob);ctx.lineTo(x+36,y+8+bob);ctx.lineTo(x+31,y+22+bob);ctx.lineTo(x+29,y+33+bob);ctx.closePath();ctx.fill();ctx.stroke()}
     ctx.fillStyle=outline;ctx.fillRect(x+5,y+bob,20,17);ctx.fillStyle=skin;ctx.fillRect(x+7,y+2+bob,16,13);
     const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6+bob,5,6);ctx.fillRect(x+17,y+6+bob,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8+bob,2,3);ctx.fillRect(x+18+ps,y+8+bob,2,3);
-    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);if(r.equipped?.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}ctx.fillStyle=r.equipped?.shirt==='redShirt'?'#d94745':skin;ctx.fillRect(x+6,y+17+bob,18,10);if(r.equipped?.shirt==='redShirt'){ctx.fillStyle='#f36b65';ctx.fillRect(x+8,y+18+bob,14,3)}
+    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);if(r.equipped?.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}else if(r.equipped?.hair==='pixoraHat'){drawPixoraHatAt(x,y,bob,true)}ctx.fillStyle=r.equipped?.shirt==='redShirt'?'#d94745':skin;ctx.fillRect(x+6,y+17+bob,18,10);if(r.equipped?.shirt==='redShirt'){ctx.fillStyle='#f36b65';ctx.fillRect(x+8,y+18+bob,14,3)}
     ctx.fillStyle=r.equipped?.pants==='bluePants'?'#365da7':'#343b45';ctx.fillRect(x+7,y+27+legSwing,7,8);ctx.fillRect(x+16,y+27-legSwing,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35+legSwing,9,5);ctx.fillRect(x+16,y+35-legSwing,9,5);if(r.equipped?.shoes==='whiteShoes'){ctx.fillStyle='#f5f7f8';ctx.fillRect(x+5,y+35+legSwing,10,5);ctx.fillRect(x+16,y+35-legSwing,10,5);ctx.fillStyle='#bfc7cc';ctx.fillRect(x+5,y+39+legSwing,10,1);ctx.fillRect(x+16,y+39-legSwing,10,1)}
     const ra=r.actionState;let drawFacing=r.facing;
     let targetX=null,targetY=null;
@@ -1867,6 +1884,8 @@ function drawMiniItemIcon(item,x,y,size=18){
     ctx.fillStyle='#eceff1';ctx.fillRect(s*.08,s*.58,s*.36,s*.22);ctx.fillRect(s*.56,s*.58,s*.36,s*.22);
   }else if(item==='alphaWing'){
     ctx.shadowColor='#66eaff';ctx.shadowBlur=4;ctx.fillStyle='#dffcff';ctx.strokeStyle='#5b99ff';ctx.lineWidth=Math.max(1,s*.07);ctx.beginPath();ctx.moveTo(s*.47,s*.5);ctx.lineTo(s*.03,s*.04);ctx.lineTo(s*.13,s*.52);ctx.lineTo(s*.05,s*.88);ctx.lineTo(s*.43,s*.68);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(s*.53,s*.5);ctx.lineTo(s*.97,s*.04);ctx.lineTo(s*.87,s*.52);ctx.lineTo(s*.95,s*.88);ctx.lineTo(s*.57,s*.68);ctx.closePath();ctx.fill();ctx.stroke();ctx.shadowBlur=0;
+  }else if(item==='pixoraHat'){
+    ctx.shadowColor='rgba(110,180,255,.28)';ctx.shadowBlur=4;ctx.fillStyle='#131c28';ctx.fillRect(s*.18,s*.28,s*.64,s*.20);ctx.fillStyle='#2a1d3f';ctx.fillRect(s*.21,s*.31,s*.58,s*.16);ctx.fillStyle='#4057b9';ctx.fillRect(s*.30,s*.40,s*.40,s*.08);ctx.fillStyle='#ebf5ff';ctx.fillRect(s*.12,s*.48,s*.76,s*.12);ctx.fillStyle='#171f2b';ctx.fillRect(s*.15,s*.50,s*.70,s*.07);ctx.shadowBlur=0;ctx.fillStyle='#f2f8ff';ctx.font='900 '+Math.max(6,Math.round(s*.28))+'px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',s*.5,s*.38);ctx.fillRect(s*.12,s*.44,s*.06,s*.03);ctx.fillRect(s*.82,s*.44,s*.06,s*.03);ctx.fillStyle='#79cfff';ctx.fillRect(s*.82,s*.22,s*.05,s*.10);
   }else if(item==='pixoraWing'){
     ctx.fillStyle='#9fe8ff';ctx.strokeStyle='#397fa0';ctx.lineWidth=Math.max(1,s*.08);ctx.beginPath();ctx.moveTo(s*.47,s*.46);ctx.lineTo(s*.06,s*.18);ctx.lineTo(s*.18,s*.82);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(s*.53,s*.46);ctx.lineTo(s*.94,s*.18);ctx.lineTo(s*.82,s*.82);ctx.closePath();ctx.fill();ctx.stroke();
   }else if(item==='punchJammer'){
@@ -2929,7 +2948,7 @@ function closePlayerInteraction(){document.getElementById('playerInteractPanel')
 async function forceCloudSave(){if(!pixoraSession?.player)return false;try{await authRequest('/api/player/save',{save:makeCloudPlayerSave()},multiplayerToken());return true}catch(e){toast('Save server gagal: '+authErrorMessage(e),'error');return false}}
 
 function offerEntries(o){return Object.entries(o||{}).filter(([,n])=>Number(n)>0)}
-function populateTradeItems(){const sel=document.getElementById('tradeItemSelect');if(!sel)return;const items=Object.entries(inventory).filter(([k,v])=>k!=='spliceBook'&&!(alphaWingTesting&&k==='alphaWing')&&Number(v)>0);sel.innerHTML=items.map(([k,v])=>'<option value="'+escapeChat(k)+'">'+escapeChat(itemName[k]||k)+' ×'+Math.floor(v)+'</option>').join('')||'<option value="">NO ITEMS</option>'}
+function populateTradeItems(){const sel=document.getElementById('tradeItemSelect');if(!sel)return;const items=Object.entries(inventory).filter(([k,v])=>k!=='spliceBook'&&!(alphaWingTesting&&k==='alphaWing')&&k!=='pixoraHat'&&Number(v)>0);sel.innerHTML=items.map(([k,v])=>'<option value="'+escapeChat(k)+'">'+escapeChat(itemName[k]||k)+' ×'+Math.floor(v)+'</option>').join('')||'<option value="">NO ITEMS</option>'}
 function renderTradeState(){
   const t=currentTrade;if(!t)return;const me=ownPlayerId(),other=t.a===me?t.b:t.a;document.getElementById('tradeWith').textContent='Trading with '+String(t.names?.[other]||'PLAYER');
   const box=(o)=>offerEntries(o).map(([k,n])=>'<div>'+escapeChat(itemName[k]||k)+' <b>×'+Math.floor(n)+'</b></div>').join('')||'<small>Empty</small>';
@@ -3224,7 +3243,15 @@ let worldChatMessages=[];
 let chatInitialized=false;
 const chatSeenIds=new Set();
 const chatBubbles=new Map();
-function renderLocalChatHistory(){const box=document.getElementById('chatMessages');if(!box)return;box.innerHTML=worldChatMessages.length?worldChatMessages.map(m=>`<div class="chatMsg${m.playerId===pixoraSession?.player?.playerId?' me':''}"><b>${escapeChat(m.name||'PLAYER')}:</b> ${escapeChat(m.text||'')}</div>`).join(''):'<div class="chatMsg">Belum ada pesan.</div>';box.scrollTop=box.scrollHeight}
+let chatStickToBottom=true;
+function renderLocalChatHistory(){
+  const box=document.getElementById('chatMessages');if(!box)return;
+  const wasNearBottom=Math.abs((box.scrollHeight-box.clientHeight)-box.scrollTop)<=16||chatStickToBottom;
+  const prevTop=box.scrollTop;
+  box.innerHTML=worldChatMessages.length?worldChatMessages.map(m=>`<div class="chatMsg${m.playerId===pixoraSession?.player?.playerId?' me':''}"><b>${escapeChat(m.name||'PLAYER')}:</b> ${escapeChat(m.text||'')}</div>`).join(''):'<div class="chatMsg">Belum ada pesan.</div>';
+  if(wasNearBottom){box.scrollTop=box.scrollHeight;chatStickToBottom=true}
+  else{box.scrollTop=Math.min(prevTop,Math.max(0,box.scrollHeight-box.clientHeight));chatStickToBottom=false}
+}
 function applyWorldChat(list){
   if(!Array.isArray(list))return;
   const incoming=list.slice(-30),now=performance.now();
@@ -3296,7 +3323,7 @@ function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;
   localNamespaceFor(session.player.playerId||session.player.accountId||session.player.displayName);
   loadGlobalPlayer();
-  if(session.playerSave)applyCloudPlayerSave(session.playerSave);if(Array.isArray(session.testGrants)&&session.testGrants.includes('alphaWing')){inventory.alphaWing=Math.max(1,Number(inventory.alphaWing||0));alphaWingTesting=true}
+  if(session.playerSave)applyCloudPlayerSave(session.playerSave);if(Array.isArray(session.testGrants)&&session.testGrants.includes('alphaWing')){inventory.alphaWing=Math.max(1,Number(inventory.alphaWing||0));alphaWingTesting=true}if(Array.isArray(session.testGrants)&&session.testGrants.includes('pixoraHat')){inventory.pixoraHat=Math.max(1,Number(inventory.pixoraHat||0));}
   playerName=String(session.player.displayName||session.player.accountId||'PLAYER').slice(0,24);playerNameLocked=true;savePlayer(true);syncPlayerNameInput();
   pixoraCloudSavePaused=false;if(!session.playerSave||inventory.alphaWing>0)schedulePixoraCloudSave(150);setTimeout(()=>refreshFriendList(),400);
   setZoom(1);renderInventory();setSelected('tool','punch');refreshSavedWorldList();ui.worldInput.value='WORLD1';refreshSoundButton();
@@ -3355,11 +3382,12 @@ function initAuthFlow(){
 
 
 const chatToggleBtn=document.getElementById('chatToggleBtn'),friendToggleBtn=document.getElementById('friendToggleBtn'),chatPanel=document.getElementById('chatPanel'),chatForm=document.getElementById('chatForm'),chatInput=document.getElementById('chatInput');
+const chatMessagesBox=document.getElementById('chatMessages');if(chatMessagesBox){chatMessagesBox.addEventListener('scroll',()=>{chatStickToBottom=Math.abs((chatMessagesBox.scrollHeight-chatMessagesBox.clientHeight)-chatMessagesBox.scrollTop)<=16},{passive:true})}
 chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameReady){toast('Masuk world dulu','info');return}chatPanel.classList.toggle('open');if(chatPanel.classList.contains('open'))setTimeout(()=>chatInput.focus(),40)},{passive:false});
 friendToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();openFriendPanel()},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim()){chatPanel.classList.remove('open');chatInput.blur();return}chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_15_0';
+let CHANGELOG_KEY='pixora_seen_build_15_0_1';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

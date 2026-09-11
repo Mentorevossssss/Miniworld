@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 15.0.6</title>
+<title>Pixora — Online Alpha Build 15.0.7</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -216,7 +216,7 @@ button.hudResource:active{transform:scale(.96)}
 #storeDetail{min-height:0;border:2px solid #38516a;border-radius:12px;background:#142334;padding:12px;display:flex;flex-direction:column;align-items:center;text-align:center;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y}#storeDetailIcon{width:82px;height:82px;border-radius:12px;background:#0d1925;border:1px solid #ffffff17;display:flex;align-items:center;justify-content:center;margin:8px 0}#storeDetailIcon .pixelIcon{width:52px;height:52px;transform:scale(1.35)}#storeDetailName{font-size:17px;font-weight:900}#storeDetailDesc{font-size:10px;line-height:1.45;opacity:.72;margin:8px 0 10px;min-height:44px}#storeDetailPrice{font-size:17px;font-weight:900;display:flex;align-items:center;gap:8px;margin:auto 0 9px}.storeBuyV2{width:100%;height:42px;border:0;border-radius:10px;background:#53b93f;color:#fff;font-weight:900;font-size:14px;box-shadow:inset 0 -3px 0 #2e7d27;touch-action:manipulation}.storeBuyV2:disabled{filter:grayscale(.55);opacity:.45}.storeHint{font-size:8px;opacity:.5;margin-top:7px}
 
 .icon-backpackUpgrade{background:#287ec0;border:3px solid #145483;border-radius:5px}.icon-backpackUpgrade:before{content:'';position:absolute;left:7px;top:-5px;width:10px;height:8px;border:3px solid #7dc8ff;border-bottom:0;border-radius:6px 6px 0 0}.icon-backpackUpgrade:after{content:'+';position:absolute;left:8px;top:5px;color:#dff7ff;font:bold 16px Arial}
-.icon-sunnyOrb,.icon-rainOrb,.icon-cloudyOrb,.icon-fogOrb,.icon-stormOrb{border-radius:50%;border:3px solid #38516a;box-shadow:inset 5px 5px 0 #ffffff55,0 0 0 2px #0f1923;background:#dceeff}.icon-sunnyOrb{background:#ffd64a;border-color:#b67a15}.icon-rainOrb{background:#3f9fe8;border-color:#1f5f9a}.icon-cloudyOrb{background:#b7d9ee;border-color:#648da7}.icon-fogOrb{background:#d2d8dc;border-color:#7f8a90}.icon-stormOrb{background:#6948b8;border-color:#3d257c}.icon-sunnyOrb:after{content:'';position:absolute;left:8px;top:8px;width:8px;height:8px;background:#fff3a6;border-radius:50%}.icon-rainOrb:after{content:'';position:absolute;left:6px;top:7px;width:14px;height:7px;background:#d8f2ff;border-radius:7px;box-shadow:-3px 8px 0 -2px #8ed3ff,4px 10px 0 -2px #8ed3ff,10px 8px 0 -2px #8ed3ff}.icon-cloudyOrb:after{content:'';position:absolute;left:5px;top:10px;width:17px;height:8px;background:#f3fbff;border-radius:8px}.icon-fogOrb:after{content:'';position:absolute;left:5px;top:8px;width:17px;height:3px;background:#fff;box-shadow:0 6px 0 #fff,0 12px 0 #fff}.icon-stormOrb:after{content:'';position:absolute;left:12px;top:5px;width:5px;height:19px;background:#f2dc65;clip-path:polygon(40% 0,100% 0,65% 42%,100% 42%,20% 100%,40% 55%,0 55%)}
+.icon-sunnyOrb,.icon-rainOrb,.icon-cloudyOrb,.icon-fogOrb,.icon-stormOrb,.icon-royalOrb{border-radius:50%;border:3px solid #38516a;box-shadow:inset 5px 5px 0 #ffffff55,0 0 0 2px #0f1923;background:#dceeff}.icon-sunnyOrb{background:#ffd64a;border-color:#b67a15}.icon-rainOrb{background:#3f9fe8;border-color:#1f5f9a}.icon-cloudyOrb{background:#b7d9ee;border-color:#648da7}.icon-fogOrb{background:#d2d8dc;border-color:#7f8a90}.icon-stormOrb{background:#6948b8;border-color:#3d257c}.icon-sunnyOrb:after{content:'';position:absolute;left:8px;top:8px;width:8px;height:8px;background:#fff3a6;border-radius:50%}.icon-rainOrb:after{content:'';position:absolute;left:6px;top:7px;width:14px;height:7px;background:#d8f2ff;border-radius:7px;box-shadow:-3px 8px 0 -2px #8ed3ff,4px 10px 0 -2px #8ed3ff,10px 8px 0 -2px #8ed3ff}.icon-cloudyOrb:after{content:'';position:absolute;left:5px;top:10px;width:17px;height:8px;background:#f3fbff;border-radius:8px}.icon-fogOrb:after{content:'';position:absolute;left:5px;top:8px;width:17px;height:3px;background:#fff;box-shadow:0 6px 0 #fff,0 12px 0 #fff}.icon-stormOrb:after{content:'';position:absolute;left:12px;top:5px;width:5px;height:19px;background:#f2dc65;clip-path:polygon(40% 0,100% 0,65% 42%,100% 42%,20% 100%,40% 55%,0 55%)}
 
 @media(max-width:720px){#storeCard{height:min(92dvh,500px)}#storeBody{grid-template-columns:minmax(0,1.55fr) minmax(190px,.85fr)}#storeGrid{grid-template-columns:repeat(3,minmax(88px,1fr))}.storeProduct{min-height:98px;padding:6px}.storeProduct .pixelIcon{transform:scale(.95)}#storeWallet{gap:4px}.storeWalletPill{min-width:66px;padding:0 6px}#storeBrand{min-width:120px}#storeBrand b{font-size:14px}}
 
@@ -282,6 +282,17 @@ button.hudResource:active{transform:scale(.96)}
 .icon-smallLock,.icon-bigLock,.icon-hugeLock,.icon-worldLock{border-radius:5px!important;box-shadow:inset 0 3px 0 #ffffff2b,0 2px 0 #0003!important}.icon-smallLock{background:linear-gradient(135deg,#f0cf55,#b9901d)!important;border-color:#6e5512!important}.icon-bigLock{background:linear-gradient(135deg,#5fa7ef,#286db6)!important;border-color:#174b7c!important}.icon-hugeLock{background:linear-gradient(135deg,#ad79e4,#7040ad)!important;border-color:#45236f!important}.icon-worldLock{background:linear-gradient(135deg,#f25b50,#b9282c)!important;border-color:#75191d!important}.icon-smallLock:before,.icon-bigLock:before,.icon-hugeLock:before,.icon-worldLock:before{content:''!important;position:absolute!important;left:7px!important;top:-8px!important;width:10px!important;height:13px!important;background:transparent!important;border:4px solid #dfe7ec!important;border-bottom:0!important;border-radius:8px 8px 0 0!important;box-shadow:inset 2px 0 0 #ffffff55!important}.icon-smallLock:after{content:''!important;position:absolute!important;left:12px!important;top:11px!important;width:5px!important;height:8px!important;background:#5d461d!important;border-radius:50% 50% 2px 2px!important;box-shadow:0 0 0 2px #f9dc75aa!important}.icon-bigLock:after{content:''!important;position:absolute!important;left:9px!important;top:9px!important;width:11px!important;height:12px!important;background:#d9efff!important;clip-path:polygon(50% 0,100% 20%,88% 77%,50% 100%,12% 77%,0 20%)!important;box-shadow:none!important}.icon-hugeLock:after{content:''!important;position:absolute!important;left:7px!important;top:8px!important;width:15px!important;height:14px!important;background:#e7d5ff!important;clip-path:polygon(50% 0,62% 34%,100% 50%,62% 66%,50% 100%,38% 66%,0 50%,38% 34%)!important;box-shadow:none!important}.icon-worldLock:after{content:''!important;position:absolute!important;left:8px!important;top:8px!important;width:14px!important;height:14px!important;border:2px solid #ffe8a8!important;border-radius:50%!important;background:radial-gradient(circle at 50% 50%,#ffd86a 0 2px,transparent 3px)!important;box-shadow:inset 5px 0 0 -3px #ffe8a8,inset -5px 0 0 -3px #ffe8a8!important}
 
 .chatMsg.sb{border-left:3px solid #ffd85e;padding-left:7px;background:#3b321a66;color:#fff1ad}.chatMsg.sb b{color:#ffe16f}
+
+/* ===== Build 15.0.7 Royal Kingdom content ===== */
+.icon-royalStone{background:linear-gradient(135deg,#f4f1e7,#cfdce7)!important;border:3px solid #7894aa!important;box-shadow:inset 0 0 0 2px #fff8dc!important}.icon-royalStone:after{content:''!important;position:absolute!important;left:5px!important;top:6px!important;width:20px!important;height:4px!important;background:#78dff2!important;box-shadow:0 12px 0 #d7ac46!important}
+.icon-royalBrick{background:repeating-linear-gradient(0deg,#f0e4c7 0 8px,#b88936 9px 11px)!important;border:3px solid #9a6c24!important}.icon-royalBrick:after{content:''!important;position:absolute!important;inset:5px!important;border-left:4px solid #fff9e8!important;border-right:4px solid #d9c28f!important}
+.icon-royalGold{background:linear-gradient(135deg,#fff2a1,#d69c22 55%,#9d6611)!important;border:3px solid #76500f!important;box-shadow:inset 3px 3px 0 #fff7c8!important}.icon-royalGold:after{content:'P'!important;position:absolute!important;left:0!important;right:0!important;top:5px!important;text-align:center!important;color:#fff8cf!important;font:900 14px Arial!important;text-shadow:1px 2px 0 #8b5d13!important}
+.icon-royalGlass{background:linear-gradient(135deg,#e7fdff 0 18%,#65dcef55 19% 70%,#b8f5ff 71%)!important;border:3px solid #c49a31!important;box-shadow:inset 0 0 0 2px #5ebed2!important}.icon-royalGlass:after{content:''!important;position:absolute!important;left:13px!important;top:3px!important;width:3px!important;height:24px!important;background:#e5bd54!important;box-shadow:-8px 9px 0 -1px #e5bd54,8px 9px 0 -1px #e5bd54!important}
+.icon-royalRoof{background:linear-gradient(135deg,#243b72,#4569a8)!important;border:3px solid #d1a43a!important;clip-path:polygon(50% 0,100% 43%,88% 100%,12% 100%,0 43%)!important}.icon-royalRoof:after{content:''!important;position:absolute!important;left:7px!important;right:7px!important;bottom:5px!important;height:4px!important;background:#f5d471!important}
+.icon-royalWallpaper,.icon-royalBannerWallpaper,.icon-royalWindowWallpaper{border:3px solid #71572a!important;box-shadow:inset 0 0 0 2px #ffffff2e!important}.icon-royalWallpaper{background:linear-gradient(90deg,#f3e8ce 0 25%,#d6b85c 26% 31%,#f3e8ce 32% 68%,#d6b85c 69% 74%,#f3e8ce 75%)!important}.icon-royalBannerWallpaper{background:#213d75!important}.icon-royalBannerWallpaper:after{content:'♛'!important;position:absolute!important;left:0!important;right:0!important;top:3px!important;text-align:center!important;color:#f3cd62!important;font:900 17px Arial!important}.icon-royalWindowWallpaper{background:linear-gradient(135deg,#56cfe7,#244e8b 48%,#8defff 50%,#2d5aa0 52%,#56cfe7)!important;border-color:#c89e35!important}
+.icon-royalOrb{border-radius:50%!important;background:radial-gradient(circle at 35% 30%,#fff7b7 0 12%,#66e4ff 13% 34%,#4966bf 35% 65%,#172c61 66%)!important;border:3px solid #d8ad43!important;box-shadow:0 0 8px #6ee8ff99,inset 0 0 0 2px #fff4b855!important}.icon-royalOrb:after{content:'♛'!important;position:absolute!important;left:0!important;right:0!important;top:5px!important;text-align:center!important;color:#ffe37d!important;font:900 13px Arial!important;text-shadow:0 1px 0 #6f4a0c!important}
+.drawerSlot[data-type="background"]{background:linear-gradient(180deg,#2d2943,#19182b)!important;border-color:#a98bd6!important}
+
 /* ===== PIXORA BUILD 14.0 AUTH ===== */
 #authScreen{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:10px;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-y;background:linear-gradient(#58b9e9 0 45%,#79c95a 45% 52%,#9b643b 52% 100%);color:#fff}
 #authScreen.hidden{display:none}
@@ -394,7 +405,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 15.0.6</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 15.0.7</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -459,8 +470,8 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 15.0.6</h2>
-    <p>Masukkan nama world. Build 15.0.6 membangun world default PIXORA menjadi Royal Kingdom langsung di dalam game, dengan castle, gate, towers, garden, market, dan royal details yang memakai block Pixora.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 15.0.7</h2>
+    <p>Masukkan nama world. Build 15.0.7 membangun world default PIXORA menjadi Royal Kingdom langsung di dalam game, dengan castle, gate, towers, garden, market, dan royal details yang memakai block Pixora.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine" style="display:none">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -510,7 +521,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 15.0.6 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 15.0.7 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -555,9 +566,10 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 15.0.6</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 15.0.7</b></div>
     <ul>
-      <li><b>Build 15.0.6</b> — Owner Lock otomatis saat Owner memasang World Lock, /give sekarang Owner-only untuk semua item, staff fly naik/turun simetris, Main Door aman dibongkar, dan restart memakai gangguan koneksi non-blocking.</li>
+      <li><b>Build 15.0.7</b> — PIXORA Kingdom rebuilt dari world bersih dengan Royal Block Set, placeable Royal Wallpapers, dan Royal Weather. Wallpaper bersifat background/non-solid dan foreground block tetap mendapat punch priority.</li>
+      <li><b>Build 15.0.7</b> — Owner Lock otomatis saat Owner memasang World Lock, /give sekarang Owner-only untuk semua item, staff fly naik/turun simetris, Main Door aman dibongkar, dan restart memakai gangguan koneksi non-blocking.</li>
       <li><b>Build 15.0.5</b> — world <b>PIXORA</b> sekarang punya Royal Kingdom bawaan yang benar-benar dibangun dari block in-game. Template diterapkan sekali dan setelah itu semua edit player tetap persisten.</li>
       <li><b>Build 15.0.4</b> — default world PIXORA, server-restart reconnect state, Owner Break Mode, Owner-only Bedrock utility, dan Super Broadcast Level 5+.</li>
       <li><b>Super Broadcast</b> — /sb menampilkan Nickname (WORLD), pesan, dan waktu lokal di chat global.</li>
@@ -696,7 +708,7 @@ const ui={seed:document.getElementById('seedCount'),mode:document.getElementById
 let cameraX=0,cameraY=0,cameraTarget=0,zoom=1,selectedType='tool',selectedItem='punch';
 let cameraLift=0,cameraLiftTarget=0;
 let cloudOffset=0;
-const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,woodPlatform:0,woodDoor:0,worldDoor:0,bedrock:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,platformSeed:0,doorSeed:0,worldDoorSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,pixoraWing:0,alphaWing:0,pixoraHat:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,punchJammer:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0,spliceBook:1};
+const DEFAULT_INVENTORY={grass:0,dirt:0,stone:0,wood:0,leaf:0,sand:0,glass:0,brick:0,ice:0,metal:0,caveStone:0,moss:0,lava:0,farmBlock:0,woodPlatform:0,woodDoor:0,worldDoor:0,bedrock:0,royalStone:0,royalBrick:0,royalGold:0,royalGlass:0,royalRoof:0,royalWallpaper:0,royalBannerWallpaper:0,royalWindowWallpaper:0,grassSeed:0,dirtSeed:0,stoneSeed:0,woodSeed:0,leafSeed:0,sandSeed:0,glassSeed:0,brickSeed:0,iceSeed:0,metalSeed:0,caveStoneSeed:0,mossSeed:0,farmSeed:0,platformSeed:0,doorSeed:0,worldDoorSeed:0,redShirt:0,bluePants:0,blackHair:0,whiteShoes:0,pixoraWing:0,alphaWing:0,pixoraHat:0,smallLock:0,bigLock:0,hugeLock:0,worldLock:0,punchJammer:0,pickaxe:0,sunnyOrb:0,rainOrb:0,cloudyOrb:0,fogOrb:0,stormOrb:0,royalOrb:0,spliceBook:1};
 let inventory={...DEFAULT_INVENTORY};
 let gems=0;
 let backpackCapacity=24;
@@ -708,14 +720,15 @@ const equipped={hair:null,hat:null,shirt:null,pants:null,shoes:null,back:null,to
 const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes',pixoraWing:'back',alphaWing:'back',pixoraHat:'hat'};
 const seedForBlock={grass:'grassSeed',dirt:'dirtSeed',stone:'stoneSeed',wood:'woodSeed',leaf:'leafSeed',sand:'sandSeed',glass:'glassSeed',brick:'brickSeed',ice:'iceSeed',metal:'metalSeed',caveStone:'caveStoneSeed',moss:'mossSeed',farmBlock:'farmSeed'};
 const itemName={
-  grass:'GRASS',dirt:'DIRT',stone:'ROCK',wood:'WOOD',leaf:'LEAVES',sand:'SAND',glass:'GLASS',brick:'BRICK',ice:'ICE',metal:'METAL',caveStone:'CAVE ROCK',moss:'MOSS',lava:'LAVA',farmBlock:'LUMINITE BLOCK',woodPlatform:'PLATFORM',woodDoor:'DOOR',worldDoor:'WORLD DOOR',bedrock:'BEDROCK',
+  grass:'GRASS',dirt:'DIRT',stone:'ROCK',wood:'WOOD',leaf:'LEAVES',sand:'SAND',glass:'GLASS',brick:'BRICK',ice:'ICE',metal:'METAL',caveStone:'CAVE ROCK',moss:'MOSS',lava:'LAVA',farmBlock:'LUMINITE BLOCK',woodPlatform:'PLATFORM',woodDoor:'DOOR',worldDoor:'WORLD DOOR',bedrock:'BEDROCK',royalStone:'ROYAL MARBLE',royalBrick:'ROYAL BRICK',royalGold:'GILDED CREST BLOCK',royalGlass:'ROYAL CRYSTAL GLASS',royalRoof:'ROYAL ROOF',royalWallpaper:'ROYAL WALLPAPER',royalBannerWallpaper:'ROYAL BANNER WALLPAPER',royalWindowWallpaper:'ROYAL WINDOW WALLPAPER',
   grassSeed:'GRASS SEED',dirtSeed:'DIRT SEED',stoneSeed:'ROCK SEED',woodSeed:'WOOD SEED',leafSeed:'LEAF SEED',sandSeed:'SAND SEED',glassSeed:'GLASS SEED',brickSeed:'BRICK SEED',iceSeed:'ICE SEED',metalSeed:'METAL SEED',caveStoneSeed:'CAVE ROCK SEED',mossSeed:'MOSS SEED',farmSeed:'LUMINITE SEED',platformSeed:'PLATFORM SEED',doorSeed:'DOOR SEED',worldDoorSeed:'WORLD DOOR SEED',
-  redShirt:'CRIMSON TEE',bluePants:'BLUE PANTS',blackHair:'BLACK HAIR',whiteShoes:'WHITE SNEAKERS',pixoraWing:'PIXORA WING',alphaWing:'ALPHA WING',pixoraHat:'PIXORA HAT',punchJammer:'PUNCH JAMMER',smallLock:'SMALL LOCK',bigLock:'BIG LOCK',hugeLock:'HUGE LOCK',worldLock:'WORLD LOCK',pickaxe:'PICKAXE',sunnyOrb:'SUNNY ORB',rainOrb:'RAIN ORB',cloudyOrb:'CLOUDY ORB',fogOrb:'FOG ORB',stormOrb:'STORM ORB',spliceBook:'SPLICE BOOK'
+  redShirt:'CRIMSON TEE',bluePants:'BLUE PANTS',blackHair:'BLACK HAIR',whiteShoes:'WHITE SNEAKERS',pixoraWing:'PIXORA WING',alphaWing:'ALPHA WING',pixoraHat:'PIXORA HAT',punchJammer:'PUNCH JAMMER',smallLock:'SMALL LOCK',bigLock:'BIG LOCK',hugeLock:'HUGE LOCK',worldLock:'WORLD LOCK',pickaxe:'PICKAXE',sunnyOrb:'SUNNY ORB',rainOrb:'RAIN ORB',cloudyOrb:'CLOUDY ORB',fogOrb:'FOG ORB',stormOrb:'STORM ORB',royalOrb:'ROYAL SKY ORB',spliceBook:'SPLICE BOOK'
 };
-const blockItems=['grass','dirt','stone','wood','leaf','sand','glass','brick','ice','metal','caveStone','moss','lava','farmBlock','woodPlatform','woodDoor','worldDoor','bedrock'];
+const blockItems=['grass','dirt','stone','wood','leaf','sand','glass','brick','ice','metal','caveStone','moss','lava','farmBlock','woodPlatform','woodDoor','worldDoor','bedrock','royalStone','royalBrick','royalGold','royalGlass','royalRoof'];
+const backgroundItems=['royalWallpaper','royalBannerWallpaper','royalWindowWallpaper'];
 const seedItems=['grassSeed','dirtSeed','stoneSeed','woodSeed','leafSeed','sandSeed','glassSeed','brickSeed','iceSeed','metalSeed','caveStoneSeed','mossSeed','farmSeed','platformSeed','doorSeed','worldDoorSeed'];
 const wearableItems=['redShirt','bluePants','blackHair','whiteShoes','pixoraWing','alphaWing','pixoraHat'];
-const WEATHER_ORB_ITEM_TO_TYPE={sunnyOrb:'sunny',rainOrb:'rain',cloudyOrb:'cloudy',fogOrb:'fog',stormOrb:'storm'};
+const WEATHER_ORB_ITEM_TO_TYPE={sunnyOrb:'sunny',rainOrb:'rain',cloudyOrb:'cloudy',fogOrb:'fog',stormOrb:'storm',royalOrb:'royal'};
 const weatherOrbItems=Object.keys(WEATHER_ORB_ITEM_TO_TYPE);
 const lockItems=['smallLock','bigLock','hugeLock','worldLock'];
 const jammerItems=['punchJammer'];
@@ -723,7 +736,7 @@ const specialItems=[...lockItems,...weatherOrbItems,...jammerItems];
 const countedToolItems=['pickaxe'];
 const systemItems=['spliceBook'];
 const dropRate={grass:{block:.42,seed:.30,gems:.28},dirt:{block:.38,seed:.20,gems:.24},stone:{block:.32,seed:.08,gems:.34},wood:{block:.45,seed:.24,gems:.25},leaf:{block:.24,seed:.42,gems:.22},sand:{block:.40,seed:.18,gems:.22},glass:{block:.31,seed:.12,gems:.38},brick:{block:.36,seed:.12,gems:.32},ice:{block:.34,seed:.22,gems:.30},metal:{block:.28,seed:.06,gems:.46},caveStone:{block:.32,seed:.10,gems:.40},moss:{block:.36,seed:.34,gems:.24},lava:{block:.22,seed:0,gems:.44},farmBlock:{block:.46,seed:.34,gems:.38}};
-const blockRarity={grass:1,dirt:1,stone:1,caveStone:1,lava:1,wood:2,leaf:2,sand:2,brick:3,moss:3,glass:4,ice:3,metal:3,farmBlock:8,woodPlatform:3,woodDoor:5,worldDoor:10,bedrock:99};
+const blockRarity={grass:1,dirt:1,stone:1,caveStone:1,lava:1,wood:2,leaf:2,sand:2,brick:3,moss:3,glass:4,ice:3,metal:3,farmBlock:8,woodPlatform:3,woodDoor:5,worldDoor:10,royalStone:6,royalBrick:7,royalGold:10,royalGlass:8,royalRoof:8,bedrock:99};
 function gemAmountForRarity(rarity){rarity=Math.max(1,Number(rarity||1));if(rarity<=10)return 1;const max=1+Math.floor((rarity-1)/10);return 1+Math.floor(Math.random()*max)}
 function seedGemChance(seed){const r=Math.max(1,itemRarity(seed)||1);return Math.min(.48,.08+r*.025)}
 function seedGemAmount(seed){return seed==='farmSeed'?(1+Math.floor(Math.random()*14)):gemAmountForRarity(itemRarity(seed))}
@@ -732,28 +745,30 @@ function itemRarity(item){
   if(seedItems.includes(item)){const b=plantBlockForSeed[item];return blockRarity[b]||1}
   if(item==='smallLock')return 8;if(item==='bigLock')return 14;if(item==='hugeLock')return 22;if(item==='worldLock')return 30;
   if(item==='pickaxe')return 8;if(item==='punchJammer')return 20;if(item==='pixoraWing')return 25;if(item==='alphaWing')return 100;if(item==='pixoraHat')return 60;if(item==='woodPlatform')return 3;if(item==='woodDoor')return 5;if(item==='worldDoor')return 10;if(item==='spliceBook')return 99;
-  if(weatherOrbItems.includes(item))return item==='stormOrb'?24:18;
+  if(weatherOrbItems.includes(item))return item==='royalOrb'?30:(item==='stormOrb'?24:18);
+  if(backgroundItems.includes(item))return item==='royalBannerWallpaper'?8:item==='royalWindowWallpaper'?7:6;
   if(wearableItems.includes(item))return 20;
   return 1;
 }
-function itemTypeLabel(type,item){if(type==='seed')return 'SEED';if(type==='wearable')return 'CLOTHES';if(type==='special')return 'SPECIAL';if(type==='system')return 'SYSTEM';if(type==='block')return (item==='woodDoor'||item==='worldDoor')?'DOOR':(item==='woodPlatform'?'PLATFORM':'BLOCK');if(type==='toolitem')return 'TOOL';return 'TOOL'}
+function itemTypeLabel(type,item){if(type==='seed')return 'SEED';if(type==='background')return 'WALLPAPER';if(type==='wearable')return 'CLOTHES';if(type==='special')return 'SPECIAL';if(type==='system')return 'SYSTEM';if(type==='block')return (item==='woodDoor'||item==='worldDoor')?'DOOR':(item==='woodPlatform'?'PLATFORM':'BLOCK');if(type==='toolitem')return 'TOOL';return 'TOOL'}
 const WEARABLE_DROP=.015;
 const BREAK_MS=125;
 const TAP_HIT_COOLDOWN=82;
 const MAX_ITEM_STACK=200;
-const BLOCK_HITS={leaf:2,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,woodPlatform:3,woodDoor:4,worldDoor:6,bedrock:Infinity};
+const BLOCK_HITS={leaf:2,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,woodPlatform:3,woodDoor:4,worldDoor:6,royalStone:5,royalBrick:5,royalGold:6,royalGlass:3,royalRoof:4,bedrock:Infinity};
 const DAMAGE_RESET_MS=2600;
 let lastDamageSweep=0;
 const LOCK_CONFIG={smallLock:{name:'SMALL LOCK',size:10,price:50,hits:6,color:'#d5b633'},bigLock:{name:'BIG LOCK',size:20,price:150,hits:8,color:'#3f86d8'},hugeLock:{name:'HUGE LOCK',size:35,price:300,hits:10,color:'#8f57cf'},worldLock:{name:'WORLD LOCK',size:100,price:1000,hits:12,color:'#d9483e'},ownerLock:{name:'OWNER LOCK',size:100,price:0,hits:999,color:'#ffd45a'}};
 const WORLD_LOCK_HITS=12;
 const LOCK_HIT_COOLDOWN=260;
-const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d',leaf:'#3aaa50',sand:'#d8bd75',glass:'#8fe9f0',brick:'#a64e3b',ice:'#a9e8ff',metal:'#8c969e',caveStone:'#4f555b',moss:'#548f46',lava:'#e95b22',farmBlock:'#d6a53d',bedrock:'#252a2e'};
+const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d',leaf:'#3aaa50',sand:'#d8bd75',glass:'#8fe9f0',brick:'#a64e3b',ice:'#a9e8ff',metal:'#8c969e',caveStone:'#4f555b',moss:'#548f46',lava:'#e95b22',farmBlock:'#d6a53d',royalStone:'#dfe8ef',royalBrick:'#e8d7ad',royalGold:'#e1ae38',royalGlass:'#70dcec',royalRoof:'#34538c',royalWallpaper:'#eadfc5',royalBannerWallpaper:'#24427d',royalWindowWallpaper:'#4dbfd8',bedrock:'#252a2e'};
 
 const player={x:120,y:GROUND_Y-40,w:30,h:40,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-40,punchAnim:0,punchSeq:0,punchDir:'front',punchTool:'punch',punchTargetX:null,punchTargetY:null,punchReachTiles:1,placeAnim:null,walkTime:0,maxHp:5,hp:5,lastDamageAt:0,damageFlashUntil:0,jumpCount:0,jumpOriginY:null};
 const input={left:false,right:false,jump:false};
 let staffModeEnabled=false,staffUpHeld=false,staffDownHeld=false,ownerVanishEnabled=false,staffHiddenEnabled=false,ownerBreakEnabled=false,playerFrozen=false,selfWorldRole='player',activeGemEvent={multiplier:1,until:0};
 let serverRestartReconnectActive=false,serverRestartExpectedUntil=0,serverRestartExpectedAt=0;
-let blocks=[],drops=[],particles=[],plants=[],door=null,placedDoors=[],weatherOrbs=[],jammers=[],worldBans=[];
+let blocks=[],backgrounds=[],drops=[],particles=[],plants=[],door=null,placedDoors=[],weatherOrbs=[],jammers=[],worldBans=[];
+let backgroundMap=new Map(),backgroundDamage=new Map();
 let placeEffects=[];
 let respawnFxUntil=0;
 let playerName='PLAYER';
@@ -767,9 +782,9 @@ const MAX_LEVEL=50;
 let playerId='';
 let worldId='';
 let weather={type:'sunny'};
-const WEATHER_TYPES=['sunny','rain','cloudy','fog','storm'];
+const WEATHER_TYPES=['sunny','rain','cloudy','fog','storm','royal'];
 const WORLD_EXPIRE_MS=Number.POSITIVE_INFINITY; // Build 15.0.3: world tidak auto-reset karena inactivity
-const PIXORA_KINGDOM_TEMPLATE_VERSION=1;
+const PIXORA_KINGDOM_TEMPLATE_VERSION=2;
 let worldTemplateVersion=0;
 let blockMap=new Map();
 let caveBgRemoved=new Set();
@@ -969,6 +984,10 @@ function blockKey(tx,ty){return tx+','+ty}
 function rebuildBlockMap(){blockMap.clear();for(const b of blocks)blockMap.set(blockKey(Math.floor(b.x/T),Math.floor(b.y/T)),b)}
 function addBlock(tx,ty,type){if(tx<0||ty<0||tx>=WORLD_W||ty>=WORLD_H||blockAt(tx,ty))return;const b={x:tx*T,y:ty*T,t:type,hitsTaken:0};blocks.push(b);blockMap.set(blockKey(tx,ty),b);return b}
 function blockAt(tx,ty){return blockMap.get(blockKey(tx,ty))||null}
+function rebuildBackgroundMap(){backgroundMap.clear();for(const b of backgrounds)backgroundMap.set(blockKey(Number(b.tx),Number(b.ty)),b)}
+function backgroundAt(tx,ty){return backgroundMap.get(blockKey(tx,ty))||null}
+function addBackground(tx,ty,type){if(tx<0||ty<0||tx>=WORLD_W||ty>=WORLD_H||backgroundAt(tx,ty))return null;const bg={tx,ty,t:type};backgrounds.push(bg);backgroundMap.set(blockKey(tx,ty),bg);return bg}
+function removeBackgroundObj(bg){if(!bg)return;const i=backgrounds.indexOf(bg);if(i>=0)backgrounds.splice(i,1);backgroundMap.delete(blockKey(Number(bg.tx),Number(bg.ty)))}
 function hasCaveBackground(tx,ty){
   const surfaceTile=Math.floor(GROUND_Y/T);
   return tx>=0&&tx<WORLD_W&&ty>=surfaceTile+1&&ty<WORLD_H&&!caveBgRemoved.has(blockKey(tx,ty));
@@ -1054,79 +1073,64 @@ function buildRoyalTree(cx,gy){
   for(let y=gy-8;y<=gy-5;y++)for(let x=cx-3;x<=cx+3;x++)if(Math.abs(x-cx)+Math.abs((gy-6)-y)<=5)setWorldTemplateBlock(x,y,'leaf');
   setWorldTemplateBlock(cx-2,gy-4,'leaf');setWorldTemplateBlock(cx+2,gy-4,'leaf');
 }
+function setRoyalWallpaper(tx,ty,type='royalWallpaper'){const old=backgroundAt(tx,ty);if(old)removeBackgroundObj(old);addBackground(tx,ty,type)}
+function fillRoyalWallpaper(x1,y1,x2,y2,type='royalWallpaper'){for(let y=y1;y<=y2;y++)for(let x=x1;x<=x2;x++)setRoyalWallpaper(x,y,type)}
 function buildPixoraKingdom(){
-  const gy=Math.floor(GROUND_Y/T);worldTemplateVersion=PIXORA_KINGDOM_TEMPLATE_VERSION;weather={type:'sunny'};
-  // Royal build zone. Only the surface/sky area is shaped; underground resources stay intact.
-  clearWorldTemplateRect(24,gy-20,75,gy-1);
+  const gy=Math.floor(GROUND_Y/T);worldTemplateVersion=PIXORA_KINGDOM_TEMPLATE_VERSION;weather={type:'royal'};
+  // Build 15.0.7: PIXORA is intentionally rebuilt from a clean world before the kingdom is constructed.
+  blocks=[];blockMap.clear();backgrounds=[];backgroundMap.clear();backgroundDamage.clear();caveBgRemoved=new Set();caveBgDamage=new Map();
+  plants=[];locks=[];placedDoors=[];weatherOrbs=[];jammers=[];worldBans=[];drops=[];particles=[];placeEffects=[];
+  // Clean flat foundation + underground. This removes old player structures from PIXORA by design.
+  for(let x=0;x<WORLD_W;x++){for(let y=gy;y<WORLD_H-3;y++)addBlock(x,y,'dirt')}
+  for(let y=WORLD_H-3;y<WORLD_H;y++)for(let x=0;x<WORLD_W;x++)addBlock(x,y,'bedrock');
+  // Royal plaza/foundation.
+  for(let x=7;x<=92;x++)setWorldTemplateBlock(x,gy,'royalBrick');
+  for(let x=20;x<=79;x++)setRoyalWallpaper(x,gy-1,'royalWallpaper');
 
-  // Royal avenue across the capital. The Main Door tile becomes Bedrock foundation below.
-  for(let x=12;x<=87;x++)setWorldTemplateBlock(x,gy,'brick');
+  // Twin royal towers with blue-gold roofs.
+  fillWorldTemplateRect(24,gy-12,34,gy-1,'royalStone');fillWorldTemplateRect(65,gy-12,75,gy-1,'royalStone');
+  for(let x=23;x<=35;x++)setWorldTemplateBlock(x,gy-13,'royalRoof');for(let x=64;x<=76;x++)setWorldTemplateBlock(x,gy-13,'royalRoof');
+  for(const x of [24,27,31,34])setWorldTemplateBlock(x,gy-14,'royalGold');for(const x of [65,68,72,75])setWorldTemplateBlock(x,gy-14,'royalGold');
+  for(const [x,y] of [[27,gy-9],[31,gy-6],[68,gy-9],[72,gy-6]])setWorldTemplateBlock(x,y,'royalGlass');
 
-  // Central castle towers.
-  fillWorldTemplateRect(28,gy-11,35,gy-1,'stone');
-  fillWorldTemplateRect(64,gy-11,71,gy-1,'stone');
-  fillWorldTemplateRect(29,gy-13,34,gy-12,'stone');
-  fillWorldTemplateRect(65,gy-13,70,gy-12,'stone');
-  for(const x of [28,30,32,34,35])setWorldTemplateBlock(x,gy-14,'metal');
-  for(const x of [64,65,67,69,71])setWorldTemplateBlock(x,gy-14,'metal');
-  setWorldTemplateBlock(31,gy-15,'farmBlock');setWorldTemplateBlock(32,gy-15,'farmBlock');
-  setWorldTemplateBlock(67,gy-15,'farmBlock');setWorldTemplateBlock(68,gy-15,'farmBlock');
+  // Central palace keep.
+  fillWorldTemplateRect(37,gy-11,62,gy-1,'royalBrick');
+  fillWorldTemplateRect(41,gy-16,58,gy-12,'royalStone');
+  for(let x=40;x<=59;x++)setWorldTemplateBlock(x,gy-17,'royalRoof');
+  for(const x of [40,43,47,50,54,58,59])setWorldTemplateBlock(x,gy-18,'royalGold');
+  fillRoyalWallpaper(38,gy-10,61,gy-2,'royalWallpaper');
+  for(const [x,y] of [[42,gy-14],[46,gy-14],[53,gy-14],[57,gy-14],[40,gy-8],[59,gy-8]])setRoyalWallpaper(x,y,'royalWindowWallpaper');
+  for(const [x,y] of [[44,gy-9],[55,gy-9],[28,gy-8],[71,gy-8]])setRoyalWallpaper(x,y,'royalBannerWallpaper');
 
-  // Main keep and upper royal hall.
-  fillWorldTemplateRect(39,gy-10,60,gy-1,'brick');
-  fillWorldTemplateRect(43,gy-15,56,gy-11,'stone');
-  for(const x of [43,45,47,49,51,53,55,56])setWorldTemplateBlock(x,gy-16,'metal');
-  fillWorldTemplateRect(37,gy-8,38,gy-1,'stone');
-  fillWorldTemplateRect(61,gy-8,62,gy-1,'stone');
+  // Open central arch/gate. Wallpaper remains behind the opening for depth.
+  clearWorldTemplateRect(47,gy-7,52,gy-1);
+  fillWorldTemplateRect(46,gy-7,46,gy-1,'royalStone');fillWorldTemplateRect(53,gy-7,53,gy-1,'royalStone');
+  for(let x=47;x<=52;x++)setWorldTemplateBlock(x,gy-8,'royalStone');
+  setWorldTemplateBlock(46,gy-8,'royalGold');setWorldTemplateBlock(53,gy-8,'royalGold');
+  fillRoyalWallpaper(47,gy-7,52,gy-1,'royalBannerWallpaper');
 
-  // Cyan castle windows.
-  for(const [x,y] of [[30,gy-9],[33,gy-6],[66,gy-9],[69,gy-6],[44,gy-13],[55,gy-13],[43,gy-7],[56,gy-7]])setWorldTemplateBlock(x,y,'glass');
+  // Large Pixora P crest and crown, both made from actual placeable royal blocks.
+  for(let y=gy-15;y<=gy-10;y++)setWorldTemplateBlock(48,y,'royalGold');
+  for(let x=49;x<=52;x++)setWorldTemplateBlock(x,gy-15,'royalGold');
+  setWorldTemplateBlock(52,gy-14,'royalGold');setWorldTemplateBlock(52,gy-13,'royalGold');
+  for(let x=49;x<=51;x++)setWorldTemplateBlock(x,gy-12,'royalGold');
+  for(let x=46;x<=53;x++)setWorldTemplateBlock(x,gy-20,'royalGold');
+  for(const x of [46,49,53])setWorldTemplateBlock(x,gy-21,'royalRoof');
+  setWorldTemplateBlock(45,gy-20,'royalRoof');setWorldTemplateBlock(54,gy-20,'royalRoof');
 
-  // Royal balconies.
-  for(let x=27;x<=36;x++)setWorldTemplateBlock(x,gy-7,'woodPlatform');
-  for(let x=63;x<=72;x++)setWorldTemplateBlock(x,gy-7,'woodPlatform');
-  for(let x=42;x<=57;x++)if(x<47||x>52)setWorldTemplateBlock(x,gy-9,'woodPlatform');
+  // Balconies, side gates and royal gardens.
+  for(let x=23;x<=35;x++)setWorldTemplateBlock(x,gy-7,'woodPlatform');for(let x=64;x<=76;x++)setWorldTemplateBlock(x,gy-7,'woodPlatform');
+  buildRoyalTree(13,gy);buildRoyalTree(86,gy);buildRoyalTree(5,gy);buildRoyalTree(94,gy);
+  for(const base of [9,80]){setWorldTemplateBlock(base,gy-2,'royalStone');setWorldTemplateBlock(base+7,gy-2,'royalStone');for(let x=base;x<=base+7;x++)setWorldTemplateBlock(x,gy-4,'royalRoof');setRoyalWallpaper(base+2,gy-2,'royalBannerWallpaper');setRoyalWallpaper(base+5,gy-2,'royalBannerWallpaper')}
+  for(const x of [20,79]){setWorldTemplateBlock(x,gy-2,'royalStone');setWorldTemplateBlock(x,gy-1,'royalStone');setWorldTemplateBlock(x,gy-3,'royalGold')}
 
-  // Main gate: a wide open arch so players can walk through the castle safely.
-  clearWorldTemplateRect(48,gy-6,51,gy-1);
-  fillWorldTemplateRect(47,gy-6,47,gy-1,'stone');
-  fillWorldTemplateRect(52,gy-6,52,gy-1,'stone');
-  for(let x=48;x<=51;x++)setWorldTemplateBlock(x,gy-7,'stone');
-  setWorldTemplateBlock(47,gy-7,'metal');setWorldTemplateBlock(52,gy-7,'metal');
-
-  // Giant glowing P crest on the front of the keep.
-  for(let y=gy-14;y<=gy-9;y++)setWorldTemplateBlock(48,y,'farmBlock');
-  for(let x=49;x<=51;x++)setWorldTemplateBlock(x,gy-14,'farmBlock');
-  setWorldTemplateBlock(51,gy-13,'farmBlock');setWorldTemplateBlock(51,gy-12,'farmBlock');
-  for(let x=49;x<=50;x++)setWorldTemplateBlock(x,gy-11,'farmBlock');
-
-  // Crown above the Royal Hall.
-  for(let x=47;x<=52;x++)setWorldTemplateBlock(x,gy-18,'farmBlock');
-  for(const x of [47,49,52])setWorldTemplateBlock(x,gy-19,'farmBlock');
-  setWorldTemplateBlock(46,gy-18,'metal');setWorldTemplateBlock(53,gy-18,'metal');
-
-  // Side gardens keep the world recognisably Pixora rather than a solid wall of castle blocks.
-  buildRoyalTree(17,gy);buildRoyalTree(82,gy);
-  buildRoyalTree(8,gy);buildRoyalTree(92,gy);
-
-  // Small market stalls on the right side of the kingdom.
-  for(const base of [76,86]){
-    setWorldTemplateBlock(base,gy-2,'wood');setWorldTemplateBlock(base,gy-1,'wood');
-    setWorldTemplateBlock(base+6,gy-2,'wood');setWorldTemplateBlock(base+6,gy-1,'wood');
-    for(let x=base;x<=base+6;x++)setWorldTemplateBlock(x,gy-4,'woodPlatform');
-    setWorldTemplateBlock(base+1,gy-3,'farmBlock');setWorldTemplateBlock(base+5,gy-3,'farmBlock');
-  }
-
-  // Royal lamps framing the approach.
-  for(const x of [22,77]){setWorldTemplateBlock(x,gy-2,'wood');setWorldTemplateBlock(x,gy-1,'wood');setWorldTemplateBlock(x,gy-3,'farmBlock')}
-
-  // Main Door becomes the kingdom gate / spawn.
+  // Kingdom Main Door / spawn.
   clearWorldTemplateBlock(49,gy-1);clearWorldTemplateBlock(50,gy-1);clearWorldTemplateBlock(51,gy-1);
   door={x:50*T+2,y:gy*T-40,w:36,h:40};ensureDoorFoundation(50);setSpawnFromDoor();
 }
 
 function buildWorld(){
-  blocks=[];blockMap.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];plants=[];locks=[];placedDoors=[];weatherOrbs=[];jammers=[];worldBans=[];placeEffects=[];
+  blocks=[];blockMap.clear();backgrounds=[];backgroundMap.clear();backgroundDamage.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];plants=[];locks=[];placedDoors=[];weatherOrbs=[];jammers=[];worldBans=[];placeEffects=[];
   worldId='W'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,7).toUpperCase();
   worldTemplateVersion=0;weather={type:'sunny'};
   GROUND_Y=55*T;
@@ -1251,7 +1255,7 @@ function saveWorld(silent=true){
     const now=Date.now();
     const data={
       version:"13.2.4",name:currentWorldName,worldId,templateVersion:worldTemplateVersion,surfaceTile:Math.floor(GROUND_Y/T),
-      blocks,plants,door,placedDoors,locks,weatherOrbs,jammers,worldBans,drops,weather,caveBgRemoved:[...caveBgRemoved],
+      blocks,backgrounds,plants,door,placedDoors,locks,weatherOrbs,jammers,worldBans,drops,weather,caveBgRemoved:[...caveBgRemoved],
       playerSpawn:{x:player.spawnX,y:player.spawnY},
       lastVisited:now,savedAt:now
     };
@@ -1341,6 +1345,7 @@ function loadSavedWorld(name){
     GROUND_Y=Math.max(4,Math.min(WORLD_H-4,safeSurface))*T;
     blocks=d.blocks.map(b=>({...b,hitsTaken:Number(b.hitsTaken||0),lastHitAt:Number(b.lastHitAt||0)}));
     rebuildBlockMap();
+    backgrounds=Array.isArray(d.backgrounds)?d.backgrounds.filter(bg=>bg&&Number.isFinite(Number(bg.tx))&&Number.isFinite(Number(bg.ty))&&backgroundItems.includes(String(bg.t||''))).map(bg=>({tx:Math.floor(Number(bg.tx)),ty:Math.floor(Number(bg.ty)),t:String(bg.t)})):[];rebuildBackgroundMap();backgroundDamage=new Map();
     caveBgRemoved=new Set(Array.isArray(d.caveBgRemoved)?d.caveBgRemoved.filter(k=>typeof k==='string'):[]);
     // Build 13.2.2 migration: Cave Background dimulai dari Dirt pertama tepat di bawah surface Dirt.
     const firstCaveRow=Math.floor(GROUND_Y/T)+1;for(let x=0;x<WORLD_W;x++)caveBgRemoved.delete(blockKey(x,firstCaveRow));
@@ -1684,9 +1689,10 @@ function update(){
   // Build 15.0.3: hold punch mengikuti pointer/tombol, bukan umur block target.
   // Saat block hancur, hold tetap aktif dan dapat lanjut ke background / target baru sampai pointer dilepas.
   if(canvasPunchHold&&player.punchAnim<=0&&performance.now()>=nextPunchAt){
-    const tx=canvasPunchHold.tx,ty=canvasPunchHold.ty,tool=equipped.tool==='pickaxe'?'pickaxe':'punch',b=blockAt(tx,ty),p=plantAt(tx,ty);
+    const tx=canvasPunchHold.tx,ty=canvasPunchHold.ty,tool=equipped.tool==='pickaxe'?'pickaxe':'punch',b=blockAt(tx,ty),p=plantAt(tx,ty),bg=backgroundAt(tx,ty);
     if(b)tapHitBlock(b,tool);
     else if(p){hitPlant(p);nextPunchAt=performance.now()+120}
+    else if(bg)hitRoyalBackground(bg);
     else if(hasCaveBackground(tx,ty)&&!lockAt(tx,ty)&&!placedDoorAt(tx,ty)&&!weatherOrbAt(tx,ty)&&!jammerAt(tx,ty))tapHitBackground(tx,ty);
     else{pulsePunchAt(tx,ty,tool,'air',0);sfx(tool==='pickaxe'?'pickaxe':'punch');nextPunchAt=performance.now()+TAP_HIT_COOLDOWN}
   }
@@ -1697,10 +1703,10 @@ function update(){
 
 function drawSky(){
   const type=weather?.type||'sunny';
-  const top={sunny:'#56bce8',rain:'#567f98',cloudy:'#7ca7b9',fog:'#a8b9bf',storm:'#303f55'}[type]||'#56bce8';
-  const bottom={sunny:'#dff8ff',rain:'#c1dbe4',cloudy:'#d6e7ea',fog:'#e8eff0',storm:'#7e91a2'}[type]||'#dff8ff';
+  const top={sunny:'#56bce8',rain:'#567f98',cloudy:'#7ca7b9',fog:'#a8b9bf',storm:'#303f55',royal:'#19366d'}[type]||'#56bce8';
+  const bottom={sunny:'#dff8ff',rain:'#c1dbe4',cloudy:'#d6e7ea',fog:'#e8eff0',storm:'#7e91a2',royal:'#87def2'}[type]||'#dff8ff';
   const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,top);g.addColorStop(1,bottom);ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-  if(type==='sunny'||type==='cloudy'){ctx.save();const sx=W-115,sy=72,rg=ctx.createRadialGradient(sx,sy,5,sx,sy,48);rg.addColorStop(0,'rgba(255,247,185,.95)');rg.addColorStop(.35,'rgba(255,224,104,.55)');rg.addColorStop(1,'rgba(255,224,104,0)');ctx.fillStyle=rg;ctx.fillRect(sx-52,sy-52,104,104);ctx.fillStyle='#fff2a5';ctx.beginPath();ctx.arc(sx,sy,18,0,Math.PI*2);ctx.fill();ctx.restore()}
+  if(type==='sunny'||type==='cloudy'||type==='royal'){ctx.save();const sx=W-115,sy=72,rg=ctx.createRadialGradient(sx,sy,5,sx,sy,48);rg.addColorStop(0,'rgba(255,247,185,.95)');rg.addColorStop(.35,'rgba(255,224,104,.55)');rg.addColorStop(1,'rgba(255,224,104,0)');ctx.fillStyle=rg;ctx.fillRect(sx-52,sy-52,104,104);ctx.fillStyle='#fff2a5';ctx.beginPath();ctx.arc(sx,sy,18,0,Math.PI*2);ctx.fill();ctx.restore()}
   // distant terrain adds depth without competing with gameplay tiles
   ctx.save();ctx.globalAlpha=type==='storm'?.16:.12;ctx.fillStyle='#315c59';ctx.beginPath();ctx.moveTo(0,H*.72);for(let x=0;x<=W;x+=80){const y=H*.67+Math.sin((x+cameraX*.06)/145)*16+Math.cos(x/91)*8;ctx.lineTo(x,y)}ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fill();ctx.restore();
   ctx.fillStyle=type==='storm'?'#d6dce1aa':'#ffffffc7';const drift=(cloudOffset-(cameraX*.12))%300,cloudStep=type==='cloudy'||type==='rain'||type==='storm'?220:300;
@@ -1708,7 +1714,15 @@ function drawSky(){
   if(type==='rain'||type==='storm'){ctx.save();ctx.strokeStyle=type==='storm'?'#d5ecff99':'#a7d9ee99';ctx.lineWidth=2;const t=performance.now()/7;for(let i=0;i<42;i++){const x=(i*73+t)%W,y=(i*37+t*1.7)%H;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-5,y+13);ctx.stroke()}ctx.restore()}
   if(type==='fog'){ctx.fillStyle='#ffffff32';ctx.fillRect(0,H*.3,W,H*.45)}
   if(type==='storm'&&Math.floor(performance.now()/950)%13===0){ctx.fillStyle='#ffffff33';ctx.fillRect(0,0,W,H)}
+
+  if(type==='royal'){
+    // Original Pixora Royal Sky: distant palace silhouette + gold/cyan floating sparkles.
+    ctx.save();ctx.globalAlpha=.18;ctx.fillStyle='#17315f';
+    const base=H*.70;for(let x=-40-(cameraX*.035%120);x<W+80;x+=120){ctx.fillRect(x,base-42,78,42);ctx.fillRect(x+14,base-76,18,34);ctx.fillRect(x+48,base-90,18,48);ctx.beginPath();ctx.moveTo(x+10,base-76);ctx.lineTo(x+23,base-96);ctx.lineTo(x+36,base-76);ctx.fill();ctx.beginPath();ctx.moveTo(x+43,base-90);ctx.lineTo(x+57,base-112);ctx.lineTo(x+71,base-90);ctx.fill()}ctx.restore();
+    ctx.save();const tm=performance.now()/800;for(let i=0;i<28;i++){const x=(i*97+tm*24)%W,y=38+((i*61+tm*17)%(H*.55));ctx.globalAlpha=.25+.45*((Math.sin(tm+i)+1)/2);ctx.fillStyle=i%3===0?'#ffe27a':'#a8f4ff';ctx.fillRect(x,y,2+(i%2),2+(i%2))}ctx.restore();
+  }
 }
+
 
 
 function drawCaveBackground(viewWidth,viewHeight){
@@ -1724,6 +1738,17 @@ function drawCaveBackground(viewWidth,viewHeight){
     ctx.fillStyle='rgba(255,255,255,.045)';ctx.fillRect(x+5+(n%4)*5,y+7+((n*3)%17),5+(n%5),3);
     ctx.fillStyle='rgba(0,0,0,.09)';ctx.fillRect(x+22-((n%3)*3),y+24+((n*2)%8),8,5);
     ctx.strokeStyle='rgba(0,0,0,.08)';ctx.strokeRect(x+.5,y+.5,T-1,T-1);
+  }
+}
+
+function drawRoyalBackgrounds(viewWidth,viewHeight){
+  const minX=Math.max(0,Math.floor(cameraX/T)-1),maxX=Math.min(WORLD_W-1,Math.ceil((cameraX+viewWidth)/T)+1),minY=Math.max(0,Math.floor(cameraY/T)-1),maxY=Math.min(WORLD_H-1,Math.ceil((cameraY+viewHeight)/T)+1);
+  for(let ty=minY;ty<=maxY;ty++)for(let tx=minX;tx<=maxX;tx++){
+    const bg=backgroundAt(tx,ty);if(!bg)continue;const x=tx*T,y=ty*T;ctx.save();
+    if(bg.t==='royalWallpaper'){ctx.fillStyle='#e9dec2';ctx.fillRect(x,y,T,T);ctx.fillStyle='#caa64b';ctx.fillRect(x+2,y,T-4,3);ctx.fillRect(x+2,y+T-4,T-4,3);ctx.fillRect(x+5,y+3,3,T-7);ctx.fillRect(x+T-8,y+3,3,T-7);ctx.fillStyle='#f9f1dc';ctx.fillRect(x+10,y+7,20,26);ctx.fillStyle='#5dcfe5';ctx.fillRect(x+18,y+13,4,4)}
+    else if(bg.t==='royalBannerWallpaper'){ctx.fillStyle='#213d75';ctx.fillRect(x+3,y+1,T-6,T-3);ctx.fillStyle='#d4a83c';ctx.fillRect(x+3,y+1,T-6,4);ctx.fillRect(x+7,y+5,3,T-10);ctx.fillRect(x+T-10,y+5,3,T-10);ctx.fillStyle='#f2cf68';ctx.font='900 18px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',x+20,y+20);ctx.beginPath();ctx.moveTo(x+10,y+T-2);ctx.lineTo(x+20,y+T-9);ctx.lineTo(x+30,y+T-2);ctx.fill()}
+    else if(bg.t==='royalWindowWallpaper'){const g=ctx.createLinearGradient(x,y,x+T,y+T);g.addColorStop(0,'#7ae9f5');g.addColorStop(.48,'#2c66ad');g.addColorStop(.52,'#a6f7ff');g.addColorStop(1,'#355aa0');ctx.fillStyle=g;ctx.fillRect(x+3,y+3,T-6,T-6);ctx.strokeStyle='#d2aa49';ctx.lineWidth=3;ctx.strokeRect(x+3.5,y+3.5,T-7,T-7);ctx.beginPath();ctx.moveTo(x+20,y+4);ctx.lineTo(x+20,y+36);ctx.moveTo(x+4,y+20);ctx.lineTo(x+36,y+20);ctx.stroke()}
+    ctx.globalAlpha=.25;ctx.strokeStyle='#000';ctx.strokeRect(x+.5,y+.5,T-1,T-1);ctx.restore();
   }
 }
 
@@ -1765,6 +1790,16 @@ function drawBlock(b){
     ctx.fillStyle='#737f88';ctx.fillRect(x+1,y+1,T-2,T-2);ctx.fillStyle='#9da8af';ctx.fillRect(x+4,y+4,T-8,T-8);ctx.strokeStyle='#5c666d';ctx.lineWidth=2;ctx.strokeRect(x+7,y+7,T-14,T-14);for(const [dx,dy] of [[6,6],[31,6],[6,31],[31,31]]){ctx.fillStyle='#d5dadd';ctx.beginPath();ctx.arc(x+dx,y+dy,2,0,Math.PI*2);ctx.fill()}
   }else if(b.t==='moss'){
     ctx.fillStyle='#725337';ctx.fillRect(x+2,y+5,T-4,T-5);ctx.fillStyle='#4e9148';for(let i=0;i<9;i++){const cx=x+4+((i*9+n)%33),cy=y+3+((i*13+n)%22);ctx.beginPath();ctx.arc(cx,cy,5+(i%2),0,Math.PI*2);ctx.fill()}ctx.fillStyle='#80c16f';for(let i=0;i<5;i++)ctx.fillRect(x+6+((i*8+n)%27),y+5+((i*11+n)%17),4,3);
+  }else if(b.t==='royalStone'){
+    ctx.fillStyle='#b9c9d7';ctx.fillRect(x,y,T,T);ctx.fillStyle='#f0eee6';ctx.fillRect(x+2,y+2,T-4,T-4);ctx.strokeStyle='#8ca5b9';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+3,y+21);ctx.lineTo(x+37,y+21);ctx.moveTo(x+20,y+3);ctx.lineTo(x+20,y+21);ctx.moveTo(x+11,y+21);ctx.lineTo(x+11,y+37);ctx.moveTo(x+30,y+21);ctx.lineTo(x+30,y+37);ctx.stroke();ctx.fillStyle='#72dced';ctx.fillRect(x+5,y+6,8,3);ctx.fillStyle='#d7ae4b';ctx.fillRect(x+28,y+30,7,3);
+  }else if(b.t==='royalBrick'){
+    ctx.fillStyle='#9c7129';ctx.fillRect(x,y,T,T);for(let r=0;r<3;r++){const yy=y+2+r*13,off=r%2?7:0;for(let xx=-off;xx<T;xx+=18){ctx.fillStyle='#ede0bd';ctx.fillRect(x+xx+1,yy,16,10);ctx.fillStyle='#fff7df';ctx.fillRect(x+xx+3,yy+2,11,2)}}
+  }else if(b.t==='royalGold'){
+    const gg=ctx.createLinearGradient(x,y,x+T,y+T);gg.addColorStop(0,'#fff2a1');gg.addColorStop(.48,'#e2ae36');gg.addColorStop(1,'#9b6511');ctx.fillStyle=gg;ctx.fillRect(x+1,y+1,T-2,T-2);ctx.strokeStyle='#6f4c0e';ctx.lineWidth=2;ctx.strokeRect(x+2,y+2,T-4,T-4);ctx.fillStyle='#fff7cb';ctx.font='900 17px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',x+20,y+21);
+  }else if(b.t==='royalGlass'){
+    const gg=ctx.createLinearGradient(x,y,x+T,y+T);gg.addColorStop(0,'rgba(222,255,255,.9)');gg.addColorStop(.35,'rgba(72,205,232,.48)');gg.addColorStop(.7,'rgba(55,105,184,.50)');gg.addColorStop(1,'rgba(166,249,255,.8)');ctx.fillStyle=gg;ctx.fillRect(x+2,y+2,T-4,T-4);ctx.strokeStyle='#d5ad48';ctx.lineWidth=3;ctx.strokeRect(x+3.5,y+3.5,T-7,T-7);ctx.beginPath();ctx.moveTo(x+20,y+4);ctx.lineTo(x+20,y+36);ctx.moveTo(x+4,y+20);ctx.lineTo(x+36,y+20);ctx.stroke();ctx.fillStyle='#eaffff';ctx.fillRect(x+7,y+6,3,14);
+  }else if(b.t==='royalRoof'){
+    ctx.fillStyle='#1d3264';ctx.fillRect(x,y,T,T);ctx.fillStyle='#345a98';ctx.beginPath();ctx.moveTo(x+20,y+2);ctx.lineTo(x+38,y+18);ctx.lineTo(x+33,y+37);ctx.lineTo(x+7,y+37);ctx.lineTo(x+2,y+18);ctx.closePath();ctx.fill();ctx.strokeStyle='#d6aa43';ctx.lineWidth=3;ctx.stroke();ctx.fillStyle='#82e5f3';ctx.fillRect(x+18,y+10,4,12);ctx.fillStyle='#f3ce66';ctx.fillRect(x+7,y+32,26,3);
   }else if(b.t==='farmBlock'){
     ctx.fillStyle='#5a451f';ctx.beginPath();ctx.roundRect(x+2,y+2,T-4,T-4,5);ctx.fill();ctx.fillStyle='#9d772e';ctx.fillRect(x+6,y+6,T-12,T-12);const glow=.65+.25*Math.sin(performance.now()/260+(tx+ty));ctx.globalAlpha=glow;ctx.fillStyle='#fff0a0';for(let i=0;i<7;i++){const px=x+8+((i*11+n)%25),py=y+8+((i*7+n)%25);ctx.beginPath();ctx.arc(px,py,2+(i%2),0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;
   }else if(b.t==='lava'){
@@ -2031,7 +2066,7 @@ function drawMiniItemIcon(item,x,y,size=18){
   ctx.translate(x-size/2,y-size/2);
   const s=size;
   if(blockItems.includes(item)){
-    const base={grass:'#8b5a2d',dirt:'#9a6134',stone:'#777f84',wood:'#9a602d',leaf:'#319a49',sand:'#d8bd75',glass:'#8fe9f0',brick:'#a64e3b',ice:'#a9e8ff',metal:'#8c969e',caveStone:'#4f555b',moss:'#548f46',farmBlock:'#8b6426',lava:'#d94b20',bedrock:'#252a2e'}[item]||'#888';
+    const base={grass:'#8b5a2d',dirt:'#9a6134',stone:'#777f84',wood:'#9a602d',leaf:'#319a49',sand:'#d8bd75',glass:'#8fe9f0',brick:'#a64e3b',ice:'#a9e8ff',metal:'#8c969e',caveStone:'#4f555b',moss:'#548f46',farmBlock:'#8b6426',lava:'#d94b20',royalStone:'#e6e8e3',royalBrick:'#ead8ad',royalGold:'#d7a22e',royalGlass:'#64d7e9',royalRoof:'#365995',bedrock:'#252a2e'}[item]||'#888';
     ctx.fillStyle=base;ctx.fillRect(0,0,s,s);
     if(item==='grass'){ctx.fillStyle='#45b94f';ctx.fillRect(0,0,s,Math.max(4,s*.28))}
     if(item==='stone'){ctx.fillStyle='#a4abb0';ctx.fillRect(s*.18,s*.18,s*.25,s*.2);ctx.fillRect(s*.62,s*.58,s*.2,s*.2)}
@@ -2042,6 +2077,12 @@ function drawMiniItemIcon(item,x,y,size=18){
     if(item==='metal'){ctx.fillStyle='#cfd5da';ctx.fillRect(s*.15,s*.15,s*.16,s*.16);ctx.fillRect(s*.68,s*.68,s*.16,s*.16)}
     if(item==='farmBlock'){ctx.fillStyle='#fff1a0';ctx.fillRect(s*.16,s*.16,s*.24,s*.22);ctx.fillRect(s*.60,s*.38,s*.20,s*.18);ctx.fillStyle='#ffbe38';ctx.fillRect(s*.30,s*.68,s*.22,s*.16)}
     if(item==='lava'){ctx.fillStyle='#ff8a24';ctx.fillRect(1,s*.12,s-2,s*.28);ctx.fillStyle='#ffd34a';ctx.fillRect(s*.18,s*.28,s*.25,s*.18)}
+    if(item==='royalStone'){ctx.fillStyle='#62d5e9';ctx.fillRect(s*.15,s*.18,s*.3,s*.12);ctx.fillStyle='#d7aa44';ctx.fillRect(s*.58,s*.68,s*.25,s*.12)}
+    if(item==='royalBrick'){ctx.fillStyle='#a67829';ctx.fillRect(0,s*.42,s,s*.12);ctx.fillRect(s*.45,0,s*.1,s)}
+    if(item==='royalGold'){ctx.fillStyle='#fff4b0';ctx.fillRect(s*.35,s*.22,s*.3,s*.55)}
+    if(item==='royalGlass'){ctx.strokeStyle='#e1b84f';ctx.lineWidth=2;ctx.strokeRect(2,2,s-4,s-4);ctx.beginPath();ctx.moveTo(s*.5,2);ctx.lineTo(s*.5,s-2);ctx.stroke()}
+    if(item==='royalRoof'){ctx.fillStyle='#d9ad45';ctx.fillRect(s*.12,s*.72,s*.76,s*.12)}
+  }else if(backgroundItems.includes(item)){ctx.fillStyle=item==='royalBannerWallpaper'?'#213d75':item==='royalWindowWallpaper'?'#4bbfd7':'#e9dec2';ctx.fillRect(0,0,s,s);ctx.strokeStyle='#d0a544';ctx.lineWidth=Math.max(1,s*.08);ctx.strokeRect(1,1,s-2,s-2);if(item==='royalBannerWallpaper'){ctx.fillStyle='#f4d06a';ctx.font='900 '+Math.max(6,Math.round(s*.45))+'px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',s*.5,s*.52)}
   }else if(item==='woodPlatform'){ctx.fillStyle='#6c3f20';ctx.fillRect(0,s*.38,s,s*.34);ctx.fillStyle='#d09550';ctx.fillRect(s*.08,s*.4,s*.84,s*.14);
   }else if(item==='woodDoor'){ctx.fillStyle='#9a602d';ctx.fillRect(s*.15,0,s*.7,s);ctx.fillStyle='#e6bf58';ctx.fillRect(s*.68,s*.52,s*.12,s*.12);
   }else if(item==='worldDoor'){ctx.fillStyle='#284b70';ctx.fillRect(s*.1,0,s*.8,s);ctx.fillStyle='#7d5be0';ctx.fillRect(s*.28,s*.12,s*.44,s*.76);ctx.fillStyle='#b8f3ff';ctx.fillRect(s*.47,s*.18,s*.08,s*.62);
@@ -2070,7 +2111,7 @@ function drawMiniItemIcon(item,x,y,size=18){
   }else if(item==='pickaxe'){
     ctx.save();ctx.translate(s*.5,s*.5);ctx.rotate(-.65);ctx.fillStyle='#9a663a';ctx.fillRect(-2,-2,4,s*.7);ctx.fillStyle='#aab4bc';ctx.fillRect(-s*.33,-6,s*.66,5);ctx.restore();
   }else if(weatherOrbItems.includes(item)){
-    const wt=WEATHER_ORB_ITEM_TO_TYPE[item],col={sunny:'#ffd64a',rain:'#3f9fe8',cloudy:'#b7d9ee',fog:'#d2d8dc',storm:'#6948b8'}[wt]||'#dceeff';
+    const wt=WEATHER_ORB_ITEM_TO_TYPE[item],col={sunny:'#ffd64a',rain:'#3f9fe8',cloudy:'#b7d9ee',fog:'#d2d8dc',storm:'#6948b8',royal:'#315497'}[wt]||'#dceeff';
     ctx.fillStyle=col;ctx.strokeStyle='#2c4152';ctx.lineWidth=Math.max(2,s*.1);ctx.beginPath();ctx.arc(s*.5,s*.5,s*.36,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#ffffff88';ctx.beginPath();ctx.arc(s*.39,s*.36,s*.10,0,Math.PI*2);ctx.fill();
   }
   ctx.restore();
@@ -2097,7 +2138,7 @@ function weatherOrbAt(tx,ty){return weatherOrbs.find(o=>o.tx===tx&&o.ty===ty)}
 function drawWeatherOrbs(){
   for(const o of weatherOrbs){
     const x=o.tx*T+T/2,y=o.ty*T+T/2;
-    const col={sunny:'#ffd64a',rain:'#3f9fe8',cloudy:'#b7d9ee',fog:'#d2d8dc',storm:'#6948b8'}[o.weather]||'#dceeff';
+    const col={sunny:'#ffd64a',rain:'#3f9fe8',cloudy:'#b7d9ee',fog:'#d2d8dc',storm:'#6948b8',royal:'#315497'}[o.weather]||'#dceeff';
     ctx.save();ctx.fillStyle='#0004';ctx.beginPath();ctx.ellipse(x,y+15,13,4,0,0,Math.PI*2);ctx.fill();
     ctx.fillStyle=col;ctx.strokeStyle='#243848';ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,13,0,Math.PI*2);ctx.fill();ctx.stroke();
     ctx.fillStyle='#ffffff99';ctx.beginPath();ctx.arc(x-5,y-5,4,0,Math.PI*2);ctx.fill();ctx.restore();
@@ -2238,6 +2279,8 @@ function drawOneCrack(b,total){
   ctx.restore();
 }
 function drawBreakCracks(){
+  for(const [k,d] of backgroundDamage){if(!d||Number(d.hits||0)<=0)continue;const [tx,ty]=k.split(',').map(Number);if(backgroundAt(tx,ty))drawOneCrack({x:tx*T,y:ty*T},Math.min(.7,Number(d.hits||0)/2));}
+
   const now=performance.now();
   const viewWidth=W/zoom;
   for(const b of blocks){
@@ -2273,6 +2316,7 @@ function validPlacement(tx,ty,itemType,item){
   if(!gameReady)return false;
   if(!inInteraction5x5(tx,ty))return false;
   if(itemType==='block')return !blockAt(tx,ty)&&!lockAt(tx,ty)&&!weatherOrbAt(tx,ty)&&!jammerAt(tx,ty)&&canEditTile(tx,ty)&&(inventory[item]||0)>0&&!overlapsAnyPlayer(tx,ty)&&!overlapsDoor(tx,ty);
+  if(itemType==='background')return !backgroundAt(tx,ty)&&canEditTile(tx,ty)&&(inventory[item]||0)>0;
   if(itemType==='special'&&lockItems.includes(item))return !blockAt(tx,ty)&&!plantAt(tx,ty)&&!lockAt(tx,ty)&&!jammerAt(tx,ty)&&(inventory[item]||0)>0&&!overlapsAnyPlayer(tx,ty)&&!overlapsDoor(tx,ty);
   if(itemType==='special'&&item==='punchJammer')return !blockAt(tx,ty)&&!plantAt(tx,ty)&&!lockAt(tx,ty)&&!weatherOrbAt(tx,ty)&&!jammerAt(tx,ty)&&canEditTile(tx,ty)&&(inventory[item]||0)>0&&!overlapsAnyPlayer(tx,ty)&&!overlapsDoor(tx,ty);
   if(itemType==='seed'){
@@ -2284,7 +2328,7 @@ function validPlacement(tx,ty,itemType,item){
 }
 function drawPlacementPreview(){
   if(!hoverTile||!gameReady)return;
-  if(selectedType!=='block'&&selectedType!=='seed'&&selectedType!=='special')return;
+  if(selectedType!=='block'&&selectedType!=='background'&&selectedType!=='seed'&&selectedType!=='special')return;
   const {tx,ty}=hoverTile;
   if(!inInteraction5x5(tx,ty))return;
   const x=tx*T,y=ty*T;
@@ -2294,6 +2338,8 @@ function drawPlacementPreview(){
   if(selectedType==='block'){
     const ghost={x,y,t:selectedItem};
     drawBlock(ghost);
+  }else if(selectedType==='background'){
+    const old=backgroundAt(tx,ty),fake={tx,ty,t:selectedItem};if(!old){backgrounds.push(fake);backgroundMap.set(blockKey(tx,ty),fake);drawRoyalBackgrounds(W/zoom,H/zoom);backgrounds.pop();backgroundMap.delete(blockKey(tx,ty))}
   }else if(selectedType==='special'&&lockItems.includes(selectedItem)){
     ctx.fillStyle=(LOCK_CONFIG[selectedItem]?.color||'#d8ad37');ctx.fillRect(x+7,y+13,26,23);ctx.strokeStyle='#d9dde2';ctx.lineWidth=4;ctx.beginPath();ctx.arc(x+20,y+14,9,Math.PI,0);ctx.stroke();
   }else if(selectedType==='seed'){
@@ -2321,6 +2367,7 @@ function draw(){
   const viewWidth=W/zoom;
   const viewHeight=H/zoom;
   drawCaveBackground(viewWidth,viewHeight);
+  drawRoyalBackgrounds(viewWidth,viewHeight);
   const minBX=Math.max(0,Math.floor(cameraX/T)-1),maxBX=Math.min(WORLD_W-1,Math.ceil((cameraX+viewWidth)/T)+1),minBY=Math.max(0,Math.floor(cameraY/T)-1),maxBY=Math.min(WORLD_H-1,Math.ceil((cameraY+viewHeight)/T)+1);for(let ty=minBY;ty<=maxBY;ty++)for(let tx=minBX;tx<=maxBX;tx++){const b=blockAt(tx,ty);if(b)drawBlock(b)}
   drawDoor();drawPlacedDoors();drawLocks();drawWeatherOrbs();drawJammers();drawPlants();drawPlacementPreview();drawPlaceEffects();drawDrops();drawParticles();
   drawRemotePlayers();
@@ -2350,7 +2397,7 @@ function slotHTML(type,item,drawer=false){
 }
 
 
-function backpackItemPool(){return [...blockItems,...seedItems,...wearableItems,...specialItems,...countedToolItems,...systemItems]}
+function backpackItemPool(){return [...blockItems,...backgroundItems,...seedItems,...wearableItems,...specialItems,...countedToolItems,...systemItems]}
 function usedBackpackSlots(){return 2+backpackItemPool().reduce((n,item)=>n+((inventory[item]||0)>0?1:0),0)}
 function pickupStatus(item,amount=1){
   const current=Math.max(0,Number(inventory[item]||0));amount=Math.max(1,Number(amount||1));
@@ -2362,6 +2409,15 @@ function canReceiveItem(item,amount=1){return pickupStatus(item,amount)==='ok'}
 const STORE_CATALOG=[
   {id:'alphaWing',name:'ALPHA WING',category:'featured',price:200000,icon:'alphaWing',inventoryItem:'alphaWing',maxOne:true,testOnly:true,desc:'IOTM #001 • September 2026 • Owner testing. Premium wing dengan flap, aura dan double jump sampai sekitar 6 block.'},
   {id:'farmBlock',name:'LUMINITE PACK',category:'world',price:250,amount:20,icon:'farmBlock',inventoryItem:'farmBlock',desc:'20 Luminite Block • Rarity 8 • 4 hit. Farming block dengan peluang Gems.'},
+
+  {id:'royalStone',name:'ROYAL MARBLE PACK',category:'world',price:180,amount:20,icon:'royalStone',inventoryItem:'royalStone',desc:'20 Royal Marble • solid kingdom block.'},
+  {id:'royalBrick',name:'ROYAL BRICK PACK',category:'world',price:200,amount:20,icon:'royalBrick',inventoryItem:'royalBrick',desc:'20 Royal Brick • cream + gold palace masonry.'},
+  {id:'royalGold',name:'GILDED CREST PACK',category:'world',price:220,amount:10,icon:'royalGold',inventoryItem:'royalGold',desc:'10 Gilded Crest Block • premium gold Pixora accent.'},
+  {id:'royalGlass',name:'ROYAL CRYSTAL PACK',category:'world',price:180,amount:10,icon:'royalGlass',inventoryItem:'royalGlass',desc:'10 Royal Crystal Glass • cyan stained-glass palace block.'},
+  {id:'royalRoof',name:'ROYAL ROOF PACK',category:'world',price:190,amount:20,icon:'royalRoof',inventoryItem:'royalRoof',desc:'20 Royal Roof • deep blue roof with gold trim.'},
+  {id:'royalWallpaper',name:'ROYAL WALLPAPER PACK',category:'world',price:120,amount:20,icon:'royalWallpaper',inventoryItem:'royalWallpaper',desc:'20 Royal Wallpaper • background, non-solid, dapat dipasang di belakang block.'},
+  {id:'royalBannerWallpaper',name:'ROYAL BANNER PACK',category:'world',price:120,amount:10,icon:'royalBannerWallpaper',inventoryItem:'royalBannerWallpaper',desc:'10 Royal Banner Wallpaper • navy + gold P background.'},
+  {id:'royalWindowWallpaper',name:'ROYAL WINDOW WALLPAPER',category:'world',price:150,amount:10,icon:'royalWindowWallpaper',inventoryItem:'royalWindowWallpaper',desc:'10 Royal Window Wallpaper • decorative stained-glass background.'},
   {id:'redShirt',name:'CRIMSON TEE',category:'clothes',price:80,icon:'redShirt',inventoryItem:'redShirt',maxOne:true,desc:'Shirt equipment.'},
   {id:'bluePants',name:'BLUE PANTS',category:'clothes',price:80,icon:'bluePants',inventoryItem:'bluePants',maxOne:true,desc:'Pants equipment.'},
   {id:'blackHair',name:'BLACK HAIR',category:'clothes',price:100,icon:'blackHair',inventoryItem:'blackHair',maxOne:true,desc:'Hair equipment.'},
@@ -2378,7 +2434,8 @@ const STORE_CATALOG=[
   {id:'rainOrb',name:'RAIN ORB',category:'weather',price:150,icon:'rainOrb',inventoryItem:'rainOrb',desc:'Tempatkan di world lalu punch untuk mengaktifkan Rain.'},
   {id:'cloudyOrb',name:'CLOUDY ORB',category:'weather',price:150,icon:'cloudyOrb',inventoryItem:'cloudyOrb',desc:'Tempatkan di world lalu punch untuk mengaktifkan Cloudy.'},
   {id:'fogOrb',name:'FOG ORB',category:'weather',price:150,icon:'fogOrb',inventoryItem:'fogOrb',desc:'Tempatkan di world lalu punch untuk mengaktifkan Fog.'},
-  {id:'stormOrb',name:'STORM ORB',category:'weather',price:200,icon:'stormOrb',inventoryItem:'stormOrb',desc:'Weather Orb premium untuk mengaktifkan Storm.'}
+  {id:'stormOrb',name:'STORM ORB',category:'weather',price:200,icon:'stormOrb',inventoryItem:'stormOrb',desc:'Weather Orb premium untuk mengaktifkan Storm.'},
+  {id:'royalOrb',name:'ROYAL SKY ORB',category:'weather',price:300,icon:'royalOrb',inventoryItem:'royalOrb',desc:'Cuaca kerajaan Pixora: royal blue sky, distant palace silhouettes, dan gold/cyan sparkles.'}
 ];
 const ACTIVE_EVENT_ITEMS=[];
 let storeCategory='featured',storeSelectedId='worldLock';
@@ -2418,6 +2475,7 @@ function buyStoreItem(id){
 function itemEntry(item){
   if(!item)return null;
   if(blockItems.includes(item))return {type:'block',item};
+  if(backgroundItems.includes(item))return {type:'background',item};
   if(seedItems.includes(item))return {type:'seed',item};
   if(wearableItems.includes(item))return {type:'wearable',item};
   if(specialItems.includes(item))return {type:'special',item};
@@ -2440,6 +2498,7 @@ function renderInventory(){
   const ownedTools=countedToolItems.filter(n=>(inventory[n]||0)>0);
   const ownedLocks=lockItems.filter(n=>(inventory[n]||0)>0);
   const ownedBlocks=blockItems.filter(n=>(inventory[n]||0)>0);
+  const ownedBackgrounds=backgroundItems.filter(n=>(inventory[n]||0)>0);
   const ownedSeeds=seedItems.filter(n=>(inventory[n]||0)>0);
   const ownedWearables=wearableItems.filter(n=>(inventory[n]||0)>0);
   const remainingSpecial=[...jammerItems,...weatherOrbItems].filter(n=>(inventory[n]||0)>0);
@@ -2449,6 +2508,7 @@ function renderInventory(){
     ...ownedTools.map(item=>({type:'toolitem',item})),
     ...ownedLocks.map(item=>({type:'special',item})),
     ...ownedBlocks.map(item=>({type:'block',item})),
+    ...ownedBackgrounds.map(item=>({type:'background',item})),
     ...ownedSeeds.map(item=>({type:'seed',item})),
     ...ownedWearables.map(item=>({type:'wearable',item})),
     ...remainingSpecial.map(item=>({type:'special',item})),
@@ -2823,7 +2883,7 @@ function spawnGemDrop(x,y,amount){
 }
 function spawnDebris(b){
   const base=debrisColor[b.t]||'#999';
-  const accent={grass:'#7be07b',dirt:'#c78652',stone:'#b7bdc1',wood:'#d09651',leaf:'#6bd27a',sand:'#f3dda0',glass:'#d7fbff',brick:'#d16d59',ice:'#e7fbff',metal:'#d7dde1',caveStone:'#7b848c',moss:'#7bb06c',lava:'#ff9a2e',farmBlock:'#ffe690',bedrock:'#4c5459',caveBg:'#626c73'}[b.t]||'#ccc';
+  const accent={grass:'#7be07b',dirt:'#c78652',stone:'#b7bdc1',wood:'#d09651',leaf:'#6bd27a',sand:'#f3dda0',glass:'#d7fbff',brick:'#d16d59',ice:'#e7fbff',metal:'#d7dde1',caveStone:'#7b848c',moss:'#7bb06c',lava:'#ff9a2e',farmBlock:'#ffe690',royalStone:'#f1f0e8',royalBrick:'#ead8ad',royalGold:'#f2c654',royalGlass:'#8ceeff',royalRoof:'#577ab5',royalWallpaper:'#efe3c7',royalBannerWallpaper:'#31518d',royalWindowWallpaper:'#70dcea',bedrock:'#4c5459',caveBg:'#626c73'}[b.t]||'#ccc';
   // Build 13.2: semua pecahan lahir dari pusat, membesar sedikit lalu menyebar/fade.
   for(let i=0;i<10;i++){const a=(Math.PI*2*i/10)+(Math.random()-.5)*.38,spd=1.1+Math.random()*2.6,life=.72+Math.random()*.16;particles.push({x:b.x+T/2,y:b.y+T/2,vx:Math.cos(a)*spd,vy:Math.sin(a)*spd-1.15,size:3+Math.random()*3.6,life,startLife:life,color:i%3===0?accent:base,gravity:.18,shape:'chip',grow:true,rot:Math.random()*Math.PI,vr:(Math.random()-.5)*.28})}
 }
@@ -2867,6 +2927,18 @@ function tryPlaceTile(tx,ty){
   return true;
 }
 
+async function tryPlaceBackground(tx,ty){
+  if(serverGameplayLocked()||selectedType!=='background'||!inInteraction5x5(tx,ty))return false;const item=selectedItem;
+  if(!backgroundItems.includes(item)||(inventory[item]||0)<=0||backgroundAt(tx,ty)||!canEditTile(tx,ty))return false;
+  const result=await multiplayerWorldAction({type:'background-place',tx,ty,backgroundType:item});if(!result?.ok){toast('Wallpaper gagal dipasang','error');return false}
+  inventory[item]--;addBackground(tx,ty,item);triggerPlaceHand(tx,ty);sfx('place');addXp(1);updateInventory();savePlayer(true);saveWorld(true);return true;
+}
+async function hitRoyalBackground(bg){
+  if(!bg||serverGameplayLocked())return false;const tx=Number(bg.tx),ty=Number(bg.ty);if(!inInteraction5x5(tx,ty)||blockAt(tx,ty)||plantAt(tx,ty)||lockAt(tx,ty)||placedDoorAt(tx,ty)||weatherOrbAt(tx,ty)||jammerAt(tx,ty))return false;
+  const k=blockKey(tx,ty),d=backgroundDamage.get(k)||{hits:0,lastHitAt:0};if(performance.now()-Number(d.lastHitAt||0)>1200)d.hits=0;d.hits++;d.lastHitAt=performance.now();backgroundDamage.set(k,d);pulsePunchAt(tx,ty,'punch','bg',Math.min(.99,d.hits/2));sfx('punch');nextPunchAt=performance.now()+TAP_HIT_COOLDOWN;
+  if(d.hits<2)return true;const result=await multiplayerWorldAction({type:'background-break',tx,ty});if(result?.ok){removeBackgroundObj(bg);backgroundDamage.delete(k);spawnDebris({x:tx*T,y:ty*T,t:bg.t});sfx('break');saveWorld(true)}else backgroundDamage.delete(k);return !!result?.ok;
+}
+
 function placeAlongLine(from,to){
   // Bresenham sederhana supaya drag cepat tidak meninggalkan lubang antar-tile.
   let x0=from.tx,y0=from.ty,x1=to.tx,y1=to.ty;
@@ -2877,7 +2949,7 @@ function placeAlongLine(from,to){
     const key=x0+','+y0;
     if(!placeVisited.has(key)){
       placeVisited.add(key);
-      if(selectedType==='seed')tryPlant(x0,y0);else tryPlaceTile(x0,y0);
+      if(selectedType==='seed')tryPlant(x0,y0);else if(selectedType==='background')tryPlaceBackground(x0,y0);else tryPlaceTile(x0,y0);
     }
     if(x0===x1&&y0===y1)break;
     const e2=2*err;
@@ -2904,7 +2976,7 @@ canvas.addEventListener('pointerdown',e=>{
   if(ownerBreakEnabled&&selectedItem==='punch'&&inInteraction5x5(pt.tx,pt.ty)&&(pointInsideDoor(pt.wx,pt.wy)||placedDoorAt(pt.tx,pt.ty)||lockAt(pt.tx,pt.ty)||weatherOrbAt(pt.tx,pt.ty)||jammerAt(pt.tx,pt.ty))){ownerBreakProtectedAt(pt.tx,pt.ty);return}
   if(pointInsideDoor(pt.wx,pt.wy)&&playerNearDoor()){requestExitWorld();return;}
   if(!inInteraction5x5(pt.tx,pt.ty))return;
-  const b=blockAt(pt.tx,pt.ty);
+  const b=blockAt(pt.tx,pt.ty),bg=backgroundAt(pt.tx,pt.ty);
   const placedDoor=placedDoorAt(pt.tx,pt.ty);
   if(placedDoor){if(selectedItem==='wrench'){openDoorConfig(placedDoor);return}if(placedDoor.type==='worldDoor'){useWorldPortalDoor(placedDoor);return}}
   const plant=plantAt(pt.tx,pt.ty);
@@ -2912,6 +2984,9 @@ canvas.addEventListener('pointerdown',e=>{
   if(plant&&selectedType==='seed'){tryPlant(pt.tx,pt.ty);return}
   if(plant&&selectedItem==='punch'){canvasPunchHold={pointerId:e.pointerId,kind:'plant',tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}hitPlant(plant);player.punchAnim=1;nextPunchAt=performance.now()+120;return}
   if(orb&&selectedItem==='punch'){const tool=equipped.tool==='pickaxe'?'pickaxe':'punch';setPunchDirectionToTarget(pt.tx,pt.ty,tool);activateWeatherOrb(orb);return}
+  if(selectedType==='background'){
+    placeHeld=true;placePointerId=e.pointerId;placeVisited.clear();lastPlaceTile={tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}placeVisited.add(pt.tx+','+pt.ty);tryPlaceBackground(pt.tx,pt.ty);return
+  }
   if(selectedType==='seed'&&!b&&!orb){
     placeHeld=true;placePointerId=e.pointerId;placeVisited.clear();lastPlaceTile={tx:pt.tx,ty:pt.ty};
     try{canvas.setPointerCapture(e.pointerId)}catch(_){}
@@ -2933,6 +3008,7 @@ canvas.addEventListener('pointerdown',e=>{
   if(b&&selectedItem==='punch'){
     const tool=equipped.tool==='pickaxe'?'pickaxe':'punch';canvasPunchHold={pointerId:e.pointerId,kind:'block',tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}tapHitBlock(b,tool);return;
   }
+  if(!b&&bg&&selectedItem==='punch'){canvasPunchHold={pointerId:e.pointerId,kind:'royal-bg',tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}hitRoyalBackground(bg);return}
   if(!b&&selectedItem==='punch'&&hasCaveBackground(pt.tx,pt.ty)){
     canvasPunchHold={pointerId:e.pointerId,kind:'bg',tx:pt.tx,ty:pt.ty};try{canvas.setPointerCapture(e.pointerId)}catch(_){}tapHitBackground(pt.tx,pt.ty);return;
   }
@@ -3260,6 +3336,7 @@ function multiplayerWorldSnapshot(){
   return {
     worldId:String(worldId||''),templateVersion:worldTemplateVersion,surfaceTile:Math.floor(GROUND_Y/T),
     blocks:blocks.map(b=>({x:b.x,y:b.y,t:b.t})),
+    backgrounds:backgrounds.map(bg=>({tx:Number(bg.tx),ty:Number(bg.ty),t:String(bg.t)})),
     door:door?{x:door.x,y:door.y,w:door.w,h:door.h}:null,
     placedDoors:Array.isArray(placedDoors)?placedDoors.map(d=>({...d})):[],
     caveBgRemoved:[...caveBgRemoved],
@@ -3285,6 +3362,7 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   const st=Number(snap.surfaceTile);if(Number.isFinite(st)&&st>=4&&st<=WORLD_H-4)GROUND_Y=st*T;
   if(snap.worldId)worldId=String(snap.worldId);worldTemplateVersion=Math.max(0,Math.floor(Number(snap.templateVersion||0)));
   blocks=snap.blocks.filter(b=>b&&Number.isFinite(Number(b.x))&&Number.isFinite(Number(b.y))&&typeof b.t==='string').map(b=>{const x=Number(b.x),y=Number(b.y),t=b.t,old=oldDamage.get(blockKey(Math.floor(x/T),Math.floor(y/T)));return {x,y,t,hitsTaken:old&&old.t===t?old.hitsTaken:0,lastHitAt:old&&old.t===t?old.lastHitAt:0}});rebuildBlockMap();
+  backgrounds=Array.isArray(snap.backgrounds)?snap.backgrounds.filter(bg=>bg&&Number.isFinite(Number(bg.tx))&&Number.isFinite(Number(bg.ty))&&backgroundItems.includes(String(bg.t||''))).map(bg=>({tx:Math.floor(Number(bg.tx)),ty:Math.floor(Number(bg.ty)),t:String(bg.t)})):[];rebuildBackgroundMap();backgroundDamage=new Map();
   caveBgRemoved=new Set(Array.isArray(snap.caveBgRemoved)?snap.caveBgRemoved.filter(k=>typeof k==='string'):[]);
   plants=Array.isArray(snap.plants)?snap.plants.map(p=>({...p,rarity:Math.max(1,Number(p.rarity||itemRarity(p.seed)||1)),growMs:growthMsForRarity(Math.max(1,Number(p.rarity||itemRarity(p.seed)||1)))})):[];
   locks=Array.isArray(snap.locks)?snap.locks.map(l=>{const type=l.type||'worldLock',old=oldLockDamage.get(blockKey(Number(l.tx),Number(l.ty)));return {...l,owner:String(l.owner||'')==='LOCAL_PLAYER'?ownPlayerId():l.owner,type,trusted:Array.isArray(l.trusted)?[...l.trusted]:[],hitsTaken:old&&old.type===type?old.hitsTaken:0}}):[];
@@ -3516,7 +3594,7 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_15_0_6_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_15_0_7_'+safe;
 }
 function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;ownerBreakEnabled=!!session.ownerBreak;
@@ -3611,7 +3689,7 @@ chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameRead
 friendToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();openFriendPanel()},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim()){chatPanel.classList.remove('open');chatInput.blur();return}chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_15_0_6';
+let CHANGELOG_KEY='pixora_seen_build_15_0_7';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

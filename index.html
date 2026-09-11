@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 15.0.1</title>
+<title>Pixora — Online Alpha Build 15.0.2</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -337,7 +337,7 @@ button.hudResource:active{transform:scale(.96)}
 @media(max-width:720px){#spliceBookList{grid-template-columns:1fr}.pixoraCard{max-height:92dvh}.actionGrid{grid-template-columns:1fr 1fr}}
 
 
-/* ===== Pixora Build 15.0.1: mobile stability, social UI, IOTM ===== */
+/* ===== Pixora Build 15.0.2: mobile stability, social UI, IOTM ===== */
 html,body{overscroll-behavior:none}body{position:fixed;inset:0;width:100%;height:100%;overflow:hidden}
 input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout:none){input,textarea,select{font-size:16px!important}}
 .icon-alphaWing{background:transparent!important;border:0!important}.icon-alphaWing:before,.icon-alphaWing:after{content:'';position:absolute;top:1px;width:17px;height:29px;background:linear-gradient(145deg,#ffffff 0%,#bdf8ff 32%,#66dfff 68%,#598dff 100%);border:2px solid #dffbff;filter:drop-shadow(0 0 4px #69e9ff);clip-path:polygon(50% 0,100% 12%,82% 42%,100% 55%,67% 72%,60% 100%,18% 77%,0 38%)}.icon-alphaWing:before{left:-1px;transform:scaleX(-1) rotate(-7deg)}.icon-alphaWing:after{right:-1px;transform:rotate(-7deg)}
@@ -358,10 +358,33 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 [class*="icon-"][class$="Seed"]:before{filter:drop-shadow(0 1px 0 rgba(0,0,0,.35))}.seedSlot .pixelIcon{transform:scale(.94)}
 /* wearable icon polish */
 .icon-redShirt{background:#d94745!important;border-radius:6px 6px 3px 3px!important;clip-path:polygon(18% 8%,35% 0,65% 0,82% 8%,100% 30%,82% 43%,75% 30%,75% 100%,25% 100%,25% 30%,18% 43%,0 30%)!important;box-shadow:inset 0 5px 0 #f16a65!important}.icon-bluePants{background:#365da7!important;clip-path:polygon(15% 0,85% 0,80% 100%,55% 100%,50% 48%,45% 100%,20% 100%)!important}.icon-blackHair{background:#211b19!important;border-radius:48% 52% 30% 35%!important;clip-path:polygon(5% 30%,16% 8%,38% 0,72% 4%,94% 21%,88% 64%,76% 47%,63% 67%,49% 45%,31% 66%,19% 44%,7% 60%)!important}.icon-whiteShoes{background:transparent!important;border:0!important}.icon-whiteShoes:before,.icon-whiteShoes:after{content:'';position:absolute;bottom:6px;width:14px;height:8px;background:#f5f7f8;border:2px solid #aeb8bf;border-radius:5px 8px 4px 4px}.icon-whiteShoes:before{left:1px}.icon-whiteShoes:after{right:1px}.icon-pixoraWing{background:transparent!important;border:0!important}.icon-pixoraWing:before,.icon-pixoraWing:after{content:'';position:absolute;top:3px;width:14px;height:25px;background:linear-gradient(135deg,#e7fbff,#8ddff7 65%,#5eb7d5);border:2px solid #397fa0}.icon-pixoraWing:before{left:1px;clip-path:polygon(100% 38%,0 0,18% 52%,5% 100%,100% 69%)}.icon-pixoraWing:after{right:1px;clip-path:polygon(0 38%,100% 0,82% 52%,95% 100%,0 69%)}
-.icon-pixoraHat{background:transparent!important;border:0!important}.icon-pixoraHat:before{content:'';position:absolute;left:4px;top:8px;width:24px;height:12px;background:linear-gradient(180deg,#1b2430 0%,#2a1d3f 55%,#314ba5 100%);border:2px solid #94c8ff;border-bottom:0;border-radius:10px 10px 4px 4px;box-shadow:inset 0 3px 0 #5168d0,0 0 5px rgba(110,180,255,.25)}.icon-pixoraHat:after{content:'P';position:absolute;left:11px;top:10px;width:10px;height:10px;color:#f2f8ff;font:900 9px Arial;text-shadow:-8px 1px 0 #f2f8ff,8px 1px 0 #f2f8ff,12px -1px 0 #86dfff;background:transparent}
+.icon-pixoraHat{background:transparent!important;border:0!important}.icon-pixoraHat:before{content:'';position:absolute;left:4px;top:7px;width:24px;height:14px;background:linear-gradient(180deg,#fffdf6 0%,#f3ead4 100%);border:2px solid #d6a72f;border-radius:11px 11px 4px 4px;box-shadow:inset 0 -4px 0 #e4bb4d,0 0 5px rgba(255,214,91,.32)}.icon-pixoraHat:after{content:'P';position:absolute;left:7px;top:16px;width:24px;height:8px;border-top:3px solid #f7f0dc;color:#b67d13;font:900 9px Arial;text-align:center;text-shadow:-10px -7px 0 #fffdf6,10px -7px 0 #fffdf6,13px -8px 0 #f0c95d}
 
 .drawerSlot{background:linear-gradient(180deg,#172433,#111b27);border-color:#ffffff22}.drawerSlot:hover{border-color:#78c9f7}.drawerName{letter-spacing:.15px}
 
+</style>
+<style>
+/* ===== Build 15.0.2: GLOBAL MOBILE SCROLL FIX =====
+   The base game intentionally disables browser gestures on gameplay controls.
+   Every real scroll surface and its content must explicitly opt back into pan-y. */
+:where(#drawerScroll,#chatMessages,#spliceBookList,#friendPanelBody,#moderatorReportList,#storeBody,#storeGridWrap,#storeDetail,#savedWorldList,#allWorldsList,#authScreen,#authCard,#changelogCard ul,.pixoraCard){
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior:contain!important;
+  touch-action:pan-y!important;
+}
+:where(#drawerScroll,#chatMessages,#spliceBookList,#friendPanelBody,#moderatorReportList,#storeBody,#storeGridWrap,#storeDetail,#savedWorldList,#allWorldsList,#authScreen,#authCard,#changelogCard ul,.pixoraCard) :where(div,span,small,b,p,li,label){touch-action:pan-y!important}
+:where(#drawerScroll,#chatMessages,#spliceBookList,#friendPanelBody,#moderatorReportList,#storeBody,#storeGridWrap,#storeDetail,#savedWorldList,#allWorldsList,#authScreen,#authCard,#changelogCard ul,.pixoraCard) :where(button,input,select,textarea){touch-action:manipulation!important}
+#spliceBookList,#chatMessages,#friendPanelBody,#moderatorReportList{overflow-y:auto!important;overflow-x:hidden!important;min-height:0!important}
+#friendPanelBody{max-height:62dvh}
+#moderatorReportList{max-height:55dvh!important}
+#chatMessages{overscroll-behavior-y:contain!important}
+
+/* Strong overrides for controls nested inside scroll surfaces. The original gameplay rule uses !important on buttons. */
+#drawerScroll *,#chatMessages *,#spliceBookList *,#friendPanelBody *,#moderatorReportList *,#storeBody *,#storeGridWrap *,#storeDetail *,#savedWorldList *,#allWorldsList *,#authCard *,#changelogCard ul *{touch-action:pan-y!important}
+.pixoraCard *{touch-action:pan-y!important}
+#drawerScroll button,#chatMessages button,#spliceBookList button,#friendPanelBody button,#moderatorReportList button,#storeBody button,#storeGridWrap button,#storeDetail button,#savedWorldList button,#allWorldsList button,#authCard button,#changelogCard ul button,.pixoraCard button,
+#drawerScroll input,#chatMessages input,#spliceBookList input,#friendPanelBody input,#moderatorReportList input,#storeBody input,#storeGridWrap input,#storeDetail input,#savedWorldList input,#allWorldsList input,#authCard input,.pixoraCard input,
+.pixoraCard select,.pixoraCard textarea{touch-action:manipulation!important}
 </style>
 </head>
 <body>
@@ -369,7 +392,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 15.0</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 15.0.2</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -434,7 +457,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="worldMenu">
   <div id="worldCard">
     <h2>PIXORA — ONLINE ALPHA BUILD 15.0</h2>
-    <p>Masukkan nama world. Build 15.0.1 membawa hotfix chat scroll, Owner display name Pixora, Pixora Hat testing, serta semua sistem Build 15.0.</p>
+    <p>Masukkan nama world. Build 15.0.2 membawa hotfix chat scroll, Owner display name Pixora, Pixora Hat testing, serta semua sistem Build 15.0.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine" style="display:none">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -674,8 +697,8 @@ let backpackUpgrades=0;
 let locks=[];
 let focusedLock=null;
 let lockAreaVisibleUntil=0;
-const equipped={hair:null,shirt:null,pants:null,shoes:null,back:null,tool:null};
-const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes',pixoraWing:'back',alphaWing:'back',pixoraHat:'hair'};
+const equipped={hair:null,hat:null,shirt:null,pants:null,shoes:null,back:null,tool:null};
+const wearableSlot={blackHair:'hair',redShirt:'shirt',bluePants:'pants',whiteShoes:'shoes',pixoraWing:'back',alphaWing:'back',pixoraHat:'hat'};
 const seedForBlock={grass:'grassSeed',dirt:'dirtSeed',stone:'stoneSeed',wood:'woodSeed',leaf:'leafSeed',sand:'sandSeed',glass:'glassSeed',brick:'brickSeed',ice:'iceSeed',metal:'metalSeed',caveStone:'caveStoneSeed',moss:'mossSeed',farmBlock:'farmSeed'};
 const itemName={
   grass:'GRASS',dirt:'DIRT',stone:'ROCK',wood:'WOOD',leaf:'LEAVES',sand:'SAND',glass:'GLASS',brick:'BRICK',ice:'ICE',metal:'METAL',caveStone:'CAVE ROCK',moss:'MOSS',lava:'LAVA',farmBlock:'LUMINITE BLOCK',woodPlatform:'PLATFORM',woodDoor:'DOOR',worldDoor:'WORLD DOOR',bedrock:'BEDROCK',
@@ -1071,6 +1094,7 @@ function loadGlobalPlayer(){
   if(d&&typeof d==='object'){
     inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};inventory.spliceBook=1;inventory.spliceBook=1;
     Object.keys(equipped).forEach(k=>equipped[k]=(d.equipped||{})[k]||null);
+    if((d.equipped||{}).hair==='pixoraHat'){equipped.hat='pixoraHat';equipped.hair=null}
     gems=Math.max(0,Number(d.gems||0));
     backpackCapacity=Math.max(24,Number(d.backpackCapacity||24));
     backpackUpgrades=Math.max(0,Math.floor(Number(d.backpackUpgrades||0)));
@@ -1710,18 +1734,25 @@ function drawAlphaWingAt(x,y,bob,onGround,vy,now){
   ctx.save();ctx.globalCompositeOperation='source-over';ctx.shadowColor='#65eaff';ctx.shadowBlur=12;
   const side=(sgn)=>{const rootX=x+15+sgn*7,tipX=x+15+sgn*(30*spread),outerX=x+15+sgn*(24*spread);ctx.beginPath();ctx.moveTo(rootX,cy+2);ctx.lineTo(x+15+sgn*17,cy-14+flap*sgn*5);ctx.lineTo(tipX,tipY);ctx.lineTo(outerX,cy+2-flap*12);ctx.lineTo(x+15+sgn*30,cy+18);ctx.lineTo(x+15+sgn*15,cy+11);ctx.closePath();const g=ctx.createLinearGradient(rootX,cy,tipX,tipY);g.addColorStop(0,'#5a94ff');g.addColorStop(.38,'#62e6ff');g.addColorStop(.72,'#c8faff');g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fill();ctx.strokeStyle='#eaffff';ctx.lineWidth=2;ctx.stroke();ctx.strokeStyle='#72dfff';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(rootX,cy);ctx.lineTo(tipX,tipY+3);ctx.moveTo(rootX,cy+4);ctx.lineTo(outerX,cy+2);ctx.stroke()};side(-1);side(1);ctx.shadowBlur=4;ctx.fillStyle='#ffffff';ctx.fillRect(x+12,cy-4,6,9);ctx.restore();
 }
-function drawPixoraHatAt(x,y,bob=0,small=false){
+function drawPixoraHatAt(x,y,bob=0,facing=1){
   ctx.save();
-  const brimY=y+4+bob,capY=y-1+bob,scale=small?.9:1;
-  ctx.shadowColor='rgba(118,201,255,.35)';ctx.shadowBlur=small?4:6;
-  ctx.fillStyle='#131c28';ctx.fillRect(x+6*scale,capY,18*scale,5*scale);
-  ctx.fillStyle='#271d3d';ctx.fillRect(x+7*scale,capY+1*scale,16*scale,4*scale);
-  ctx.fillStyle='#3f58bf';ctx.fillRect(x+9*scale,capY+3*scale,12*scale,2*scale);
-  ctx.fillStyle='#cfe8ff';ctx.fillRect(x+4*scale,brimY,22*scale,3*scale);
-  ctx.fillStyle='#1a2330';ctx.fillRect(x+5*scale,brimY,20*scale,2*scale);
-  ctx.fillStyle='#edf6ff';ctx.font=(small?'900 5px Arial':'900 7px Arial');ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',x+15*scale,capY+4.5*scale);
-  ctx.fillStyle='#ffffff';ctx.fillRect(x+5*scale,capY+4*scale,2*scale,1*scale);ctx.fillRect(x+23*scale,capY+4*scale,2*scale,1*scale);
-  ctx.fillStyle='#b9ebff';ctx.fillRect(x+26*scale,capY+1*scale,2*scale,2*scale);ctx.fillStyle='#79cfff';ctx.fillRect(x+27*scale,capY+2*scale,1*scale,2*scale);
+  const top=y-8+bob, gold='#d6a52d', gold2='#f3cf63', white='#fffdf5', shade='#eadfc8';
+  ctx.shadowColor='rgba(255,214,92,.32)';ctx.shadowBlur=5;
+  // White crown: visibly taller than hair so the silhouette reads as a cap.
+  ctx.fillStyle=gold;ctx.fillRect(x+6,top+2,19,8);ctx.fillRect(x+8,top,15,3);
+  ctx.fillStyle=white;ctx.fillRect(x+7,top+2,17,6);ctx.fillRect(x+9,top+1,13,2);
+  ctx.fillStyle=shade;ctx.fillRect(x+8,top+7,15,2);
+  // Gold band + front visor. Visor follows facing direction.
+  ctx.fillStyle=gold;ctx.fillRect(x+5,top+9,21,3);
+  if(facing>=0){ctx.fillRect(x+22,top+10,8,3);ctx.fillStyle=gold2;ctx.fillRect(x+23,top+10,6,1)}
+  else{ctx.fillStyle=gold;ctx.fillRect(x,top+10,8,3);ctx.fillStyle=gold2;ctx.fillRect(x+1,top+10,6,1)}
+  // P crest.
+  ctx.fillStyle='#a86f0c';ctx.font='900 7px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',x+15.5,top+5.5);
+  // Small white-gold wings at both sides.
+  ctx.fillStyle=white;ctx.fillRect(x+2,top+4,4,2);ctx.fillRect(x+1,top+6,5,2);ctx.fillRect(x+25,top+4,4,2);ctx.fillRect(x+25,top+6,5,2);
+  ctx.fillStyle=gold2;ctx.fillRect(x+2,top+8,4,1);ctx.fillRect(x+25,top+8,4,1);
+  // Small crystal ornament.
+  ctx.fillStyle='#fff3b0';ctx.fillRect(x+27,top+1,2,4);ctx.fillStyle='#e3ad2f';ctx.fillRect(x+29,top+3,2,3);
   ctx.restore();
 }
 
@@ -1757,7 +1788,7 @@ function drawPlayer(){
   if(blink){ctx.fillStyle='#2a2622';ctx.fillRect(x+8,y+10+bob,4,1);ctx.fillRect(x+18,y+10+bob,4,1)}
   else{ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6+bob,5,6);ctx.fillRect(x+17,y+6+bob,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8+bob,2,3);ctx.fillRect(x+18+ps,y+8+bob,2,3)}
   ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);
-  if(equipped.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}else if(equipped.hair==='pixoraHat'){drawPixoraHatAt(x,y,bob,false)}
+  if(equipped.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}if(equipped.hat==='pixoraHat'){drawPixoraHatAt(x,y,bob,player.facing)}
   ctx.fillStyle=equipped.shirt==='redShirt'?'#d94745':skin;ctx.fillRect(x+6,y+17+bob,18,10);if(equipped.shirt==='redShirt'){ctx.fillStyle='#f36b65';ctx.fillRect(x+8,y+18+bob,14,3);ctx.fillStyle='#b72e31';ctx.fillRect(x+14,y+22+bob,2,5)}
 
   // Legs alternate forward/back while walking instead of sliding as one rigid sprite.
@@ -1822,7 +1853,7 @@ function drawRemotePlayers(){
     if(r.equipped?.back==='pixoraWing'){ctx.fillStyle='#9fe8ff';ctx.strokeStyle='#397fa0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+8,y+20+bob);ctx.lineTo(x-6,y+8+bob);ctx.lineTo(x-1,y+22+bob);ctx.lineTo(x+1,y+33+bob);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(x+22,y+20+bob);ctx.lineTo(x+36,y+8+bob);ctx.lineTo(x+31,y+22+bob);ctx.lineTo(x+29,y+33+bob);ctx.closePath();ctx.fill();ctx.stroke()}
     ctx.fillStyle=outline;ctx.fillRect(x+5,y+bob,20,17);ctx.fillStyle=skin;ctx.fillRect(x+7,y+2+bob,16,13);
     const ps=r.facing>0?1:0;ctx.fillStyle='#fff';ctx.fillRect(x+8,y+6+bob,5,6);ctx.fillRect(x+17,y+6+bob,5,6);ctx.fillStyle='#202020';ctx.fillRect(x+9+ps,y+8+bob,2,3);ctx.fillRect(x+18+ps,y+8+bob,2,3);
-    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);if(r.equipped?.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}else if(r.equipped?.hair==='pixoraHat'){drawPixoraHatAt(x,y,bob,true)}ctx.fillStyle=r.equipped?.shirt==='redShirt'?'#d94745':skin;ctx.fillRect(x+6,y+17+bob,18,10);if(r.equipped?.shirt==='redShirt'){ctx.fillStyle='#f36b65';ctx.fillRect(x+8,y+18+bob,14,3)}
+    ctx.fillStyle='#9b5d51';ctx.fillRect(x+13,y+13+bob,4,1);if(r.equipped?.hair==='blackHair'){ctx.fillStyle='#211b19';ctx.fillRect(x+6,y-1+bob,18,5);ctx.fillRect(x+5,y+3+bob,4,7);ctx.fillStyle='#40312a';ctx.fillRect(x+10,y+bob,10,2)}if(r.equipped?.hat==='pixoraHat'){drawPixoraHatAt(x,y,bob,r.facing||1)}ctx.fillStyle=r.equipped?.shirt==='redShirt'?'#d94745':skin;ctx.fillRect(x+6,y+17+bob,18,10);if(r.equipped?.shirt==='redShirt'){ctx.fillStyle='#f36b65';ctx.fillRect(x+8,y+18+bob,14,3)}
     ctx.fillStyle=r.equipped?.pants==='bluePants'?'#365da7':'#343b45';ctx.fillRect(x+7,y+27+legSwing,7,8);ctx.fillRect(x+16,y+27-legSwing,7,8);ctx.fillStyle='#d79d68';ctx.fillRect(x+6,y+35+legSwing,9,5);ctx.fillRect(x+16,y+35-legSwing,9,5);if(r.equipped?.shoes==='whiteShoes'){ctx.fillStyle='#f5f7f8';ctx.fillRect(x+5,y+35+legSwing,10,5);ctx.fillRect(x+16,y+35-legSwing,10,5);ctx.fillStyle='#bfc7cc';ctx.fillRect(x+5,y+39+legSwing,10,1);ctx.fillRect(x+16,y+39-legSwing,10,1)}
     const ra=r.actionState;let drawFacing=r.facing;
     let targetX=null,targetY=null;
@@ -1885,7 +1916,7 @@ function drawMiniItemIcon(item,x,y,size=18){
   }else if(item==='alphaWing'){
     ctx.shadowColor='#66eaff';ctx.shadowBlur=4;ctx.fillStyle='#dffcff';ctx.strokeStyle='#5b99ff';ctx.lineWidth=Math.max(1,s*.07);ctx.beginPath();ctx.moveTo(s*.47,s*.5);ctx.lineTo(s*.03,s*.04);ctx.lineTo(s*.13,s*.52);ctx.lineTo(s*.05,s*.88);ctx.lineTo(s*.43,s*.68);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(s*.53,s*.5);ctx.lineTo(s*.97,s*.04);ctx.lineTo(s*.87,s*.52);ctx.lineTo(s*.95,s*.88);ctx.lineTo(s*.57,s*.68);ctx.closePath();ctx.fill();ctx.stroke();ctx.shadowBlur=0;
   }else if(item==='pixoraHat'){
-    ctx.shadowColor='rgba(110,180,255,.28)';ctx.shadowBlur=4;ctx.fillStyle='#131c28';ctx.fillRect(s*.18,s*.28,s*.64,s*.20);ctx.fillStyle='#2a1d3f';ctx.fillRect(s*.21,s*.31,s*.58,s*.16);ctx.fillStyle='#4057b9';ctx.fillRect(s*.30,s*.40,s*.40,s*.08);ctx.fillStyle='#ebf5ff';ctx.fillRect(s*.12,s*.48,s*.76,s*.12);ctx.fillStyle='#171f2b';ctx.fillRect(s*.15,s*.50,s*.70,s*.07);ctx.shadowBlur=0;ctx.fillStyle='#f2f8ff';ctx.font='900 '+Math.max(6,Math.round(s*.28))+'px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',s*.5,s*.38);ctx.fillRect(s*.12,s*.44,s*.06,s*.03);ctx.fillRect(s*.82,s*.44,s*.06,s*.03);ctx.fillStyle='#79cfff';ctx.fillRect(s*.82,s*.22,s*.05,s*.10);
+    ctx.shadowColor='rgba(255,211,79,.30)';ctx.shadowBlur=4;ctx.fillStyle='#d5a42b';ctx.fillRect(s*.18,s*.25,s*.64,s*.34);ctx.fillStyle='#fffdf5';ctx.fillRect(s*.22,s*.27,s*.56,s*.25);ctx.fillStyle='#eadfc8';ctx.fillRect(s*.24,s*.46,s*.52,s*.07);ctx.fillStyle='#d5a42b';ctx.fillRect(s*.13,s*.54,s*.74,s*.10);ctx.fillRect(s*.76,s*.58,s*.18,s*.08);ctx.shadowBlur=0;ctx.fillStyle='#a86f0c';ctx.font='900 '+Math.max(6,Math.round(s*.28))+'px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('P',s*.5,s*.39);ctx.fillStyle='#fffdf5';ctx.fillRect(s*.08,s*.34,s*.12,s*.06);ctx.fillRect(s*.80,s*.34,s*.12,s*.06);ctx.fillStyle='#f0c95d';ctx.fillRect(s*.86,s*.18,s*.06,s*.12);
   }else if(item==='pixoraWing'){
     ctx.fillStyle='#9fe8ff';ctx.strokeStyle='#397fa0';ctx.lineWidth=Math.max(1,s*.08);ctx.beginPath();ctx.moveTo(s*.47,s*.46);ctx.lineTo(s*.06,s*.18);ctx.lineTo(s*.18,s*.82);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(s*.53,s*.46);ctx.lineTo(s*.94,s*.18);ctx.lineTo(s*.82,s*.82);ctx.closePath();ctx.fill();ctx.stroke();
   }else if(item==='punchJammer'){
@@ -2581,8 +2612,9 @@ function drawLocks(){
   }
 }
 
-function overlapsPlayer(tx,ty){return rectHit(player.x,player.y,player.w,player.h,tx*T,ty*T,T,T)}
-function overlapsAnyPlayer(tx,ty){if(overlapsPlayer(tx,ty))return true;for(const r of remotePlayers.values())if(rectHit(Number(r.x||0),Number(r.y||0),player.w,player.h,tx*T,ty*T,T,T))return true;return false}
+function placementBodyRect(x,y){const HIT_X=3,HIT_TOP=8,HIT_BOTTOM=2;return {x:Number(x||0)+HIT_X,y:Number(y||0)+HIT_TOP,w:player.w-HIT_X*2,h:player.h-HIT_TOP-HIT_BOTTOM}}
+function overlapsPlayer(tx,ty){const b=placementBodyRect(player.x,player.y);return rectHit(b.x,b.y,b.w,b.h,tx*T,ty*T,T,T)}
+function overlapsAnyPlayer(tx,ty){if(overlapsPlayer(tx,ty))return true;for(const r of remotePlayers.values()){const b=placementBodyRect(r.x,r.y);if(rectHit(b.x,b.y,b.w,b.h,tx*T,ty*T,T,T))return true}return false}
 function overlapsDoor(tx,ty){return door&&rectHit(tx*T,ty*T,T,T,door.x,door.y,door.w,door.h)}
 function canvasPoint(e){const r=canvas.getBoundingClientRect(),sx=(e.clientX-r.left)/r.width*W,sy=(e.clientY-r.top)/r.height*H;const wx=cameraX+sx/zoom,wy=cameraY+sy/zoom;return{sx,sy,wx,wy,tx:Math.floor(wx/T),ty:Math.floor(wy/T)}}
 
@@ -3051,6 +3083,7 @@ function applyCloudPlayerSave(d){
   if(!d||typeof d!=='object')return false;
   inventory={...DEFAULT_INVENTORY,...(d.inventory||{})};inventory.spliceBook=1;
   Object.keys(equipped).forEach(k=>equipped[k]=(d.equipped||{})[k]||null);
+  if((d.equipped||{}).hair==='pixoraHat'){equipped.hat='pixoraHat';equipped.hair=null}
   gems=Math.max(0,Number(d.gems||0));backpackCapacity=Math.max(24,Number(d.backpackCapacity||24));backpackUpgrades=Math.max(0,Math.floor(Number(d.backpackUpgrades||0)));
   playerLevel=Math.max(1,Math.min(MAX_LEVEL,Math.floor(Number(d.playerLevel||1))));playerXp=playerLevel>=MAX_LEVEL?0:Math.max(0,Math.min(xpNeededForLevel(playerLevel)-1,Math.floor(Number(d.playerXp||0))));
   quickSlots=Array.isArray(d.quickSlots)?d.quickSlots.slice(0,3).filter(Boolean):[];while(quickSlots.length<3)quickSlots.push(null);socialFriends=new Set(Array.isArray(d.friends)?d.friends:[]);socialBlocked=new Set(Array.isArray(d.blocked)?d.blocked:[]);socialIgnored=new Set(Array.isArray(d.ignored)?d.ignored:[]);
@@ -3118,7 +3151,7 @@ function applyRemotePlayers(list){
   for(const [id,r] of remotePlayers){if(!seen.has(id)&&now-r.lastSeen>3200)remotePlayers.delete(id)}
 }
 
-function currentMultiplayerEquipment(){return {hair:equipped.hair,shirt:equipped.shirt,pants:equipped.pants,shoes:equipped.shoes,back:equipped.back,tool:equipped.tool}}
+function currentMultiplayerEquipment(){return {hair:equipped.hair,hat:equipped.hat,shirt:equipped.shirt,pants:equipped.pants,shoes:equipped.shoes,back:equipped.back,tool:equipped.tool}}
 
 function currentMultiplayerActionState(){
   if(breakState){
@@ -3374,20 +3407,45 @@ function initAuthFlow(){
   document.getElementById('registerBtn').addEventListener('click',()=>{const id=document.getElementById('registerId').value.trim(),email=document.getElementById('registerEmail').value.trim(),password=document.getElementById('registerPw').value,confirmPassword=document.getElementById('registerPw2').value;if(!/^[A-Za-z0-9]{3,24}$/.test(id)){setAuthStatus('ID hanya boleh huruf dan angka, 3–24 karakter.','error');return}if(password!==confirmPassword){setAuthStatus('Confirm Password tidak sama.','error');return}completeAuth('/api/register',{id,email,password,confirmPassword})});
   document.getElementById('logoutBtn').addEventListener('click',async()=>{const token=localStorage.getItem(PIXORA_SESSION_KEY)||'';try{if(token)await authRequest('/api/logout',{},token)}catch(_){ }localStorage.removeItem(PIXORA_SESSION_KEY);location.reload()});
   if(!navigator.onLine)setAuthStatus('Tidak ada koneksi internet. Pixora tidak bisa login.','error');
-  window.addEventListener('online',()=>{if(!pixoraBooted)setAuthStatus('Internet kembali. Silakan login.')});
+  window.addEventListener('online',()=>{if(!pixoraBooted){const t=localStorage.getItem(PIXORA_SESSION_KEY)||'';if(t)restoreStoredPixoraSession(t);else setAuthStatus('Internet kembali. Silakan login.')}});
   window.addEventListener('offline',()=>{if(!pixoraBooted)setAuthStatus('Tidak ada koneksi internet. Pixora tidak bisa login.','error')});
   const token=localStorage.getItem(PIXORA_SESSION_KEY);
-  if(token){setAuthBusy(true,'Restoring session…');authRequest('/api/session',{},token).then(data=>{if(!data.token)data.token=token;bootPixoraSession(data)}).catch(()=>{localStorage.removeItem(PIXORA_SESSION_KEY);setAuthBusy(false);setAuthStatus('Session berakhir. Silakan login lagi.','error')})}
+  if(token)restoreStoredPixoraSession(token);
+}
+let pixoraRestoreRunning=false;
+async function restoreStoredPixoraSession(token=localStorage.getItem(PIXORA_SESSION_KEY)||''){
+  if(!token||pixoraRestoreRunning||pixoraBooted)return false;
+  pixoraRestoreRunning=true;setAuthBusy(true,'Restoring saved login…');
+  const delays=[0,900,1800,3200];
+  for(let i=0;i<delays.length;i++){
+    if(delays[i])await new Promise(r=>setTimeout(r,delays[i]));
+    if(pixoraBooted){pixoraRestoreRunning=false;return true}
+    if(!navigator.onLine){setAuthStatus('Menunggu internet… login kamu tetap tersimpan.','error');continue}
+    try{
+      const data=await authRequest('/api/session',{},token);if(!data.token)data.token=token;pixoraRestoreRunning=false;bootPixoraSession(data);return true;
+    }catch(err){
+      const code=String(err?.message||'');
+      if(['INVALID_SESSION','SESSION_REPLACED','SERVER_BANNED'].includes(code)){pixoraRestoreRunning=false;setAuthBusy(false);return false}
+      setAuthStatus(i===delays.length-1?'Server belum siap. Login tetap tersimpan; akan dicoba lagi saat koneksi kembali.':'Server sedang bangun… mencoba kembali.','error');
+    }
+  }
+  pixoraRestoreRunning=false;setAuthBusy(false);return false;
 }
 
 
 const chatToggleBtn=document.getElementById('chatToggleBtn'),friendToggleBtn=document.getElementById('friendToggleBtn'),chatPanel=document.getElementById('chatPanel'),chatForm=document.getElementById('chatForm'),chatInput=document.getElementById('chatInput');
 const chatMessagesBox=document.getElementById('chatMessages');if(chatMessagesBox){chatMessagesBox.addEventListener('scroll',()=>{chatStickToBottom=Math.abs((chatMessagesBox.scrollHeight-chatMessagesBox.clientHeight)-chatMessagesBox.scrollTop)<=16},{passive:true})}
+
+const PIXORA_SCROLL_SURFACES='#drawerScroll,#chatMessages,#spliceBookList,#friendPanelBody,#moderatorReportList,#storeBody,#storeGridWrap,#storeDetail,#savedWorldList,#allWorldsList,#authCard,#changelogCard ul,.pixoraCard';
+document.querySelectorAll(PIXORA_SCROLL_SURFACES).forEach(el=>{
+  el.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
+  el.addEventListener('touchmove',e=>e.stopPropagation(),{passive:true});
+});
 chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameReady){toast('Masuk world dulu','info');return}chatPanel.classList.toggle('open');if(chatPanel.classList.contains('open'))setTimeout(()=>chatInput.focus(),40)},{passive:false});
 friendToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();openFriendPanel()},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim()){chatPanel.classList.remove('open');chatInput.blur();return}chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_15_0_1';
+let CHANGELOG_KEY='pixora_seen_build_15_0_2';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 

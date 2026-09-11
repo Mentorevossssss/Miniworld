@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixora — Online Alpha Build 15.0.4</title>
+<title>Pixora — Online Alpha Build 15.0.6</title>
 <style>
 :root{--ui:#17212cf2;--ui2:#0f1720f2;--line:#ffffff2b}
 *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:none}
@@ -77,8 +77,7 @@ button,.ctrl,#controls,.controlGroup{-webkit-user-select:none!important;user-sel
 #toast.info{background:#163d54ee;color:#9fe8ff;border:1px solid #77d9ff66}
 #toast.error{background:#5a1818ee;color:#ffd0d0;border:1px solid #ff777766}
 #toast.success{background:#183f25ee;color:#c9ffd5;border:1px solid #6ee28c66}
-#serverRestartOverlay{position:fixed;inset:0;z-index:69;display:none;align-items:center;justify-content:center;pointer-events:none;background:rgba(5,11,18,.22);backdrop-filter:blur(1px)}
-#serverRestartOverlay.show{display:flex}#serverRestartCard{min-width:min(84vw,360px);padding:16px 18px;border-radius:16px;background:#111d28ee;border:1px solid #7ddcff66;box-shadow:0 10px 35px #0008;text-align:center;color:#fff;font-weight:900}#serverRestartCard small{display:block;margin-top:5px;color:#a8ddf7;font-size:11px;font-weight:700}#serverRestartDot{display:inline-block;width:9px;height:9px;margin-right:7px;border-radius:50%;background:#7de3ff;box-shadow:0 0 12px #7de3ff;animation:restartPulse .8s infinite alternate}@keyframes restartPulse{from{opacity:.35;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}}
+#serverRestartOverlay{position:fixed;top:10px;right:10px;z-index:69;display:none;pointer-events:none;background:transparent}#serverRestartOverlay.show{display:block}#serverRestartCard{padding:6px 9px;border-radius:8px;background:#111d28cc;border:1px solid #7ddcff44;box-shadow:0 3px 12px #0005;color:#dff7ff;font-size:9px;font-weight:800;opacity:.72}#serverRestartCard small{display:none}#serverRestartDot{display:inline-block;width:6px;height:6px;margin-right:5px;border-radius:50%;background:#7de3ff;box-shadow:0 0 8px #7de3ff;animation:restartPulse .8s infinite alternate}@keyframes restartPulse{from{opacity:.3}to{opacity:1}}
 #itemActionPanel,#changelogPanel{position:fixed;inset:0;z-index:150;background:#08121bdd;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
 #itemActionPanel.open,#changelogPanel.open{display:flex}
 #itemActionCard,#changelogCard{width:min(92vw,410px);background:#17212cf9;color:#fff;border:2px solid #ffffff24;border-radius:20px;padding:14px;box-shadow:0 14px 36px #0008}
@@ -395,7 +394,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="authScreen">
   <div id="authCard">
     <div id="pixoraLogo">PIXORA</div>
-    <div id="authSub">ONLINE ALPHA • BUILD 15.0.4</div>
+    <div id="authSub">ONLINE ALPHA • BUILD 15.0.6</div>
     <div class="authTabs">
       <button class="authTab active" data-auth-tab="guest">GUEST</button>
       <button class="authTab" data-auth-tab="login">LOGIN</button>
@@ -432,7 +431,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 </div>
 <div id="hint"><span id="modeName">PUNCH</span><span id="seedCount">0</span></div>
 <div id="toast"></div>
-<div id="serverRestartOverlay" aria-hidden="true"><div id="serverRestartCard"><span id="serverRestartDot"></span>SERVER RESTARTING / RECONNECTING...<small>Movement tetap aktif. Farming, break, place, dan trade menunggu server kembali.</small></div></div>
+<div id="serverRestartOverlay" aria-hidden="true"><div id="serverRestartCard"><span id="serverRestartDot"></span>CONNECTION...</div></div>
 
 <button id="chatToggleBtn" aria-label="World chat"><span class="hudChatIcon" aria-hidden="true"></span></button>
 <button id="friendToggleBtn" aria-label="Friend list"><span class="hudFriendIcon" aria-hidden="true"></span></button>
@@ -460,8 +459,8 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 
 <div id="worldMenu">
   <div id="worldCard">
-    <h2>PIXORA — ONLINE ALPHA BUILD 15.0.4</h2>
-    <p>Masukkan nama world. Build 15.0.4 menambah reconnect restart state, default world PIXORA, Owner Break Mode, Owner Bedrock utility, Super Broadcast Lv.5+, dan seluruh perbaikan Build 15.0.3.</p>
+    <h2>PIXORA — ONLINE ALPHA BUILD 15.0.6</h2>
+    <p>Masukkan nama world. Build 15.0.6 membangun world default PIXORA menjadi Royal Kingdom langsung di dalam game, dengan castle, gate, towers, garden, market, dan royal details yang memakai block Pixora.</p>
     <input id="playerNameInput" maxlength="16" placeholder="Nama Player" autocomplete="off" spellcheck="false" style="display:none">
     <div id="playerLevelLine" style="display:none">LV. 1 • 0 / 80 XP</div>
     <input id="worldNameInput" maxlength="18" placeholder="Contoh: FARMKU" autocomplete="off" spellcheck="false">
@@ -511,7 +510,7 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 <div id="storePanel">
   <div id="storeCard">
     <div id="storeTop">
-      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 15.0.4 • ONLINE ALPHA</small></div>
+      <div id="storeBrand"><b>PIXORA STORE</b><small>BUILD 15.0.6 • ONLINE ALPHA</small></div>
       <div id="storeWallet">
         <div class="storeWalletPill"><span class="storeWalletGem"></span><span id="storeGems">0</span></div>
         <div class="storeWalletPill"><span class="storeWalletBag"></span><span id="storeCapacity">24</span></div>
@@ -556,8 +555,10 @@ input,textarea,select{touch-action:manipulation}@supports (-webkit-touch-callout
 
 <div id="changelogPanel">
   <div id="changelogCard">
-    <div id="changelogTop"><b>PIXORA — BUILD 15.0.4</b></div>
+    <div id="changelogTop"><b>PIXORA — BUILD 15.0.6</b></div>
     <ul>
+      <li><b>Build 15.0.6</b> — Owner Lock otomatis saat Owner memasang World Lock, /give sekarang Owner-only untuk semua item, staff fly naik/turun simetris, Main Door aman dibongkar, dan restart memakai gangguan koneksi non-blocking.</li>
+      <li><b>Build 15.0.5</b> — world <b>PIXORA</b> sekarang punya Royal Kingdom bawaan yang benar-benar dibangun dari block in-game. Template diterapkan sekali dan setelah itu semua edit player tetap persisten.</li>
       <li><b>Build 15.0.4</b> — default world PIXORA, server-restart reconnect state, Owner Break Mode, Owner-only Bedrock utility, dan Super Broadcast Level 5+.</li>
       <li><b>Super Broadcast</b> — /sb menampilkan Nickname (WORLD), pesan, dan waktu lokal di chat global.</li>
       <li><b>Staff & Moderation</b> — role badges, /mods, hidden mode, warn/mute/freeze, histories, notes, slowmode, world ban, announcements, audit tools, xGems event, dan Owner server restart.</li>
@@ -743,14 +744,14 @@ const MAX_ITEM_STACK=200;
 const BLOCK_HITS={leaf:2,sand:2,glass:2,dirt:3,grass:3,ice:3,moss:3,wood:4,stone:5,brick:5,lava:6,caveStone:6,metal:7,farmBlock:4,woodPlatform:3,woodDoor:4,worldDoor:6,bedrock:Infinity};
 const DAMAGE_RESET_MS=2600;
 let lastDamageSweep=0;
-const LOCK_CONFIG={smallLock:{name:'SMALL LOCK',size:10,price:50,hits:6,color:'#d5b633'},bigLock:{name:'BIG LOCK',size:20,price:150,hits:8,color:'#3f86d8'},hugeLock:{name:'HUGE LOCK',size:35,price:300,hits:10,color:'#8f57cf'},worldLock:{name:'WORLD LOCK',size:100,price:1000,hits:12,color:'#d9483e'}};
+const LOCK_CONFIG={smallLock:{name:'SMALL LOCK',size:10,price:50,hits:6,color:'#d5b633'},bigLock:{name:'BIG LOCK',size:20,price:150,hits:8,color:'#3f86d8'},hugeLock:{name:'HUGE LOCK',size:35,price:300,hits:10,color:'#8f57cf'},worldLock:{name:'WORLD LOCK',size:100,price:1000,hits:12,color:'#d9483e'},ownerLock:{name:'OWNER LOCK',size:100,price:0,hits:999,color:'#ffd45a'}};
 const WORLD_LOCK_HITS=12;
 const LOCK_HIT_COOLDOWN=260;
 const debrisColor={grass:'#52bd58',dirt:'#9b6034',stone:'#888f94',wood:'#9a612d',leaf:'#3aaa50',sand:'#d8bd75',glass:'#8fe9f0',brick:'#a64e3b',ice:'#a9e8ff',metal:'#8c969e',caveStone:'#4f555b',moss:'#548f46',lava:'#e95b22',farmBlock:'#d6a53d',bedrock:'#252a2e'};
 
 const player={x:120,y:GROUND_Y-40,w:30,h:40,vx:0,vy:0,onGround:false,facing:1,spawnX:120,spawnY:GROUND_Y-40,punchAnim:0,punchSeq:0,punchDir:'front',punchTool:'punch',punchTargetX:null,punchTargetY:null,punchReachTiles:1,placeAnim:null,walkTime:0,maxHp:5,hp:5,lastDamageAt:0,damageFlashUntil:0,jumpCount:0,jumpOriginY:null};
 const input={left:false,right:false,jump:false};
-let staffModeEnabled=false,staffDownHeld=false,ownerVanishEnabled=false,staffHiddenEnabled=false,ownerBreakEnabled=false,playerFrozen=false,selfWorldRole='player',activeGemEvent={multiplier:1,until:0};
+let staffModeEnabled=false,staffUpHeld=false,staffDownHeld=false,ownerVanishEnabled=false,staffHiddenEnabled=false,ownerBreakEnabled=false,playerFrozen=false,selfWorldRole='player',activeGemEvent={multiplier:1,until:0};
 let serverRestartReconnectActive=false,serverRestartExpectedUntil=0,serverRestartExpectedAt=0;
 let blocks=[],drops=[],particles=[],plants=[],door=null,placedDoors=[],weatherOrbs=[],jammers=[],worldBans=[];
 let placeEffects=[];
@@ -768,6 +769,8 @@ let worldId='';
 let weather={type:'sunny'};
 const WEATHER_TYPES=['sunny','rain','cloudy','fog','storm'];
 const WORLD_EXPIRE_MS=Number.POSITIVE_INFINITY; // Build 15.0.3: world tidak auto-reset karena inactivity
+const PIXORA_KINGDOM_TEMPLATE_VERSION=1;
+let worldTemplateVersion=0;
 let blockMap=new Map();
 let caveBgRemoved=new Set();
 let caveBgDamage=new Map();
@@ -1010,14 +1013,16 @@ function randomizeDoor(preferredTx=null){
   ensureDoorFoundation(doorTile);
   setSpawnFromDoor();
 }
-function ensureDoorSafe(){
-  if(!door){randomizeDoor();return}
+function setFallbackSpawn(teleport=false){const gy=Math.floor(GROUND_Y/T),start=Math.floor(WORLD_W/2);let tx=start;for(let d=0;d<WORLD_W/2;d++){for(const x of [start-d,start+d]){if(x>=2&&x<WORLD_W-2&&!blockAt(x,gy-1)&&!lockAt(x,gy-1)&&!weatherOrbAt(x,gy-1)&&!plantAt(x,gy-1)){tx=x;d=WORLD_W;break}}}player.spawnX=tx*T+5;player.spawnY=gy*T-player.h;if(teleport){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0}}
+function ensureDoorSafe(createIfMissing=true,teleportFallback=false){
+  if(!door){if(createIfMissing)randomizeDoor();else setFallbackSpawn(teleportFallback);return}
   const tx=Math.floor(door.x/T);
-  if(!doorTileIsSafe(tx))randomizeDoor(tx);
+  if(!doorTileIsSafe(tx)){if(createIfMissing)randomizeDoor(tx);else setFallbackSpawn(teleportFallback)}
   else{
     door={x:tx*T+2,y:Math.floor(GROUND_Y/T)*T-40,w:36,h:40};
     ensureDoorFoundation(tx);
     player.spawnX=door.x+3;player.spawnY=door.y+door.h-player.h;
+    if(teleportFallback){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0}
   }
 }
 function removeLegacyShowcaseBlocks(){
@@ -1037,10 +1042,93 @@ function removeLegacyShowcaseBlocks(){
   for(const [x,y,t] of legacy){const b=blockAt(x,y);if(b&&b.t===t)removeBlockObj(b)}
 }
 
+function setWorldTemplateBlock(tx,ty,type){
+  if(tx<0||ty<0||tx>=WORLD_W||ty>=WORLD_H)return;
+  const old=blockAt(tx,ty);if(old)removeBlockObj(old);addBlock(tx,ty,type);
+}
+function clearWorldTemplateBlock(tx,ty){const old=blockAt(tx,ty);if(old)removeBlockObj(old)}
+function fillWorldTemplateRect(x1,y1,x2,y2,type){for(let y=y1;y<=y2;y++)for(let x=x1;x<=x2;x++)setWorldTemplateBlock(x,y,type)}
+function clearWorldTemplateRect(x1,y1,x2,y2){for(let y=y1;y<=y2;y++)for(let x=x1;x<=x2;x++)clearWorldTemplateBlock(x,y)}
+function buildRoyalTree(cx,gy){
+  for(let y=gy-4;y<=gy-1;y++)setWorldTemplateBlock(cx,y,'wood');
+  for(let y=gy-8;y<=gy-5;y++)for(let x=cx-3;x<=cx+3;x++)if(Math.abs(x-cx)+Math.abs((gy-6)-y)<=5)setWorldTemplateBlock(x,y,'leaf');
+  setWorldTemplateBlock(cx-2,gy-4,'leaf');setWorldTemplateBlock(cx+2,gy-4,'leaf');
+}
+function buildPixoraKingdom(){
+  const gy=Math.floor(GROUND_Y/T);worldTemplateVersion=PIXORA_KINGDOM_TEMPLATE_VERSION;weather={type:'sunny'};
+  // Royal build zone. Only the surface/sky area is shaped; underground resources stay intact.
+  clearWorldTemplateRect(24,gy-20,75,gy-1);
+
+  // Royal avenue across the capital. The Main Door tile becomes Bedrock foundation below.
+  for(let x=12;x<=87;x++)setWorldTemplateBlock(x,gy,'brick');
+
+  // Central castle towers.
+  fillWorldTemplateRect(28,gy-11,35,gy-1,'stone');
+  fillWorldTemplateRect(64,gy-11,71,gy-1,'stone');
+  fillWorldTemplateRect(29,gy-13,34,gy-12,'stone');
+  fillWorldTemplateRect(65,gy-13,70,gy-12,'stone');
+  for(const x of [28,30,32,34,35])setWorldTemplateBlock(x,gy-14,'metal');
+  for(const x of [64,65,67,69,71])setWorldTemplateBlock(x,gy-14,'metal');
+  setWorldTemplateBlock(31,gy-15,'farmBlock');setWorldTemplateBlock(32,gy-15,'farmBlock');
+  setWorldTemplateBlock(67,gy-15,'farmBlock');setWorldTemplateBlock(68,gy-15,'farmBlock');
+
+  // Main keep and upper royal hall.
+  fillWorldTemplateRect(39,gy-10,60,gy-1,'brick');
+  fillWorldTemplateRect(43,gy-15,56,gy-11,'stone');
+  for(const x of [43,45,47,49,51,53,55,56])setWorldTemplateBlock(x,gy-16,'metal');
+  fillWorldTemplateRect(37,gy-8,38,gy-1,'stone');
+  fillWorldTemplateRect(61,gy-8,62,gy-1,'stone');
+
+  // Cyan castle windows.
+  for(const [x,y] of [[30,gy-9],[33,gy-6],[66,gy-9],[69,gy-6],[44,gy-13],[55,gy-13],[43,gy-7],[56,gy-7]])setWorldTemplateBlock(x,y,'glass');
+
+  // Royal balconies.
+  for(let x=27;x<=36;x++)setWorldTemplateBlock(x,gy-7,'woodPlatform');
+  for(let x=63;x<=72;x++)setWorldTemplateBlock(x,gy-7,'woodPlatform');
+  for(let x=42;x<=57;x++)if(x<47||x>52)setWorldTemplateBlock(x,gy-9,'woodPlatform');
+
+  // Main gate: a wide open arch so players can walk through the castle safely.
+  clearWorldTemplateRect(48,gy-6,51,gy-1);
+  fillWorldTemplateRect(47,gy-6,47,gy-1,'stone');
+  fillWorldTemplateRect(52,gy-6,52,gy-1,'stone');
+  for(let x=48;x<=51;x++)setWorldTemplateBlock(x,gy-7,'stone');
+  setWorldTemplateBlock(47,gy-7,'metal');setWorldTemplateBlock(52,gy-7,'metal');
+
+  // Giant glowing P crest on the front of the keep.
+  for(let y=gy-14;y<=gy-9;y++)setWorldTemplateBlock(48,y,'farmBlock');
+  for(let x=49;x<=51;x++)setWorldTemplateBlock(x,gy-14,'farmBlock');
+  setWorldTemplateBlock(51,gy-13,'farmBlock');setWorldTemplateBlock(51,gy-12,'farmBlock');
+  for(let x=49;x<=50;x++)setWorldTemplateBlock(x,gy-11,'farmBlock');
+
+  // Crown above the Royal Hall.
+  for(let x=47;x<=52;x++)setWorldTemplateBlock(x,gy-18,'farmBlock');
+  for(const x of [47,49,52])setWorldTemplateBlock(x,gy-19,'farmBlock');
+  setWorldTemplateBlock(46,gy-18,'metal');setWorldTemplateBlock(53,gy-18,'metal');
+
+  // Side gardens keep the world recognisably Pixora rather than a solid wall of castle blocks.
+  buildRoyalTree(17,gy);buildRoyalTree(82,gy);
+  buildRoyalTree(8,gy);buildRoyalTree(92,gy);
+
+  // Small market stalls on the right side of the kingdom.
+  for(const base of [76,86]){
+    setWorldTemplateBlock(base,gy-2,'wood');setWorldTemplateBlock(base,gy-1,'wood');
+    setWorldTemplateBlock(base+6,gy-2,'wood');setWorldTemplateBlock(base+6,gy-1,'wood');
+    for(let x=base;x<=base+6;x++)setWorldTemplateBlock(x,gy-4,'woodPlatform');
+    setWorldTemplateBlock(base+1,gy-3,'farmBlock');setWorldTemplateBlock(base+5,gy-3,'farmBlock');
+  }
+
+  // Royal lamps framing the approach.
+  for(const x of [22,77]){setWorldTemplateBlock(x,gy-2,'wood');setWorldTemplateBlock(x,gy-1,'wood');setWorldTemplateBlock(x,gy-3,'farmBlock')}
+
+  // Main Door becomes the kingdom gate / spawn.
+  clearWorldTemplateBlock(49,gy-1);clearWorldTemplateBlock(50,gy-1);clearWorldTemplateBlock(51,gy-1);
+  door={x:50*T+2,y:gy*T-40,w:36,h:40};ensureDoorFoundation(50);setSpawnFromDoor();
+}
+
 function buildWorld(){
   blocks=[];blockMap.clear();caveBgRemoved=new Set();caveBgDamage=new Map();drops=[];particles=[];plants=[];locks=[];placedDoors=[];weatherOrbs=[];jammers=[];worldBans=[];placeEffects=[];
   worldId='W'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,7).toUpperCase();
-  weather={type:'sunny'};
+  worldTemplateVersion=0;weather={type:'sunny'};
   GROUND_Y=55*T;
   const gy=55;
   // Build 14.8.3: the world surface is Dirt again. Dirt renders grass only when its top is exposed.
@@ -1070,7 +1158,7 @@ function buildWorld(){
     const k=tx+','+ty;if(usedLava.has(k)||ty>=WORLD_H-3)continue;usedLava.add(k);const old=blockAt(tx,ty);if(old&&old.t!=='bedrock')removeBlockObj(old);addBlock(tx,ty,'lava');
   }
   for(let y=WORLD_H-3;y<WORLD_H;y++)for(let x=0;x<WORLD_W;x++)addBlock(x,y,'bedrock');
-  randomizeDoor();
+  if(cleanWorldName(currentWorldName)==='PIXORA')buildPixoraKingdom();else randomizeDoor();
 }
 
 function cleanWorldName(name){return String(name||'').trim().toUpperCase().replace(/[^A-Z0-9 _-]/g,'').slice(0,18)}
@@ -1162,7 +1250,7 @@ function saveWorld(silent=true){
   try{
     const now=Date.now();
     const data={
-      version:"13.2.4",name:currentWorldName,worldId,surfaceTile:Math.floor(GROUND_Y/T),
+      version:"13.2.4",name:currentWorldName,worldId,templateVersion:worldTemplateVersion,surfaceTile:Math.floor(GROUND_Y/T),
       blocks,plants,door,placedDoors,locks,weatherOrbs,jammers,worldBans,drops,weather,caveBgRemoved:[...caveBgRemoved],
       playerSpawn:{x:player.spawnX,y:player.spawnY},
       lastVisited:now,savedAt:now
@@ -1243,6 +1331,7 @@ function loadSavedWorld(name){
     const d=JSON.parse(raw);
     if(!worldSaveLooksUsable(d)){backupCorruptWorld(name,raw);return 'corrupt';}
     worldId=String(d.worldId||('W'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,7).toUpperCase()));
+    worldTemplateVersion=Math.max(0,Math.floor(Number(d.templateVersion||0)));
     weather=(d.weather&&WEATHER_TYPES.includes(d.weather.type))?{type:d.weather.type}:{type:'sunny'};
     const inferredSurface=inferSurfaceTile(d.blocks);
     const rawSurface=Number(d.surfaceTile);
@@ -1293,15 +1382,15 @@ function getSavedWorlds(){
     const k=localStorage.key(i);if(!k||!k.startsWith(SAVE_PREFIX))continue;
     try{
       const d=JSON.parse(localStorage.getItem(k));
-      const name=d.name||k.slice(SAVE_PREFIX.length),last=Number(d.lastVisited||d.savedAt||0),locked=Array.isArray(d.locks)&&d.locks.length>0;
+      const name=d.name||k.slice(SAVE_PREFIX.length),last=Number(d.lastVisited||d.savedAt||0),locked=Array.isArray(d.locks)&&d.locks.length>0,ownerLocked=Array.isArray(d.locks)&&d.locks.some(l=>l?.type==='ownerLock');
       const previewWeather=(d.weather&&WEATHER_TYPES.includes(d.weather.type))?d.weather.type:'sunny';
-      worlds.push({name,savedAt:Number(d.savedAt||0),lastVisited:last,locked,favorite:favorites.has(name),expired:false,previewWeather});
+      worlds.push({name,savedAt:Number(d.savedAt||0),lastVisited:last,locked,ownerLocked,favorite:favorites.has(name),expired:false,previewWeather});
     }catch(_){ }
   }
   return worlds;
 }
 function worldCardHTML(w,full=false){
-  const tag=w.locked?'<span class="worldTag">LOCKED</span>':w.expired?'<span class="worldTag">INACTIVE</span>':'';
+  const tag=w.ownerLocked?'<span class="worldTag">OWNER LOCKED</span>':w.locked?'<span class="worldTag">LOCKED</span>':w.expired?'<span class="worldTag">INACTIVE</span>':'';
   const actions=full?`<div class="worldRowActions"><button class="worldMiniBtn star" data-fav-world="${w.name}">${w.favorite?'★':'☆'}</button><button class="worldMiniBtn" data-load-world="${w.name}">MASUK</button><button class="worldMiniBtn delete" data-delete-world="${w.name}">HAPUS</button></div>`:`<button data-load-world="${w.name}">MASUK</button>`;
   const thumb=`<span class="worldThumb ${w.previewWeather||'sunny'}" aria-hidden="true"></span>`;
   return `<div class="savedWorld${w.expired?' expired':''}">${thumb}<span class="worldMeta"><b>${w.name}${tag}</b><small>${w.lastVisited?new Date(w.lastVisited).toLocaleString():''}</small></span>${actions}</div>`;
@@ -1407,7 +1496,7 @@ function spawnAlphaWingBurst(strong=false){
 function updatePlayer(){
   if(deathState.active)return;
   if(staffModeEnabled){
-    const speed=5.2;if(playerFrozen){player.vx=0;player.vy=0}else{player.vx=(input.left?-speed:(input.right?speed:0));player.vy=(input.jump?-speed:(staffDownHeld?speed:0));if(player.vx)player.facing=player.vx<0?-1:1;player.x=Math.max(0,Math.min(WORLD_W*T-player.w,player.x+player.vx));player.y=Math.max(-T*2,Math.min(WORLD_H*T-player.h,player.y+player.vy));}player.onGround=false;input.jump=false;updateCameraFollow();return;
+    const speed=5.2;if(playerFrozen){player.vx=0;player.vy=0}else{const up=staffUpHeld||heldControlPointers.jump.size>0;player.vx=(input.left?-speed:(input.right?speed:0));player.vy=(up&&!staffDownHeld?-speed:(staffDownHeld&&!up?speed:0));if(player.vx)player.facing=player.vx<0?-1:1;player.x=Math.max(0,Math.min(WORLD_W*T-player.w,player.x+player.vx));player.y=Math.max(-T*2,Math.min(WORLD_H*T-player.h,player.y+player.vy));}player.onGround=false;input.jump=false;updateCameraFollow();return;
   }
   // Build 13.2.2: normalisasi movement; White Shoes tetap bonus kecil, bukan lonjakan kecepatan.
   const hasSpeedShoes=equipped.shoes==='whiteShoes';
@@ -1814,7 +1903,7 @@ function drawPixoraHatAt(x,y,bob=0,facing=1){
 }
 
 function nameColorForWorldRole(role){return role==='owner'?'#ffd83d':role==='admin'?'#fff09a':'#ffffff'}
-function localWorldRole(){const wl=locks.find(l=>l?.type==='worldLock');if(!wl)return 'player';const me=ownPlayerId();if(String(wl.owner||'')===me)return 'owner';if(Array.isArray(wl.trusted)&&wl.trusted.map(String).includes(me))return 'admin';return 'player'}
+function localWorldRole(){const wl=locks.find(l=>l&&(l.type==='worldLock'||l.type==='ownerLock'));if(!wl)return 'player';const me=ownPlayerId();if(String(wl.owner||'')===me)return 'owner';if(Array.isArray(wl.trusted)&&wl.trusted.map(String).includes(me))return 'admin';return 'player'}
 function drawStaffBadge(role,cx,y,hidden=false){if(hidden||!['Moderator','Admin','Owner'].includes(String(role||'')))return 0;ctx.save();if(role==='Owner'){ctx.fillStyle='#ffd85a';ctx.strokeStyle='#4c3610';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx-7,y+5);ctx.lineTo(cx-5,y-2);ctx.lineTo(cx-1,y+2);ctx.lineTo(cx+2,y-4);ctx.lineTo(cx+5,y+2);ctx.lineTo(cx+8,y-2);ctx.lineTo(cx+7,y+5);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();return 18}ctx.fillStyle=role==='Admin'?'#bd8cff':'#67d9ff';ctx.strokeStyle='#10202a';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(cx-7,y-5,14,12,3);ctx.fill();ctx.stroke();ctx.fillStyle='#10202a';ctx.font='900 8px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(role==='Admin'?'A':'M',cx,y+1);ctx.restore();return 16}
 function activeEmoteFor(id){const e=id===ownPlayerId()?selfEmote:remoteEmotes.get(id);if(!e||performance.now()>=e.until){if(id===ownPlayerId())selfEmote=null;else remoteEmotes.delete(id);return null}return e}
 function drawEmoteText(id,cx,y){const e=activeEmoteFor(id);if(!e||!e.text)return;ctx.save();ctx.font='800 9px Arial';ctx.textAlign='center';const text=String(e.text).slice(0,34),w=Math.min(180,ctx.measureText(text).width+12);ctx.fillStyle='#101923e8';ctx.strokeStyle='#ffffff44';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(cx-w/2,y-18,w,16,6);ctx.fill();ctx.stroke();ctx.fillStyle='#fff';ctx.fillText(text,cx,y-7);ctx.restore()}
@@ -2474,8 +2563,8 @@ function bindHold(id,key){
 bindHold('left','left');bindHold('right','right');
 
 const jump=document.getElementById('jump');
-jump.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();heldControlPointers.jump.add(e.pointerId);input.jump=true},{passive:false});
-const releaseJump=e=>{e.preventDefault();e.stopPropagation();heldControlPointers.jump.delete(e.pointerId);if(heldControlPointers.jump.size===0)input.jump=false};
+jump.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();heldControlPointers.jump.add(e.pointerId);if(staffModeEnabled)staffUpHeld=true;else input.jump=true},{passive:false});
+const releaseJump=e=>{e.preventDefault();e.stopPropagation();heldControlPointers.jump.delete(e.pointerId);if(heldControlPointers.jump.size===0){input.jump=false;staffUpHeld=false}};
 jump.addEventListener('pointerup',releaseJump,{passive:false});
 jump.addEventListener('pointercancel',releaseJump,{passive:false});
 jump.addEventListener('contextmenu',e=>e.preventDefault());
@@ -2527,7 +2616,7 @@ async function ownerBreakProtectedAt(tx,ty){
   if(!ownerBreakEnabled||String(pixoraSession?.player?.role||'')!=='Owner'||serverGameplayLocked())return false;
   const main=door&&rectHit(tx*T,ty*T,T,T,door.x,door.y,door.w,door.h),d=placedDoorAt(tx,ty),l=lockAt(tx,ty),o=weatherOrbAt(tx,ty),j=jammerAt(tx,ty);if(!main&&!d&&!l&&!o&&!j)return false;
   pulsePunchAt(tx,ty,'punch','air',0);sfx('punch');const r=await multiplayerWorldAction({type:'owner-break',tx,ty});if(!r?.ok)return false;
-  if(r.removedKind==='main-door')door=null;else if(r.removedKind==='door'){const i=placedDoors.findIndex(x=>x.tx===tx&&x.ty===ty);if(i>=0)placedDoors.splice(i,1)}else if(r.removedKind==='lock'){const i=locks.findIndex(x=>x.tx===tx&&x.ty===ty);if(i>=0)locks.splice(i,1)}else if(r.removedKind==='weather-orb'){const i=weatherOrbs.findIndex(x=>Number(x.tx)===tx&&Number(x.ty)===ty);if(i>=0)weatherOrbs.splice(i,1)}else if(r.removedKind==='jammer'){const i=jammers.findIndex(x=>Number(x.tx)===tx&&Number(x.ty)===ty);if(i>=0)jammers.splice(i,1)}
+  if(r.removedKind==='main-door'){door=null;setFallbackSpawn(false)}else if(r.removedKind==='door'){const i=placedDoors.findIndex(x=>x.tx===tx&&x.ty===ty);if(i>=0)placedDoors.splice(i,1)}else if(r.removedKind==='lock'){const i=locks.findIndex(x=>x.tx===tx&&x.ty===ty);if(i>=0)locks.splice(i,1)}else if(r.removedKind==='weather-orb'){const i=weatherOrbs.findIndex(x=>Number(x.tx)===tx&&Number(x.ty)===ty);if(i>=0)weatherOrbs.splice(i,1)}else if(r.removedKind==='jammer'){const i=jammers.findIndex(x=>Number(x.tx)===tx&&Number(x.ty)===ty);if(i>=0)jammers.splice(i,1)}
   saveWorld(true);toast('Owner Break • '+String(r.removedKind||'object')+' removed','success');return true
 }
 function tapHitBlock(b,tool='punch'){
@@ -2640,18 +2729,18 @@ function tryPlaceLock(tx,ty){
   const test={tx,ty,type},tb=lockBounds(test);if(locks.some(l=>{const b=lockBounds(l);return !(tb.x2<b.x1||tb.x1>b.x2||tb.y2<b.y1||tb.y1>b.y2)})){toast('Area ini sudah terkena Lock lain','info');return false}
   const l={tx,ty,type,owner:ownPlayerId(),trusted:[],hitsTaken:0};locks.push(l);inventory[type]--;focusedLock=l;lockAreaVisibleUntil=performance.now()+4500;
   sfx('lock');updateInventory();savePlayer(true);saveWorld(true);
-  multiplayerWorldAction({type:'lock-place',tx,ty,lockType:type}).then(r=>{if(!r?.ok){const i=locks.indexOf(l);if(i>=0)locks.splice(i,1);inventory[type]=(inventory[type]||0)+1;updateInventory();savePlayer(true);saveWorld(true);toast('Lock gagal dipasang','error')}else toast(cfg.name+' dipasang • '+(cfg.size>=WORLD_W?'seluruh world':cfg.size+'×'+cfg.size),'success')});
+  multiplayerWorldAction({type:'lock-place',tx,ty,lockType:type}).then(r=>{if(!r?.ok){const i=locks.indexOf(l);if(i>=0)locks.splice(i,1);inventory[type]=(inventory[type]||0)+1;updateInventory();savePlayer(true);saveWorld(true);toast('Lock gagal dipasang','error')}else{if(r.lock?.type==='ownerLock'){l.type='ownerLock';l.hitsTaken=0;focusedLock=l;toast('OWNER LOCK dipasang • world dilindungi Owner','success')}else toast(cfg.name+' dipasang • '+(cfg.size>=WORLD_W?'seluruh world':cfg.size+'×'+cfg.size),'success');saveWorld(true)}});
   return true;
 }
 function lockHitsLeft(l){const c=lockConfig(l);return Math.max(0,c.hits-Number(l.hitsTaken||0))}
 function showLockInfo(l){
   if(!l)return;const c=lockConfig(l);focusedLock=l;lockAreaVisibleUntil=performance.now()+10000;
   document.getElementById('lockInfoTitle').textContent=c.name;document.getElementById('lockInfoOwner').textContent=isOwnLock(l)?'YOU':String(l.owner||'UNKNOWN');
-  document.getElementById('lockInfoProtection').textContent=c.size>=WORLD_W?'FULL WORLD':c.size+' × '+c.size;document.getElementById('lockInfoDurability').textContent=lockHitsLeft(l)+' / '+c.hits+' HITS';
+  document.getElementById('lockInfoProtection').textContent=c.size>=WORLD_W?'FULL WORLD':c.size+' × '+c.size;document.getElementById('lockInfoDurability').textContent=l.type==='ownerLock'?'OWNER PROTECTED':lockHitsLeft(l)+' / '+c.hits+' HITS';document.getElementById('lockInfoHint').textContent=l.type==='ownerLock'?'Owner Lock tidak bisa dihancurkan normal. Owner gunakan /ownerbreak on untuk maintenance.':'Wrench membuka info Lock. Untuk mengambil kembali Lock, pukul sampai pecah.';
   document.getElementById('lockInfoPanel').classList.add('open');sfx('ui');
 }
 function hitWorldLock(l){
-  if(!l||!locks.includes(l))return false;const c=lockConfig(l);l.hitsTaken=Number(l.hitsTaken||0)+1;focusedLock=l;lockAreaVisibleUntil=performance.now()+1800;
+  if(!l||!locks.includes(l))return false;const c=lockConfig(l);if(l.type==='ownerLock'){focusedLock=l;lockAreaVisibleUntil=performance.now()+1800;player.punchAnim=1;player.punchDir='front';player.punchTool='punch';sfx('punch');toast('OWNER LOCK • hanya Owner Break Mode yang bisa melepasnya','info');return true}l.hitsTaken=Number(l.hitsTaken||0)+1;focusedLock=l;lockAreaVisibleUntil=performance.now()+1800;
   player.punchAnim=1;player.punchDir='front';player.punchTool='punch';sfx('punch');const x=l.tx*T+T/2,y=l.ty*T+T/2;
   for(let i=0;i<4;i++)particles.push({x:x+(Math.random()-.5)*12,y:y+(Math.random()-.5)*12,vx:(Math.random()-.5)*2.5,vy:-1-Math.random()*2,size:2+Math.random()*3,life:.55,color:c.color});
   if(l.hitsTaken>=c.hits){const lockItem=l.type||'worldLock';locks.splice(locks.indexOf(l),1);focusedLock=null;lockAreaVisibleUntil=0;inventory[lockItem]=(inventory[lockItem]||0)+1;addQuickShortcut(lockItem);updateInventory();savePlayer(true);sfx('break');toast(c.name+' pecah • langsung kembali ke Backpack','success')}
@@ -2669,12 +2758,14 @@ function drawLocks(){
     if(type==='smallLock'){g.addColorStop(0,'#f0cf55');g.addColorStop(1,'#ad8217')}
     else if(type==='bigLock'){g.addColorStop(0,'#66b1f5');g.addColorStop(1,'#2868ae')}
     else if(type==='hugeLock'){g.addColorStop(0,'#b47de8');g.addColorStop(1,'#6b39a7')}
+    else if(type==='ownerLock'){g.addColorStop(0,'#fff4a8');g.addColorStop(.48,'#ffd34f');g.addColorStop(1,'#c68716')}
     else{g.addColorStop(0,'#f56557');g.addColorStop(1,'#ad252c')}
-    ctx.fillStyle=g;ctx.strokeStyle=type==='smallLock'?'#6e5512':type==='bigLock'?'#174b7c':type==='hugeLock'?'#45236f':'#75191d';ctx.lineWidth=3;ctx.beginPath();ctx.roundRect(x+6,y+13,28,23,5);ctx.fill();ctx.stroke();
+    ctx.fillStyle=g;ctx.strokeStyle=type==='smallLock'?'#6e5512':type==='bigLock'?'#174b7c':type==='hugeLock'?'#45236f':type==='ownerLock'?'#7d5410':'#75191d';ctx.lineWidth=3;ctx.beginPath();ctx.roundRect(x+6,y+13,28,23,5);ctx.fill();ctx.stroke();
     // each Lock has its own simple emblem so it is readable without text labels
     if(type==='smallLock'){ctx.fillStyle='#5d461d';ctx.beginPath();ctx.arc(x+20,y+23,3,0,Math.PI*2);ctx.fill();ctx.fillRect(x+18.5,y+24,3,7)}
     else if(type==='bigLock'){ctx.fillStyle='#d9efff';ctx.beginPath();ctx.moveTo(x+20,y+18);ctx.lineTo(x+27,y+21);ctx.lineTo(x+25,y+29);ctx.lineTo(x+20,y+33);ctx.lineTo(x+15,y+29);ctx.lineTo(x+13,y+21);ctx.closePath();ctx.fill()}
     else if(type==='hugeLock'){ctx.fillStyle='#eadbff';ctx.beginPath();ctx.moveTo(x+20,y+17);ctx.lineTo(x+23,y+22);ctx.lineTo(x+29,y+24);ctx.lineTo(x+23,y+27);ctx.lineTo(x+20,y+33);ctx.lineTo(x+17,y+27);ctx.lineTo(x+11,y+24);ctx.lineTo(x+17,y+22);ctx.closePath();ctx.fill()}
+    else if(type==='ownerLock'){ctx.fillStyle='#fff7c2';ctx.beginPath();ctx.moveTo(x+11,y+25);ctx.lineTo(x+13,y+18);ctx.lineTo(x+17,y+22);ctx.lineTo(x+20,y+16);ctx.lineTo(x+23,y+22);ctx.lineTo(x+27,y+18);ctx.lineTo(x+29,y+25);ctx.closePath();ctx.fill();ctx.fillStyle='#53dfff';ctx.fillRect(x+18,y+27,4,5);ctx.fillStyle='#fff';ctx.fillRect(x+19,y+27,2,2)}
     else{ctx.strokeStyle='#ffe8a8';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x+20,y+24,7,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(x+13,y+24);ctx.lineTo(x+27,y+24);ctx.moveTo(x+20,y+17);ctx.quadraticCurveTo(x+15,y+24,x+20,y+31);ctx.moveTo(x+20,y+17);ctx.quadraticCurveTo(x+25,y+24,x+20,y+31);ctx.stroke()}
     const dmg=Math.min(1,Number(l.hitsTaken||0)/c.hits);if(dmg>0){ctx.strokeStyle='rgba(55,35,20,'+(0.45+dmg*.5)+')';ctx.lineWidth=2;const cx=x+20,cy=y+25,count=Math.max(1,Math.ceil(dmg*6)),rays=[[-10,-8],[8,-10],[11,1],[7,9],[-7,10],[-11,2]];for(let i=0;i<count;i++){const [rx,ry]=rays[i];ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+rx,cy+ry);ctx.stroke()}}
     ctx.restore();
@@ -3031,7 +3122,7 @@ function wrenchPlayerAt(wx,wy){
   let best=null,dist=Infinity;for(const r of remotePlayers.values()){if(rectHit(wx,wy,1,1,Number(r.x||0)-5,Number(r.y||0)-6,player.w+10,player.h+12)){const d=Math.hypot(wx-(Number(r.x||0)+player.w/2),wy-(Number(r.y||0)+player.h/2));if(d<dist){best=r;dist=d}}}return best;
 }
 function equipmentText(eq){const out=[];for(const [slot,item] of Object.entries(eq||{}))if(item)out.push((slot==='back'?'BACK':slot.toUpperCase())+': '+(itemName[item]||item));return out.length?out.join(' • '):'None'}
-function hasWorldOwnerPower(){return locks.some(l=>l?.type==='worldLock'&&isOwnLock(l))}
+function hasWorldOwnerPower(){return locks.some(l=>l&&(l.type==='worldLock'||l.type==='ownerLock')&&isOwnLock(l))}
 function refreshInteractionButtons(){
   if(!interactTarget||interactTarget.self)return;const id=String(interactTarget.playerId||'');
   const map={friend:socialFriends.has(id)?'REMOVE FRIEND':(friendPendingTargets.has(id)?'REQUEST PENDING':'SEND FRIEND REQUEST'),block:socialBlocked.has(id)?'UNBLOCK':'BLOCK',ignore:socialIgnored.has(id)?'UNIGNORE':'IGNORE'};
@@ -3105,7 +3196,7 @@ async function playerAction(action){
   if(action==='moderator'){if(String(pixoraSession?.player?.role)!=='Owner')return;const next=String(t.role||'Player')==='Moderator'?'Player':'Moderator';try{const d=await authRequest('/api/mod/role',{targetPlayerId:id,role:next},multiplayerToken());t.role=d.role;document.getElementById('interactMeta').textContent=t.role+' • '+(t.accountType==='account'?'Account':'Guest');refreshInteractionButtons();toast('Role → '+d.role,'success')}catch(e){toast(authErrorMessage(e),'error')}return}
   if(action==='serverban'){if(String(pixoraSession?.player?.role)!=='Owner')return;const ok=await pixoraConfirm('Ban '+String(t.displayName||'player')+' dari seluruh server Pixora?','SERVER BAN','BAN','BATAL');if(!ok)return;try{await authRequest('/api/mod/ban',{targetPlayerId:id,reason:'Owner wrench ban'},multiplayerToken());toast('Player di-ban dari server','success');closePlayerInteraction()}catch(e){toast(authErrorMessage(e),'error')}return}
 }
-async function ownerWorldAction(cmd){const t=interactTarget;if(!t||t.self)return;let ok=true;if(cmd==='kick'||cmd==='ban')ok=await pixoraConfirm((cmd==='ban'?'Ban ':'Kick ')+String(t.displayName||'player')+' dari world?','WORLD OWNER',cmd.toUpperCase(),'BATAL');if(!ok)return;const r=await multiplayerWorldAction({type:'world-command',command:cmd,targetPlayerId:t.playerId});if(r?.ok&&cmd==='access'){const wl=locks.find(l=>l?.type==='worldLock'&&isOwnLock(l));if(wl){wl.trusted=Array.isArray(wl.trusted)?wl.trusted:[];if(r.accessGranted&&!wl.trusted.includes(t.playerId))wl.trusted.push(t.playerId);if(!r.accessGranted)wl.trusted=wl.trusted.filter(id=>String(id)!==String(t.playerId));}t.worldRole=r.accessGranted?'admin':'player';refreshInteractionButtons();toast(r.accessGranted?'World Admin access diberikan':'World Admin access dicabut','success');return}toast(r?.ok?cmd.toUpperCase()+' berhasil':'Command gagal',r?.ok?'success':'error');if(r?.ok&&cmd!=='pull')closePlayerInteraction()}
+async function ownerWorldAction(cmd){const t=interactTarget;if(!t||t.self)return;let ok=true;if(cmd==='kick'||cmd==='ban')ok=await pixoraConfirm((cmd==='ban'?'Ban ':'Kick ')+String(t.displayName||'player')+' dari world?','WORLD OWNER',cmd.toUpperCase(),'BATAL');if(!ok)return;const r=await multiplayerWorldAction({type:'world-command',command:cmd,targetPlayerId:t.playerId});if(r?.ok&&cmd==='access'){const wl=locks.find(l=>l&&(l.type==='worldLock'||l.type==='ownerLock')&&isOwnLock(l));if(wl){wl.trusted=Array.isArray(wl.trusted)?wl.trusted:[];if(r.accessGranted&&!wl.trusted.includes(t.playerId))wl.trusted.push(t.playerId);if(!r.accessGranted)wl.trusted=wl.trusted.filter(id=>String(id)!==String(t.playerId));}t.worldRole=r.accessGranted?'admin':'player';refreshInteractionButtons();toast(r.accessGranted?'World Admin access diberikan':'World Admin access dicabut','success');return}toast(r?.ok?cmd.toUpperCase()+' berhasil':'Command gagal',r?.ok?'success':'error');if(r?.ok&&cmd!=='pull')closePlayerInteraction()}
 
 async function openModeratorPanel(){
   if(!['Moderator','Admin','Owner'].includes(String(pixoraSession?.player?.role||'Player')))return;
@@ -3167,7 +3258,7 @@ let multiplayerInFlight=false,multiplayerLastSync=0,multiplayerJoinedWorld='',mu
 function multiplayerToken(){return localStorage.getItem(PIXORA_SESSION_KEY)||''}
 function multiplayerWorldSnapshot(){
   return {
-    worldId:String(worldId||''),surfaceTile:Math.floor(GROUND_Y/T),
+    worldId:String(worldId||''),templateVersion:worldTemplateVersion,surfaceTile:Math.floor(GROUND_Y/T),
     blocks:blocks.map(b=>({x:b.x,y:b.y,t:b.t})),
     door:door?{x:door.x,y:door.y,w:door.w,h:door.h}:null,
     placedDoors:Array.isArray(placedDoors)?placedDoors.map(d=>({...d})):[],
@@ -3192,7 +3283,7 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   for(const b of blocks){if(!b)continue;const h=Number(b.hitsTaken||0),last=Number(b.lastHitAt||0);if(h>0&&last>0&&now-last<=DAMAGE_RESET_MS)oldDamage.set(blockKey(Math.floor(b.x/T),Math.floor(b.y/T)),{t:b.t,hitsTaken:h,lastHitAt:last})}
   for(const l of locks){if(!l)continue;const h=Number(l.hitsTaken||0);if(h>0)oldLockDamage.set(blockKey(Number(l.tx),Number(l.ty)),{type:l.type||'worldLock',hitsTaken:h})}
   const st=Number(snap.surfaceTile);if(Number.isFinite(st)&&st>=4&&st<=WORLD_H-4)GROUND_Y=st*T;
-  if(snap.worldId)worldId=String(snap.worldId);
+  if(snap.worldId)worldId=String(snap.worldId);worldTemplateVersion=Math.max(0,Math.floor(Number(snap.templateVersion||0)));
   blocks=snap.blocks.filter(b=>b&&Number.isFinite(Number(b.x))&&Number.isFinite(Number(b.y))&&typeof b.t==='string').map(b=>{const x=Number(b.x),y=Number(b.y),t=b.t,old=oldDamage.get(blockKey(Math.floor(x/T),Math.floor(y/T)));return {x,y,t,hitsTaken:old&&old.t===t?old.hitsTaken:0,lastHitAt:old&&old.t===t?old.lastHitAt:0}});rebuildBlockMap();
   caveBgRemoved=new Set(Array.isArray(snap.caveBgRemoved)?snap.caveBgRemoved.filter(k=>typeof k==='string'):[]);
   plants=Array.isArray(snap.plants)?snap.plants.map(p=>({...p,rarity:Math.max(1,Number(p.rarity||itemRarity(p.seed)||1)),growMs:growthMsForRarity(Math.max(1,Number(p.rarity||itemRarity(p.seed)||1)))})):[];
@@ -3203,7 +3294,7 @@ function applyMultiplayerWorldSnapshot(snap,teleport=false){
   weather=(snap.weather&&WEATHER_TYPES.includes(snap.weather.type))?{type:snap.weather.type}:{type:'sunny'};
   drops=Array.isArray(snap.drops)?snap.drops.map(d=>({...d,bobSeed:Math.random()*Math.PI*2,collecting:false,pick:false})):[];
   if(snap.door&&Number.isFinite(Number(snap.door.x))){const dt=Math.floor(Number(snap.door.x)/T);door={x:dt*T+2,y:Math.floor(GROUND_Y/T)*T-40,w:36,h:40};}else door=null;
-  ensureDoorSafe();if(door){player.spawnX=door.x+3;player.spawnY=door.y+door.h-player.h;if(teleport){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;}}
+  ensureDoorSafe(!!door,teleport);if(door){player.spawnX=door.x+3;player.spawnY=door.y+door.h-player.h;if(teleport){player.x=player.spawnX;player.y=player.spawnY;player.vx=0;player.vy=0;}}
   if(keepBreak){if(keepBreak.kind==='bg'){if(hasCaveBackground(keepBreak.tx,keepBreak.ty))breakState=keepBreak;else breakState=null}else{const nb=blockAt(keepBreak.tx,keepBreak.ty);if(nb){keepBreak.block=nb;delete keepBreak.tx;delete keepBreak.ty;breakState=keepBreak}else breakState=null}}
   saveWorld(true);return true;
 }
@@ -3379,7 +3470,7 @@ function applyWorldChat(list){
 
 function escapeChat(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 async function commandWarpToWorld(dest,pos=null){dest=cleanWorldName(dest);if(!dest)return;if(dest===currentWorldName){if(pos){player.x=Number(pos.x||player.x);player.y=Number(pos.y||player.y);player.vx=0;player.vy=0}return}if(gameReady){saveWorld(true);await multiplayerLeave(currentWorldName);gameReady=false}currentWorldName='';await enterWorld(dest);if(pos){player.x=Number(pos.x||player.x);player.y=Number(pos.y||player.y);player.vx=0;player.vy=0}}
-function handleCommandResponse(c){if(!c)return;if(c.message)toast(String(c.message).slice(0,260),c.ok===false?'error':'info');if(typeof c.staffMode==='boolean'){staffModeEnabled=c.staffMode;if(!staffModeEnabled){staffDownHeld=false;player.vx=0;player.vy=0}}if(typeof c.vanished==='boolean')ownerVanishEnabled=c.vanished;if(typeof c.hidden==='boolean')staffHiddenEnabled=c.hidden;if(typeof c.ownerBreak==='boolean'){ownerBreakEnabled=c.ownerBreak;toast(ownerBreakEnabled?'Owner Break Mode ON':'Owner Break Mode OFF',ownerBreakEnabled?'success':'info')}if(c.openEmote)openEmotePanel();if(c.openReports)openModeratorPanel();if(c.emote){selfEmote={kind:String(c.emote.kind||''),text:String(c.emote.text||''),until:performance.now()+Math.max(500,Number(c.emote.duration||3000))}}if(c.gemEvent)activeGemEvent=c.gemEvent;if(c.serverRestart)updateServerRestartSequence(c.serverRestart);if(c.restartCancelled)clearServerRestartExpectation();if(c.teleportWorld)setTimeout(()=>commandWarpToWorld(c.teleportWorld,c.teleportPosition||null),0)}
+function handleCommandResponse(c){if(!c)return;if(c.message)toast(String(c.message).slice(0,260),c.ok===false?'error':'info');if(typeof c.staffMode==='boolean'){staffModeEnabled=c.staffMode;if(!staffModeEnabled){staffUpHeld=false;staffDownHeld=false;player.vx=0;player.vy=0}}if(typeof c.vanished==='boolean')ownerVanishEnabled=c.vanished;if(typeof c.hidden==='boolean')staffHiddenEnabled=c.hidden;if(typeof c.ownerBreak==='boolean'){ownerBreakEnabled=c.ownerBreak;toast(ownerBreakEnabled?'Owner Break Mode ON':'Owner Break Mode OFF',ownerBreakEnabled?'success':'info')}if(c.openEmote)openEmotePanel();if(c.openReports)openModeratorPanel();if(c.emote){selfEmote={kind:String(c.emote.kind||''),text:String(c.emote.text||''),until:performance.now()+Math.max(500,Number(c.emote.duration||3000))}}if(c.gemEvent)activeGemEvent=c.gemEvent;if(c.serverRestart)updateServerRestartSequence(c.serverRestart);if(c.restartCancelled)clearServerRestartExpectation();if(c.teleportWorld)setTimeout(()=>commandWarpToWorld(c.teleportWorld,c.teleportPosition||null),0)}
 async function sendWorldChat(text){
   text=String(text||'').trim();if(!text||!gameReady||!currentWorldName)return;
   if(text.length>180){toast('Pesan terlalu panjang','error');return}
@@ -3425,7 +3516,7 @@ function localNamespaceFor(accountKey){
   FAVORITE_WORLDS_KEY='pixora_favorites_v1_'+safe;
   PLAYER_ID_KEY='pixora_player_id_v1_'+safe;
   ACTIVE_WORLD_KEY='pixora_active_world_v1_'+safe;
-  CHANGELOG_KEY='pixora_seen_build_15_0_4_'+safe;
+  CHANGELOG_KEY='pixora_seen_build_15_0_6_'+safe;
 }
 function bootPixoraSession(session){
   if(pixoraBooted)return;pixoraBooted=true;pixoraSession=session;pixoraCloudSavePaused=true;ownerBreakEnabled=!!session.ownerBreak;
@@ -3520,7 +3611,7 @@ chatToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();if(!gameRead
 friendToggleBtn.addEventListener('pointerdown',e=>{e.preventDefault();openFriendPanel()},{passive:false});
 chatForm.addEventListener('submit',e=>{e.preventDefault();const text=chatInput.value;if(!text.trim()){chatPanel.classList.remove('open');chatInput.blur();return}chatInput.value='';sendWorldChat(text)});
 
-let CHANGELOG_KEY='pixora_seen_build_15_0_4';
+let CHANGELOG_KEY='pixora_seen_build_15_0_6';
 function showChangelogOnce(){if(localStorage.getItem(CHANGELOG_KEY)==='yes')return;document.getElementById('changelogPanel').classList.add('open')}
 document.getElementById('changelogPlay').addEventListener('pointerdown',e=>{e.preventDefault();localStorage.setItem(CHANGELOG_KEY,'yes');document.getElementById('changelogPanel').classList.remove('open');sfx('ui')},{passive:false});
 
@@ -3549,7 +3640,7 @@ window.addEventListener('keydown',e=>{
   }
   if(key==='w'||e.key==='ArrowUp'||code==='Space'){
     e.preventDefault();
-    if(!e.repeat)input.jump=true;
+    if(staffModeEnabled)staffUpHeld=true;else if(!e.repeat)input.jump=true;
   }
   if(staffModeEnabled&&(key==='s'||e.key==='ArrowDown')){e.preventDefault();staffDownHeld=true;}
   if(key==='f'){
@@ -3573,13 +3664,13 @@ window.addEventListener('keyup',e=>{
   const key=e.key.toLowerCase();
   if(key==='a'||e.key==='ArrowLeft'){e.preventDefault();input.left=false;heldKeys.delete('left')}
   if(key==='d'||e.key==='ArrowRight'){e.preventDefault();input.right=false;heldKeys.delete('right')}
-  if(key==='w'||e.key==='ArrowUp'||e.code==='Space'){e.preventDefault();input.jump=false}
+  if(key==='w'||e.key==='ArrowUp'||e.code==='Space'){e.preventDefault();input.jump=false;staffUpHeld=false}
   if(key==='s'||e.key==='ArrowDown'){e.preventDefault();staffDownHeld=false}
   if(key==='f'){e.preventDefault();keyboardPunchHeld=false;refreshPunchHeld()}
 },{passive:false});
 
 window.addEventListener('blur',()=>{
-  input.left=false;input.right=false;input.jump=false;staffDownHeld=false;punchHeld=false;keyboardPunchHeld=false;mousePunchHeld=false;canvasPunchHold=null;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
+  input.left=false;input.right=false;input.jump=false;staffUpHeld=false;staffDownHeld=false;punchHeld=false;keyboardPunchHeld=false;mousePunchHeld=false;canvasPunchHold=null;stopPlace();heldKeys.clear();activePointers.clear();pinchActive=false;clearHover();
   Object.values(heldControlPointers).forEach(set=>set.clear());
 });
 
